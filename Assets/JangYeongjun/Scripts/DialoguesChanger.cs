@@ -23,7 +23,7 @@ public class DialoguesChanger : MonoBehaviour
         nameText.text = dialoguesSO.dialogues[dialoguesCount].character;
         dialoguesCount++;
 
-        if(dialoguesCount>7)
+        if(dialoguesCount>8)
         {
             ChoicePanle.SetActive(true);
             DialoguePanel.SetActive(false);
