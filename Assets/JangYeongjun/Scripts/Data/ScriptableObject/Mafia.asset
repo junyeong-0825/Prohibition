@@ -16,21 +16,24 @@ MonoBehaviour:
   - value: 0
     character: Mafia
     dialogue: "\uADF8\uB798...\r"
-  - value: 1
+  - value: 0
     character: Mafia
     dialogue: "\uC774\uACF3\uC5D0 \uC628 \uAC74 \uCC98\uC74C\uC778\uAC74\uAC00?\r"
-  - value: 2
+  - value: 0
     character: Mafia
     dialogue: "\uC5B4\uB5A4 \uC77C\uB85C \uC774\uACF3\uC5D0 \uBC29\uBB38\uD558\uC600\uB294\uAC00?\r"
   - value: 0
     character: Player
     dialogue: "\uAC70\uB798\uB97C \uD558\uACE0 \uC2F6\uB2E4\r"
-  - value: 3
+  - value: 0
     character: Mafia
     dialogue: "\uAC70\uB798?\r"
-  - value: 4
+  - value: 0
     character: Mafia
     dialogue: "\uC5B4\uB5A4 \uAC70\uB798?\r"
-  - value: 1
+  - value: 0
     character: Player
-    dialogue: "\uC220\uC744 \uD314\uC544\uC11C \uB3C8\uC744 \uBC8C\uAC70\uC57C!!"
+    dialogue: "\uC220\uC744 \uD314\uC544\uC11C \uB3C8\uC744 \uBC8C\uAC70\uC57C!!\r"
+  - value: 0
+    character: Mafia
+    dialogue: "\uADF8\uB798\uC11C... \uBB34\uC5C7\uC744 \uC6D0\uD558\uC9C0?"

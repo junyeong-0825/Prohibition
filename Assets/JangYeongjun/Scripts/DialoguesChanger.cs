@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class BuyGoods : MonoBehaviour
+public class DialoguesChanger : MonoBehaviour
 {
     int dialoguesCount = 0;
     [SerializeField] TextMeshProUGUI dialoguesText;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] DialoguesSO dialoguesSO;
+    [SerializeField] GameObject ChoicePanle;
+    [SerializeField] GameObject DialoguePanel;
 
     private void Start()
     {
@@ -19,5 +22,12 @@ public class BuyGoods : MonoBehaviour
         dialoguesText.text = dialoguesSO.dialogues[dialoguesCount].dialogue;
         nameText.text = dialoguesSO.dialogues[dialoguesCount].character;
         dialoguesCount++;
+
+        if(dialoguesCount>7)
+        {
+            ChoicePanle.SetActive(true);
+            DialoguePanel.SetActive(false);
+            dialoguesCount = 0;
+        }
     }
 }
