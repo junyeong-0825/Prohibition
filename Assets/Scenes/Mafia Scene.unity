@@ -1509,6 +1509,7 @@ MonoBehaviour:
   nameText: {fileID: 1143627890}
   dialoguesSO: {fileID: 11400000, guid: 1ad34c56b2503bd4a9d489d6685f5242, type: 2}
   ChoicePanle: {fileID: 1476536003}
+  DialoguePanel: {fileID: 0}
 --- !u!114 &1147816042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1822,7 +1823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1476536004
 RectTransform:
   m_ObjectHideFlags: 0
