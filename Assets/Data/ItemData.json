@@ -1,42 +1,42 @@
 [
 {
-    "classification" : "술",
-    "name" : "맥주", 
-    "quantity" : 50, 
-    "purchasePrice" : 20, 
-    "sellingPrice" : 35, 
-    "riseScale" : 15
+    "Classification" : "술",
+    "Name" : "맥주", 
+    "Quantity" : 50, 
+    "PurchasePrice" : 20, 
+    "SellingPrice" : 35, 
+    "RiseScale" : 15
 },
 {
-    "classification" : "술",
-    "name" : "와인", 
-    "quantity" : 50, 
-    "purchasePrice" : 35, 
-    "sellingPrice" : 60, 
-    "riseScale" : 20
+    "Classification" : "술",
+    "Name" : "와인", 
+    "Quantity" : 50, 
+    "PurchasePrice" : 35, 
+    "SellingPrice" : 60, 
+    "RiseScale" : 20
 },
 {
-    "classification" : "술",
-    "name" : "위스키", 
-    "quantity" : 50, 
-    "purchasePrice" : 60, 
-    "sellingPrice" : 100, 
-    "riseScale" : 30
+    "Classification" : "술",
+    "Name" : "위스키", 
+    "Quantity" : 50, 
+    "PurchasePrice" : 60, 
+    "SellingPrice" : 100, 
+    "RiseScale" : 30
 },
 {
-    "classification" : "음식",
-    "name" : "음식재료", 
-    "quantity" : 50, 
-    "purchasePrice" : 15, 
-    "sellingPrice" : 3, 
-    "riseScale" : null
+    "Classification" : "음식",
+    "Name" : "음식재료", 
+    "Quantity" : 50, 
+    "PurchasePrice" : 15, 
+    "SellingPrice" : 3, 
+    "RiseScale" : null
 },
 {
-    "classification" : "음식",
-    "name" : "요리", 
-    "quantity" : 50, 
-    "purchasePrice" : null, 
-    "sellingPrice" : 10, 
-    "riseScale" : 5
+    "Classification" : "음식",
+    "Name" : "요리", 
+    "Quantity" : 50, 
+    "PurchasePrice" : null, 
+    "SellingPrice" : 10, 
+    "RiseScale" : 5
 }
 ]
