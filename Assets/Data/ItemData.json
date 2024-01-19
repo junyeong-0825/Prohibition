@@ -1,42 +1,42 @@
 [
 {
-    "아이템 분류" : "술",
-    "아이템 명" : "맥주", 
-    "아이템 최대치" : 50, 
-    "구매 가격" : 20, 
-    "판매 가격" : 35, 
-    "판매 가격 상승 폭" : 15
+    "classification" : "술",
+    "name" : "맥주", 
+    "quantity" : 50, 
+    "purchasePrice" : 20, 
+    "sellingPrice" : 35, 
+    "riseScale" : 15
 },
 {
-    "아이템 분류" : "술",
-    "아이템 명" : "와인", 
-    "아이템 최대치" : 50, 
-    "구매 가격" : 35, 
-    "판매 가격" : 60, 
-    "판매 가격 상승 폭" : 20
+    "classification" : "술",
+    "name" : "와인", 
+    "quantity" : 50, 
+    "purchasePrice" : 35, 
+    "sellingPrice" : 60, 
+    "riseScale" : 20
 },
 {
-    "아이템 분류" : "술",
-    "아이템 명" : "위스키", 
-    "아이템 최대치" : 50, 
-    "구매 가격" : 60, 
-    "판매 가격" : 100, 
-    "판매 가격 상승 폭" : 30
+    "classification" : "술",
+    "name" : "위스키", 
+    "quantity" : 50, 
+    "purchasePrice" : 60, 
+    "sellingPrice" : 100, 
+    "riseScale" : 30
 },
 {
-    "아이템 분류" : "음식",
-    "아이템 명" : "음식재료", 
-    "아이템 최대치" : 50, 
-    "구매 가격" : 15, 
-    "판매 가격" : 3, 
-    "판매 가격 상승 폭" : null
+    "classification" : "음식",
+    "name" : "음식재료", 
+    "quantity" : 50, 
+    "purchasePrice" : 15, 
+    "sellingPrice" : 3, 
+    "riseScale" : null
 },
 {
-    "아이템 분류" : "음식",
-    "아이템 명" : "요리", 
-    "아이템 최대치" : 50, 
-    "구매 가격" : null, 
-    "판매 가격" : 10, 
-    "판매 가격 상승 폭" : 5
+    "classification" : "음식",
+    "name" : "요리", 
+    "quantity" : 50, 
+    "purchasePrice" : null, 
+    "sellingPrice" : 10, 
+    "riseScale" : 5
 }
 ]
