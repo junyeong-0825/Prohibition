@@ -6,7 +6,15 @@ using System.IO;
 [System.Serializable]
 public class PlayerData
 {
-    public int coin = 10000;
+    public Playerinfo[] Playerinfo;
+}
+
+[System.Serializable]
+public class Playerinfo
+{
+    public int coin;
+    public int attack;
+    public int movespeed;
 }
 public class TemporaryDataManager : MonoBehaviour
 {
@@ -30,7 +38,7 @@ public class TemporaryDataManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         #endregion
 
-        path = Application.persistentDataPath + "/saves";
+        path = Application.persistentDataPath+"/saves" ;
     }
     public void SaveData()
     {

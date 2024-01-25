@@ -21,9 +21,32 @@ public class LoginDataManager : MonoBehaviour
 {
     const string URL = "https://script.google.com/macros/s/AKfycbwwLV0pazBvZoMLZl0qBztyJRCpgrDU2iGGrpWPdc_J_vHO5Epp5cmhJMg5kADQm6TWOA/exec";
     public GoogleData GD;
-    public TMP_InputField IDInput, PassInput, ValueInput;
+    public TextMeshProUGUI ErrorText;
+    public TMP_InputField IDInput, PassInput;//, ValueInput;
     string id, pass;
+    int InputSelect;
+    public GameObject LoadingPage;
+    public GameObject LoginPage;
+    public GameObject LoginLoading;
 
+    #region InputField를 Tab으로 이동하는 로직
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            InputSelect++;
+            if (InputSelect > 1) { InputSelect = 0; }
+            SelectInputField();
+        }
+        void SelectInputField()
+        {
+            if (InputSelect == 0) { IDInput.Select(); }
+            else if (InputSelect == 1) {  PassInput.Select(); }
+        }
+    }
+    public void IDInputSelected() => InputSelect = 0;
+    public void PasswordSelected() => InputSelect = 1;
+    #endregion
 
 
     bool SetIDPass()
@@ -35,7 +58,7 @@ public class LoginDataManager : MonoBehaviour
         else return true;
     }
 
-
+    /*
     public void Register()
     {
         if (!SetIDPass())
@@ -51,13 +74,13 @@ public class LoginDataManager : MonoBehaviour
 
         StartCoroutine(Post(form));
     }
-
+    */
 
     public void Login()
     {
         if (!SetIDPass())
         {
-            print("아이디 또는 비밀번호가 비어있습니다");
+            ErrorText.text = "아이디 또는 비밀번호가 비어있습니다";
             return;
         }
 
@@ -65,6 +88,8 @@ public class LoginDataManager : MonoBehaviour
         form.AddField("order", "login");
         form.AddField("id", id);
         form.AddField("pass", pass);
+        
+        LoginLoading.SetActive(true);
 
         StartCoroutine(Post(form));
     }
@@ -90,7 +115,7 @@ public class LoginDataManager : MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-
+/*
     public void SetValue()
     {
         WWWForm form = new WWWForm();
@@ -108,7 +133,7 @@ public class LoginDataManager : MonoBehaviour
 
         StartCoroutine(Post(form));
     }
-
+    */
 
 
 
@@ -120,7 +145,7 @@ public class LoginDataManager : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.isDone) Response(www.downloadHandler.text);
-            else print("웹의 응답이 없습니다.");
+            else ErrorText.text = "웹의 응답이 없습니다.";
         }
     }
 
@@ -133,20 +158,22 @@ public class LoginDataManager : MonoBehaviour
 
         if (GD.result == "ERROR")
         {
-            print(GD.order + "을 실행할 수 없습니다. 에러 메시지 : " + GD.msg);
+            LoginLoading.SetActive(false);
+            ErrorText.text = $"{ GD.order} 을 실행할 수 없습니다. 에러 메시지 : {GD.msg}";
             return;
         }
 
         print(GD.order + "을 실행했습니다. 메시지 : " + GD.msg);
-
+        /*
         if (GD.order == "getValue")
         {
             ValueInput.text = GD.value;
         }
-
+        */
         if(GD.order == "login")
         {
-            SceneChange.instance.ChangeToNextScene();
+            LoadingPage.SetActive(true);
+            LoginPage.SetActive(false);
         }
     }
 }

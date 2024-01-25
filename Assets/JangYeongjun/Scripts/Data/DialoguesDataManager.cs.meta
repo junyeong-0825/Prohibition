@@ -4,10 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - dialoguesText: {instanceID: 0}
-  - nameText: {instanceID: 0}
-  - dialoguesSO: {fileID: 11400000, guid: 1ad34c56b2503bd4a9d489d6685f5242, type: 2}
-  - storeSO: {fileID: 11400000, guid: 7d87821ee3b65ea49b444ab279237671, type: 2}
+  - dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

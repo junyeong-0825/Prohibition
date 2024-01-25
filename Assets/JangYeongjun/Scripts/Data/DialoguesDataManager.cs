@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,10 +7,28 @@ using UnityEngine.Networking;
 
 public class DialoguesDataManager : MonoBehaviour
 {
+    #region URLs
     const string DialogueURL = "https://docs.google.com/spreadsheets/d/13vtl_xZLrGFk1j-iw-JTqoMaoQpEFXKu0iNLsITKjyo/export?format=tsv&gid=0&range=A2:C";
+    #endregion
+    #region Fields
     [SerializeField] DialoguesSO dialoguesSO;
-
+    public static DialoguesDataManager Instance;
+    public Action<float> OnProgressChanged;
+    #endregion
     private void Awake()
+    {
+        #region 싱글톤
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        #endregion
+    }
+    public void SetStart()
     {
         StartCoroutine(Get());
     }
@@ -19,25 +38,32 @@ public class DialoguesDataManager : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(DialogueURL);
         yield return www.SendWebRequest();
 
-        SetDialoguesSO(www.downloadHandler.text);
-    }
+        // 데이터 처리 시작
+        OnProgressChanged?.Invoke(0.5f);
 
+        SetDialoguesSO(www.downloadHandler.text);
+        // 데이터 처리 완료
+        OnProgressChanged?.Invoke(1.0f);
+
+    }
     void SetDialoguesSO(string tsv)
     {
         string[] row = tsv.Split('\n');
         int rowsize = row.Length;
-        int columnsize = row[0].Split('\t').Length;
 
-        for (int i = 0; i < rowsize; i++) 
+        dialoguesSO.dialogues = new Dialogues[rowsize];
+
+        for (int i = 0; i < rowsize; i++)
         {
             string[] column = row[i].Split('\t');
-
-            for (int j = 0; j < columnsize; j++)
+            if (column.Length >= 3)
             {
-                Dialogues dialogues = dialoguesSO.dialogues[i];
+                Dialogues dialogues = new Dialogues();
                 dialogues.value = int.Parse(column[0]);
                 dialogues.character = column[1];
                 dialogues.dialogue = column[2];
+
+                dialoguesSO.dialogues[i] = dialogues;
             }
         }
     }

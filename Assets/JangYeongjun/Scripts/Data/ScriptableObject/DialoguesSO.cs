@@ -13,7 +13,7 @@ public class Dialogues
     public string dialogue;
 }
 
-[CreateAssetMenu(fileName = "Mafia", menuName = "Dialogues", order = 0)]
+[CreateAssetMenu(fileName = "dialogues", menuName = "Dialogues", order = 0)]
 public class DialoguesSO : ScriptableObject
 {
     public Dialogues[] dialogues;

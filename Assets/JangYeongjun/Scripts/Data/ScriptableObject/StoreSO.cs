@@ -7,11 +7,15 @@ using UnityEngine;
 public class Store
 {
     public string name;
-    public int _value;
-    public int quantity;
+    public string classification;
+    public int maximum;
+    public string descripttion;
+    public int buyCost;
+    public float sellCost;
+    public float enhancementCost;
     public Sprite sprite;
 }
-[CreateAssetMenu(fileName = "Material", menuName = "Store", order = 0)]
+[CreateAssetMenu(fileName = "stroe", menuName = "Store", order = 0)]
 public class StoreSO : ScriptableObject
 {
     public Store[] store;
