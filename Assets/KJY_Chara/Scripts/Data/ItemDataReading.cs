@@ -24,15 +24,7 @@ public class ItemDataReading : MonoBehaviour
             //ItemSO √ ±‚»≠
             itemSO.itemList = itemList;
 
-            //foreach (Item item in itemList.items) 
-            //{
-            //    Debug.Log("Classification: " + item.Classification);
-            //    Debug.Log("Name: " + item.Name);
-            //    Debug.Log("Quantity: " + item.Quantity);
-            //    Debug.Log("PurchasePrice: " + item.PurchasePrice);
-            //    Debug.Log("SellingPrice: " + item.SellingPrice);
-            //    Debug.Log("RiseScale: " + item.RiseScale);
-            //}
+            Resources.UnloadUnusedAssets();
         }
     }
     
