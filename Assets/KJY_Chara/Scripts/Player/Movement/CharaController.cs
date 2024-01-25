@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterController : MonoBehaviour
+public class CharaController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
 

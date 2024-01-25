@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController _controller;
+    private CharaController _controller;
 
     private Vector2 _movementDriection = Vector2.zero;
     private Rigidbody2D _rigidbody;
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();  
+        _controller = GetComponent<CharaController>();  
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     // Start is called before the first frame update

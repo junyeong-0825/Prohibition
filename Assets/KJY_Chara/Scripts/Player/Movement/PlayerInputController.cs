@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : CharacterController
+public class PlayerInputController : CharaController
 {
     private Camera _camera;
     private void Awake()
