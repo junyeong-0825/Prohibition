@@ -13,4 +13,5 @@ public class SendDataManager : MonoBehaviour
             yield return www.SendWebRequest();
         }
     }
+
 }

@@ -13,27 +13,39 @@ MonoBehaviour:
   m_Name: inventory
   m_EditorClassIdentifier: 
   inventory:
-  - itemQuantity: 0
+  - name: Cheap Beer
+    itemQuantity: 1
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Beer
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: High-quality Beer
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Cheap Wine
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Wine
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: High-quality Wine
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Cheap Whiskey
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Whiskey
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: High-quality Whiskey
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Food Ingredients
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: Dish
+    itemQuantity: 0
     enhancementValue: 0
-  - itemQuantity: 0
+  - name: High-quality Dish
+    itemQuantity: 0
     enhancementValue: 0

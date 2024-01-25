@@ -2277,6 +2277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeSO: {fileID: 11400000, guid: 9879938fdb93422489c042e53cc0d0de, type: 2}
+  inventorySO: {fileID: 11400000, guid: 5dadd175ed65d8542b1b063efe94377f, type: 2}
 --- !u!114 &1645848100
 MonoBehaviour:
   m_ObjectHideFlags: 0

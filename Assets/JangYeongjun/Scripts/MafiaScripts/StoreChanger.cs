@@ -10,6 +10,7 @@ public class StoreChanger : MonoBehaviour
     public StoreSO storeSO;
     public GameObject contents;
     public GameObject itemSlotPrefab;
+    public InventorySO inventorySO;
     void Awake()
     {
         GenerateItemSlots();
@@ -50,6 +51,25 @@ public class StoreChanger : MonoBehaviour
         if (textComponent2 != null)
         {
             textComponent2.text = store.buyCost.ToString() + " Gold";
+        }
+
+        Button button = slot.GetComponent<Button>();
+        if (button != null)
+        {
+            button.onClick.AddListener(() => AddToInventory(store));
+        }
+    }
+    
+
+    void AddToInventory(Store store)
+    {
+        foreach (Inventory inventoryItem in inventorySO.inventory)
+        {
+            if (inventoryItem.name == store.name)
+            {
+                inventoryItem.itemQuantity += 1;
+                return;
+            }
         }
     }
 }

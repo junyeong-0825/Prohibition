@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Testplayerdata : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void TestSceneChanger1()
     {
-        
+        SceneManager.LoadScene("Mafia Scene");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TestSceneChanger2()
     {
-        
+        SceneManager.LoadScene("Enhancment Scene");
+    }
+
+    public void TestSceneChanger3()
+    {
+        SceneManager.LoadScene("Store Scene");
     }
 }

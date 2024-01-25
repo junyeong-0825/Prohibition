@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Inventory
 {
+    public string name;
     public int itemQuantity;
     public int enhancementValue;
 }

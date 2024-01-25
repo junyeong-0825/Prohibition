@@ -12,4 +12,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2286c48359b9ecb46ad0b5a0074ab57c, type: 3}
   m_Name: stroe
   m_EditorClassIdentifier: 
-  store: []
+  store:
+  - name: Cheap Beer
+    classification: Alcohol
+    maximum: 50
+    descripttion: CheapBeer
+    buyCost: 20
+    sellCost: 0.25
+    enhancementCost: 10
+    sprite: {fileID: 21300000, guid: 6398aebf4e53c404b933df18880df5e9, type: 3}
+  - name: Beer
+    classification: Alcohol
+    maximum: 25
+    descripttion: Beer
+    buyCost: 40
+    sellCost: 0.25
+    enhancementCost: 10
+    sprite: {fileID: 21300000, guid: 096a81dba6e8f994685c3944eb42f4a7, type: 3}
+  - name: High-quality Beer
+    classification: Alcohol
+    maximum: 5
+    descripttion: High-quality Beer
+    buyCost: 60
+    sellCost: 0.25
+    enhancementCost: 0
+    sprite: {fileID: 21300000, guid: 9cd67b66b9477494cbdd535bad2bf60e, type: 3}
+  - name: Cheap Wine
+    classification: Alcohol
+    maximum: 50
+    descripttion: Cheap wine
+    buyCost: 34
+    sellCost: 0.25
+    enhancementCost: 10
+    sprite: {fileID: 21300000, guid: 930578368338343429f22ebc08350cad, type: 3}
+  - name: Wine
+    classification: Alcohol
+    maximum: 25
+    descripttion: Wine
+    buyCost: 70
+    sellCost: 0.25
+    enhancementCost: 10
+    sprite: {fileID: 21300000, guid: 993c27bc5d1427449a5e8d6c83f5ae6c, type: 3}
+  - name: High-quality Wine
+    classification: Alcohol
+    maximum: 5
+    descripttion: High-quality wine
+    buyCost: 100
+    sellCost: 0.25
+    enhancementCost: 0
+    sprite: {fileID: 21300000, guid: 6d519d0ad7561fd4990ed00d8d269ce2, type: 3}
+  - name: Cheap Whiskey
+    classification: Alcohol
+    maximum: 50
+    descripttion: Cheap whiskey
+    buyCost: 45
+    sellCost: 0.25
+    enhancementCost: 10
+    sprite: {fileID: 21300000, guid: 26fc23711e4d8614b8c2ccbbcd71c63b, type: 3}
+  - name: Whiskey
+    classification: Alcohol
+    maximum: 25
+    descripttion: Whiskey.
+    buyCost: 90
+    sellCost: 0.25
+    enhancementCost: 10
+    sprite: {fileID: 21300000, guid: 63e635b928db6644e8c7722356786d85, type: 3}
+  - name: High-quality Whiskey
+    classification: Alcohol
+    maximum: 5
+    descripttion: High-quality whiskey
+    buyCost: 210
+    sellCost: 0.25
+    enhancementCost: 0
+    sprite: {fileID: 21300000, guid: 0a936bcc5903e0e4cad26d5699cc0920, type: 3}
+  - name: Food Ingredients
+    classification: Food
+    maximum: 50
+    descripttion: Food ingredients
+    buyCost: 15
+    sellCost: 0.25
+    enhancementCost: 0
+    sprite: {fileID: 21300000, guid: ff07e18b014b0db45b4762dcbbec48b6, type: 3}
+  - name: Dish
+    classification: Food
+    maximum: 25
+    descripttion: Dish
+    buyCost: 120
+    sellCost: 0.25
+    enhancementCost: 0
+    sprite: {fileID: 21300000, guid: 74c629563218c9649bc580040d241ed9, type: 3}
+  - name: High-quality Dish
+    classification: Food
+    maximum: 5
+    descripttion: High-quality dish
+    buyCost: 240
+    sellCost: 0.25
+    enhancementCost: 0
+    sprite: {fileID: 21300000, guid: e83a44e5da004ac46847d0ecba319857, type: 3}

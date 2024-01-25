@@ -12,6 +12,7 @@ public class StoreDataManager : MonoBehaviour
     public static StoreDataManager Instance;
     public Action<float> OnProgressChanged;
     [SerializeField] StoreSO storeSO;
+    [SerializeField] InventorySO inventorySO;
     #endregion
     private void Awake()
     {
@@ -56,14 +57,16 @@ public class StoreDataManager : MonoBehaviour
         string[] row = tsv.Split('\n');
         int rowsize = row.Length;
         storeSO.store = new Store[rowsize];
-        
+        inventorySO.inventory = new Inventory[rowsize];
         for (int i = 0; i < rowsize; i++)
         {
             string[] column = row[i].Split('\t');
             if (column.Length >= 7)
             {
                 Store stores = new Store();
+                Inventory inventorys = new Inventory();
                 stores.name = column[0];
+                inventorys.name = column[0];
                 stores.classification = column[1];
                 int.TryParse(column[2], out stores.maximum);
                 stores.descripttion = column[3];
@@ -72,9 +75,12 @@ public class StoreDataManager : MonoBehaviour
                 float.TryParse(column[6], out stores.enhancementCost);
                 stores.sprite = Resources.Load<Sprite>($"Sprites/{column[0]}");
 
+                inventorySO.inventory[i] = inventorys;
                 storeSO.store[i] = stores;
             }
         }
         Resources.UnloadUnusedAssets();
     }
 }
+
+ 
