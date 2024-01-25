@@ -1,3 +1,4 @@
+{ "items" : 
 [
 {
     "Classification" : "술",
@@ -29,14 +30,15 @@
     "Quantity" : 50, 
     "PurchasePrice" : 15, 
     "SellingPrice" : 3, 
-    "RiseScale" : null
+    "RiseScale" : 0
 },
 {
     "Classification" : "음식",
     "Name" : "요리", 
     "Quantity" : 50, 
-    "PurchasePrice" : null, 
+    "PurchasePrice" : 0, 
     "SellingPrice" : 10, 
     "RiseScale" : 5
 }
 ]
+}
