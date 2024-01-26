@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class StoreChanger : MonoBehaviour
 {
-    public StoreSO storeSO;
+    public ItemSO itemSO;
+    public ItemList itemList;
     public GameObject contents;
     public GameObject itemSlotPrefab;
     public InventorySO inventorySO;
@@ -18,54 +19,56 @@ public class StoreChanger : MonoBehaviour
 
     void GenerateItemSlots()
     {
-        if (storeSO == null || storeSO.store == null || contents == null || itemSlotPrefab == null)
+        if (itemSO == null || itemSO.itemList == null || contents == null || itemSlotPrefab == null)
         {
             Debug.LogError("필요한 컴포넌트가 할당되지 않았습니다.");
             return;
         }
 
-        foreach (Store store in storeSO.store)
+        foreach (Item item in itemList.items)
         {
             GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
-            UpdateSlotUI(slot, store);
+            UpdateSlotUI(slot, item);
         }
     }
 
-    void UpdateSlotUI(GameObject slot, Store store)
+    void UpdateSlotUI(GameObject slot, Item item)
     {
+        /*
         // 이미지 컴포넌트를 찾고 업데이트합니다.
         Image imageComponent = slot.transform.Find("ItemImage").GetComponent<Image>();
-        if (imageComponent != null && store.sprite != null)
+        if (imageComponent != null && item.sprite != null)
         {
-            imageComponent.sprite = store.sprite;
+            imageComponent.sprite = item.sprite;
         }
+        */
 
         // 텍스트 컴포넌트를 찾고 업데이트합니다.
         TextMeshProUGUI textComponent = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
         if (textComponent != null)
         {
-            textComponent.text = store.name;
+            textComponent.text = item.Name;
         }
 
         TextMeshProUGUI textComponent2 = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
         if (textComponent2 != null)
         {
-            textComponent2.text = store.buyCost.ToString() + " Gold";
+            textComponent2.text = item.PurchasePrice.ToString() + " Gold";
         }
 
         Button button = slot.GetComponent<Button>();
         if (button != null)
         {
-            button.onClick.AddListener(() => AddToInventory(store));
+            button.onClick.AddListener(() => AddToInventory(item));
         }
     }
     
 
-    void AddToInventory(Store store)
+    void AddToInventory(Item item)
     {
         foreach (Inventory inventoryItem in inventorySO.inventory)
         {
-            if (inventoryItem.name == store.name)
+            if (inventoryItem.name == item.Name)
             {
                 inventoryItem.itemQuantity += 1;
                 return;

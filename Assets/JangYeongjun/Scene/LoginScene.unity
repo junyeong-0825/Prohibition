@@ -2226,8 +2226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1645848097}
   - component: {fileID: 1645848098}
-  - component: {fileID: 1645848099}
   - component: {fileID: 1645848100}
+  - component: {fileID: 1645848101}
   m_Layer: 0
   m_Name: DataLoader
   m_TagString: Untagged
@@ -2264,20 +2264,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 970357047}
   progressText: {fileID: 600799682}
---- !u!114 &1645848099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645848093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad990bc061e71794da53f177aa9ee0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storeSO: {fileID: 11400000, guid: 9879938fdb93422489c042e53cc0d0de, type: 2}
-  inventorySO: {fileID: 11400000, guid: 5dadd175ed65d8542b1b063efe94377f, type: 2}
 --- !u!114 &1645848100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2291,6 +2277,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
+--- !u!114 &1645848101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645848093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca7e2f083de5ec4eb5dfc9940ca852a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSO: {fileID: 11400000, guid: 3175b895f993d77418faf79f06923492, type: 2}
+  inventorySO: {fileID: 11400000, guid: 5dadd175ed65d8542b1b063efe94377f, type: 2}
 --- !u!1 &1687288245
 GameObject:
   m_ObjectHideFlags: 0
