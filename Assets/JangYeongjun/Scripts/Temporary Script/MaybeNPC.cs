@@ -27,7 +27,7 @@ public class MaybeNPC : MonoBehaviour
     IEnumerator SpawnCoroutine()
     {
         SpawnNPC();
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(3);
     }
 
     public GameObject SpawnFromPool(int index)

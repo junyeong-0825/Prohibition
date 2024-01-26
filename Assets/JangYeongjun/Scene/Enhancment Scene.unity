@@ -1005,10 +1005,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8479f59f52ea8c248843c975f6b3e74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeSO: {fileID: 11400000, guid: 9879938fdb93422489c042e53cc0d0de, type: 2}
+  bankSO: {fileID: 11400000, guid: b08528417b0ad4942adf5dc81603db5f, type: 2}
+  itemSO: {fileID: 11400000, guid: 2c9d3dde6939d9649806198884b6e0ed, type: 2}
   contents: {fileID: 754555330}
   enhanceSlotPrefab: {fileID: 4327969136481140808, guid: f29f705f3711c0243aad18ad4102b582, type: 3}
-  inventorySO: {fileID: 11400000, guid: 5dadd175ed65d8542b1b063efe94377f, type: 2}
 --- !u!1 &1038686298
 GameObject:
   m_ObjectHideFlags: 0

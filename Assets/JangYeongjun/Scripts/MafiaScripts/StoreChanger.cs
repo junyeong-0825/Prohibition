@@ -7,16 +7,19 @@ using UnityEngine.UI;
 
 public class StoreChanger : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI playerGoldText;
+    public BankSO bankSO;
     public ItemSO itemSO;
-    public ItemList itemList;
     public GameObject contents;
     public GameObject itemSlotPrefab;
-    public InventorySO inventorySO;
+    public GameObject _buyButton;
+    public GameObject _sellButton;
+    bool IsBuying = true;
     void Awake()
     {
         GenerateItemSlots();
+        ChangePlayerGold();
     }
-
     void GenerateItemSlots()
     {
         if (itemSO == null || itemSO.itemList == null || contents == null || itemSlotPrefab == null)
@@ -25,104 +28,75 @@ public class StoreChanger : MonoBehaviour
             return;
         }
 
-        foreach (Item item in itemList.items)
+        foreach (Item item in itemSO.itemList.items)
         {
-            GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
-            UpdateSlotUI(slot, item);
+            if (item.PurchasePrice > 0)
+            {
+                GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
+                UpdateSlotUI(slot, item);
+            }
         }
     }
 
     void UpdateSlotUI(GameObject slot, Item item)
     {
-        /*
+
         // 이미지 컴포넌트를 찾고 업데이트합니다.
-        Image imageComponent = slot.transform.Find("ItemImage").GetComponent<Image>();
-        if (imageComponent != null && item.sprite != null)
+        Image spriteImage = slot.transform.Find("ItemImage").GetComponent<Image>();
+        if (spriteImage != null && item.sprite != null)
         {
-            imageComponent.sprite = item.sprite;
+            spriteImage.sprite = item.sprite;
         }
-        */
 
         // 텍스트 컴포넌트를 찾고 업데이트합니다.
-        TextMeshProUGUI textComponent = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-        if (textComponent != null)
+        TextMeshProUGUI nameText = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+        if (nameText != null)
         {
-            textComponent.text = item.Name;
+            nameText.text = item.Name;
         }
 
-        TextMeshProUGUI textComponent2 = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
-        if (textComponent2 != null)
+        TextMeshProUGUI goldText = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
+        if (goldText != null)
         {
-            textComponent2.text = item.PurchasePrice.ToString() + " Gold";
+            goldText.text = item.PurchasePrice.ToString() + " Gold";
         }
 
-        Button button = slot.GetComponent<Button>();
-        if (button != null)
+        Image slotImage = slot.GetComponent<Image>();
+        Button buyButton = _buyButton.GetComponent<Button>();
+        Button sellButton = _sellButton.GetComponent<Button>();
+        Button slotButton = slot.GetComponent<Button>();
+        if (slotButton != null && buyButton != null && sellButton != null)
         {
-            button.onClick.AddListener(() => AddToInventory(item));
+            buyButton.onClick.AddListener(() =>
+            {
+                slotImage.color = Color.yellow;
+                IsBuying = true;
+            });
+            sellButton.onClick.AddListener(() =>
+            {
+                slotImage.color = Color.blue;
+                IsBuying = false;
+            });
+            slotButton.onClick.AddListener(() =>
+            {
+                if (IsBuying && bankSO.bankData.Gold > item.PurchasePrice)
+                {
+                    bankSO.bankData.Gold -= item.PurchasePrice;
+                    ChangePlayerGold();
+                    item.Quantity += 1;
+                }
+                else if (!IsBuying && item.Quantity >= 1)
+                {
+                    bankSO.bankData.Gold += item.SellingPrice;
+                    ChangePlayerGold();
+                    item.Quantity -= 1;
+                }
+            });
         }
     }
-    
-
-    void AddToInventory(Item item)
+    void ChangePlayerGold()
     {
-        foreach (Inventory inventoryItem in inventorySO.inventory)
-        {
-            if (inventoryItem.name == item.Name)
-            {
-                inventoryItem.itemQuantity += 1;
-                return;
-            }
-        }
+        playerGoldText.text = bankSO.bankData.Gold.ToString() + " Gold";
     }
 }
-    /*
-    public GameObject[] prefeb;
-    public List<GameObject>[] pools;
-    private void Awake()
-    {
-        pools = new List<GameObject>[prefeb.Length];
 
-        for (int index = 0; index < pools.Length; index++)
-        {
-            pools[index] = new List<GameObject>();
-        }
-    }
-    private void OnEnable()
-    {
-        if (storeSO != null) 
-        {
-            int _index = UnityEngine.Random.Range(0, pools.Length);
-            SpawnFromPool(_index);
-        }
-    }
-    public GameObject SpawnFromPool(int index)
-    {
-        GameObject select = null;
-        foreach (GameObject pool in pools[index])
-        {
-            if (!pool.activeSelf)
-            {
-                select = pool;
-                select.SetActive(true);
-                StartCoroutine(DeactivateTrapAfterDelay(select, 2f));
-                break;
-            }
-        }
-        if (!select)
-        {
-            select = Instantiate(prefeb[index], transform);
-            pools[index].Add(select);
-            StartCoroutine(DeactivateTrapAfterDelay(select, 2f));
-        }
-
-        return select;
-    }
-    IEnumerator DeactivateTrapAfterDelay(GameObject select, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        select.SetActive(false);
-    }
-}
-*/   

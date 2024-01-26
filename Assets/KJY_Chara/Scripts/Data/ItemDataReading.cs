@@ -8,9 +8,9 @@ using UnityEngine;
 public class ItemDataReading : MonoBehaviour
 {
     public ItemSO itemSO;
+    public BankSO bankSO;
     public static ItemDataReading Instance;
     public Action<float> OnProgressChanged;
-    [SerializeField] InventorySO inventorySO;
     private void Awake()
     {
         #region 싱글톤
@@ -24,7 +24,7 @@ public class ItemDataReading : MonoBehaviour
         }
         #endregion
     }
-    
+
     public void SetStart()
     {
         TextAsset itemFile = Resources.Load<TextAsset>("ItemData");
@@ -40,18 +40,21 @@ public class ItemDataReading : MonoBehaviour
 
             //ItemSO 초기화
             itemSO.itemList = itemList;
-            //inventorySO 배열의 크기 결정
-            inventorySO.inventory = new Inventory[itemSO.itemList.items.Count];
-            foreach (Item item in itemList.items) 
+            foreach (Item item in itemSO.itemList.items)
             {
-                Inventory inventorys = new Inventory();
-                inventorys.name = item.Name;
+                Sprite sprite = Resources.Load<Sprite>("Sprites/" + item.Name);
+                if (sprite != null)
+                {
+                    item.sprite = sprite;
+                }
             }
-
+            //가져 오는 김에 BankData도 가져오기
+            TextAsset bankData = Resources.Load<TextAsset>("BankData");
+            BankData bank = JsonUtility.FromJson<BankData>(bankData.text);
+            bankSO.bankData = bank;
             Resources.UnloadUnusedAssets();
             OnProgressChanged?.Invoke(1.0f);
             Debug.Log("Event 2");
         }
     }
-    
 }
