@@ -61,9 +61,6 @@ public class MaybeNPC : MonoBehaviour
     IEnumerator DeactivateTrapAfterDelay(GameObject select, float delay)
     {
 
-
-
-
         yield return new WaitForSeconds(delay);
 
         select.SetActive(false);

@@ -82,5 +82,3 @@ public class StoreDataManager : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 }
-
- 
