@@ -22,8 +22,8 @@ public class NPCSO : ScriptableObject
     [SerializeField] private Transform target;
     public Transform Target { get { return target; } }
 
-    [SerializeField] private bool isGood;
-    public bool IsGood { get { return IsGood; } }
+    [SerializeField] private bool isComplicate;
+    public bool IsComplicate { get { return IsComplicate; } }
 
     [SerializeField] private bool isBad;
     public bool IsBad { get { return IsBad; } }
