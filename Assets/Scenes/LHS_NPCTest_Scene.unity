@@ -351,8 +351,8 @@ Tilemap:
   - first: {x: -15, y: 8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -360,11 +360,15 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 7fe92a0326a794c43baff068c4a24f73, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 988ce916809194e16b80aa3b77497b11, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 810577497, guid: ce644a169b9ab4eceb9f94037eec46e7, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 208603525, guid: ce644a169b9ab4eceb9f94037eec46e7, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -7991,7 +7995,7 @@ GameObject:
   - component: {fileID: 1034229277}
   - component: {fileID: 1034229276}
   m_Layer: 0
-  m_Name: TargetPosition (1)
+  m_Name: DestroyPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
