@@ -10,7 +10,7 @@ public class StoreChanger : MonoBehaviour
     public StoreSO storeSO;
     public GameObject contents;
     public GameObject itemSlotPrefab;
-    public InventorySO inventorySO;
+    //public InventorySO inventorySO;
     void Awake()
     {
         GenerateItemSlots();
@@ -61,7 +61,7 @@ public class StoreChanger : MonoBehaviour
     }
     
 
-    void AddToInventory(Store store)
+    /*void AddToInventory(Store store)
     {
         foreach (Inventory inventoryItem in inventorySO.inventory)
         {
@@ -71,7 +71,7 @@ public class StoreChanger : MonoBehaviour
                 return;
             }
         }
-    }
+    }*/
 }
     /*
     public GameObject[] prefeb;
