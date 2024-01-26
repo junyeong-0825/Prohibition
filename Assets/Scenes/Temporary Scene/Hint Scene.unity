@@ -4285,6 +4285,70 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &592179892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592179894}
+  - component: {fileID: 592179893}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &592179893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592179892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce7984acda694046a7ec3aa7de4f37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosition: {fileID: 366547058}
+  movePosition:
+  - {fileID: 1193593649}
+  - {fileID: 450780530}
+  - {fileID: 689397664}
+  - {fileID: 1295876004}
+  - {fileID: 1904474853}
+  - {fileID: 717396177}
+  - {fileID: 1291126653}
+  - {fileID: 1397615087}
+  - {fileID: 1748399506}
+  - {fileID: 355364854}
+  - {fileID: 1807651625}
+  - {fileID: 1934168361}
+  - {fileID: 1242224931}
+  prefeb:
+  - {fileID: 6734571157812974228, guid: 3726fdbc3e51f4b4488956f337ea9b6d, type: 3}
+  - {fileID: 2598388854054272050, guid: 310ea06c401714c48a6e67bb066af010, type: 3}
+  - {fileID: 181645118023247399, guid: c327f14717797284cb385b8ac4e20fce, type: 3}
+  - {fileID: 2704577977655596879, guid: 9829a56736084eb40a8ce9b6fa7dd6e8, type: 3}
+--- !u!4 &592179894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592179892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7922397, y: 8.387036, z: -0.0011965176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &689397663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5100,7 +5164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1275671967
 Grid:
   m_ObjectHideFlags: 0
