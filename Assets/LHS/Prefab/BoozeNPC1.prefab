@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 3240432203113528106}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2498502889320106346
 GameObject:
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 8210333549231603752}
   - component: {fileID: 4541041345478201551}
   - component: {fileID: 8494177095729413911}
-  - component: {fileID: 1087679365690925235}
+  - component: {fileID: 2037085908760210182}
   m_Layer: 0
   m_Name: Body_1
   m_TagString: Untagged
@@ -262,8 +262,8 @@ NavMeshAgent:
   m_Height: 5.49
   m_BaseOffset: 2.745
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1087679365690925235
+  m_ObstacleAvoidanceType: 0
+--- !u!114 &2037085908760210182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2535408262355383951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a4a82b832e642b0aec38648cbc0d39, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f05c3cd61cbc416b823e9655b00dd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}

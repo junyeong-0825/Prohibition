@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e9e16cb4a1934eb18d78890c5f65bf1, type: 3}
-  m_Name: BoozeNPC
+  m_Name: normalNPCData
   m_EditorClassIdentifier: 
-  orderNormal: noorder
-  orderBooze: nobooze
-  normalMenu: 
-  boozeMenu: 
+  orderNormal: 
+  orderBooze: 
   target: {fileID: 0}
   isComplicate: 0
   isBad: 0
+  isIllegal: 0

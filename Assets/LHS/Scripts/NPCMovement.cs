@@ -5,20 +5,20 @@ using UnityEngine.AI;
 
 public class NPCMovement : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    //[SerializeField] Transform target;
 
-    NavMeshAgent agent;
+    //NavMeshAgent agent;
     
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.updateRotation = false;
+        //agent.updateUpAxis = false;
     }
 
     
     void Update()
     {
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
     }
 }

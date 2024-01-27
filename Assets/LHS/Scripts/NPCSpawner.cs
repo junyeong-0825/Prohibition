@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour
 {
+    public NPCSO npcData;
+
     // 오브젝트를 넣을 프리팹
     [SerializeField] private GameObject guestPrefab;
     [SerializeField] private GameObject policePrefab;
-    [SerializeField] private GameObject passPrefab;
 
     // 오브젝트 스폰과 파괴 위치값
     [SerializeField] private Transform SpawnPositionPrefab;
+    [SerializeField] private GameObject TargetPositionPrefab;
     [SerializeField] private Transform DestroyPositionPrefab;
 
     // 스폰 생성 지연시간
