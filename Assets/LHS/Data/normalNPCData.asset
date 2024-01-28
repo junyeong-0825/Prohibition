@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderNormal: 
   orderBooze: 
-  target: {fileID: 0}
+  target: {fileID: 5721084228454758808, guid: e0b49ca74198d482b84f89b7817c115c, type: 3}
   isComplicate: 0
   isBad: 0
   isIllegal: 0

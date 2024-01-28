@@ -5,17 +5,16 @@ using UnityEngine.AI;
 
 public class NPCController : MonoBehaviour
 {
-    [SerializeField] Transform target;
-    public NPCSO npcSo;
+    public Transform target;
 
     private NavMeshAgent agent;
+
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        target = npcSo.Target;
     }
 
 
@@ -23,4 +22,10 @@ public class NPCController : MonoBehaviour
     {
         agent.SetDestination(target.position);
     }
+
+    public void SetTarget(Transform targetPosition)
+    {
+        target = targetPosition;
+    }
+
 }
