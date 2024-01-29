@@ -7,6 +7,8 @@ public class NPCController : MonoBehaviour
 {
     public Transform target;
 
+    public Transform DestroyTarget;
+
     private NavMeshAgent agent;
 
 
