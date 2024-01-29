@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class NPCInteraction : MonoBehaviour
 {
-    public string orderMenu;
+    public string orderMenu = "1";
     public GameObject satisfiedSprite;
     public GameObject unsatisfiedSprite;
 
     public float interactionTimeLimit = 10f;
 
     [SerializeField] private bool interactionStarted = false;
-    [SerializeField] private bool interactionCompleted = false;
+    public bool InteractionStarted { get { return interactionStarted; } }
+    public bool interactionCompleted = false;
+    //public bool InteractionCompleted { get { return interactionCompleted; } }
     private float interactionTimer = 0f;
 
 

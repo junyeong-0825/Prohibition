@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : CharaController
 {
     private Camera _camera;
+    private NPCInteraction currentNPCInteraction;
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -17,5 +19,37 @@ public class PlayerInputController : CharaController
         CallMoveEvent(moveInput);
     }
 
-    
+    public void OnInteraction(InputValue value)
+    {
+        if(currentNPCInteraction != null && value.isPressed)
+        {
+            DeliverMenuToGuest();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Guest") && currentNPCInteraction.InteractionStarted)
+        {
+            currentNPCInteraction = other.GetComponent<NPCInteraction>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Guest"))
+        {
+            currentNPCInteraction = null;
+        }
+    }
+
+    private void DeliverMenuToGuest()
+    {
+        if(currentNPCInteraction != null && currentNPCInteraction.interactionCompleted)
+        {
+            string deliverMenu = "1";
+
+            currentNPCInteraction.DeliverMenu(deliverMenu);
+        }
+    }
 }
