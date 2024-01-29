@@ -94,6 +94,7 @@ public class LoginDataManager : MonoBehaviour
         StartCoroutine(Post(form));
     }
 
+/*
     public void Logout()
     {
         if (!SetIDPass())
@@ -115,7 +116,6 @@ public class LoginDataManager : MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-/*
     public void SetValue()
     {
         WWWForm form = new WWWForm();

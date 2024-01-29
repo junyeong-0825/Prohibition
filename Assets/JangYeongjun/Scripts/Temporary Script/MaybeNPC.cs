@@ -26,12 +26,16 @@ public class MaybeNPC : MonoBehaviour
 
     IEnumerator SpawnCoroutine()
     {
-        SpawnNPC();
-        yield return new WaitForSeconds(3);
+        while(true)
+        {
+            SpawnFromPool();
+            yield return new WaitForSeconds(3);
+        }
     }
 
-    public GameObject SpawnFromPool(int index)
+    public GameObject SpawnFromPool()
     {
+        int index = Random.Range(0, prefeb.Length);
         GameObject select = null;
         foreach (GameObject pool in pools[index])
         {
@@ -39,29 +43,25 @@ public class MaybeNPC : MonoBehaviour
             {
                 select = pool;
                 select.SetActive(true);
-                StartCoroutine(DeactivateTrapAfterDelay(select, 2f));
+                select.transform.position = spawnPosition.position;
+                StartCoroutine(DeactivateTrapAfterDelay(select));
                 break;
             }
         }
         if (!select)
         {
             select = Instantiate(prefeb[index], transform);
+            select.transform.position = spawnPosition.position;
             pools[index].Add(select);
-            StartCoroutine(DeactivateTrapAfterDelay(select, 2f));
+            StartCoroutine(DeactivateTrapAfterDelay(select));
         }
 
         return select;
     }
-    void SpawnNPC()
-    {
-        int randomPrefeb = Random.Range(0, prefeb.Length);
-        GameObject NPC = SpawnFromPool(randomPrefeb);
-        NPC.transform.position = spawnPosition.position;
-    }
-    IEnumerator DeactivateTrapAfterDelay(GameObject select, float delay)
+    IEnumerator DeactivateTrapAfterDelay(GameObject select)
     {
 
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(2.0f);
 
         select.SetActive(false);
     }

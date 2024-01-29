@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 2c9d3dde6939d9649806198884b6e0ed, type: 2}
-  bankSO: {fileID: 11400000, guid: b08528417b0ad4942adf5dc81603db5f, type: 2}
+  bankSO: {fileID: 11400000, guid: 0d00dfde1460adf41b3c09386fa870e8, type: 2}
 --- !u!1 &1687288245
 GameObject:
   m_ObjectHideFlags: 0

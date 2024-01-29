@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class StoreChanger : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI playerGoldText;
-    public BankSO bankSO;
-    public ItemSO itemSO;
+    [SerializeField] BankSO bankSO;
+    [SerializeField] ItemSO itemSO;
     public GameObject contents;
     public GameObject itemSlotPrefab;
     public GameObject _buyButton;
@@ -33,6 +33,7 @@ public class StoreChanger : MonoBehaviour
             if (item.PurchasePrice > 0)
             {
                 GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
+                slot.SetActive(false);
                 UpdateSlotUI(slot, item);
             }
         }
@@ -40,56 +41,60 @@ public class StoreChanger : MonoBehaviour
 
     void UpdateSlotUI(GameObject slot, Item item)
     {
-
-        // 이미지 컴포넌트를 찾고 업데이트합니다.
+        #region Finds & GetComponents
         Image spriteImage = slot.transform.Find("ItemImage").GetComponent<Image>();
+        TextMeshProUGUI nameText = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI goldText = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
+        Image slotImage = slot.GetComponent<Image>();
+        Button buyButton = _buyButton.GetComponent<Button>();
+        Button sellButton = _sellButton.GetComponent<Button>();
+        Button slotButton = slot.GetComponent<Button>();
+        #endregion
+
         if (spriteImage != null && item.sprite != null)
         {
             spriteImage.sprite = item.sprite;
         }
 
-        // 텍스트 컴포넌트를 찾고 업데이트합니다.
-        TextMeshProUGUI nameText = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
         if (nameText != null)
         {
             nameText.text = item.Name;
         }
-
-        TextMeshProUGUI goldText = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
-        if (goldText != null)
-        {
-            goldText.text = item.PurchasePrice.ToString() + " Gold";
-        }
-
-        Image slotImage = slot.GetComponent<Image>();
-        Button buyButton = _buyButton.GetComponent<Button>();
-        Button sellButton = _sellButton.GetComponent<Button>();
-        Button slotButton = slot.GetComponent<Button>();
         if (slotButton != null && buyButton != null && sellButton != null)
         {
             buyButton.onClick.AddListener(() =>
             {
+                slot.SetActive(true);
                 slotImage.color = Color.yellow;
+                goldText.text = item.PurchasePrice.ToString() + " Gold";
                 IsBuying = true;
             });
             sellButton.onClick.AddListener(() =>
             {
+                slot.SetActive(true);
                 slotImage.color = Color.blue;
+                goldText.text = item.SellingPrice.ToString() + " Gold";
                 IsBuying = false;
             });
             slotButton.onClick.AddListener(() =>
             {
-                if (IsBuying && bankSO.bankData.Gold > item.PurchasePrice)
+                if (IsBuying)
                 {
-                    bankSO.bankData.Gold -= item.PurchasePrice;
-                    ChangePlayerGold();
-                    item.Quantity += 1;
+                    if (bankSO.bankData.Gold >= item.PurchasePrice)
+                    {
+                        bankSO.bankData.Gold -= item.PurchasePrice;
+                        ChangePlayerGold();
+                        item.Quantity += 1;
+                    }
                 }
-                else if (!IsBuying && item.Quantity >= 1)
+                else
                 {
-                    bankSO.bankData.Gold += item.SellingPrice;
-                    ChangePlayerGold();
-                    item.Quantity -= 1;
+                    if (item.Quantity >= 1)
+                    {
+                        bankSO.bankData.Gold += item.SellingPrice;
+                        ChangePlayerGold();
+                        item.Quantity -= 1;
+                    }
                 }
             });
         }

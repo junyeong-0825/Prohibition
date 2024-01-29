@@ -12,6 +12,7 @@ public class DialoguesChanger : MonoBehaviour
     [SerializeField] DialoguesSO dialoguesSO;
     [SerializeField] GameObject ChoicePanle;
     [SerializeField] GameObject DialoguePanel;
+    public GoogleData GD;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class DialoguesChanger : MonoBehaviour
         if(dialoguesCount>7)
         {
             dialoguesCount = 0;
+            GD.value += 1;
             SceneChange.instance.ChangeToNextScene();
         }
     }

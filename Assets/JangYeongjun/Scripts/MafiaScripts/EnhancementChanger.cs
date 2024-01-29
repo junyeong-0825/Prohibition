@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class EnhancementChanger : MonoBehaviour
 {
     [SerializeField]TextMeshProUGUI playerGoldText;
-    public BankSO bankSO;
+    [SerializeField] BankSO bankSO;
     public ItemSO itemSO;
     public GameObject contents;
     public GameObject enhanceSlotPrefab;
+    [SerializeField] TextMeshProUGUI DescriptionText;
     void Awake()
     {
         GenerateItemSlots();
+        ChangePlayerGold();
     }
 
     void GenerateItemSlots()
@@ -26,30 +28,40 @@ public class EnhancementChanger : MonoBehaviour
 
         foreach (Item item in itemSO.itemList.items)
         {
-            if (item.Quantity >= 1)
-            {
-                GameObject slot = Instantiate(enhanceSlotPrefab, contents.transform);
-                UpdateSlotUI(slot, item);
-            }
+            GameObject slot = Instantiate(enhanceSlotPrefab, contents.transform);
+            ChangeDescription(item);
+            UpdateSlotUI(slot, item);
         }
     }
 
     void UpdateSlotUI(GameObject slot, Item item)
     {
-        Image imageComponent = slot.transform.GetComponent<Image>();
+        Image imageComponent = slot.GetComponent<Image>();
         if (imageComponent != null && item.sprite != null)
         {
             imageComponent.sprite = item.sprite;
         }
-
+        
         Button button = slot.GetComponent<Button>();
         if (button != null)
         {
             button.onClick.AddListener(() => 
             {
-                bankSO.bankData.Gold -= item.SellingPrice * 10;
-                item.SellingPrice += item.RiseScale;
+                if (bankSO.bankData.Gold >= item.SellingPrice * 10)
+                {
+                    bankSO.bankData.Gold -= item.SellingPrice * 10;
+                    ChangePlayerGold();
+                    item.SellingPrice += item.RiseScale;
+                }
             });
         }
+    }
+    public void ChangeDescription(Item item)
+    {
+        DescriptionText.text = item.Classification;
+    }
+    void ChangePlayerGold()
+    {
+        playerGoldText.text = bankSO.bankData.Gold.ToString() + " Gold";
     }
 }
