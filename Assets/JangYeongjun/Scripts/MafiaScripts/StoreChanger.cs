@@ -7,119 +7,101 @@ using UnityEngine.UI;
 
 public class StoreChanger : MonoBehaviour
 {
-    public StoreSO storeSO;
+    [SerializeField] TextMeshProUGUI playerGoldText;
+    [SerializeField] BankSO bankSO;
+    [SerializeField] ItemSO itemSO;
     public GameObject contents;
     public GameObject itemSlotPrefab;
-    public InventorySO inventorySO;
+    public GameObject _buyButton;
+    public GameObject _sellButton;
+    bool IsBuying = true;
     void Awake()
     {
         GenerateItemSlots();
+        ChangePlayerGold();
     }
-
     void GenerateItemSlots()
     {
-        if (storeSO == null || storeSO.store == null || contents == null || itemSlotPrefab == null)
+        if (itemSO == null || itemSO.itemList == null || contents == null || itemSlotPrefab == null)
         {
             Debug.LogError("필요한 컴포넌트가 할당되지 않았습니다.");
             return;
         }
 
-        foreach (Store store in storeSO.store)
+        foreach (Item item in itemSO.itemList.items)
         {
-            GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
-            UpdateSlotUI(slot, store);
-        }
-    }
-
-    void UpdateSlotUI(GameObject slot, Store store)
-    {
-        // 이미지 컴포넌트를 찾고 업데이트합니다.
-        Image imageComponent = slot.transform.Find("ItemImage").GetComponent<Image>();
-        if (imageComponent != null && store.sprite != null)
-        {
-            imageComponent.sprite = store.sprite;
-        }
-
-        // 텍스트 컴포넌트를 찾고 업데이트합니다.
-        TextMeshProUGUI textComponent = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-        if (textComponent != null)
-        {
-            textComponent.text = store.name;
-        }
-
-        TextMeshProUGUI textComponent2 = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
-        if (textComponent2 != null)
-        {
-            textComponent2.text = store.buyCost.ToString() + " Gold";
-        }
-
-        Button button = slot.GetComponent<Button>();
-        if (button != null)
-        {
-            button.onClick.AddListener(() => AddToInventory(store));
-        }
-    }
-    
-
-    void AddToInventory(Store store)
-    {
-        foreach (Inventory inventoryItem in inventorySO.inventory)
-        {
-            if (inventoryItem.name == store.name)
+            if (item.PurchasePrice > 0)
             {
-                inventoryItem.itemQuantity += 1;
-                return;
+                GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
+                slot.SetActive(false);
+                UpdateSlotUI(slot, item);
             }
         }
     }
-}
-    /*
-    public GameObject[] prefeb;
-    public List<GameObject>[] pools;
-    private void Awake()
-    {
-        pools = new List<GameObject>[prefeb.Length];
 
-        for (int index = 0; index < pools.Length; index++)
-        {
-            pools[index] = new List<GameObject>();
-        }
-    }
-    private void OnEnable()
+    void UpdateSlotUI(GameObject slot, Item item)
     {
-        if (storeSO != null) 
+        #region Finds & GetComponents
+        Image spriteImage = slot.transform.Find("ItemImage").GetComponent<Image>();
+        TextMeshProUGUI nameText = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI goldText = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
+        Image slotImage = slot.GetComponent<Image>();
+        Button buyButton = _buyButton.GetComponent<Button>();
+        Button sellButton = _sellButton.GetComponent<Button>();
+        Button slotButton = slot.GetComponent<Button>();
+        #endregion
+
+        if (spriteImage != null && item.sprite != null)
         {
-            int _index = UnityEngine.Random.Range(0, pools.Length);
-            SpawnFromPool(_index);
+            spriteImage.sprite = item.sprite;
         }
-    }
-    public GameObject SpawnFromPool(int index)
-    {
-        GameObject select = null;
-        foreach (GameObject pool in pools[index])
+
+        if (nameText != null)
         {
-            if (!pool.activeSelf)
+            nameText.text = item.Name;
+        }
+        if (slotButton != null && buyButton != null && sellButton != null)
+        {
+            buyButton.onClick.AddListener(() =>
             {
-                select = pool;
-                select.SetActive(true);
-                StartCoroutine(DeactivateTrapAfterDelay(select, 2f));
-                break;
-            }
+                slot.SetActive(true);
+                slotImage.color = Color.yellow;
+                goldText.text = item.PurchasePrice.ToString() + " Gold";
+                IsBuying = true;
+            });
+            sellButton.onClick.AddListener(() =>
+            {
+                slot.SetActive(true);
+                slotImage.color = Color.blue;
+                goldText.text = item.SellingPrice.ToString() + " Gold";
+                IsBuying = false;
+            });
+            slotButton.onClick.AddListener(() =>
+            {
+                if (IsBuying)
+                {
+                    if (bankSO.bankData.Gold >= item.PurchasePrice)
+                    {
+                        bankSO.bankData.Gold -= item.PurchasePrice;
+                        ChangePlayerGold();
+                        item.Quantity += 1;
+                    }
+                }
+                else
+                {
+                    if (item.Quantity >= 1)
+                    {
+                        bankSO.bankData.Gold += item.SellingPrice;
+                        ChangePlayerGold();
+                        item.Quantity -= 1;
+                    }
+                }
+            });
         }
-        if (!select)
-        {
-            select = Instantiate(prefeb[index], transform);
-            pools[index].Add(select);
-            StartCoroutine(DeactivateTrapAfterDelay(select, 2f));
-        }
-
-        return select;
     }
-    IEnumerator DeactivateTrapAfterDelay(GameObject select, float delay)
+    void ChangePlayerGold()
     {
-        yield return new WaitForSeconds(delay);
-
-        select.SetActive(false);
+        playerGoldText.text = bankSO.bankData.Gold.ToString() + " Gold";
     }
 }
-*/   
+

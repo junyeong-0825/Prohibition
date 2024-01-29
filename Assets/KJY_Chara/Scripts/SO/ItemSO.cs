@@ -21,4 +21,5 @@ public class Item
     public int PurchasePrice;
     public int SellingPrice;
     public int RiseScale;
+    public Sprite sprite;
 }

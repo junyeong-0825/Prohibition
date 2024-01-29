@@ -33,8 +33,7 @@ public class LoadingManager : MonoBehaviour
         }
 
         Debug.Log("Data Before");
-        DialoguesDataManager.Instance.SetStart();
-        StoreDataManager.Instance.SetStart();
+        
         
         yield return StartCoroutine(LoadDataAsync());
 
@@ -63,12 +62,14 @@ public class LoadingManager : MonoBehaviour
         };
 
         DialoguesDataManager.Instance.OnProgressChanged += dataProgressHandler;
-        StoreDataManager.Instance.OnProgressChanged += dataProgressHandler;
+        ItemDataReading.Instance.OnProgressChanged += dataProgressHandler;
         Debug.Log($"completedManagers{completedManagers}");
+        DialoguesDataManager.Instance.SetStart();
+        ItemDataReading.Instance.SetStart();
         yield return new WaitUntil(() => completedManagers >= totalManagers);
 
         DialoguesDataManager.Instance.OnProgressChanged -= dataProgressHandler;
-        StoreDataManager.Instance.OnProgressChanged -= dataProgressHandler;
+        ItemDataReading.Instance.OnProgressChanged -= dataProgressHandler;
     }
 
     void UpdateUI(float progress)
