@@ -19,17 +19,9 @@ public class PlayerInputController : CharaController
         CallMoveEvent(moveInput);
     }
 
-    public void OnInteraction(InputValue value)
-    {
-        if(currentNPCInteraction != null && value.isPressed)
-        {
-            DeliverMenuToGuest();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Guest") && currentNPCInteraction.InteractionStarted)
+        if(other.CompareTag("Guest"))
         {
             currentNPCInteraction = other.GetComponent<NPCInteraction>();
         }
@@ -43,13 +35,23 @@ public class PlayerInputController : CharaController
         }
     }
 
+    public void OnInteraction(InputValue value)
+    {
+        if (currentNPCInteraction != null && value.isPressed && currentNPCInteraction.InteractionStarted)
+        {
+            Debug.Log("interaction is success");
+            DeliverMenuToGuest();
+        }
+    }
+
     private void DeliverMenuToGuest()
     {
-        if(currentNPCInteraction != null && currentNPCInteraction.interactionCompleted)
+        if(currentNPCInteraction != null && currentNPCInteraction.InteractionStarted)
         {
-            string deliverMenu = "1";
+            string deliverMenu = "test";
 
             currentNPCInteraction.DeliverMenu(deliverMenu);
+            Debug.Log(currentNPCInteraction.orderMenu);
         }
     }
 }

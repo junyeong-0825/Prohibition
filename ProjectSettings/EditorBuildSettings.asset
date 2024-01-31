@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/JangYeongjun/Scene/Mafia Scene.unity
     guid: a19dbc0c49bbae24c9723002f42afccc
   - enabled: 1
+    path: Assets/Scenes/LHS_NPCTest_Scene.unity
+    guid: 963475612c8f1491fa700c642a9d2e9f
+  - enabled: 1
     path: Assets/Scenes/LHS_Scene.unity
     guid: 90d87bb465f7646c780791e3a59be38c
   - enabled: 1

@@ -13,6 +13,7 @@ public class NPCSpawner : MonoBehaviour
     // 오브젝트 스폰과 파괴 위치값
     [SerializeField] private Transform SpawnPositionPrefab;
     [SerializeField] private List<GameObject> TargetPrefabList;
+    [SerializeField] private Transform selfDestroyPositionP;
 
     private List<int> usedTargetIndex = new List<int>();
     //[SerializeField] private GameObject TargetPrefab;
@@ -50,6 +51,8 @@ public class NPCSpawner : MonoBehaviour
         NPCController controller = newNpc.transform.Find("Body_1").GetComponent<NPCController>();
 
         controller.SetTarget(randomTarget.transform);
+
+        controller.DestroyTarget = selfDestroyPositionP;
 
         usedTargetIndex.Add(randomIndex);
 
