@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+/*
 public class ItemDataReading : MonoBehaviour
 {
     public ItemSO itemSO;
@@ -58,3 +58,4 @@ public class ItemDataReading : MonoBehaviour
         }
     }
 }
+*/

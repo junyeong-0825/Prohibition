@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class LoadingManager : MonoBehaviour
 {
     public Slider progressBar;
@@ -62,14 +63,14 @@ public class LoadingManager : MonoBehaviour
         };
 
         DialoguesDataManager.Instance.OnProgressChanged += dataProgressHandler;
-        ItemDataReading.Instance.OnProgressChanged += dataProgressHandler;
+        //ItemDataReading.Instance.OnProgressChanged += dataProgressHandler;
         Debug.Log($"completedManagers{completedManagers}");
         DialoguesDataManager.Instance.SetStart();
-        ItemDataReading.Instance.SetStart();
+        //ItemDataReading.Instance.SetStart();
         yield return new WaitUntil(() => completedManagers >= totalManagers);
 
         DialoguesDataManager.Instance.OnProgressChanged -= dataProgressHandler;
-        ItemDataReading.Instance.OnProgressChanged -= dataProgressHandler;
+        //ItemDataReading.Instance.OnProgressChanged -= dataProgressHandler;
     }
 
     void UpdateUI(float progress)

@@ -8,32 +8,28 @@ using UnityEngine.UI;
 public class StoreChanger : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI playerGoldText;
-    [SerializeField] BankSO bankSO;
-    [SerializeField] ItemSO itemSO;
     public GameObject contents;
     public GameObject itemSlotPrefab;
-    public GameObject _buyButton;
-    public GameObject _sellButton;
-    bool IsBuying = true;
+
     void Awake()
     {
         GenerateItemSlots();
         ChangePlayerGold();
     }
+
     void GenerateItemSlots()
     {
-        if (itemSO == null || itemSO.itemList == null || contents == null || itemSlotPrefab == null)
+        if (contents == null || itemSlotPrefab == null)
         {
             Debug.LogError("필요한 컴포넌트가 할당되지 않았습니다.");
             return;
         }
 
-        foreach (Item item in itemSO.itemList.items)
+        foreach (Item item in TemporaryDataManager.instance.nowPlayer.items)
         {
             if (item.PurchasePrice > 0)
             {
                 GameObject slot = Instantiate(itemSlotPrefab, contents.transform);
-                slot.SetActive(false);
                 UpdateSlotUI(slot, item);
             }
         }
@@ -45,9 +41,6 @@ public class StoreChanger : MonoBehaviour
         Image spriteImage = slot.transform.Find("ItemImage").GetComponent<Image>();
         TextMeshProUGUI nameText = slot.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI goldText = slot.transform.Find("GoldText").GetComponent<TextMeshProUGUI>();
-        Image slotImage = slot.GetComponent<Image>();
-        Button buyButton = _buyButton.GetComponent<Button>();
-        Button sellButton = _sellButton.GetComponent<Button>();
         Button slotButton = slot.GetComponent<Button>();
         #endregion
 
@@ -60,48 +53,50 @@ public class StoreChanger : MonoBehaviour
         {
             nameText.text = item.Name;
         }
-        if (slotButton != null && buyButton != null && sellButton != null)
+
+        if(goldText != null)
         {
-            buyButton.onClick.AddListener(() =>
+            goldText.text = item.PurchasePrice.ToString() + " Gold";
+        }
+
+        slotButton.onClick.AddListener(() =>
+        {
+            if (TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold >= item.PurchasePrice)
             {
-                slot.SetActive(true);
-                slotImage.color = Color.yellow;
-                goldText.text = item.PurchasePrice.ToString() + " Gold";
-                IsBuying = true;
-            });
-            sellButton.onClick.AddListener(() =>
-            {
-                slot.SetActive(true);
-                slotImage.color = Color.blue;
-                goldText.text = item.SellingPrice.ToString() + " Gold";
-                IsBuying = false;
-            });
-            slotButton.onClick.AddListener(() =>
-            {
-                if (IsBuying)
+                TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold -= item.PurchasePrice;
+                ChangePlayerGold();
+
+                TemporaryInventory existingItem = TemporaryDataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == item.Name);
+
+                if (existingItem != null && existingItem.EnhancementValue < 1)
                 {
-                    if (bankSO.bankData.Gold >= item.PurchasePrice)
-                    {
-                        bankSO.bankData.Gold -= item.PurchasePrice;
-                        ChangePlayerGold();
-                        item.Quantity += 1;
-                    }
+                    // 이미 존재하는 아이템이면 수량만 증가
+                    existingItem.Quantity += 1;
                 }
                 else
                 {
-                    if (item.Quantity >= 1)
+                    // 인벤토리에 아이템이 없으면 새로 추가
+                    TemporaryInventory newInventoryItem = new TemporaryInventory
                     {
-                        bankSO.bankData.Gold += item.SellingPrice;
-                        ChangePlayerGold();
-                        item.Quantity -= 1;
-                    }
+                        Classification = item.Classification,
+                        Name = item.Name,
+                        Quantity = 1,
+                        PurchasePrice = item.PurchasePrice,
+                        SellingPrice = item.SellingPrice,
+                        RiseScale = item.RiseScale,
+                        sprite = item.sprite,
+                        EnhancementValue = 0
+                    };
+
+                    // 인벤토리에 새로운 아이템 추가
+                    TemporaryDataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
                 }
-            });
-        }
+            }
+        });
     }
     void ChangePlayerGold()
     {
-        playerGoldText.text = bankSO.bankData.Gold.ToString() + " Gold";
+        playerGoldText.text = TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold.ToString() + " Gold";
     }
 }
 

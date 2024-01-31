@@ -18,21 +18,21 @@ MonoBehaviour:
       Name: "\uB9E5\uC8FC"
       Quantity: 0
       PurchasePrice: 20
-      SellingPrice: 35
+      SellingPrice: 260
       RiseScale: 15
       sprite: {fileID: 21300000, guid: 096a81dba6e8f994685c3944eb42f4a7, type: 3}
     - Classification: "\uC220"
       Name: "\uC640\uC778"
       Quantity: 0
       PurchasePrice: 35
-      SellingPrice: 60
+      SellingPrice: 80
       RiseScale: 20
       sprite: {fileID: 21300000, guid: 993c27bc5d1427449a5e8d6c83f5ae6c, type: 3}
     - Classification: "\uC220"
       Name: "\uC704\uC2A4\uD0A4"
       Quantity: 0
       PurchasePrice: 60
-      SellingPrice: 100
+      SellingPrice: 20000
       RiseScale: 30
       sprite: {fileID: 21300000, guid: 63e635b928db6644e8c7722356786d85, type: 3}
     - Classification: "\uC74C\uC2DD"

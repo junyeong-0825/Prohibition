@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: bank
   m_EditorClassIdentifier: Assembly-CSharp::BankSO
   bankData:
-    Gold: 100
+    Gold: 259340
     Debt: 0

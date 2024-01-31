@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 [CreateAssetMenu(fileName = "New ItemList", menuName = "Custom/Item List", order = 1)]
 public class ItemSO : ScriptableObject
 {
@@ -23,3 +24,4 @@ public class Item
     public int RiseScale;
     public Sprite sprite;
 }
+*/

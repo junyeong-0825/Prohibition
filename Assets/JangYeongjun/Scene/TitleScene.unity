@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 229689717}
   - component: {fileID: 229689718}
   m_Layer: 0
-  m_Name: SaveManager
+  m_Name: DataManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,16 +324,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 229689716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73596ab8682216547846ac0648e0bcf5, type: 3}
+  m_Script: {fileID: 11500000, guid: c2492388da8b333408338b38e0cefa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GD:
-    order: 
-    result: 
-    msg: 
-    value: 
-  ErrorText: {fileID: 0}
-  ValueInput: {fileID: 0}
+  nowPlayer:
+    Playerinfo:
+      Gold: 0
+      Debt: 0
+    items: []
+    inventory: []
 --- !u!1 &725162757
 GameObject:
   m_ObjectHideFlags: 0

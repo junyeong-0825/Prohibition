@@ -2226,8 +2226,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1645848097}
   - component: {fileID: 1645848098}
-  - component: {fileID: 1645848100}
-  - component: {fileID: 1645848101}
   m_Layer: 0
   m_Name: DataLoader
   m_TagString: Untagged
@@ -2259,38 +2257,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1645848093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 858d6ca43bc7cbc4d8f21708f2005af0, type: 3}
+  m_Script: {fileID: 11500000, guid: c2492388da8b333408338b38e0cefa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressBar: {fileID: 970357047}
-  progressText: {fileID: 600799682}
---- !u!114 &1645848100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645848093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 039c60c96161dec47a7a43881caae3b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
---- !u!114 &1645848101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645848093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ca7e2f083de5ec4eb5dfc9940ca852a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemSO: {fileID: 11400000, guid: 2c9d3dde6939d9649806198884b6e0ed, type: 2}
-  bankSO: {fileID: 11400000, guid: 0d00dfde1460adf41b3c09386fa870e8, type: 2}
+  nowPlayer:
+    Playerinfo:
+      Gold: 0
+      Debt: 0
+    items: []
+    inventory: []
 --- !u!1 &1687288245
 GameObject:
   m_ObjectHideFlags: 0
