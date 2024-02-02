@@ -11,6 +11,9 @@ public class NPCController : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    private int deployIndex;
+    public int DeployIndex { get { return deployIndex; } set { deployIndex = value; } }
+
 
     void Start()
     {
@@ -30,4 +33,19 @@ public class NPCController : MonoBehaviour
         target = targetPosition;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Finish")
+        {
+            Debug.Log("self-Destroy");
+            RefreshTargetIndex(deployIndex);
+            Destroy(transform.root.gameObject);
+        }
+    }
+
+    private void RefreshTargetIndex(int index)
+    {
+        NPCSpawner SpawnManager = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>();
+        SpawnManager.UsedTargetIndex.Remove(index);
+    }
 }
