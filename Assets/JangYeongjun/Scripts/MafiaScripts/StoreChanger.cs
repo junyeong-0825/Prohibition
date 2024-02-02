@@ -92,6 +92,7 @@ public class StoreChanger : MonoBehaviour
                     TemporaryDataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
                 }
             }
+            Inventory.Instance.UpdateUI();
         });
     }
     void ChangePlayerGold()

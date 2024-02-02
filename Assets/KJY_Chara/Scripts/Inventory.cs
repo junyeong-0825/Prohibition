@@ -1,30 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class ItemSlot
-{
-    public Item items;
-}
+
 public class Inventory : MonoBehaviour
 {
-    public ItemSlot[] slots;
-    public ItemSlotUI[] uiSlots;
+    //인벤토리 슬롯의 길이는 TemporaryDataManager.instance.nowPlayer.inventory에 저장됨
+    
+    public List<ItemSlotUI> uiSlots;
 
     public GameObject inventoryWindow;
+    public TextMeshProUGUI haveGoldText;
 
     private PlayerInputController controller;
+
 
     [Header("Events")]
     public UnityEvent onOpenInventory;
     public UnityEvent onCloseInventory;
 
     public static Inventory Instance;
+
+    private int haveGold;
+
     private void Awake()
     {
         Instance = this;
@@ -33,22 +37,19 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         inventoryWindow.SetActive(false);
-        slots = new ItemSlot[uiSlots.Length];
 
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
         {
-            slots[i] = new ItemSlot();
+            
             uiSlots[i].index = i;
             uiSlots[i].Clear();
         }
+        UpdateUI();
     }
 
-    public void OnInventoryButton(InputAction.CallbackContext context)
+    public void OnInventory(InputValue context)
     {
-        if(context.phase == InputActionPhase.Started)
-        {
             Toggle();
-        }
     }
 
     private void Toggle()
@@ -56,10 +57,12 @@ public class Inventory : MonoBehaviour
         if (inventoryWindow.activeInHierarchy)
         {
             inventoryWindow.SetActive(false);
+            onCloseInventory?.Invoke();
         }
         else
         {
             inventoryWindow.SetActive(true);
+            onOpenInventory?.Invoke();
         }
     }
     public bool IsOpen()
@@ -67,58 +70,33 @@ public class Inventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy;
     }
 
-    public void AddItem(Item item)
+    
+
+    public void UpdateUI()
     {
-        ItemSlot slotToStack = GetItemStack(item);
-        if (slotToStack != null)
+        for(int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
         {
-            slotToStack.items.Quantity++;
-            UpdateUI();
-            return;
-        }
-
-        ItemSlot emptySlot = GetEmptySlot();
-
-        if (emptySlot != null)
-        {
-            emptySlot.items = item;
-            emptySlot.items.Quantity = 1;
-            UpdateUI();
-            return;
-        }
-    }
-
-    void UpdateUI()
-    {
-        for(int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].items != null)
+            if (TemporaryDataManager.instance.nowPlayer.inventory[i] != null)
             {
-                uiSlots[i].Set(slots[i]);
+                uiSlots[i].Set(TemporaryDataManager.instance.nowPlayer.inventory[i]);
             }
             else
             {
                 uiSlots[i].Clear();
             }
         }
+        haveGold = TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold;
+        haveGoldText.text = haveGold.ToString();
     }
 
-    ItemSlot GetItemStack(Item item)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].items == item && slots[i].items.Quantity < 100)
-                return slots[i];
-        }
-        return null;
-    }
+    
 
-    ItemSlot GetEmptySlot()
+    TemporaryInventory GetEmptySlot()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
         {
-            if (slots[i].items == null)
-                return slots[i];
+            if (TemporaryDataManager.instance.nowPlayer.inventory[i] == null)
+                return TemporaryDataManager.instance.nowPlayer.inventory[i];
         }
         return null;
     }

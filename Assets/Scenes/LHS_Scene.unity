@@ -1415,6 +1415,7 @@ MonoBehaviour:
   - {fileID: 880632275}
   - {fileID: 880632274}
   inventoryWindow: {fileID: 880632295}
+  haveGoldText: {fileID: 1446172720}
   onOpenInventory:
     m_PersistentCalls:
       m_Calls: []
@@ -11673,6 +11674,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db873332ca43614393120a530442a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1446172720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7138999918029533660, guid: d37194ad7ed1c144cbcde5c1ec1ac3c8, type: 3}
+  m_PrefabInstance: {fileID: 880632272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1467686114
