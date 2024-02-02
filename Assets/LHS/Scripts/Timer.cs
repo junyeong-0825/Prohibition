@@ -8,6 +8,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float limitTimeSec;
+    public float LimitTimeSec { get { return limitTimeSec; } }
     private int Min;
     private int Sec;
     [SerializeField] private TextMeshProUGUI text_Timer;

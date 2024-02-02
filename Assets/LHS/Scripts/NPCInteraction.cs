@@ -57,7 +57,7 @@ public class NPCInteraction : MonoBehaviour
     private void StartInteraction()
     {
         interactionStarted = true;
-        //Debug.Log("Istart");
+        Debug.Log("Interactionstart");
     }
 
     public void DeliverMenu(string deliveredMenu)
