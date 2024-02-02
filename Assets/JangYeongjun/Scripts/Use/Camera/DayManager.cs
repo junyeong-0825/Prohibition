@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -26,9 +26,9 @@ public class DayManager : MonoBehaviour
         if (isDayTime)
         {
             float timeElapsed = Time.time - startTime;
-            float timeRemaining = 240 - timeElapsed; // 4ºĞ¿¡¼­ °æ°ú ½Ã°£À» »­
+            float timeRemaining = 240 - timeElapsed; // 4ë¶„ì—ì„œ ê²½ê³¼ ì‹œê°„ì„ ëºŒ
 
-            // ³²Àº ½Ã°£À» ºĞ:ÃÊ Çü½ÄÀ¸·Î Ç¥½Ã
+            // ë‚¨ì€ ì‹œê°„ì„ ë¶„:ì´ˆ í˜•ì‹ìœ¼ë¡œ í‘œì‹œ
             string minutes = ((int)timeRemaining / 60).ToString();
             string seconds = (timeRemaining % 60).ToString("f0");
             timerText.text = minutes + ":" + seconds;
@@ -40,15 +40,15 @@ public class DayManager : MonoBehaviour
     }
     IEnumerator OneDay()
     {
-        while (true) // ¹«ÇÑ ·çÇÁ·Î ³·°ú ¹ã »çÀÌÅ¬ ¹İº¹
+        while (true) // ë¬´í•œ ë£¨í”„ë¡œ ë‚®ê³¼ ë°¤ ì‚¬ì´í´ ë°˜ë³µ
         {
-            // ³·
+            // ë‚®
             /*
-            ¹ãÀÇ ¿ÀºêÁ§Æ® ºñ È°¼ºÈ­
-            NPC Spawner È°¼ºÈ­
-            Player È°¼ºÈ­ ¶Ç´Â PlayerÀ§Ä¡ ÀÌµ¿
-            ³· À½¾Ç ½ÇÇà
-            ³· Àå¸é ÃÊ±âÈ­
+            ë°¤ì˜ ì˜¤ë¸Œì íŠ¸ ë¹„ í™œì„±í™”
+            NPC Spawner í™œì„±í™”
+            Player í™œì„±í™” ë˜ëŠ” Playerìœ„ì¹˜ ì´ë™
+            ë‚® ìŒì•… ì‹¤í–‰
+            ë‚® ì¥ë©´ ì´ˆê¸°í™”
             */
             buttonClicked = false;
             mainCamera.transform.position = new Vector3(50, 0, mainCamera.transform.position.z);
@@ -56,12 +56,12 @@ public class DayManager : MonoBehaviour
             isDayTime = true;
             yield return new WaitForSeconds(240f);
 
-            // ¹ã
+            // ë°¤
             /*
-            ³· ¿ÀºêÁ§Æ® ºñ È°¼ºÈ­
-            Player È°¼ºÈ­ ¶Ç´Â PlayerÀ§Ä¡ ÀÌµ¿
-            ¹ã À½¾Ç ½ÇÇà
-            ¹ã Àå¸é ÃÊ±âÈ­
+            ë‚® ì˜¤ë¸Œì íŠ¸ ë¹„ í™œì„±í™”
+            Player í™œì„±í™” ë˜ëŠ” Playerìœ„ì¹˜ ì´ë™
+            ë°¤ ìŒì•… ì‹¤í–‰
+            ë°¤ ì¥ë©´ ì´ˆê¸°í™”
             */
             timerText.text = "";
             mainCamera.transform.position = new Vector3(100, 0, mainCamera.transform.position.z);
