@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public static class GameEvents
+{
+    public delegate void DayEndDelegate();
+    public static event DayEndDelegate OnDayEnd;
+
+    public static void NotifyDayEnd()
+    {
+        if (OnDayEnd != null)
+        {
+            OnDayEnd();
+        }
+    }
+}
 public class NPCSpawner : MonoBehaviour
 {
    
@@ -70,6 +83,8 @@ public class NPCSpawner : MonoBehaviour
             if(currenttime <= 0f)
             {
                 Debug.Log("Close Time!!");
+                yield return new WaitUntil(() => timeLeft.CheckNPC.Length == 0);
+                GameEvents.NotifyDayEnd();
                 yield break;
             }
 

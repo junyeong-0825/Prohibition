@@ -7,17 +7,12 @@ using TMPro;
 // 제한시간 기능을 테스트 하는 중
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private float limitTimeSec;
-    public float LimitTimeSec { get { return limitTimeSec; } }
+    [SerializeField] public float limitTimeSec;
+    public float LimitTimeSec { get { return limitTimeSec; } set { limitTimeSec = value; } }
     private int Min;
     private int Sec;
     [SerializeField] private TextMeshProUGUI text_Timer;
-    private GameObject[] CheckNPC;
-
-    void Start()
-    {
-
-    }
+    public GameObject[] CheckNPC;
 
     void Update()
     {
@@ -37,7 +32,11 @@ public class Timer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (limitTimeSec < 0) Check();
+
+        if (limitTimeSec < 0)
+        {
+            Check();
+        }
     }
 
     private void SetTime(float Sec)
@@ -53,6 +52,5 @@ public class Timer : MonoBehaviour
     private void Check()
     {
         CheckNPC = GameObject.FindGameObjectsWithTag("Guest");
-        Debug.Log(CheckNPC.Length);
     }
 }

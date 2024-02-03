@@ -8,27 +8,42 @@ using Unity.VisualScripting;
 
 public class DayManager : MonoBehaviour
 {
-    float startTime;
-    bool isDayTime = true;
+    //float startTime;
+    //bool isDayTime = true;
     bool buttonClicked = false;
-    public float eventleftTime;
+    bool dayEnded = false;
+    //float delayDaySecond = 240f;
+    [SerializeField] Vector3 dayPosition;
+    [SerializeField] Vector3 nightPosition;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] Camera mainCamera;
     [SerializeField] Button dayChangeButton;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] GameObject cctvButton;
+    [SerializeField] GameObject Player;
+    private Timer timer;
     private void Start()
     {
+        GameEvents.OnDayEnd += HandleDayEnd;
         dayChangeButton.onClick.AddListener(OnButtonClick);
         StartCoroutine("OneDay");
-        startTime = Time.time;
+        //startTime = Time.time;
     }
-
+    private void OnEnable()
+    {
+        GameEvents.OnDayEnd -= HandleDayEnd;
+    }
+    private void HandleDayEnd()
+    {
+        dayEnded = true;
+    }
+    /*
     void Update()
     {
         if (isDayTime)
         {
             float timeElapsed = Time.time - startTime;
-            float timeRemaining = 240 - timeElapsed; // 4분에서 경과 시간을 뺌
-            eventleftTime = timeRemaining;
+            float timeRemaining = delayDaySecond - timeElapsed; // 4분에서 경과 시간을 뺌
 
             // 남은 시간을 분:초 형식으로 표시
             string minutes = ((int)timeRemaining / 60).ToString();
@@ -36,39 +51,59 @@ public class DayManager : MonoBehaviour
             timerText.text = minutes + ":" + seconds;
         }
     }
+    */
     void OnButtonClick()
     {
         buttonClicked = true;
     }
     IEnumerator OneDay()
     {
+        Debug.Log("OneDay시작");
         while (true) // 무한 루프로 낮과 밤 사이클 반복
         {
+            Debug.Log("낮");
             // 낮
             /*
             밤의 오브젝트 비 활성화
             NPC Spawner 활성화
-            Player 활성화 또는 Player위치 이동
             낮 음악 실행
             낮 장면 초기화
             */
+            //cctvButton.SetActive(true);
+
+            //timer.limitTimeSec = 10f;
+            Player.transform.position = dayPosition;
+            StopCoroutine(AudioController.audioInstance.PlayNightSound());
+            audioSource.Stop();
+            AudioController.audioInstance.PlayMainSound();
             buttonClicked = false;
             mainCamera.transform.position = new Vector3(50, 0, mainCamera.transform.position.z);
-            startTime = Time.time;
-            isDayTime = true;
-            yield return new WaitForSeconds(240f);
+            //startTime = Time.time;
+            //isDayTime = true;
+            yield return new WaitUntil(() => dayEnded);
 
+            Debug.Log("밤");
             // 밤
             /*
             낮 오브젝트 비 활성화
-            Player 활성화 또는 Player위치 이동
             밤 음악 실행
             밤 장면 초기화
             */
+            //cctvButton.SetActive(false);
+
+            //timer.limitTimeSec = 0f;
+            Player.transform.position = nightPosition;
+            audioSource.Stop();
+            StartCoroutine(AudioController.audioInstance.PlayNightSound());
+            dayEnded = false;
             timerText.text = "";
             mainCamera.transform.position = new Vector3(100, 0, mainCamera.transform.position.z);
-            isDayTime = false;
+            //isDayTime = false;
             yield return new WaitUntil(() => buttonClicked);
         }
+    }
+    private void SetTime()
+    {
+        timer = GameObject.Find("UIManager").GetComponent<Timer>();
     }
 }

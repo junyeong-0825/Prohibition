@@ -27,6 +27,7 @@ public class DialoguesChanger : MonoBehaviour
                 nameText.text = dialoguesSO.dialogues[dialoguesCount].character;
                 yield return new WaitForSecondsRealtime(2f);
             }
+            yield return new WaitForSecondsRealtime(0.5f);
         }
     }
 }

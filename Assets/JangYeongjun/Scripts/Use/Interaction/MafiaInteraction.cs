@@ -36,9 +36,9 @@ public class MafiaInteraction : MonoBehaviour
 
     void OnInteraction()
     {
-        if (storeDistinguishValue < 100)
+        if (storeDistinguishValue>0 && storeDistinguishValue < 100)
         {
-            panels[storeDistinguishValue].gameObject.SetActive(true);
+            panels[storeDistinguishValue-1].gameObject.SetActive(true);
         }
     }
 }
