@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MafiaInteractionController : MonoBehaviour
 {
-    [SerializeField] int PanelIndex;
+    [SerializeField] int PanelIndex = 100;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))

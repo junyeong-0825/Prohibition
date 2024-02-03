@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MafiaInteraction : MonoBehaviour
 {
-    #region ½Ì±ÛÅæ
+    #region ï¿½Ì±ï¿½ï¿½ï¿½
     public static MafiaInteraction Instance;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class MafiaInteraction : MonoBehaviour
     }
     #endregion
     [SerializeField] GameObject[] panels;
-    private int storeDistinguishValue;
+    private int storeDistinguishValue = 100;
     private void Start()
     {
         for(int i = 0; i < panels.Length; i++) 
