@@ -21,7 +21,7 @@ public class MafiaInteraction : MonoBehaviour
     }
     #endregion
     [SerializeField] GameObject[] panels;
-    private int storeDistinguishValue = 100;
+    private int storeDistinguishValue;
     private void Start()
     {
         for(int i = 0; i < panels.Length; i++) 
