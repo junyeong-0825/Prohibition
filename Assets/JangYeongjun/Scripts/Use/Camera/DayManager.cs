@@ -11,6 +11,7 @@ public class DayManager : MonoBehaviour
     float startTime;
     bool isDayTime = true;
     bool buttonClicked = false;
+    public float eventleftTime;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] Camera mainCamera;
     [SerializeField] Button dayChangeButton;
@@ -27,6 +28,7 @@ public class DayManager : MonoBehaviour
         {
             float timeElapsed = Time.time - startTime;
             float timeRemaining = 240 - timeElapsed; // 4분에서 경과 시간을 뺌
+            eventleftTime = timeRemaining;
 
             // 남은 시간을 분:초 형식으로 표시
             string minutes = ((int)timeRemaining / 60).ToString();
