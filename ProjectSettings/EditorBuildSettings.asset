@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/JangYeongjun/Scene/LoginScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
     path: Assets/JangYeongjun/Scene/TitleScene.unity
     guid: 887790d9c5307484b9871db2dbdd7542
+  - enabled: 1
+    path: Assets/JangYeongjun/Scene/Mafia Scene.unity
+    guid: a19dbc0c49bbae24c9723002f42afccc
+  - enabled: 1
+    path: Assets/Scenes/LHS_NPCTest_Scene.unity
+    guid: 963475612c8f1491fa700c642a9d2e9f
   - enabled: 1
     path: Assets/Scenes/LHS_Scene.unity
     guid: 90d87bb465f7646c780791e3a59be38c
@@ -15,9 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/LHS_NPCTest_Scene.unity
     guid: 963475612c8f1491fa700c642a9d2e9f
   - enabled: 1
-    path: Assets/JangYeongjun/Scene/Store Scene.unity
+    path: Assets/JangYeongjun/Scene/Temporary Scene/Store Scene.unity
     guid: 3c37e64cca43c354da5ba9f9ffbc944e
-  - enabled: 1
-    path: Assets/JangYeongjun/Scene/Enhancment Scene.unity
-    guid: c1fb306fb6f7b95448e07f29a5a3c82c
   m_configObjects: {}

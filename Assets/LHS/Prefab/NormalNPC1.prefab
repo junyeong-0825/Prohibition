@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 5766909869772711850}
   - component: {fileID: 783914500112006112}
   - component: {fileID: 2545084944832422502}
-  - component: {fileID: 5838008521418388549}
+  - component: {fileID: 3338047583053544649}
   m_Layer: 0
   m_Name: Body_1
   m_TagString: Guest
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  DestroyTarget: {fileID: 2025813087128694717, guid: 188f2c332a69f47cf9d8aae4bf76831f, type: 3}
+  DestroyTarget: {fileID: 0}
 --- !u!70 &783914500112006112
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -597,13 +597,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092a1977878e44c9f974396abde4a7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderMenu: 
   satisfiedSprite: {fileID: 570868509996779289}
   unsatisfiedSprite: {fileID: 6409364522285867542}
   interactionTimeLimit: 10
+  orderMenu: 
   interactionStarted: 0
   interactionCompleted: 0
---- !u!50 &5838008521418388549
+--- !u!50 &3338047583053544649
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 1626670501788110895}
   m_Layer: 0
   m_Name: NormalNPC1
-  m_TagString: Untagged
+  m_TagString: Guest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
