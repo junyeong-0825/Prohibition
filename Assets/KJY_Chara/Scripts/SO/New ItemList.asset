@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63863f855ccf64e49aa876239e49407e, type: 3}
+  m_Name: New ItemList
+  m_EditorClassIdentifier: 
+  itemList:
+    items:
+    - Classification: "\uC220"
+      Name: "\uB9E5\uC8FC"
+      Quantity: 0
+      PurchasePrice: 20
+      SellingPrice: 260
+      RiseScale: 15
+      sprite: {fileID: 21300000, guid: 096a81dba6e8f994685c3944eb42f4a7, type: 3}
+    - Classification: "\uC220"
+      Name: "\uC640\uC778"
+      Quantity: 0
+      PurchasePrice: 35
+      SellingPrice: 80
+      RiseScale: 20
+      sprite: {fileID: 21300000, guid: 993c27bc5d1427449a5e8d6c83f5ae6c, type: 3}
+    - Classification: "\uC220"
+      Name: "\uC704\uC2A4\uD0A4"
+      Quantity: 0
+      PurchasePrice: 60
+      SellingPrice: 20000
+      RiseScale: 30
+      sprite: {fileID: 21300000, guid: 63e635b928db6644e8c7722356786d85, type: 3}
+    - Classification: "\uC74C\uC2DD"
+      Name: "\uC74C\uC2DD\uC7AC\uB8CC"
+      Quantity: 0
+      PurchasePrice: 15
+      SellingPrice: 3
+      RiseScale: 0
+      sprite: {fileID: 21300000, guid: ff07e18b014b0db45b4762dcbbec48b6, type: 3}
+    - Classification: "\uC74C\uC2DD"
+      Name: "\uC694\uB9AC"
+      Quantity: 0
+      PurchasePrice: 0
+      SellingPrice: 10
+      RiseScale: 5
+      sprite: {fileID: 21300000, guid: e83a44e5da004ac46847d0ecba319857, type: 3}

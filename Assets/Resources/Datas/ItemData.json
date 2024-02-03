@@ -1,0 +1,44 @@
+{ "items" : 
+[
+{
+    "Classification" : "술",
+    "Name" : "맥주", 
+    "Quantity" : 0, 
+    "PurchasePrice" : 20, 
+    "SellingPrice" : 35, 
+    "RiseScale" : 15
+},
+{
+    "Classification" : "술",
+    "Name" : "와인", 
+    "Quantity" : 0, 
+    "PurchasePrice" : 35, 
+    "SellingPrice" : 60, 
+    "RiseScale" : 20
+},
+{
+    "Classification" : "술",
+    "Name" : "위스키", 
+    "Quantity" : 0, 
+    "PurchasePrice" : 60, 
+    "SellingPrice" : 100, 
+    "RiseScale" : 30
+},
+{
+    "Classification" : "음식",
+    "Name" : "음식재료", 
+    "Quantity" : 0, 
+    "PurchasePrice" : 15, 
+    "SellingPrice" : 3, 
+    "RiseScale" : 0
+},
+{
+    "Classification" : "음식",
+    "Name" : "요리", 
+    "Quantity" : 0, 
+    "PurchasePrice" : 0, 
+    "SellingPrice" : 10, 
+    "RiseScale" : 5
+}
+]
+}
