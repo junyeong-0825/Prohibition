@@ -123,7 +123,6 @@ public class NPCSpawner : MonoBehaviour
         // 지역변수
         int randomIdx;
 
-
         do
         {
             // 타겟 프리팹의 리스트의 수만큼의 랜덤을 구한다.

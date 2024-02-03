@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
     private int Min;
     private int Sec;
     [SerializeField] private TextMeshProUGUI text_Timer;
+    private GameObject[] CheckNPC;
 
     void Start()
     {
@@ -30,7 +31,13 @@ public class Timer : MonoBehaviour
         {
             text_Timer.text = "마감시간";
             //Time.timeScale = 0.0f;
+            //Check();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (limitTimeSec < 0) Check();
     }
 
     private void SetTime(float Sec)
@@ -41,5 +48,11 @@ public class Timer : MonoBehaviour
         {
             Min -= 1;
         }
+    }
+
+    private void Check()
+    {
+        CheckNPC = GameObject.FindGameObjectsWithTag("Guest");
+        Debug.Log(CheckNPC.Length);
     }
 }
