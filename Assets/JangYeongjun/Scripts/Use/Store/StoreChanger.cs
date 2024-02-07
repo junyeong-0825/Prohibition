@@ -25,7 +25,7 @@ public class StoreChanger : MonoBehaviour
             return;
         }
 
-        foreach (Item item in TemporaryDataManager.instance.nowPlayer.items)
+        foreach (Item item in DataManager.instance.nowPlayer.items)
         {
             if (item.PurchasePrice > 0)
             {
@@ -61,12 +61,12 @@ public class StoreChanger : MonoBehaviour
 
         slotButton.onClick.AddListener(() =>
         {
-            if (TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold >= item.PurchasePrice)
+            if (DataManager.instance.nowPlayer.Playerinfo.Gold >= item.PurchasePrice)
             {
-                TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold -= item.PurchasePrice;
+                DataManager.instance.nowPlayer.Playerinfo.Gold -= item.PurchasePrice;
                 ChangePlayerGold();
 
-                TemporaryInventory existingItem = TemporaryDataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == item.Name);
+                PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == item.Name);
 
                 if (existingItem != null && existingItem.EnhancementValue < 1)
                 {
@@ -76,7 +76,7 @@ public class StoreChanger : MonoBehaviour
                 else
                 {
                     // 인벤토리에 아이템이 없으면 새로 추가
-                    TemporaryInventory newInventoryItem = new TemporaryInventory
+                    PlayerInventory newInventoryItem = new PlayerInventory
                     {
                         Classification = item.Classification,
                         Name = item.Name,
@@ -89,7 +89,7 @@ public class StoreChanger : MonoBehaviour
                     };
 
                     // 인벤토리에 새로운 아이템 추가
-                    TemporaryDataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
+                    DataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
                 }
             }
             Inventory.Instance.UpdateUI();
@@ -97,6 +97,6 @@ public class StoreChanger : MonoBehaviour
     }
     void ChangePlayerGold()
     {
-        playerGoldText.text = String.Format("{0:N0}", TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold);
+        playerGoldText.text = String.Format("{0:N0}", DataManager.instance.nowPlayer.Playerinfo.Gold);
     }
 }

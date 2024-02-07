@@ -25,7 +25,7 @@ public class StoreEnhancer : MonoBehaviour
             return;
         }
 
-        foreach (Item item in TemporaryDataManager.instance.nowPlayer.items)
+        foreach (Item item in DataManager.instance.nowPlayer.items)
         {
             if (item.PurchasePrice > 0)
             {
@@ -49,11 +49,11 @@ public class StoreEnhancer : MonoBehaviour
 
         slotButton.onClick.AddListener(() =>
         {
-            if (TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold >= item.PurchasePrice * 15)
+            if (DataManager.instance.nowPlayer.Playerinfo.Gold >= item.PurchasePrice * 15)
             {
                 if (item.EnhancementValue < 3)
                 {
-                    TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold -= item.SellingPrice * 15;
+                    DataManager.instance.nowPlayer.Playerinfo.Gold -= item.SellingPrice * 15;
                     item.SellingPrice += item.RiseScale;
                     item.EnhancementValue++;
                     ChangePlayerGold();
@@ -70,6 +70,6 @@ public class StoreEnhancer : MonoBehaviour
     }
     void ChangePlayerGold()
     {
-        playerGoldText.text = String.Format("{0:N0}", TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold);
+        playerGoldText.text = String.Format("{0:N0}", DataManager.instance.nowPlayer.Playerinfo.Gold);
     }
 }

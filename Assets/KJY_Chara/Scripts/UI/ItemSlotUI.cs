@@ -8,13 +8,13 @@ using UnityEngine.UI;
 public class ItemSlotUI : MonoBehaviour
 {
     //아이템, 인벤토리, 빚에 대한 데이터
-    private TemporaryInventory curSlot;
+    private PlayerInventory curSlot;
     public Image icon;
     public TextMeshProUGUI quantityText;
     public int index;
 
 
-    public void Set(TemporaryInventory slot)
+    public void Set(PlayerInventory slot)
     {
         curSlot = slot;
         icon.gameObject.SetActive(true);

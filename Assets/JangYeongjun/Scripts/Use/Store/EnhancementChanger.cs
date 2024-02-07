@@ -28,28 +28,28 @@ public class EnhancementChanger : MonoBehaviour
         }
 
         // 필요한 만큼의 슬롯만 보장
-        while (slotList.Count < TemporaryDataManager.instance.nowPlayer.inventory.Count)
+        while (slotList.Count < DataManager.instance.nowPlayer.inventory.Count)
         {
             GameObject slot = Instantiate(enhanceSlotPrefab, contents.transform);
             slotList.Add(slot);
         }
 
         // 슬롯 재사용 또는 업데이트
-        for (int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
+        for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
         {
             GameObject slot = slotList[i];
-            UpdateSlotUI(slot, TemporaryDataManager.instance.nowPlayer.inventory[i]);
+            UpdateSlotUI(slot, DataManager.instance.nowPlayer.inventory[i]);
             slot.SetActive(true);
         }
 
         // 사용하지 않는 슬롯 비활성화
-        for (int i = TemporaryDataManager.instance.nowPlayer.inventory.Count; i < slotList.Count; i++)
+        for (int i = DataManager.instance.nowPlayer.inventory.Count; i < slotList.Count; i++)
         {
             slotList[i].SetActive(false);
         }
     }
 
-    void UpdateSlotUI(GameObject slot, TemporaryInventory inventoryItem)
+    void UpdateSlotUI(GameObject slot, PlayerInventory inventoryItem)
     {
         Image imageComponent = slot.GetComponent<Image>();
         Button button = slot.GetComponent<Button>();
@@ -65,15 +65,15 @@ public class EnhancementChanger : MonoBehaviour
             button.onClick.AddListener(() =>
             {
 
-                if (TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold >= inventoryItem.SellingPrice * 10 && inventoryItem.EnhancementValue < 3)
+                if (DataManager.instance.nowPlayer.Playerinfo.Gold >= inventoryItem.SellingPrice * 10 && inventoryItem.EnhancementValue < 3)
                 {
-                    TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold -= inventoryItem.SellingPrice * 10;
+                    DataManager.instance.nowPlayer.Playerinfo.Gold -= inventoryItem.SellingPrice * 10;
                     ChangePlayerGold();
                     inventoryItem.SellingPrice += inventoryItem.RiseScale;
                     int newEnhancementValue = ++inventoryItem.EnhancementValue;
 
                     // 동일 강화 레벨을 가진 아이템 찾기
-                    var sameNamedItem = TemporaryDataManager.instance.nowPlayer.items
+                    var sameNamedItem = DataManager.instance.nowPlayer.items
                         .FirstOrDefault(items => items.Name == inventoryItem.Name);
 
                     if (sameNamedItem != null)
@@ -94,13 +94,13 @@ public class EnhancementChanger : MonoBehaviour
             });
         }
     }
-    public void ChangeDescription(TemporaryInventory inventoryItem)
+    public void ChangeDescription(PlayerInventory inventoryItem)
     {
         DescriptionText.text = $"{inventoryItem.Name} {inventoryItem.EnhancementValue} 강, {inventoryItem.Quantity} 개";
     }
     void ChangePlayerGold()
     {
-        playerGoldText.text = TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold.ToString() + " Gold";
+        playerGoldText.text = DataManager.instance.nowPlayer.Playerinfo.Gold.ToString() + " Gold";
     }
 }
 

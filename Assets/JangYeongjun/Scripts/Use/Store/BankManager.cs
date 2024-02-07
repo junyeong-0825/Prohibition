@@ -31,25 +31,25 @@ public class BankManager : MonoBehaviour
     }
     public void Repayment(int goldValue)
     {
-        if (goldValue <= TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold)
+        if (goldValue <= DataManager.instance.nowPlayer.Playerinfo.Gold)
         {
-            TemporaryDataManager.instance.nowPlayer.Playerinfo.Debt -= goldValue;
-            TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold -= goldValue;
+            DataManager.instance.nowPlayer.Playerinfo.Debt -= goldValue;
+            DataManager.instance.nowPlayer.Playerinfo.Gold -= goldValue;
             TextFix();
         }
         else 
         {
-            warningText.text = String.Format("{0:N0}", goldValue - TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold) + "만큼 소지금이 부족합니다.";
+            warningText.text = String.Format("{0:N0}", goldValue - DataManager.instance.nowPlayer.Playerinfo.Gold) + "만큼 소지금이 부족합니다.";
             mafiaText.color = new Color(1, 0, 0, 1);
             mafiaText.text = "돈이 부족하잖아!!!";
         }
     }
     public void Loan(int goldValue)
     {
-        if (TemporaryDataManager.instance.nowPlayer.Playerinfo.Debt + goldValue <= 3000000)
+        if (DataManager.instance.nowPlayer.Playerinfo.Debt + goldValue <= 3000000)
         {
-            TemporaryDataManager.instance.nowPlayer.Playerinfo.Debt += goldValue;
-            TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold += goldValue;
+            DataManager.instance.nowPlayer.Playerinfo.Debt += goldValue;
+            DataManager.instance.nowPlayer.Playerinfo.Gold += goldValue;
             TextFix();
         }
         else 
@@ -61,8 +61,8 @@ public class BankManager : MonoBehaviour
     }
     void TextFix()
     {
-        int playerGold = TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold;
-        int playerDebt = TemporaryDataManager.instance.nowPlayer.Playerinfo.Debt;
+        int playerGold = DataManager.instance.nowPlayer.Playerinfo.Gold;
+        int playerDebt = DataManager.instance.nowPlayer.Playerinfo.Debt;
         goldText.text = String.Format("{0:N0}", playerGold);
         debtText.text = String.Format("{0:N0}", playerDebt);
     }

@@ -16,6 +16,8 @@ MonoBehaviour:
     keys:
     - 90d87bb465f7646c780791e3a59be38c
     - fde5f6b4e0fa9d746b76359e4761a97e
+    - 3c37e64cca43c354da5ba9f9ffbc944e
+    - 2cda990e2423bbf4892e6590ba056729
     values:
     - goDatas_byGlobalId:
         keys:
@@ -31,31 +33,40 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1913449239-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-6105763627187910793-1373610328
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-3903212299450048412-272420191
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-838771841-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1043963765-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-288178071-0
         values:
-        - colorIndex: 0
+        - colorIndex: 6
           iconNameOrGuid: Camera Icon
-        - colorIndex: 0
+        - colorIndex: 2
           iconNameOrGuid: AvatarMask On Icon
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Canvas Icon
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: PreMatCube
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: AudioClip Icon
         - colorIndex: 0
           iconNameOrGuid: Favorite
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Canvas Icon
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Canvas Icon
         - colorIndex: 0
           iconNameOrGuid: Settings Icon
+        - colorIndex: 3
+          iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 5
+          iconNameOrGuid: 
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1431830543-0
@@ -63,6 +74,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-121519408-0
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1856860499-0
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-910469594-0
+        - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1975415097-0
+        - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-457476991-0
+        - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1360764100-0
+        - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-329068518-0
+        - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1233323223-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -74,3 +90,28 @@ MonoBehaviour:
           iconNameOrGuid: PreMatCube
         - colorIndex: 0
           iconNameOrGuid: PreMatCube
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: Canvas Icon
+    - goDatas_byGlobalId:
+        keys: []
+        values: []
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-2080777794-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1025484239-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1718666635-0
+        values:
+        - colorIndex: 3
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 5
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 1
+          iconNameOrGuid: Settings Icon

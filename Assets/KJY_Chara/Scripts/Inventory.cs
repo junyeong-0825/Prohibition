@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
     {
         inventoryWindow.SetActive(false);
 
-        for (int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
+        for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
         {
             
             uiSlots[i].index = i;
@@ -74,29 +74,29 @@ public class Inventory : MonoBehaviour
 
     public void UpdateUI()
     {
-        for(int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
+        for(int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
         {
-            if (TemporaryDataManager.instance.nowPlayer.inventory[i] != null)
+            if (DataManager.instance.nowPlayer.inventory[i] != null)
             {
-                uiSlots[i].Set(TemporaryDataManager.instance.nowPlayer.inventory[i]);
+                uiSlots[i].Set(DataManager.instance.nowPlayer.inventory[i]);
             }
             else
             {
                 uiSlots[i].Clear();
             }
         }
-        haveGold = TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold;
+        haveGold = DataManager.instance.nowPlayer.Playerinfo.Gold;
         haveGoldText.text = haveGold.ToString();
     }
 
     
 
-    TemporaryInventory GetEmptySlot()
+    PlayerInventory GetEmptySlot()
     {
-        for (int i = 0; i < TemporaryDataManager.instance.nowPlayer.inventory.Count; i++)
+        for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
         {
-            if (TemporaryDataManager.instance.nowPlayer.inventory[i] == null)
-                return TemporaryDataManager.instance.nowPlayer.inventory[i];
+            if (DataManager.instance.nowPlayer.inventory[i] == null)
+                return DataManager.instance.nowPlayer.inventory[i];
         }
         return null;
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: vHierarchy Palette
   m_EditorClassIdentifier: 
   colors:
-  - {r: 0.16, g: 0.16, b: 0.16, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0.101960786}
   - {r: 0.609, g: 0.231, b: 0.23100014, a: 0.1}
   - {r: 0.55825, g: 0.471625, b: 0.21175, a: 0.1}
   - {r: 0.34999996, g: 0.5075, b: 0.1925, a: 0.1}
@@ -74,5 +74,8 @@ MonoBehaviour:
     - PreMatQuad
     - Favorite
     - Settings Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons: []
     customIcons: []
     enabled: 1
