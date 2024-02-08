@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip[] nightClips; //밤의 오디오 클립
     [SerializeField] AudioClip mainClips; //낮의 오디오 클립
+    [SerializeField] AudioClip titleClips;
     [SerializeField] public AudioSource audioSource;
     int clipIndex = 0;
 
@@ -35,6 +36,7 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator PlayNightSound()
     {
+        audioSource.Stop();
         while (true)
         {
             audioSource.clip = nightClips[clipIndex];
@@ -51,7 +53,15 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMainSound()
     {
+        audioSource.Stop();
         audioSource.clip = mainClips;
+        audioSource.Play();
+    }
+
+    public void PlayTitleSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = titleClips;
         audioSource.Play();
     }
 }

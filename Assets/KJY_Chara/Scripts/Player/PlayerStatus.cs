@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-enum Menu
+public enum Menu
 {
+    None,
     Food,
     Beer,
     Wine,
@@ -13,8 +16,24 @@ enum Menu
 
 public class PlayerStatus : MonoBehaviour
 {
+    [SerializeField] Image servingImage;
     public bool isServed = false;
-    Menu whatServed;
+    public Menu whatServed = Menu.None;
 
 
+    public void IsServed(int index)
+    {
+        isServed = true;
+        whatServed = (Menu)index;
+        Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
+
+        servingImage.sprite = servingItem.sprite;
+
+    }
+
+    public void NotServed()
+    {
+        isServed = false;
+        whatServed = Menu.None;
+    }
 }

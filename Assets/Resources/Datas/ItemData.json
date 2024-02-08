@@ -1,40 +1,40 @@
 { "items" : 
 [
 {
-    "Classification" : "술",
-    "Name" : "맥주", 
+    "Classification" : "Alcohol",
+    "Name" : "Beer", 
     "Quantity" : 0, 
     "PurchasePrice" : 20, 
     "SellingPrice" : 35, 
     "RiseScale" : 15
 },
 {
-    "Classification" : "술",
-    "Name" : "와인", 
+    "Classification" : "Alcohol",
+    "Name" : "Wine", 
     "Quantity" : 0, 
     "PurchasePrice" : 35, 
     "SellingPrice" : 60, 
     "RiseScale" : 20
 },
 {
-    "Classification" : "술",
-    "Name" : "위스키", 
+    "Classification" : "Alcohol",
+    "Name" : "Whisky", 
     "Quantity" : 0, 
     "PurchasePrice" : 60, 
     "SellingPrice" : 100, 
     "RiseScale" : 30
 },
 {
-    "Classification" : "음식",
-    "Name" : "음식재료", 
+    "Classification" : "Food",
+    "Name" : "Ingredient", 
     "Quantity" : 0, 
     "PurchasePrice" : 15, 
     "SellingPrice" : 3, 
     "RiseScale" : 0
 },
 {
-    "Classification" : "음식",
-    "Name" : "요리", 
+    "Classification" : "Food",
+    "Name" : "Food", 
     "Quantity" : 0, 
     "PurchasePrice" : 0, 
     "SellingPrice" : 10, 
