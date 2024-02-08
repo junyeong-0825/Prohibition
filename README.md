@@ -31,3 +31,12 @@ Prohibition
 Tab키를 누르는 동안 자신이 가지고 있는 물건, 돈을 볼 수 있다.
 ## 3.2. 이동
 W,S,A,D 키로 상하좌우 움직일 수 있다.
+
+### 코드리뷰 - 이형석
+
+- NPCSpawner - Prohibition/Assets/LHS/Scripts/NPCSpawner.cs
+<주의점> 조건에 따른 코루틴을 호출하는 것이 맞는 것인지 확인 부탁드립니다, 코드 작성 과정에서 주석 처리가 많이 되어 있는데 정리를 위해 반드시 삭제해야 하는지 조언 부탁드리겠습니다.
+- NPCInteraction - Prohibition/Assets/LHS/Scripts/NPCInteraction.cs
+<주의점> 현재 플레이어와의 상호작용을 충돌할 때 태그 확인을 조건으로 두었는데 현재 시점에서 좋은 방법인지 확인 부탁드리겠습니다.
+- NPCController - Prohibition/Assets/LHS/Scripts/NPCController.cs
+<주의점> NPC의 움직임을 관리하지만, 동시에 자가파괴하는 역할을 맡고 있습니다. 자가파괴를 NPC 오브젝트가 직접 처리하는 것이 옳은 것인가요? 조언부탁드리겠습니다.
