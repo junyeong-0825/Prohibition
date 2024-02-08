@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
 
     public static Inventory Instance;
 
-    private int haveGold;
+    public int haveGold;
 
     private void Awake()
     {
