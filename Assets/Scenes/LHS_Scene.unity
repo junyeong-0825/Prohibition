@@ -6743,7 +6743,6 @@ MonoBehaviour:
   nightCameraPosition: {x: 100, y: 0, z: -10}
   mainCamera: {fileID: 309396333}
   dayChangeButton: {fileID: 2025679315}
-  cctvButton: {fileID: 0}
   Player: {fileID: 404869573}
 --- !u!1 &610403603
 GameObject:
@@ -19165,7 +19164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5a8fddcde5449738719ceb211f7f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitTimeSec: 240
+  limitTimeSec: 10
   text_Timer: {fileID: 128000230}
   CheckNPC: []
 --- !u!4 &1420232587

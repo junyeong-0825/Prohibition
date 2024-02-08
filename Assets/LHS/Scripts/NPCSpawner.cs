@@ -37,21 +37,15 @@ public class NPCSpawner : MonoBehaviour
     private float guestInterval = 4.5f;
     //private float policeInterval = 12f;
     private Timer timeLeft;
-    public float currenttime;
-
-
-    private void Awake()
-    {
-        SetTime();
-    }
 
     void Start()
     {
-        spawnCoroutine = StartCoroutine(spawnNPC(guestInterval, guestPrefab, SpawnPositionPrefab));
+        timeLeft = GameObject.Find("UIManager").GetComponent<Timer>();
+        //spawnCoroutine = StartCoroutine(spawnNPC(guestInterval, guestPrefab, SpawnPositionPrefab));
         //StartCoroutine(spawnNPC(policeInterval, policePrefab, SpawnPositionPrefab));
     }
 
-    private IEnumerator spawnNPC(float interval, GameObject NPC, Transform Position)
+    internal IEnumerator spawnNPC()
     {
   
 
@@ -71,16 +65,15 @@ public class NPCSpawner : MonoBehaviour
         //    }
         //}
 
-        while(currenttime > 0f)
+        while(true)
         {
-            SetTime();
             //if (usedTargetIndex.Count > TargetPrefabList.Count)
             //{
             //    Debug.Log("Wait Spawn");
             //    yield break;
             //}
 
-            if(currenttime <= 0f)
+            if(timeLeft.LimitTimeSec <= 0f)
             {
                 Debug.Log("Close Time!!");
                 yield return new WaitUntil(() => timeLeft.CheckNPC.Length == 0);
@@ -91,7 +84,7 @@ public class NPCSpawner : MonoBehaviour
             if((usedTargetIndex.Count < TargetPrefabList.Count))
             {
                 Debug.Log("SpawnStart!!!");
-                yield return StartCoroutine(SpawnOnce(interval, NPC, Position));
+                yield return StartCoroutine(SpawnOnce(guestInterval, guestPrefab, SpawnPositionPrefab));
             }
             else
             {
@@ -104,12 +97,6 @@ public class NPCSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(interval);
         SpawnPrefab(NPC, Position);
-    }
-
-    private void SetTime()
-    {
-        timeLeft = GameObject.Find("UIManager").GetComponent<Timer>();
-        currenttime = timeLeft.LimitTimeSec;
     }
 
     // 프리팹 스폰 메서드(프리팹과 스폰위치를 매개변수로)

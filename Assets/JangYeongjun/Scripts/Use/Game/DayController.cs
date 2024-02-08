@@ -16,10 +16,12 @@ public class DayController : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] Button dayChangeButton;
     [SerializeField] GameObject Player;
-    //private Timer timer;
+    Timer timer;
+    NPCSpawner npcSpawner;
     private void Start()
     {
-        //timer = GameObject.Find("UIManager").GetComponent<Timer>();
+        npcSpawner = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>();
+        timer = GameObject.Find("UIManager").GetComponent<Timer>();
         GameEvents.OnDayEnd += HandleDayEnd;
         dayChangeButton.onClick.AddListener(OnButtonClick);
         StartCoroutine("OneDay");
@@ -39,7 +41,7 @@ public class DayController : MonoBehaviour
     {
         dayEnded = false;
     }
-    
+
     IEnumerator OneDay()
     {
         Debug.Log("OneDay시작");
@@ -53,9 +55,10 @@ public class DayController : MonoBehaviour
             낮 음악 실행
             낮 장면 초기화
             */
-
+            timer.limitTimeSec = 10;
+            StartCoroutine(npcSpawner.spawnNPC());
             Player.transform.position = dayPosition;
-            StopCoroutine(AudioManager.audioInstance.PlayNightSound());
+            AudioManager.audioInstance.StopPlayNightSound();
             AudioManager.audioInstance.PlayMainSound();
             mainCamera.transform.position = dayCameraPosition;
             yield return new WaitUntil(() => dayEnded);
@@ -67,9 +70,10 @@ public class DayController : MonoBehaviour
             밤 음악 실행
             밤 장면 초기화
             */
-
+            timer.limitTimeSec = 0;
+            StopCoroutine(npcSpawner.spawnNPC());
             Player.transform.position = nightPosition;
-            StartCoroutine(AudioManager.audioInstance.PlayNightSound());
+            AudioManager.audioInstance.StartPlayNightSound();
             mainCamera.transform.position = nightCameraPosition;
             yield return new WaitUntil(() => !dayEnded);
         }

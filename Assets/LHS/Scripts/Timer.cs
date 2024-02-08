@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         limitTimeSec -= Time.deltaTime;
-        if (limitTimeSec >= 0)
+        if (limitTimeSec > 0)
         {
             SetTime(limitTimeSec);
             text_Timer.text = string.Format("{0:D2}:{1:D2}", Min, Sec);
@@ -26,27 +26,23 @@ public class Timer : MonoBehaviour
         {
             text_Timer.text = "마감시간";
             //Time.timeScale = 0.0f;
-            //Check();
+            Check();
         }
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
 
         if (limitTimeSec < 0)
         {
             Check();
         }
-    }
+    }*/
 
     private void SetTime(float Sec)
     {
         Min = (int)Sec / 60;
         this.Sec = (int)Sec % 60;
-        if(Min > (Sec/60f))
-        {
-            Min -= 1;
-        }
     }
 
     private void Check()

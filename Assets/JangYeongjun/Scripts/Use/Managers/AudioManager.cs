@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip mainClips; //낮의 오디오 클립
     [SerializeField] AudioClip titleClips;
     [SerializeField] public AudioSource audioSource;
+    private Coroutine nightSoundCoroutine;
     int clipIndex = 0;
 
     #region  싱글톤
@@ -33,7 +34,26 @@ public class AudioManager : MonoBehaviour
         }
     }
     #endregion
+    
 
+    public void StartPlayNightSound()
+    {
+        if (nightSoundCoroutine != null)
+        {
+            StopCoroutine(nightSoundCoroutine);
+        }
+        nightSoundCoroutine = StartCoroutine(PlayNightSound());
+    }
+
+    public void StopPlayNightSound()
+    {
+        if (nightSoundCoroutine != null)
+        {
+            StopCoroutine(nightSoundCoroutine);
+            nightSoundCoroutine = null;
+        }
+        audioSource.Stop();
+    }
     public IEnumerator PlayNightSound()
     {
         audioSource.Stop();
@@ -53,7 +73,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMainSound()
     {
-        audioSource.Stop();
+        StopPlayNightSound();
         audioSource.clip = mainClips;
         audioSource.Play();
     }
