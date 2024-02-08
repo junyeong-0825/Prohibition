@@ -32,6 +32,7 @@ Tab키를 누르는 동안 자신이 가지고 있는 물건, 돈을 볼 수 있
 ## 3.2. 이동
 W,S,A,D 키로 상하좌우 움직일 수 있다.
 
+---
 ### 코드리뷰 - 이형석
 
 - NPCSpawner - Prohibition/Assets/LHS/Scripts/NPCSpawner.cs
@@ -40,3 +41,12 @@ W,S,A,D 키로 상하좌우 움직일 수 있다.
 <주의점> 현재 플레이어와의 상호작용을 충돌할 때 태그 확인을 조건으로 두었는데 현재 시점에서 좋은 방법인지 확인 부탁드리겠습니다.
 - NPCController - Prohibition/Assets/LHS/Scripts/NPCController.cs
 <주의점> NPC의 움직임을 관리하지만, 동시에 자가파괴하는 역할을 맡고 있습니다. 자가파괴를 NPC 오브젝트가 직접 처리하는 것이 옳은 것인가요? 조언부탁드리겠습니다.
+
+### 코드리뷰 - 장영준
+
+1. Prohibition/Assets/JangYeongjun/Scripts/Use/Managers/InteractionManager.cs
+   - 오브젝트의 collider에 들어갔을 때 Trigger에 의해서 보내지는 Index값에 따라 나타나는 판넬이 달라지는데 숫자하니까 게임이 복잡해 졌을 때 뭔가 불안합니다.
+2. Prohibition/Assets/JangYeongjun/Scripts/Use/Store/StoreChanger.cs
+   - Find랑 Get을 너무 많이 사용하는 것 같은데 그냥 slot을 미리 만들어 놓고 이미지만 바꾸는 방식으로 할지 고민입니다.
+3. Prohibition/Assets/JangYeongjun/Scripts/Use/Game/DayController.cs
+   - 일단 낮과 밤의 전환을 코루틴으로 구현을 해 봤는데 괜찮은지 궁금합니다. 
