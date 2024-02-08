@@ -48,11 +48,9 @@ public class DayController : MonoBehaviour
         while (true) // 무한 루프로 낮과 밤 사이클 반복
         {
             Debug.Log("낮");
-            // 낮
             /*
             밤의 오브젝트 비 활성화
             NPC Spawner 활성화
-            낮 음악 실행
             낮 장면 초기화
             */
             timer.limitTimeSec = 10;
@@ -64,10 +62,8 @@ public class DayController : MonoBehaviour
             yield return new WaitUntil(() => dayEnded);
 
             Debug.Log("밤");
-            // 밤
             /*
             낮 오브젝트 비 활성화
-            밤 음악 실행
             밤 장면 초기화
             */
             timer.limitTimeSec = 0;
