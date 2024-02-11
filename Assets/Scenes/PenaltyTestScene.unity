@@ -5188,6 +5188,8 @@ MonoBehaviour:
   - {fileID: 318801662}
   - {fileID: 1704689541}
   - {fileID: 447886506}
+  Machines: []
+  playerStatus: {fileID: 0}
 --- !u!114 &404869578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5283,7 +5285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce116c4c6ea3da459d0f1f06d363da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  servingImage: {fileID: 0}
   isServed: 0
+  whatServed: 0
 --- !u!1 &432968706
 GameObject:
   m_ObjectHideFlags: 0
@@ -6886,11 +6890,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayPosition: {x: 50, y: -3, z: 0}
   nightPosition: {x: 107, y: -0.6, z: 0}
-  timerText: {fileID: 1329651103}
+  dayCameraPosition: {x: 0, y: 0, z: 0}
+  nightCameraPosition: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 309396333}
   dayChangeButton: {fileID: 2025679315}
-  audioSource: {fileID: 883645703}
-  cctvButton: {fileID: 1566017314}
   Player: {fileID: 404869573}
 --- !u!1 &610403603
 GameObject:
@@ -8686,6 +8689,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a01c5452dc350e3479bcee2f40d3b0c1, type: 3}
   - {fileID: 8300000, guid: d1c42ea34479ce64c8aab4816fd47a0d, type: 3}
   mainClips: {fileID: 8300000, guid: 3593a85245e1377418a82191897e12b0, type: 3}
+  titleClips: {fileID: 0}
   audioSource: {fileID: 883645703}
 --- !u!1 &883941064
 GameObject:
@@ -15981,6 +15985,7 @@ GameObject:
   - component: {fileID: 1315859197}
   - component: {fileID: 1315859196}
   - component: {fileID: 1315859198}
+  - component: {fileID: 1315859199}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -16000,12 +16005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2492388da8b333408338b38e0cefa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nowPlayer:
-    Playerinfo:
-      Gold: 100
-      Debt: 0
-    items: []
-    inventory: []
 --- !u!4 &1315859197
 Transform:
   m_ObjectHideFlags: 0
@@ -16033,6 +16032,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9cb6523f95068409d898b1ce269686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1315859199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315859195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584ab9c0d735f03418da24b40e00b776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nowPlayer:
+    Playerinfo:
+      Gold: 100
+      Debt: 50000
+    items: []
+    inventory: []
 --- !u!1 &1320101353
 GameObject:
   m_ObjectHideFlags: 0
