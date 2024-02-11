@@ -18,8 +18,6 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryWindow;
     public TextMeshProUGUI haveGoldText;
 
-    private PlayerInputController controller;
-
 
     [Header("Events")]
     public UnityEvent onOpenInventory;
@@ -27,12 +25,11 @@ public class Inventory : MonoBehaviour
 
     public static Inventory Instance;
 
-    private int haveGold;
+    public int haveGold;
 
     private void Awake()
     {
         Instance = this;
-        controller = GetComponent<PlayerInputController>();
     }
     private void Start()
     {
