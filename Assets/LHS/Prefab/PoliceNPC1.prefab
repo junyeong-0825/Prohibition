@@ -114,7 +114,7 @@ Transform:
   m_Children:
   - {fileID: 6971597390819892010}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1375807844015163273
 GameObject:
@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 2823746978486984467}
   - component: {fileID: 1237430054248134373}
   - component: {fileID: 9177637780261191430}
+  - component: {fileID: 7325275181334145622}
   m_Layer: 0
   m_Name: Body_1
   m_TagString: Untagged
@@ -277,6 +278,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   DestroyTarget: {fileID: 0}
+--- !u!114 &7325275181334145622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375807844015163273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55223384aee2e4aedb206656f93b2497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchingSprite: {fileID: 0}
+  IsCheck: 1
+  CheckingTime: 5
 --- !u!1 &2721959106411977607
 GameObject:
   m_ObjectHideFlags: 0
