@@ -49,4 +49,10 @@ W,S,A,D 키로 상하좌우 움직일 수 있다.
 2. Prohibition/Assets/JangYeongjun/Scripts/Use/Store/StoreChanger.cs
    - Find랑 Get을 너무 많이 사용하는 것 같은데 그냥 slot을 미리 만들어 놓고 이미지만 바꾸는 방식으로 할지 고민입니다.
 3. Prohibition/Assets/JangYeongjun/Scripts/Use/Game/DayController.cs
-   - 일단 낮과 밤의 전환을 코루틴으로 구현을 해 봤는데 괜찮은지 궁금합니다. 
+   - 일단 낮과 밤의 전환을 코루틴으로 구현을 해 봤는데 괜찮은지 궁금합니다.
+  
+### 코드리뷰 - 김준영
+1. Prohibition/Assets/KJY_chara/Scripts/Inventory.cs
+   - TemporaryDataManager.cs에서 현재 가지고 있는 gold에 대한 정보를 받아서 haveGold 변수에 넣어 사용하는데 변수를 따로 할당하지 않고 사용하는게 더 효율적인지 궁금합니다.
+2. Prohibition/Assets/KJY_chara/Scripts/Penalties.cs
+   - 데이터를 너무 직접적으로 건들여 다른 문제가 생기는 것은 아닌지 걱정입니다.
