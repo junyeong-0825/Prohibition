@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 현재 스크립터블 오브젝트 사용에 대해서 고민 중이므로 스크립트 사용은 보류 중
 // 스크립터블 오브젝트를 에셋 메뉴에서 생성하기 위한 생성기
 // 파일 이름, 메뉴 이름, 항목번호를 지정할 수 있다
 [CreateAssetMenu(fileName = "NPC Data", menuName = "Scriptable Object/NPC Data", order = int.MaxValue)]
