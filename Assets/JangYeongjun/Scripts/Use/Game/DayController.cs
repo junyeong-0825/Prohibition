@@ -53,7 +53,7 @@ public class DayController : MonoBehaviour
             NPC Spawner 활성화
             낮 장면 초기화
             */
-            timer.limitTimeSec = 10;
+            timer.limitTimeSec = 240;
             StartCoroutine(npcSpawner.spawnNPC());
             Player.transform.position = dayPosition;
             AudioManager.audioInstance.StopPlayNightSound();
