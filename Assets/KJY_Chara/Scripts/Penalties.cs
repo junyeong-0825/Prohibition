@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,25 +11,25 @@ public class Penalties : MonoBehaviour
     }
     public void LowLevelGoldPenalty()
     {
-        TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold += 5;
+        DataManager.instance.nowPlayer.Playerinfo.Gold += 5;
         Inventory.Instance.UpdateUI();
-        Debug.Log("¹°°Ç °ªÀº 5°ñµå °íÁ¤");
+        Debug.Log("ë¬¼ê±´ ê°’ì€ 5ê³¨ë“œ ê³ ì •");
     }
     public void HighLevelGoldPenalty()
     {
-        //¹üÄ¢±İÀ¸·Î µ· ¶â¾î°¨
-        TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold = TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold - (TemporaryDataManager.instance.nowPlayer.Playerinfo.Gold / 5);
+        //ë²”ì¹™ê¸ˆìœ¼ë¡œ ëˆ ëœ¯ì–´ê°
+        DataManager.instance.nowPlayer.Playerinfo.Gold = DataManager.instance.nowPlayer.Playerinfo.Gold - (DataManager.instance.nowPlayer.Playerinfo.Gold / 5);
         Inventory.Instance.UpdateUI();
-        Debug.Log("±İÁÖ¹ıÀ¸·Î ÀÎÇÑ ¹ú±İ!");
+        Debug.Log("ê¸ˆì£¼ë²•ìœ¼ë¡œ ì¸í•œ ë²Œê¸ˆ!");
     }
     public void LowLevelTimePenalty()
     {
         timer.limitTimeSec -= 5f;
-        Debug.Log("½Ã°£ 5ÃÊ °¨¼Ò");
+        Debug.Log("ì‹œê°„ 5ì´ˆ ê°ì†Œ");
     }
     public void HighLevelTimePenalty()
     {
         timer.limitTimeSec = 0f;
-        Debug.Log("¿À´Ã Àå»ç´Â Á¢¾î¾ßµÅ");
+        Debug.Log("ì˜¤ëŠ˜ ì¥ì‚¬ëŠ” ì ‘ì–´ì•¼ë¼");
     }
 }
