@@ -36,6 +36,11 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-838771841-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1043963765-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-288178071-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1021547728-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-977020379752701252-1444042771
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-2311670015311279462-1489136898
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-9210870593732612375-1804466255
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-595061349-0
         values:
         - colorIndex: 6
           iconNameOrGuid: Camera Icon
@@ -45,27 +50,37 @@ MonoBehaviour:
           iconNameOrGuid: Canvas Icon
         - colorIndex: 8
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
+        - colorIndex: 4
           iconNameOrGuid: PreMatCube
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: Settings Icon
         - colorIndex: 8
           iconNameOrGuid: Settings Icon
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: AudioClip Icon
-        - colorIndex: 0
+        - colorIndex: 3
           iconNameOrGuid: Favorite
         - colorIndex: 1
           iconNameOrGuid: Canvas Icon
         - colorIndex: 1
           iconNameOrGuid: Canvas Icon
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: Settings Icon
         - colorIndex: 3
           iconNameOrGuid: 
         - colorIndex: 1
           iconNameOrGuid: 
         - colorIndex: 5
+          iconNameOrGuid: 
+        - colorIndex: 6
+          iconNameOrGuid: 
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 4
           iconNameOrGuid: 
     - goDatas_byGlobalId:
         keys:
