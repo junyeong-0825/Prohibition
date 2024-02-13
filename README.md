@@ -33,6 +33,9 @@ Tab키를 누르는 동안 자신이 가지고 있는 물건, 돈을 볼 수 있
 W,S,A,D 키로 상하좌우 움직일 수 있다.
 
 ---
+SecondMain 브런치에 최신화가 되어있습니다.
+---------------------
+
 ### 코드리뷰 - 이형석
 
 - NPCSpawner - Prohibition/Assets/LHS/Scripts/NPCSpawner.cs
