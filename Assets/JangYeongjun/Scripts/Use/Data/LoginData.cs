@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Networking;
 using TMPro;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using UnityEditor.PackageManager;
 
 
 
@@ -14,21 +13,25 @@ public class GoogleData
     public string order;
     public string result;
     public string msg;
-    public string value;
+    /*
+    public int gold;
+    public int debt;
+    public List<PlayerInventory> inven;
+    */
 }
 
 
 public class LoginData : MonoBehaviour
 {
     const string URL = "https://script.google.com/macros/s/AKfycbwwLV0pazBvZoMLZl0qBztyJRCpgrDU2iGGrpWPdc_J_vHO5Epp5cmhJMg5kADQm6TWOA/exec";
-    public GoogleData GD;
     public TextMeshProUGUI ErrorText;
-    public TMP_InputField IDInput, PassInput;//, ValueInput;
+    public TMP_InputField IDInput, PassInput;
     string id, pass;
     int InputSelect;
     public GameObject LoadingPage;
     public GameObject LoginPage;
     public GameObject LoginLoading;
+    //string InventoryData = JsonUtility.ToJson(DataManager.instance.nowPlayer.inventory);
 
     #region InputField를 Tab으로 이동하는 로직
     private void Update()
@@ -59,24 +62,6 @@ public class LoginData : MonoBehaviour
         else return true;
     }
 
-    /*
-    public void Register()
-    {
-        if (!SetIDPass())
-        {
-            print("아이디 또는 비밀번호가 비어있습니다");
-            return;
-        }
-
-        WWWForm form = new WWWForm();
-        form.AddField("order", "register");
-        form.AddField("id", id);
-        form.AddField("pass", pass);
-
-        StartCoroutine(Post(form));
-    }
-    */
-
     public void Login()
     {
         if (!SetIDPass())
@@ -95,7 +80,23 @@ public class LoginData : MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-/*
+    /*
+    public void Register()
+    {
+        if (!SetIDPass())
+        {
+            print("아이디 또는 비밀번호가 비어있습니다");
+            return;
+        }
+
+        WWWForm form = new WWWForm();
+        form.AddField("order", "register");
+        form.AddField("id", id);
+        form.AddField("pass", pass);
+
+        StartCoroutine(Post(form));
+    }
+
     public void Logout()
     {
         if (!SetIDPass())
@@ -121,8 +122,9 @@ public class LoginData : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("order", "setValue");
-        form.AddField("value", ValueInput.text);
-
+        form.AddField("gold", DataManager.instance.nowPlayer.Playerinfo.Gold);
+        form.AddField("debt", DataManager.instance.nowPlayer.Playerinfo.Debt);
+        form.AddField("inven", InventoryData);
         StartCoroutine(Post(form));
     }
 
@@ -135,9 +137,6 @@ public class LoginData : MonoBehaviour
         StartCoroutine(Post(form));
     }
     */
-
-
-
 
     IEnumerator Post(WWWForm form)
     {
@@ -155,26 +154,31 @@ public class LoginData : MonoBehaviour
     {
         if (string.IsNullOrEmpty(json)) return;
 
-        GD = JsonUtility.FromJson<GoogleData>(json);
+        GoogleData GD = JsonUtility.FromJson<GoogleData>(json);
 
         if (GD.result == "ERROR")
         {
             LoginLoading.SetActive(false);
-            ErrorText.text = $"{ GD.order} 을 실행할 수 없습니다. 에러 메시지 : {GD.msg}";
+            ErrorText.text = $"{GD.order} 을 실행할 수 없습니다. 에러 메시지 : {GD.msg}";
             return;
         }
+        else
+        {
+            Debug.Log(GD.order + "을 실행했습니다. 메시지 : " + GD.msg);
 
-        print(GD.order + "을 실행했습니다. 메시지 : " + GD.msg);
-        /*
-        if (GD.order == "getValue")
-        {
-            ValueInput.text = GD.value;
-        }
-        */
-        if(GD.order == "login")
-        {
-            LoadingPage.SetActive(true);
-            LoginPage.SetActive(false);
+            if (GD.order == "login")
+            {
+                LoadingPage.SetActive(true);
+                LoginPage.SetActive(false);
+            }
+            /*
+            else if (GD.order == "getValue")
+            {
+                DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
+                DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
+                DataManager.instance.nowPlayer.inventory = GD.inven;
+            }
+            */
         }
     }
 }

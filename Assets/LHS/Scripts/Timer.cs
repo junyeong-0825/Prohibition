@@ -7,8 +7,8 @@ using TMPro;
 // 제한시간 기능을 테스트 하는 중
 public class Timer : MonoBehaviour
 {
-    [SerializeField] public float limitTimeSec;
-    public float LimitTimeSec { get { return limitTimeSec; } set { limitTimeSec = value; } }
+    public float limitTimeSec;
+    private float LimitTimeSec { get { return limitTimeSec; } set { limitTimeSec = value; } }
     private int Min;
     private int Sec;
     [SerializeField] private TextMeshProUGUI text_Timer;

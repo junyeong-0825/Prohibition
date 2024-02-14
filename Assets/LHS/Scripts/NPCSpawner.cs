@@ -73,7 +73,7 @@ public class NPCSpawner : MonoBehaviour
             //    yield break;
             //}
 
-            if(timeLeft.LimitTimeSec <= 0f)
+            if(timeLeft.limitTimeSec <= 0f)
             {
                 Debug.Log("Close Time!!");
                 yield return new WaitUntil(() => timeLeft.CheckNPC.Length == 0);

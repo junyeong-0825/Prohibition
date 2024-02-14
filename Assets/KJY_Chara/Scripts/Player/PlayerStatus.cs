@@ -16,10 +16,9 @@ public enum Menu
 
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] Image servingImage;
+    [SerializeField] SpriteRenderer imageSprite;
     public bool isServed = false;
     public Menu whatServed = Menu.None;
-
 
     public void IsServed(int index)
     {
@@ -27,7 +26,7 @@ public class PlayerStatus : MonoBehaviour
         whatServed = (Menu)index;
         Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
 
-        servingImage.sprite = servingItem.sprite;
+        imageSprite.sprite = servingItem.sprite;
 
     }
 

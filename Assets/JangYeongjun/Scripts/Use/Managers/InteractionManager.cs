@@ -20,17 +20,17 @@ public class InteractionManager : MonoBehaviour
         }
     }
     #endregion
-    [SerializeField] GameObject[] panels;
-    [SerializeField] GameObject[] Machines;
+    [SerializeField] GameObject[] panels; 
     private int storeDistinguishValue;
-    public PlayerStatus playerStatus;
+    [SerializeField] PlayerStatus playerStatus;
     private void Start()
     {
+        Dictionary<string, GameObject>[] storePanels = new Dictionary<string, GameObject>[panels.Length];
         for(int i = 0; i < panels.Length; i++) 
         {
             panels[i].gameObject.SetActive(false);
+            storePanels[i].Add(panels[i].name, panels[i]);
         }
-        playerStatus = FindObjectOfType<PlayerStatus>();
     }
     public void SetValue(int value)
     {
