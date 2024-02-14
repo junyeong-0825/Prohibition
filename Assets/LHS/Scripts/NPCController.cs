@@ -13,7 +13,12 @@ public class NPCController : MonoBehaviour
 
     // NavMeshAgent를 조작하는 변수
     private NavMeshAgent agent;
-    private Vector3 lastPosition;
+    private Vector2 lastPosition;
+
+    // Animation을 조작하기 위한 변수들
+    private float X;
+    private float Y;
+    private Animator Anim;
 
     private int deployIndex;
     public int DeployIndex { get { return deployIndex; } set { deployIndex = value; } }
@@ -32,20 +37,42 @@ public class NPCController : MonoBehaviour
         // 목표로 이동시키도록 하는 메서드
         agent.SetDestination(target.position);
         MoveDirection();
+        SetAnimation();
     }
 
 
     private void MoveDirection()
     {
-        Vector3 currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
+        Vector2 currentVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
 
-        lastPosition = transform.position;
+        lastPosition = (Vector2)transform.position;
 
         if(agent.velocity.sqrMagnitude > 0)
         {
-            Vector3 moveDirection = agent.velocity.normalized;
+            Vector2 moveDirection = agent.velocity.normalized;
+
+            X = moveDirection.x;
+            Y = moveDirection.y;
 
             Debug.Log("Move Direction: " + moveDirection);
+        }
+    }
+
+    private void SetAnimation()
+    {
+        if(Anim.GetFloat("XVeloValue") != X)
+        {
+            Anim.SetBool("IsChange", true);
+            Anim.SetFloat("XVeloValue", X);
+        }
+        else if(Anim.GetFloat("YVeloValue") != Y)
+        {
+            Anim.SetBool("IsChange", true);
+            Anim.SetFloat("YVeloValue", Y);
+        }
+        else
+        {
+            Anim.SetBool("IsChange", false);
         }
     }
 
