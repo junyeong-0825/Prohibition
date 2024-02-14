@@ -11,7 +11,9 @@ public class NPCController : MonoBehaviour
     // 파괴 위치 지정 변수
     public Transform DestroyTarget;
 
+    // NavMeshAgent를 조작하는 변수
     private NavMeshAgent agent;
+    private Vector3 lastPosition;
 
     private int deployIndex;
     public int DeployIndex { get { return deployIndex; } set { deployIndex = value; } }
@@ -29,6 +31,22 @@ public class NPCController : MonoBehaviour
     {
         // 목표로 이동시키도록 하는 메서드
         agent.SetDestination(target.position);
+        MoveDirection();
+    }
+
+
+    private void MoveDirection()
+    {
+        Vector3 currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
+
+        lastPosition = transform.position;
+
+        if(agent.velocity.sqrMagnitude > 0)
+        {
+            Vector3 moveDirection = agent.velocity.normalized;
+
+            Debug.Log("Move Direction: " + moveDirection);
+        }
     }
 
     // 타겟을 조정하는 함수
