@@ -60,6 +60,18 @@ public class PoliceInteraction : MonoBehaviour
     private void CheckingRestaurant()
     {
         // 레스토랑이 위장 상태가 아니면 플레이어한테 패널티 부여 및 스테이지 종료
+        PlayerStatus undercover = GameObject.Find("Player").GetComponent<PlayerStatus>();
+        if(!undercover.isUndercover)
+        {
+            GetPenalty();
+            SearchingComplete();
+        }
+    }
+
+    private void GetPenalty()
+    {
+        Penalties PPenalty = GameObject.Find("GameManager").GetComponent<Penalties>();
+        
     }
 
     // 자가 파괴 지정

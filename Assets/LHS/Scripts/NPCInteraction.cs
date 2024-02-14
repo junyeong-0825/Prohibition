@@ -28,6 +28,7 @@ public class NPCInteraction : MonoBehaviour
     {
         orderMenu = "test";
         wantedMenu = Menu.Food;
+        
     }
 
     // Update is called once per frame
@@ -56,14 +57,6 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("EmptyChair") && interactionStarted && !interactionCompleted)
-        {
-            //StartInteraction();
-        }
-    }
-
     private void StartInteraction()
     {
         interactionStarted = true;
@@ -77,6 +70,8 @@ public class NPCInteraction : MonoBehaviour
         {
             if(playerMenu == wantedMenu)
             {
+                Penalties NPCPanel = GameObject.Find("GameManager").GetComponent<Penalties>();
+                NPCPanel.LowLevelTimePenalty();
                 interactionCompleted = true;
                 satisfiedSprite.SetActive(true);
                 SelfDestroyTargeting();

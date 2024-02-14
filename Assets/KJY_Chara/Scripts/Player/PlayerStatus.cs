@@ -18,6 +18,7 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] SpriteRenderer imageSprite;
     public bool isServed = false;
+    public bool isUndercover = false;
     public Menu whatServed = Menu.None;
 
     public void IsServed(int index)
