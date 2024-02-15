@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,6 +106,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,10 +139,10 @@ TextureImporter:
       name: Outfit3_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 3
-        width: 8
-        height: 5
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55093fed32ecb504db74b5f215b1c26c
-      internalID: -1853959846
+      spriteID: d6e2166192f2e496fb35cfa8b9b4b3bd
+      internalID: 57790856
       vertices: []
       indices: 
       edges: []
@@ -134,10 +160,10 @@ TextureImporter:
       name: Outfit3_1
       rect:
         serializedVersion: 2
-        x: 44
-        y: 4
-        width: 8
-        height: 5
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,71 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4367d8890e6ba0c478f29b97af4e6913
-      internalID: 692857389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Outfit3_12
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 4
-        width: 8
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9d30d8d9a02126348941abbcc4b058fe
-      internalID: -123116461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Outfit3_13
-      rect:
-        serializedVersion: 2
-        x: 108
-        y: 3
-        width: 8
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 519e355dad809f34e83d0d6af419cb3e
-      internalID: 631087106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Outfit3_14
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 4
-        width: 8
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: effe384828cad2b48bf0fb176da58265
-      internalID: 700077162
+      spriteID: 03a352d091ee74bd0bf6495cdb94ed63
+      internalID: 1859824156
       vertices: []
       indices: 
       edges: []
@@ -218,10 +181,10 @@ TextureImporter:
       name: Outfit3_2
       rect:
         serializedVersion: 2
-        x: 172
-        y: 4
-        width: 8
-        height: 5
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72f40c6506099e44f866e19c78147f9a
-      internalID: -27418729
+      spriteID: 4d478108c0d714009a25e25503558445
+      internalID: 1350860861
       vertices: []
       indices: 
       edges: []
@@ -239,10 +202,10 @@ TextureImporter:
       name: Outfit3_3
       rect:
         serializedVersion: 2
-        x: 235
-        y: 4
-        width: 8
-        height: 5
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 909c0ca01ca222b408b96b979b87cf75
-      internalID: -588110227
+      spriteID: 3237ebaef9c8d4947ab4d30f1f0fd644
+      internalID: 450368418
       vertices: []
       indices: 
       edges: []
@@ -260,10 +223,10 @@ TextureImporter:
       name: Outfit3_4
       rect:
         serializedVersion: 2
-        x: 203
-        y: 4
-        width: 8
-        height: 5
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,8 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef635507023a06d469686e7f8af075f9
-      internalID: -590039280
+      spriteID: d9a53e018b58f474f844843a0036b703
+      internalID: -1271583526
       vertices: []
       indices: 
       edges: []
@@ -281,10 +244,10 @@ TextureImporter:
       name: Outfit3_5
       rect:
         serializedVersion: 2
-        x: 267
-        y: 4
-        width: 8
-        height: 5
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b107db08be0195349a9e1afe6de84fad
-      internalID: -1121673473
+      spriteID: aae451cd440524cd2adf842cb819a77d
+      internalID: -1666206953
       vertices: []
       indices: 
       edges: []
@@ -302,10 +265,10 @@ TextureImporter:
       name: Outfit3_6
       rect:
         serializedVersion: 2
-        x: 299
-        y: 4
-        width: 8
-        height: 5
+        x: 192
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,8 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4655a50a3e0058478b4d2ec697ff3d0
-      internalID: 2091423084
+      spriteID: 5288ccb0ab6ff4606a5a549451fcbd74
+      internalID: 1153628272
       vertices: []
       indices: 
       edges: []
@@ -323,10 +286,10 @@ TextureImporter:
       name: Outfit3_7
       rect:
         serializedVersion: 2
-        x: 331
-        y: 4
-        width: 8
-        height: 5
+        x: 224
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -334,8 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c96f411d87db0c47bc8778c0108a16d
-      internalID: 1007896896
+      spriteID: 9b20029c1e0604523b4376156d0641ac
+      internalID: -1121520755
       vertices: []
       indices: 
       edges: []
@@ -344,10 +307,10 @@ TextureImporter:
       name: Outfit3_8
       rect:
         serializedVersion: 2
-        x: 363
-        y: 4
-        width: 8
-        height: 5
+        x: 256
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -355,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e82d0c435ccfd554c8f91f741ca0ab15
-      internalID: 1026864350
+      spriteID: f81688dd86ac54bd798872c06e75f213
+      internalID: 455605694
       vertices: []
       indices: 
       edges: []
@@ -365,10 +328,10 @@ TextureImporter:
       name: Outfit3_9
       rect:
         serializedVersion: 2
-        x: 396
-        y: 4
-        width: 8
-        height: 5
+        x: 288
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,8 +339,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69132be228fcf0044ae4f0970644df91
-      internalID: -607676088
+      spriteID: 4c3bf9a18b4da468cb7c77344a5ce0ff
+      internalID: -599881404
       vertices: []
       indices: 
       edges: []
@@ -386,10 +349,10 @@ TextureImporter:
       name: Outfit3_10
       rect:
         serializedVersion: 2
-        x: 428
-        y: 4
-        width: 8
-        height: 5
+        x: 320
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,8 +360,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d964d55de8823a43bd7810f3ffb5aea
-      internalID: -206010735
+      spriteID: 42246f6e796ff4d7fabf5afcc3e38dc7
+      internalID: 1365953172
       vertices: []
       indices: 
       edges: []
@@ -407,10 +370,10 @@ TextureImporter:
       name: Outfit3_11
       rect:
         serializedVersion: 2
-        x: 460
-        y: 4
-        width: 8
-        height: 5
+        x: 352
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,8 +381,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc104a10dee7cad478dd8d891405e64e
-      internalID: 1081201651
+      spriteID: 011c40829cf2740e9b00503a6fc019ff
+      internalID: 5932218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outfit3_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509201e4b989342b7a96b4b2cd370d05
+      internalID: -1196342291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outfit3_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65055a561b18147e7960497bb09ee20f
+      internalID: 734587311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outfit3_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b8f33cf1d74442387b65f56665397a
+      internalID: 291766432
       vertices: []
       indices: 
       edges: []
@@ -428,10 +454,10 @@ TextureImporter:
       name: Outfit3_15
       rect:
         serializedVersion: 2
-        x: 460
-        y: 4
-        width: 8
-        height: 5
+        x: 480
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -439,8 +465,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ac6ed287f6e2f04484bde21f923b082
-      internalID: -1067916467
+      spriteID: cbc69d2b040ea4378bdbe77bdb35efaf
+      internalID: 1705547817
       vertices: []
       indices: 
       edges: []
@@ -449,10 +475,10 @@ TextureImporter:
       name: Outfit3_16
       rect:
         serializedVersion: 2
-        x: 492
-        y: 4
-        width: 8
-        height: 5
+        x: 512
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -460,8 +486,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b838fc3bbd8c701469896ba460366529
-      internalID: -422224212
+      spriteID: 6506d9bf7feb140dc9aaaa229d5cd767
+      internalID: -1752378708
       vertices: []
       indices: 
       edges: []
@@ -470,10 +496,10 @@ TextureImporter:
       name: Outfit3_17
       rect:
         serializedVersion: 2
-        x: 524
-        y: 4
-        width: 8
-        height: 5
+        x: 544
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -481,8 +507,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a02d4d4b361432448d5d431fb385c25
-      internalID: 1272718829
+      spriteID: 2aaf5e8a1252a41fea54c9ecdacf479f
+      internalID: 1544556432
       vertices: []
       indices: 
       edges: []
@@ -491,10 +517,10 @@ TextureImporter:
       name: Outfit3_18
       rect:
         serializedVersion: 2
-        x: 556
-        y: 4
-        width: 8
-        height: 5
+        x: 576
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -502,8 +528,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efe5331c2dac1d846b68344b48b88bd4
-      internalID: -954118802
+      spriteID: 35693a591c65744c7bd9994dd98ad4f0
+      internalID: -1740632
       vertices: []
       indices: 
       edges: []
@@ -512,10 +538,10 @@ TextureImporter:
       name: Outfit3_19
       rect:
         serializedVersion: 2
-        x: 587
-        y: 4
-        width: 8
-        height: 5
+        x: 608
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -523,8 +549,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad775568ce8b3b04d91a0b897d58ffd6
-      internalID: -661600152
+      spriteID: 8857b3befffc849fd9dec3c559c8a6bb
+      internalID: 370241835
       vertices: []
       indices: 
       edges: []
@@ -533,10 +559,10 @@ TextureImporter:
       name: Outfit3_20
       rect:
         serializedVersion: 2
-        x: 621
-        y: 4
-        width: 8
-        height: 5
+        x: 640
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -544,8 +570,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 173e30537f0c9b543a5e80adb4408aea
-      internalID: -1693646170
+      spriteID: e86a4005060834c2ab60477638067eee
+      internalID: 1838534167
       vertices: []
       indices: 
       edges: []
@@ -554,10 +580,10 @@ TextureImporter:
       name: Outfit3_21
       rect:
         serializedVersion: 2
-        x: 653
-        y: 4
-        width: 8
-        height: 5
+        x: 672
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,8 +591,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b23e3fc2cc30a8d4587bbb464b1a77c8
-      internalID: -623944018
+      spriteID: f2bff32e049724662856d1838e5f9c1d
+      internalID: -357092375
       vertices: []
       indices: 
       edges: []
@@ -575,10 +601,10 @@ TextureImporter:
       name: Outfit3_22
       rect:
         serializedVersion: 2
-        x: 684
-        y: 4
-        width: 8
-        height: 5
+        x: 704
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -586,8 +612,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4041f3b888dab149b46c9abdcb3bf90
-      internalID: -1425161353
+      spriteID: d86b00905f4f7407e83f58cef0abef56
+      internalID: 1689281461
       vertices: []
       indices: 
       edges: []
@@ -596,10 +622,10 @@ TextureImporter:
       name: Outfit3_23
       rect:
         serializedVersion: 2
-        x: 717
-        y: 4
-        width: 8
-        height: 5
+        x: 736
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -607,29 +633,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0222417ffba53404c85861d4924400de
-      internalID: 1574550202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Outfit3_24
-      rect:
-        serializedVersion: 2
-        x: 748
-        y: 4
-        width: 8
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00b571481c3cec1409179736b3996325
-      internalID: 2125716866
+      spriteID: f95c797f3495541acba87a2bcb1000f4
+      internalID: 966209408
       vertices: []
       indices: 
       edges: []
@@ -645,31 +650,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Outfit3_0: -1853959846
-      Outfit3_1: 692857389
-      Outfit3_10: -206010735
-      Outfit3_11: 1081201651
-      Outfit3_12: -123116461
-      Outfit3_13: 631087106
-      Outfit3_14: 700077162
-      Outfit3_15: -1067916467
-      Outfit3_16: -422224212
-      Outfit3_17: 1272718829
-      Outfit3_18: -954118802
-      Outfit3_19: -661600152
-      Outfit3_2: -27418729
-      Outfit3_20: -1693646170
-      Outfit3_21: -623944018
-      Outfit3_22: -1425161353
-      Outfit3_23: 1574550202
-      Outfit3_24: 2125716866
-      Outfit3_3: -588110227
-      Outfit3_4: -590039280
-      Outfit3_5: -1121673473
-      Outfit3_6: 2091423084
-      Outfit3_7: 1007896896
-      Outfit3_8: 1026864350
-      Outfit3_9: -607676088
+      Outfit3_0: 57790856
+      Outfit3_1: 1859824156
+      Outfit3_10: 1365953172
+      Outfit3_11: 5932218
+      Outfit3_12: -1196342291
+      Outfit3_13: 734587311
+      Outfit3_14: 291766432
+      Outfit3_15: 1705547817
+      Outfit3_16: -1752378708
+      Outfit3_17: 1544556432
+      Outfit3_18: -1740632
+      Outfit3_19: 370241835
+      Outfit3_2: 1350860861
+      Outfit3_20: 1838534167
+      Outfit3_21: -357092375
+      Outfit3_22: 1689281461
+      Outfit3_23: 966209408
+      Outfit3_3: 450368418
+      Outfit3_4: -1271583526
+      Outfit3_5: -1666206953
+      Outfit3_6: 1153628272
+      Outfit3_7: -1121520755
+      Outfit3_8: 455605694
+      Outfit3_9: -599881404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -47,17 +47,17 @@ public class NPCSpawner : MonoBehaviour
 
     internal IEnumerator spawnNPC()
     {
-  
 
+        //// 테스트용
         //while (true)
         //{
-        //    if(usedTargetIndex.Count > TargetPrefabList.Count)
+        //    if (usedTargetIndex.Count > TargetPrefabList.Count)
         //    {
         //        yield break;
         //    }
-        //    if(usedTargetIndex.Count < TargetPrefabList.Count)
+        //    if (usedTargetIndex.Count < TargetPrefabList.Count)
         //    {
-        //        yield return StartCoroutine(SpawnOnce(interval, NPC, Position));
+        //        yield return StartCoroutine(SpawnOnce(guestInterval, guestPrefab, SpawnPositionPrefab));
         //    }
         //    else
         //    {
@@ -65,7 +65,8 @@ public class NPCSpawner : MonoBehaviour
         //    }
         //}
 
-        while(true)
+        //실전용
+        while (true)
         {
             //if (usedTargetIndex.Count > TargetPrefabList.Count)
             //{
@@ -81,7 +82,7 @@ public class NPCSpawner : MonoBehaviour
                 yield break;
             }
 
-            if((usedTargetIndex.Count < TargetPrefabList.Count))
+            if ((usedTargetIndex.Count < TargetPrefabList.Count))
             {
                 Debug.Log("SpawnStart!!!");
                 yield return StartCoroutine(SpawnOnce(guestInterval, guestPrefab, SpawnPositionPrefab));
