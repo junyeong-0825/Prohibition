@@ -21,7 +21,7 @@ public class GoogleData
 
 public class LoginManager:MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbySiLhKE2S2rx5vi6lQR3vp8MG0T3WowlD_s8iVVHSDe9wWmrooAB7omXuK6SgOVHJYYg/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbwwLV0pazBvZoMLZl0qBztyJRCpgrDU2iGGrpWPdc_J_vHO5Epp5cmhJMg5kADQm6TWOA/exec";
     public TextMeshProUGUI ErrorText;
     public TMP_InputField IDInput, PassInput;
     string id, pass;
