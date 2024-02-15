@@ -23,6 +23,10 @@ public class NPCController : MonoBehaviour
     private int deployIndex;
     public int DeployIndex { get { return deployIndex; } set { deployIndex = value; } }
 
+    private void Awake()
+    {
+        Anim = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -43,7 +47,7 @@ public class NPCController : MonoBehaviour
 
     private void MoveDirection()
     {
-        Vector2 currentVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
+        //Vector2 currentVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
 
         lastPosition = (Vector2)transform.position;
 
@@ -54,7 +58,7 @@ public class NPCController : MonoBehaviour
             X = moveDirection.x;
             Y = moveDirection.y;
 
-            Debug.Log("Move Direction: " + moveDirection);
+            //Debug.Log("Move Direction: " + moveDirection);
         }
     }
 
@@ -96,6 +100,6 @@ public class NPCController : MonoBehaviour
     private void RefreshTargetIndex(int index)
     {
         NPCSpawner SpawnManager = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>();
-        SpawnManager.UsedTargetIndex.Remove(index);
+        SpawnManager.EmptySeatCheck[index] = true;
     }
 }

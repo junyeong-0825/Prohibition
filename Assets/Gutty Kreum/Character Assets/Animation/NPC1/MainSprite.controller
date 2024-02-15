@@ -62,7 +62,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: XVeloValue
-    m_EventTreshold: 0
+    m_EventTreshold: -0.1
+  - m_ConditionMode: 3
+    m_ConditionEvent: YVeloValue
+    m_EventTreshold: -0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: YVeloValue
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6852301670847802998}
   m_Solo: 0
@@ -153,7 +159,7 @@ AnimatorStateMachine:
     m_Position: {x: 810, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2717338401614221433}
-    m_Position: {x: 260, y: 120, z: 0}
+    m_Position: {x: 280, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -5165841977324514040}
@@ -200,7 +206,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: YVeloValue
-    m_EventTreshold: 0
+    m_EventTreshold: -0.1
+  - m_ConditionMode: 3
+    m_ConditionEvent: XVeloValue
+    m_EventTreshold: -0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: XVeloValue
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2292791747577452584}
   m_Solo: 0
@@ -420,7 +432,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: YVeloValue
-    m_EventTreshold: 0
+    m_EventTreshold: 0.1
+  - m_ConditionMode: 3
+    m_ConditionEvent: XVeloValue
+    m_EventTreshold: -0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: XVeloValue
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5648729919604651584}
   m_Solo: 0
@@ -472,7 +490,13 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: XVeloValue
-    m_EventTreshold: 0
+    m_EventTreshold: 0.1
+  - m_ConditionMode: 3
+    m_ConditionEvent: YVeloValue
+    m_EventTreshold: -0.5
+  - m_ConditionMode: 4
+    m_ConditionEvent: YVeloValue
+    m_EventTreshold: 0.5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4389781456145664542}
   m_Solo: 0
