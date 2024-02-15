@@ -10,14 +10,16 @@ public class DialoguesDataManager : MonoBehaviour
     #region URLs
     const string DialogueURL = "https://docs.google.com/spreadsheets/d/13vtl_xZLrGFk1j-iw-JTqoMaoQpEFXKu0iNLsITKjyo/export?format=tsv&gid=0&range=A2:C";
     #endregion
+
     #region Fields
     [SerializeField] DialoguesSO dialoguesSO;
-    public static DialoguesDataManager dialoguesInstance;
     public Action<float> OnProgressChanged;
     #endregion
+
+    #region ΩÃ±€≈Ê
+    public static DialoguesDataManager dialoguesInstance;
     private void Awake()
     {
-        #region ΩÃ±€≈Ê
         if (dialoguesInstance == null)
         {
             dialoguesInstance = this;
@@ -26,8 +28,8 @@ public class DialoguesDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        #endregion
     }
+    #endregion
     public void SetStart()
     {
         StartCoroutine(Get());

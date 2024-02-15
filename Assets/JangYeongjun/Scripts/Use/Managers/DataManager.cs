@@ -70,7 +70,8 @@ public class DataManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
-        LoadAllData();
+        
+        //LoadAllData();
         #endregion
 
         path = Application.persistentDataPath;
@@ -95,6 +96,7 @@ public class DataManager : MonoBehaviour
     {
         try
         {
+            
             #region ItemData Load
             TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
             if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
@@ -106,7 +108,7 @@ public class DataManager : MonoBehaviour
                 item.sprite = Resources.Load<Sprite>("Sprites/" + item.Name);
             }
             #endregion
-
+            /*
             #region PlayerData Load
             if (File.Exists(path + "/playerData.json"))
             {
@@ -118,7 +120,7 @@ public class DataManager : MonoBehaviour
                 nowPlayer.Playerinfo = new PlayerData();
             }
             #endregion
-
+            
             #region InventoryData Load
             if (File.Exists(path + "/inventoryData.json"))
             {
@@ -130,6 +132,7 @@ public class DataManager : MonoBehaviour
                 nowPlayer.inventory = new List<PlayerInventory>();
             }
             #endregion
+            */
         }
         catch (Exception e)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+using System;
 
 
 
@@ -13,45 +13,37 @@ public class GoogleData
     public string order;
     public string result;
     public string msg;
-    /*
     public int gold;
     public int debt;
     public List<PlayerInventory> inven;
-    */
 }
 
 
-public class LoginData : MonoBehaviour
+public class LoginManager:MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbwwLV0pazBvZoMLZl0qBztyJRCpgrDU2iGGrpWPdc_J_vHO5Epp5cmhJMg5kADQm6TWOA/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbySiLhKE2S2rx5vi6lQR3vp8MG0T3WowlD_s8iVVHSDe9wWmrooAB7omXuK6SgOVHJYYg/exec";
     public TextMeshProUGUI ErrorText;
     public TMP_InputField IDInput, PassInput;
     string id, pass;
-    int InputSelect;
     public GameObject LoadingPage;
     public GameObject LoginPage;
     public GameObject LoginLoading;
-    //string InventoryData = JsonUtility.ToJson(DataManager.instance.nowPlayer.inventory);
+    string InventoryData = JsonUtility.ToJson(DataManager.instance.nowPlayer.inventory);
+    GoogleData GD;
 
-    #region InputField를 Tab으로 이동하는 로직
-    private void Update()
+    public static LoginManager loginInstance;
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (loginInstance == null)
         {
-            InputSelect++;
-            if (InputSelect > 1) { InputSelect = 0; }
-            SelectInputField();
+            loginInstance = this;
         }
-        void SelectInputField()
+        else
         {
-            if (InputSelect == 0) { IDInput.Select(); }
-            else if (InputSelect == 1) {  PassInput.Select(); }
+            Destroy(gameObject);
         }
     }
-    public void IDInputSelected() => InputSelect = 0;
-    public void PasswordSelected() => InputSelect = 1;
-    #endregion
-
 
     bool SetIDPass()
     {
@@ -80,12 +72,11 @@ public class LoginData : MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-    /*
     public void Register()
     {
         if (!SetIDPass())
         {
-            print("아이디 또는 비밀번호가 비어있습니다");
+            Debug.Log("아이디 또는 비밀번호가 비어있습니다");
             return;
         }
 
@@ -101,7 +92,7 @@ public class LoginData : MonoBehaviour
     {
         if (!SetIDPass())
         {
-            print("아이디 또는 비밀번호가 비어있습니다");
+            Debug.Log("아이디 또는 비밀번호가 비어있습니다");
             return;
         }
         WWWForm form = new WWWForm();
@@ -136,7 +127,6 @@ public class LoginData : MonoBehaviour
 
         StartCoroutine(Post(form));
     }
-    */
 
     IEnumerator Post(WWWForm form)
     {
@@ -153,8 +143,8 @@ public class LoginData : MonoBehaviour
     void Response(string json)
     {
         if (string.IsNullOrEmpty(json)) return;
-
-        GoogleData GD = JsonUtility.FromJson<GoogleData>(json);
+        Debug.Log(json);
+        GD = JsonUtility.FromJson<GoogleData>(json);
 
         if (GD.result == "ERROR")
         {
@@ -168,17 +158,18 @@ public class LoginData : MonoBehaviour
 
             if (GD.order == "login")
             {
-                LoadingPage.SetActive(true);
-                LoginPage.SetActive(false);
+                GetValue();
             }
-            /*
             else if (GD.order == "getValue")
             {
                 DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
                 DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
-                DataManager.instance.nowPlayer.inventory = GD.inven;
+                Debug.Log(GD.gold);
+                Debug.Log(GD.debt);
+                Debug.Log(GD.inven);
+                LoadingPage.SetActive(true);
+                LoginPage.SetActive(false);
             }
-            */
         }
     }
 }

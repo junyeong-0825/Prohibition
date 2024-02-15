@@ -8,7 +8,7 @@ public class SaveButton : MonoBehaviour
     [SerializeField] Button saveButton;
     private void Start()
     {
-        saveButton.onClick.AddListener(() => { DataManager.instance.SaveAllData(); });
+        //saveButton.onClick.AddListener(() => { DataManager.instance.SaveAllData(); });
+        saveButton.onClick.AddListener(() => { LoginManager.loginInstance.SetValue(); });
     }
-
 }
