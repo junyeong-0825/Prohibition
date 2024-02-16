@@ -52,9 +52,14 @@ public class PlayerInputController : CharaController
     {
         if(currentNPCInteraction != null && currentNPCInteraction.InteractionStarted)
         {
-            string deliverMenu = "test";
+            PlayerStatus playerHandleMenu = GetComponent<PlayerStatus>();
+            if(playerHandleMenu.isServed && playerHandleMenu.whatServed != Menu.None)
+            {
+                currentNPCInteraction.CompareMenu(playerHandleMenu.whatServed);
+            }
 
-            currentNPCInteraction.DeliverMenu(deliverMenu);
+            // string deliverMenu = "test";
+            //currentNPCInteraction.DeliverMenu(deliverMenu);
             Debug.Log(currentNPCInteraction.orderMenu);
         }
     }

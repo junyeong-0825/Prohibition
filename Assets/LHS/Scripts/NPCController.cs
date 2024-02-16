@@ -97,6 +97,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
+    // 딕셔너리를 조정하는 메서드지만 NPC 인스턴스가 실행하는 용도는 아닌거 같다
     private void RefreshTargetIndex(int index)
     {
         NPCSpawner SpawnManager = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>();
