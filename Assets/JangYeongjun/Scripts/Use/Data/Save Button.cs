@@ -9,6 +9,6 @@ public class SaveButton : MonoBehaviour
     private void Start()
     {
         //saveButton.onClick.AddListener(() => { DataManager.instance.SaveAllData(); });
-        saveButton.onClick.AddListener(() => { LoginManager.loginInstance.SetValue(); });
+        saveButton.onClick.AddListener(() => { DataManager.instance.SetValue(); });
     }
 }

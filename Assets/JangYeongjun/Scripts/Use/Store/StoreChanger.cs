@@ -44,9 +44,9 @@ public class StoreChanger : MonoBehaviour
         Button slotButton = slot.GetComponent<Button>();
         #endregion
 
-        if (spriteImage != null && item.sprite != null)
+        if (spriteImage != null && item.spritePath != null)
         {
-            spriteImage.sprite = item.sprite;
+            spriteImage.sprite = Resources.Load<Sprite>(item.spritePath);
         }
 
         if (nameText != null)
@@ -84,7 +84,7 @@ public class StoreChanger : MonoBehaviour
                         PurchasePrice = item.PurchasePrice,
                         SellingPrice = item.SellingPrice,
                         RiseScale = item.RiseScale,
-                        sprite = item.sprite,
+                        spritePath = "Sprites/" + item.Name,
                         EnhancementValue = 0
                     };
 

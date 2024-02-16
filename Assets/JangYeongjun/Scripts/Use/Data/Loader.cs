@@ -11,6 +11,7 @@ public class Loader : MonoBehaviour
 {
     public Slider progressBar;
     public TextMeshProUGUI progressText;
+    [SerializeField] GameObject MenuButton;
 
     void OnEnable()
     {
@@ -37,7 +38,7 @@ public class Loader : MonoBehaviour
         
         
         yield return StartCoroutine(LoadDataAsync());
-
+        MenuButton.SetActive(true);
         Debug.Log("Data After");
         asyncLoad.allowSceneActivation = true;
     }

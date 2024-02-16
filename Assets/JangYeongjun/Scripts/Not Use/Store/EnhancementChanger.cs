@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,4 +104,4 @@ public class EnhancementChanger : MonoBehaviour
         playerGoldText.text = DataManager.instance.nowPlayer.Playerinfo.Gold.ToString() + " Gold";
     }
 }
-
+*/

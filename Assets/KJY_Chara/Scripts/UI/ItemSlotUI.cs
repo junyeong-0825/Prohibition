@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemSlotUI : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class ItemSlotUI : MonoBehaviour
     {
         curSlot = slot;
         icon.gameObject.SetActive(true);
-        icon.sprite = slot.sprite;
+        icon.sprite = Resources.Load<Sprite>(slot.spritePath);
         quantityText.text = slot.Quantity > 1 ? slot.Quantity.ToString() : string.Empty;
     }
 

@@ -15,20 +15,20 @@ public class GoogleData
     public string msg;
     public int gold;
     public int debt;
-    public List<PlayerInventory> inven;
+    public InventoryWrapper inven;
+    public ItemWrapper item;
 }
 
 
 public class LoginManager:MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbwwLV0pazBvZoMLZl0qBztyJRCpgrDU2iGGrpWPdc_J_vHO5Epp5cmhJMg5kADQm6TWOA/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbyHYEN4nFajcE5Ra9XT8zAhKqoZjQq2-GlgXOYq0waD-6a7w2AAMP9MWWuRSC3TNbN1sw/exec";
     public TextMeshProUGUI ErrorText;
     public TMP_InputField IDInput, PassInput;
     string id, pass;
     public GameObject LoadingPage;
     public GameObject LoginPage;
     public GameObject LoginLoading;
-    string InventoryData = JsonUtility.ToJson(DataManager.instance.nowPlayer.inventory);
     GoogleData GD;
 
     public static LoginManager loginInstance;
@@ -54,7 +54,7 @@ public class LoginManager:MonoBehaviour
         else return true;
     }
 
-    public void Login()
+    void Login()
     {
         if (!SetIDPass())
         {
@@ -72,7 +72,7 @@ public class LoginManager:MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-    public void Register()
+    void Register()
     {
         if (!SetIDPass())
         {
@@ -88,7 +88,7 @@ public class LoginManager:MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-    public void Logout()
+    void Logout()
     {
         if (!SetIDPass())
         {
@@ -108,19 +108,32 @@ public class LoginManager:MonoBehaviour
 
         StartCoroutine(Post(form));
     }
-
-    public void SetValue()
+    /*
+    void SetValue()
     {
         WWWForm form = new WWWForm();
+
+        string goldValue = DataManager.instance.nowPlayer.Playerinfo.Gold.ToString();
+        if (goldValue == null) goldValue = "";
+        Debug.Log(goldValue);
+
+        string debtValue = DataManager.instance.nowPlayer.Playerinfo.Debt.ToString();
+        if (debtValue == null) debtValue = "";
+        Debug.Log(debtValue);
+
+        string invenValue = JsonUtility.ToJson(DataManager.instance.nowPlayer.inventory);
+        if (invenValue == null) invenValue = "";
+        Debug.Log(invenValue);
+
         form.AddField("order", "setValue");
-        form.AddField("gold", DataManager.instance.nowPlayer.Playerinfo.Gold);
-        form.AddField("debt", DataManager.instance.nowPlayer.Playerinfo.Debt);
-        form.AddField("inven", InventoryData);
+        form.AddField("gold", goldValue);
+        form.AddField("debt", debtValue);
+        form.AddField("inven", invenValue);
         StartCoroutine(Post(form));
     }
+    */
 
-
-    public void GetValue()
+    void GetValue()
     {
         WWWForm form = new WWWForm();
         form.AddField("order", "getValue");
@@ -128,7 +141,7 @@ public class LoginManager:MonoBehaviour
         StartCoroutine(Post(form));
     }
 
-    IEnumerator Post(WWWForm form)
+    public IEnumerator Post(WWWForm form)
     {
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form)) // 반드시 using을 써야한다
         {
@@ -162,11 +175,13 @@ public class LoginManager:MonoBehaviour
             }
             else if (GD.order == "getValue")
             {
+                List<PlayerInventory> playerInventories = GD.inven.inventory;
+                List<Item> playerItems = GD.item.items;
                 DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
                 DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
-                Debug.Log(GD.gold);
-                Debug.Log(GD.debt);
-                Debug.Log(GD.inven);
+                DataManager.instance.nowPlayer.inventory = playerInventories;
+                DataManager.instance.nowPlayer.items = playerItems;
+
                 LoadingPage.SetActive(true);
                 LoginPage.SetActive(false);
             }

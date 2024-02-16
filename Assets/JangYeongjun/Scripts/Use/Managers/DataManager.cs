@@ -21,7 +21,7 @@ public class Item
     public int SellingPrice;
     public int RiseScale;
     public int EnhancementValue;
-    public Sprite sprite;
+    public string spritePath;
 }
 
 [System.Serializable]
@@ -34,7 +34,17 @@ public class PlayerInventory
     public int SellingPrice;
     public int RiseScale;
     public int EnhancementValue;
-    public Sprite sprite;
+    public string spritePath;
+}
+[System.Serializable]
+public class InventoryWrapper
+{
+    public List<PlayerInventory> inventory;
+}
+[System.Serializable]
+public class ItemWrapper
+{
+    public List<Item> items;
 }
 
 [System.Serializable]
@@ -76,6 +86,38 @@ public class DataManager : MonoBehaviour
 
         path = Application.persistentDataPath;
     }
+    public void SetValue()
+    {
+        WWWForm form = new WWWForm();
+
+        string goldValue = nowPlayer.Playerinfo.Gold.ToString();
+        if (goldValue == null) goldValue = "";
+        Debug.Log(goldValue);
+
+        string debtValue = nowPlayer.Playerinfo.Debt.ToString();
+        if (debtValue == null) debtValue = "";
+        Debug.Log(debtValue);
+
+        InventoryWrapper invenWrapper = new InventoryWrapper { inventory = nowPlayer.inventory };
+        string invenValue = JsonUtility.ToJson(invenWrapper);
+        if (invenValue == null) invenValue = "";
+
+        ItemWrapper itemWrapper = new ItemWrapper { items = nowPlayer.items};
+        string itemValue = JsonUtility.ToJson(itemWrapper);
+        if (itemValue == null) itemValue = "";
+
+        Debug.Log(invenValue);
+
+        form.AddField("order", "setValue");
+        form.AddField("gold", goldValue);
+        form.AddField("debt", debtValue);
+        form.AddField("inven", invenValue);
+        form.AddField("item", itemValue);
+
+        StartCoroutine(LoginManager.loginInstance.Post(form));
+    }
+
+    /*
     public void SaveAllData()
     {
         SavePlayerData();
@@ -102,13 +144,12 @@ public class DataManager : MonoBehaviour
             if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
             Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
             nowPlayer.items = itemData.items;
-
+            Debug.Log("아이템 데이터 성공");
             foreach (Item item in nowPlayer.items)
             {
                 item.sprite = Resources.Load<Sprite>("Sprites/" + item.Name);
             }
             #endregion
-            /*
             #region PlayerData Load
             if (File.Exists(path + "/playerData.json"))
             {
@@ -132,11 +173,11 @@ public class DataManager : MonoBehaviour
                 nowPlayer.inventory = new List<PlayerInventory>();
             }
             #endregion
-            */
         }
         catch (Exception e)
         {
             Debug.LogError("데이터를 로드하는데 실패했습니다.: " + e.Message);
         }
     }
+    */
 }

@@ -42,9 +42,9 @@ public class StoreEnhancer : MonoBehaviour
         Button slotButton = slot.GetComponent<Button>();
         #endregion
 
-        if (imageComponent != null && item.sprite != null)
+        if (imageComponent != null && item.spritePath != null)
         {
-            imageComponent.sprite = item.sprite;
+            imageComponent.sprite = Resources.Load<Sprite>(item.spritePath);
         }
 
         slotButton.onClick.AddListener(() =>
