@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public enum Menu
 {
-    None,
-    Food,
-    Beer,
-    Wine,
-    Whisky
+    None,   // 0
+    Food,   // 1
+    Beer,   // 2
+    Wine,   // 3
+    Whisky  // 4
 }
 
 
