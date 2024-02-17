@@ -13,7 +13,7 @@ public class NPCInteraction : MonoBehaviour
     public GameObject unsatisfiedSprite;
 
     // 상호작용 제한시간
-    public float interactionTimeLimit = 10f;
+    public float interactionTimeLimit = 100f;
     // 주문메(위:테스트용, 아래: enum타입)
     public string orderMenu;
     public Menu wantedMenu; // 스폰매니저가 스폰 시에 랜덤으로 정해질 것, 타겟 위치랑 파괴 위치 뿌리는 것과 같은 이치
@@ -27,7 +27,7 @@ public class NPCInteraction : MonoBehaviour
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
 
-    // 상호작용 실패에 따른 패널티를 호출하는 게임 오브젝트
+    // 상호작용 실패에 따른 패널티를 호출하는 게임 오브젝트ㄴ
     private Penalties NPCPanel;
 
     private void Start()

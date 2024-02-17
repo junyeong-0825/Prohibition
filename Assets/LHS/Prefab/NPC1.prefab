@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1574767411149814706
 Transform:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092a1977878e44c9f974396abde4a7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrderMenuSprite: {fileID: 0}
+  OrderMenuSprite: {fileID: 1458126902461829623}
   satisfiedSprite: {fileID: 2231634723955443393}
   unsatisfiedSprite: {fileID: 8412374282982173891}
   interactionTimeLimit: 10
