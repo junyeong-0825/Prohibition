@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public enum Menu
 {
@@ -20,11 +21,20 @@ public class PlayerStatus : MonoBehaviour
     public bool isServed = false;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
+    private Menu result;
 
-    public void IsServed(int index)
+    public void IsServed(string menu)
     {
         isServed = true;
-        whatServed = (Menu)index;
+        bool success = Enum.TryParse<Menu>(menu, out result);
+        if (success)
+        {
+            whatServed = result;
+        }
+        else
+        {
+            whatServed = Menu.None;
+        }
         Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
 
         imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
