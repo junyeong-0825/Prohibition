@@ -16,8 +16,8 @@ public class NPCController : MonoBehaviour
     private Vector2 lastPosition;
 
     // Animation을 조작하기 위한 변수들
-    private float X;
-    private float Y;
+    private float XVeloFloat;
+    private float YVeloFloat;
     private Animator Anim;
 
     private int deployIndex;
@@ -50,34 +50,62 @@ public class NPCController : MonoBehaviour
         //Vector2 currentVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
 
         lastPosition = (Vector2)transform.position;
+        Vector2 moveDirection = agent.velocity.normalized;
 
-        if(agent.velocity.sqrMagnitude > 0)
-        {
-            Vector2 moveDirection = agent.velocity.normalized;
+        XVeloFloat = moveDirection.x;
+        YVeloFloat = moveDirection.y;
 
-            X = moveDirection.x;
-            Y = moveDirection.y;
+        //Debug.Log("Move Direction: " + moveDirection);
 
-            //Debug.Log("Move Direction: " + moveDirection);
-        }
+
+        //if(agent.velocity.sqrMagnitude > 0)
+        //{
+        //    Vector2 moveDirection = agent.velocity.normalized;
+
+        //    XVeloFloat = moveDirection.x;
+        //    YVeloFloat = moveDirection.y;
+
+        //    Debug.Log("Move Direction: " + moveDirection);
+        //    Debug.Log("Move DirectionX: " + XVeloFloat);
+        //    Debug.Log("Move DirectionY: " + YVeloFloat);
+        //}
     }
 
     private void SetAnimation()
     {
-        if(Anim.GetFloat("XVeloValue") != X)
-        {
-            Anim.SetBool("IsChange", true);
-            Anim.SetFloat("XVeloValue", X);
-        }
-        else if(Anim.GetFloat("YVeloValue") != Y)
-        {
-            Anim.SetBool("IsChange", true);
-            Anim.SetFloat("YVeloValue", Y);
-        }
-        else
+        float XAbs = Mathf.Abs(XVeloFloat);
+        float YAbs = Mathf.Abs(YVeloFloat);
+
+        if (agent.remainingDistance == 0)
         {
             Anim.SetBool("IsChange", false);
         }
+
+        if (Anim.GetFloat("XVeloValue") != XVeloFloat)
+        {
+            Anim.SetBool("IsChange", true);
+            Anim.SetFloat("XVeloValue", XVeloFloat);
+            Debug.Log("destination " + agent.remainingDistance);
+        }
+        else if (Anim.GetFloat("YVeloValue") != YVeloFloat)
+        {
+            Anim.SetBool("IsChange", true);
+            Anim.SetFloat("YVeloValue", YVeloFloat);
+
+        }
+        else if (XAbs >= YAbs)
+        {
+            Anim.SetBool("IsXBig", true);
+            Anim.SetBool("IsYBig", false);
+        }
+        else if (YAbs > XAbs)
+        {
+            Anim.SetBool("IsXBig", false);
+            Anim.SetBool("IsYBig", true);
+        }
+        
+        //Debug.Log("AnimX : " + Anim.GetFloat("XVeloValue"));
+        //Debug.Log("AnimY : " + Anim.GetFloat("YVeloValue"));
     }
 
     // 타겟을 조정하는 함수

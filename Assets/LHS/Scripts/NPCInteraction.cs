@@ -15,7 +15,6 @@ public class NPCInteraction : MonoBehaviour
     // 상호작용 제한시간
     public float interactionTimeLimit = 10f;
     // 주문메(위:테스트용, 아래: enum타입)
-    public string orderMenu;
     public Menu wantedMenu; // 스폰매니저가 스폰 시에 랜덤으로 정해질 것, 타겟 위치랑 파괴 위치 뿌리는 것과 같은 이치
 
     // 상호작용 상태가 시작되었다는 것을 알리는 bool값
@@ -27,13 +26,11 @@ public class NPCInteraction : MonoBehaviour
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
 
-    // 상호작용 실패에 따른 패널티를 호출하는 게임 오브젝트
+    // 상호작용 실패에 따른 패널티를 호출하는 게임 오브젝트ㄴ
     private Penalties NPCPanel;
 
     private void Start()
     {
-        orderMenu = "test";
-        wantedMenu = Menu.Food;
         NPCPanel = GameObject.Find("GameManager").GetComponent<Penalties>();
     }
 
@@ -94,26 +91,26 @@ public class NPCInteraction : MonoBehaviour
     }
 
     // 테스트용 플레이어 메뉴 비교 메서드
-    public void DeliverMenu(string deliveredMenu)
-    {
-        if(!interactionCompleted)
-        {
-            Debug.Log(deliveredMenu);
-            //Debug.Log(orderMenu);
-            if(deliveredMenu == orderMenu)
-            {
-                // 상호작용 성공시에 음식값을 전달하는 메서드 실행
-                OrderMenuSprite.SetActive(false);
-                interactionCompleted = true;
-                satisfiedSprite.SetActive(true);
-                SelfDestroyTargeting();
-            }
-            else
-            {
-                HandleInteractionFailed();
-            }
-        }
-    }
+    //public void DeliverMenu(string deliveredMenu)
+    //{
+    //    if(!interactionCompleted)
+    //    {
+    //        Debug.Log(deliveredMenu);
+    //        //Debug.Log(orderMenu);
+    //        if(deliveredMenu == orderMenu)
+    //        {
+    //            // 상호작용 성공시에 음식값을 전달하는 메서드 실행
+    //            OrderMenuSprite.SetActive(false);
+    //            interactionCompleted = true;
+    //            satisfiedSprite.SetActive(true);
+    //            SelfDestroyTargeting();
+    //        }
+    //        else
+    //        {
+    //            HandleInteractionFailed();
+    //        }
+    //    }
+    //}
 
     // 메뉴 불일치 시의 불만족 메소드
     private void HandleInteractionFailed()

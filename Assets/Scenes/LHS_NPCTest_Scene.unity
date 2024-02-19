@@ -8041,6 +8041,50 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &862971484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862971486}
+  - component: {fileID: 862971485}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &862971485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862971484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9cb6523f95068409d898b1ce269686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &862971486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862971484}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.955141, y: -0.18335176, z: -0.38036853}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &898774082
 GameObject:
   m_ObjectHideFlags: 0
@@ -10491,6 +10535,54 @@ PrefabInstance:
       propertyPath: selfDestroyPositionP
       value: 
       objectReference: {fileID: 1816338943}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: menuSprite.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: guestPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: menuSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: dbdfc39d8ef864eef969aa0a464f7ac1, type: 2}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: menuSprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: dbdfc39d8ef864eef969aa0a464f7ac1, type: 2}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: menuSprite.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1f7b348e5a319499e912dcd9b54595bb, type: 2}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: menuSprite.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: c20bbc7b60f1c45288377028a1d11c99, type: 2}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: menuSprite.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 27a02350e2df94ec5b09e03b46a7adc6, type: 2}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: guestPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 2378468917594924864, guid: 8c9f05b425cdf4b5585c2f201f5d9c85, type: 3}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: guestPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 8377247457850878076, guid: 64496eee3f0cf4d2e8ae5d96d6cc57b9, type: 3}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: guestPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 2378468917594924864, guid: 3cf81780cdf874f0d9dc708345a86a84, type: 3}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: guestPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 8377247457850878076, guid: 883c4f93878704aafbd46911eb2f0ec0, type: 3}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: TargetPrefabList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
       propertyPath: TargetPrefabList.Array.data[0]
       value: 
