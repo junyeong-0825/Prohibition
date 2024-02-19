@@ -18,7 +18,6 @@ MonoBehaviour:
     - fde5f6b4e0fa9d746b76359e4761a97e
     - 3c37e64cca43c354da5ba9f9ffbc944e
     - 2cda990e2423bbf4892e6590ba056729
-    - 44aec153ca8df744b97080825e0cdf96
     values:
     - goDatas_byGlobalId:
         keys:
@@ -37,11 +36,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-838771841-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1043963765-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-288178071-0
-        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1021547728-0
-        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-977020379752701252-1444042771
-        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-2311670015311279462-1489136898
-        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-9210870593732612375-1804466255
-        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-595061349-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-459667415-0
         values:
         - colorIndex: 6
           iconNameOrGuid: Camera Icon
@@ -51,21 +46,21 @@ MonoBehaviour:
           iconNameOrGuid: Canvas Icon
         - colorIndex: 8
           iconNameOrGuid: Settings Icon
-        - colorIndex: 4
+        - colorIndex: 0
           iconNameOrGuid: PreMatCube
-        - colorIndex: 8
+        - colorIndex: 0
           iconNameOrGuid: Settings Icon
         - colorIndex: 8
           iconNameOrGuid: Settings Icon
-        - colorIndex: 8
+        - colorIndex: 0
           iconNameOrGuid: AudioClip Icon
-        - colorIndex: 3
+        - colorIndex: 0
           iconNameOrGuid: Favorite
         - colorIndex: 1
           iconNameOrGuid: Canvas Icon
         - colorIndex: 1
           iconNameOrGuid: Canvas Icon
-        - colorIndex: 8
+        - colorIndex: 0
           iconNameOrGuid: Settings Icon
         - colorIndex: 3
           iconNameOrGuid: 
@@ -73,16 +68,8 @@ MonoBehaviour:
           iconNameOrGuid: 
         - colorIndex: 5
           iconNameOrGuid: 
-        - colorIndex: 6
-          iconNameOrGuid: 
-        - colorIndex: 2
-          iconNameOrGuid: 
-        - colorIndex: 2
-          iconNameOrGuid: 
-        - colorIndex: 2
-          iconNameOrGuid: 
-        - colorIndex: 4
-          iconNameOrGuid: 
+        - colorIndex: 7
+          iconNameOrGuid: PreMatCylinder
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1431830543-0
@@ -131,63 +118,3 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 1
           iconNameOrGuid: Settings Icon
-    - goDatas_byGlobalId:
-        keys:
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-309396331-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1021547728-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-404869573-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-9210870593732612375-1804466255
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-2311670015311279462-1489136898
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-977020379752701252-1444042771
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1666107117-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1913449239-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-6105763627187910793-1373610328
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1315859195-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-605191006-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-883645701-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1420232585-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-830742323-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-595061349-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1888584211-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-3903212299450048412-272420191
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-1277064177-0
-        - globalObjectIdString: GlobalObjectId_V1-2-44aec153ca8df744b97080825e0cdf96-44150967-0
-        values:
-        - colorIndex: 6
-          iconNameOrGuid: Camera Icon
-        - colorIndex: 6
-          iconNameOrGuid: Camera Icon
-        - colorIndex: 2
-          iconNameOrGuid: AvatarMask On Icon
-        - colorIndex: 2
-          iconNameOrGuid: AvatarMask On Icon
-        - colorIndex: 2
-          iconNameOrGuid: AvatarMask On Icon
-        - colorIndex: 2
-          iconNameOrGuid: AvatarMask On Icon
-        - colorIndex: 1
-          iconNameOrGuid: Canvas Icon
-        - colorIndex: 1
-          iconNameOrGuid: Canvas Icon
-        - colorIndex: 1
-          iconNameOrGuid: Canvas Icon
-        - colorIndex: 8
-          iconNameOrGuid: Settings Icon
-        - colorIndex: 8
-          iconNameOrGuid: Settings Icon
-        - colorIndex: 8
-          iconNameOrGuid: AudioClip Icon
-        - colorIndex: 8
-          iconNameOrGuid: Settings Icon
-        - colorIndex: 3
-          iconNameOrGuid: EventSystem Icon
-        - colorIndex: 5
-          iconNameOrGuid: PreMatCube
-        - colorIndex: 5
-          iconNameOrGuid: PreMatCube
-        - colorIndex: 8
-          iconNameOrGuid: Settings Icon
-        - colorIndex: 5
-          iconNameOrGuid: PreMatCube
-        - colorIndex: 5
-          iconNameOrGuid: PreMatCube
