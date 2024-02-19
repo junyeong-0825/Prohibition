@@ -85,7 +85,7 @@ public class NPCController : MonoBehaviour
         {
             Anim.SetBool("IsChange", true);
             Anim.SetFloat("XVeloValue", XVeloFloat);
-            Debug.Log("destination " + agent.remainingDistance);
+            //Debug.Log("destination " + agent.remainingDistance);
         }
         else if (Anim.GetFloat("YVeloValue") != YVeloFloat)
         {
