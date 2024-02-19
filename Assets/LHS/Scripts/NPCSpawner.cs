@@ -22,7 +22,7 @@ public class NPCSpawner : MonoBehaviour
     private Coroutine spawnCoroutine;
 
     // 스폰 생성 지연시간
-    private float guestInterval = 4.5f;
+    private float guestInterval = 1.5f;
     //private float policeInterval = 12f;
     private Timer timeLeft;
 
@@ -30,7 +30,7 @@ public class NPCSpawner : MonoBehaviour
     {
         SetSeatCheck();
         timeLeft = GameObject.Find("UIManager").GetComponent<Timer>();
-        spawnCoroutine = StartCoroutine(spawnNPC());
+        //spawnCoroutine = StartCoroutine(spawnNPC());
         //StartCoroutine(spawnNPC(policeInterval, policePrefab, SpawnPositionPrefab));
     }
 
@@ -78,6 +78,7 @@ public class NPCSpawner : MonoBehaviour
             //}
             // 빈자리 수만큼 NPC가 스폰되었다면 스폰 상태를 체크하는 bool값 선언
             bool isCheck = AreAllValuesFalse(EmptySeatCheck);
+            Debug.Log(isCheck);
 
             if(timeLeft.limitTimeSec <= 0f)
             {
@@ -90,8 +91,9 @@ public class NPCSpawner : MonoBehaviour
             if (!isCheck)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
+                Debug.Log(index);
                 Debug.Log("SpawnStart!!!");
-                yield return StartCoroutine(SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab));
+                yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
             }
             else
             {
@@ -102,6 +104,7 @@ public class NPCSpawner : MonoBehaviour
 
     private IEnumerator SpawnOnce(float interval, GameObject NPC, Transform Position)
     {
+        Debug.Log("Coroutine Start");
         yield return new WaitForSeconds(interval);
         SpawnPrefab(NPC, Position);
     }
@@ -109,6 +112,7 @@ public class NPCSpawner : MonoBehaviour
     // 프리팹 스폰 메서드(프리팹과 스폰위치를 매개변수로) - 기존 방법
     private void SpawnPrefab(GameObject NPC, Transform Position)
     {
+        Debug.Log("Drop Prefab");
         // int 변수 안에는 빈자리 인덱스에 해당하는 변수를 출력해서 넣는다
         int randomIndex = GetRandomTargetIndex(); 
 

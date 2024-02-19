@@ -566,7 +566,7 @@ MonoBehaviour:
   OrderMenuSprite: {fileID: 1772384856514085951}
   satisfiedSprite: {fileID: 8047737021024966893}
   unsatisfiedSprite: {fileID: 163142196893492067}
-  interactionTimeLimit: 10
+  interactionTimeLimit: 100
   wantedMenu: 0
   interactionStarted: 0
   interactionCompleted: 0
@@ -768,5 +768,5 @@ Transform:
   m_Children:
   - {fileID: 8238331853147054343}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
