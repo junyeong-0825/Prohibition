@@ -52,6 +52,7 @@ public class PlayerData
 {
     public int Gold = 100;
     public int Debt = 50000;
+    public bool DidTutorial = false;
 }
 public class DataManager : MonoBehaviour
 {
@@ -98,6 +99,10 @@ public class DataManager : MonoBehaviour
         if (debtValue == null) debtValue = "";
         Debug.Log(debtValue);
 
+        string tutorialValue = nowPlayer.Playerinfo.DidTutorial.ToString();
+        if (tutorialValue == null) tutorialValue = "";
+        Debug.Log(tutorialValue);
+
         InventoryWrapper invenWrapper = new InventoryWrapper { inventory = nowPlayer.inventory };
         string invenValue = JsonUtility.ToJson(invenWrapper);
         if (invenValue == null) invenValue = "";
@@ -111,6 +116,7 @@ public class DataManager : MonoBehaviour
         form.AddField("order", "setValue");
         form.AddField("gold", goldValue);
         form.AddField("debt", debtValue);
+        form.AddField("tutorial", tutorialValue);
         form.AddField("inven", invenValue);
         form.AddField("item", itemValue);
 
