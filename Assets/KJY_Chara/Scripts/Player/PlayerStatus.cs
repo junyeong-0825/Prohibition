@@ -28,7 +28,6 @@ public class PlayerStatus : MonoBehaviour
         Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
 
         imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
-
     }
 
     public void NotServed()

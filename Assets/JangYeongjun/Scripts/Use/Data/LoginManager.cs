@@ -17,6 +17,7 @@ public class GoogleData
     public int gold;
     public int debt;
     public bool tutorial;
+    public int day;
     public InventoryWrapper inven;
     public ItemWrapper item;
 }
@@ -24,13 +25,14 @@ public class GoogleData
 
 public class LoginManager:MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbz7KPFDVPPsd4LduMIBZUVu4vuetTIAnDLpY5lEmexFGOYxdrQ_DLaMhuyT7K8YaKyh8w/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbxzqo2jX2isY_d9Aif6GVpNRuEeL7BQLWxWFh13ljhxYE0MYnq8FeMVs0gKZuKnpy-1AA/exec";
     public TextMeshProUGUI ErrorText;
     public TMP_InputField IDInput, PassInput;
     string id, pass;
     public GameObject LoadingPage;
     public GameObject LoginPage;
     public GameObject LoginLoading;
+    public GameObject SaveLoading;
     GoogleData GD;
 
     public static LoginManager loginInstance;
@@ -210,24 +212,25 @@ public class LoginManager:MonoBehaviour
             }
             else if (GD.order == "getValue")
             {
-                List<PlayerInventory> playerInventories = GD.inven.inventory;
-                List<Item> playerItems = GD.item.items;
-                if ( playerInventories != null && playerItems != null) Debug.Log("Item Not Null");
-                else Debug.Log("Item Data Null");
-                Debug.Log($"GD.inven.inventory Count: {GD.inven.inventory.Count}");
-                Debug.Log($"GD.item.items: {GD.item.items.Count}");
-                Debug.Log($"playerInventories Count: {playerInventories.Count}");
-                Debug.Log($"playerItems Count: {playerItems.Count}");
-                DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
-                Debug.Log(GD.gold);
-                DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
-                DataManager.instance.nowPlayer.Playerinfo.DidTutorial = GD.tutorial;
-                DataManager.instance.nowPlayer.inventory = playerInventories;
-                DataManager.instance.nowPlayer.items = playerItems;
-
+                LoadData();
                 LoadingPage.SetActive(true);
                 LoginPage.SetActive(false);
             }
+            else if(GD.order == "setValue")
+            {
+                GameEvents.NotifySave();
+            }
         }
+    }
+    void LoadData()
+    {
+        List<PlayerInventory> playerInventories = GD.inven.inventory;
+        List<Item> playerItems = GD.item.items;
+        DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
+        DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
+        DataManager.instance.nowPlayer.Playerinfo.DidTutorial = GD.tutorial;
+        DataManager.instance.nowPlayer.inventory = playerInventories;
+        DataManager.instance.nowPlayer.items = playerItems;
+        DataManager.instance.nowPlayer.Playerinfo.Day = GD.day;
     }
 }
