@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public enum Menu
@@ -35,5 +36,20 @@ public class PlayerStatus : MonoBehaviour
     {
         isServed = false;
         whatServed = Menu.None;
+    }
+
+    public bool OnUnderCovered(InputValue value)
+    {
+        if (!isUndercover) 
+        {
+            Debug.Log("위장상태");
+            return isUndercover = true;
+        }
+
+        else
+        {
+            Debug.Log("위장해제");
+            return isUndercover = false;
+        }
     }
 }
