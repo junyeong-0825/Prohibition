@@ -60,7 +60,7 @@ public class PlayerInputController : CharaController
 
             // string deliverMenu = "test";
             //currentNPCInteraction.DeliverMenu(deliverMenu);
-            Debug.Log(currentNPCInteraction.orderMenu);
+            //Debug.Log(currentNPCInteraction.orderMenu);
         }
     }
 

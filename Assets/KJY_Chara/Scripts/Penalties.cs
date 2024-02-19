@@ -18,7 +18,7 @@ public class Penalties : MonoBehaviour
         Debug.Log("물건 값은 5골드 고정");
     }
 
-    // 경찰이 위장 상태 유무에 따라서 벌금을 부여
+    // 경찰이 위장 상태 유무에 따라서 벌금을 부여, 일반 장사 패널티가 부여된다면 스택을 쌓는 것이 필요 최대 3번, 3번이 다 쌓이게 된다면 아래 장사 접는 패널티를 부여함
     public void HighLevelGoldPenalty()
     {
         //범칙금으로 돈 뜯어감
