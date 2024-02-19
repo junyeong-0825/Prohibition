@@ -4,19 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public static class GameEvents
-{
-    public delegate void DayEndDelegate();
-    public static event DayEndDelegate OnDayEnd;
-
-    public static void NotifyDayEnd()
-    {
-        if (OnDayEnd != null)
-        {
-            OnDayEnd();
-        }
-    }
-}
 public class NPCSpawner : MonoBehaviour
 {
    
@@ -64,7 +51,6 @@ public class NPCSpawner : MonoBehaviour
     // 일반 NPC를 스폰하는 코루틴 메서드
     internal IEnumerator spawnNPC()
     {
-
         //// 테스트용
         //while (true)
         //{

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DayController : MonoBehaviour
 {
     #region Fields
+    bool IsSave = false;
     bool IsDay = true;
     [SerializeField] Vector3 dayPosition, nightPosition, dayCameraPosition, nightCameraPosition;
     [SerializeField] Camera mainCamera;
@@ -25,11 +26,13 @@ public class DayController : MonoBehaviour
     #region Event
     private void OnEnable()
     {
+        GameEvents.OnSave += SaveEnded;
         GameEvents.OnDayEnd += HandleIsday;
         dayChangeButton.onClick.AddListener(IsDayButtonChange);
     }
     private void OnDisable()
     {
+        GameEvents.OnSave -= SaveEnded;
         GameEvents.OnDayEnd -= HandleIsday;
     }
     #region IsDay Change
@@ -43,6 +46,11 @@ public class DayController : MonoBehaviour
         IsDay = true;
     }
     #endregion
+
+    void SaveEnded()
+    {
+        IsSave = true;
+    }
     #endregion
 
     #region OneDay Coroutine
@@ -65,6 +73,16 @@ public class DayController : MonoBehaviour
             NightNPC();
 
             yield return new WaitUntil(() => IsDay);
+
+            Debug.Log("로딩");
+            AddDayCount();
+            SaveData();
+            
+            yield return new WaitUntil(() => IsSave);
+            
+            ResetDay();
+
+
         }
     }
     #endregion
@@ -109,6 +127,24 @@ public class DayController : MonoBehaviour
     {
         timer.limitTimeSec = 0;
         StopCoroutine(npcSpawner.spawnNPC());
+    }
+    #endregion
+
+    #region After Day
+    void AddDayCount()
+    {
+        DataManager.instance.nowPlayer.Playerinfo.Day ++;
+    }
+    void SaveData()
+    {
+        LoginManager.loginInstance.LoginLoading.SetActive(true);
+        DataManager.instance.SetValue();
+    }
+
+    void ResetDay()
+    {
+        LoginManager.loginInstance.LoginLoading.SetActive(true);
+        IsSave = false;
     }
     #endregion
 
