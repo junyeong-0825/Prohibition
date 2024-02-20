@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,18 +19,15 @@ public class Loader : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
-        int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-        AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneIndex);
+        SceneChanger.sceneInstance.ChangeToNextScene(1);
 
-        Debug.Log("Scene Started");
-        asyncLoad.allowSceneActivation = false;
-        Debug.Log("Scene Falsed");
+        AsyncOperation asyncLoading = SceneChanger.sceneInstance.asyncLoad;
+        asyncLoading.allowSceneActivation = true;
 
-        while (asyncLoad.progress < 0.9f)
+        while (asyncLoading.progress < 0.9f)
         {
             Debug.Log("Progress Updated");
-            float progress = asyncLoad.progress / 0.9f;
+            float progress = asyncLoading.progress / 0.9f;
             UpdateUI(progress);
             yield return new WaitForSeconds(1f);
         }
@@ -41,7 +37,7 @@ public class Loader : MonoBehaviour
         
         yield return StartCoroutine(LoadDataAsync());
         Debug.Log("Data After");
-        asyncLoad.allowSceneActivation = true;
+        asyncLoading.allowSceneActivation = true;
     }
     IEnumerator LoadDataAsync()
     {
