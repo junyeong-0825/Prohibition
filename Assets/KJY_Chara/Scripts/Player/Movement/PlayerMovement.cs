@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharaController _controller;
-
     private Vector2 _movementDriection = Vector2.zero;
     private Rigidbody2D _rigidbody;
 

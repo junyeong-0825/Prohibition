@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,12 @@ public class PlayerInputController : CharaController
 {
     private Camera _camera;
     private NPCInteraction currentNPCInteraction;
-
+    public static PlayerInputController instance;
+    public float inputX;
+    public float inputY;
     private void Awake()
     {
+        instance = this;
         _camera = Camera.main;
     }
 
@@ -17,6 +21,8 @@ public class PlayerInputController : CharaController
     {
         Vector2 moveInput = value.Get<Vector2>().normalized;
         CallMoveEvent(moveInput);
+        inputX = value.Get<Vector2>().x; 
+        inputY = value.Get<Vector2>().y;
     }
 
     // 손님 NPC와 콜라이더 트리거 진입시에 손님의 상호작용 컴포넌트를 가져온다

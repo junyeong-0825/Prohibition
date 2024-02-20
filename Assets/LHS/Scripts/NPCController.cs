@@ -114,11 +114,11 @@ public class NPCController : MonoBehaviour
         target = targetPosition;
     }
 
-    // 자가파괴 지점에 도착했을 시에 파괴하도록 하는 함수
+    // 충돌 콜라이더와 충돌했을 때의 메서드
     private void OnTriggerEnter2D(Collider2D other)
     {
         bool checkInteractionStart = GetComponent<NPCInteraction>().InteractionStarted;
-        bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().interactionCompleted;
+        bool checkInteractionCompleted = GetComponent<NPCInteraction>().InteractionCompleted;
 
         if (other.gameObject.tag == "Finish")
         {

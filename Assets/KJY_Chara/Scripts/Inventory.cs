@@ -44,9 +44,9 @@ public class Inventory : MonoBehaviour
         UpdateUI();
     }
 
-    public void OnInventory(InputValue context)
+    public void OnInventory(InputValue value)
     {
-            Toggle();
+        Toggle();
     }
 
     private void Toggle()
