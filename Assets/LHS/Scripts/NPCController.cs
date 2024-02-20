@@ -7,6 +7,11 @@ public class NPCController : MonoBehaviour
 {
     // 목표 지정 타겟 변수
     public Transform target;
+    public Transform insideTarget;
+    public Transform outsideTarget;
+    public Transform seatTarget;
+
+    public bool isFoodcourtInside = false;
 
     // 파괴 위치 지정 변수
     public Transform DestroyTarget;
@@ -47,8 +52,6 @@ public class NPCController : MonoBehaviour
 
     private void MoveDirection()
     {
-        //Vector2 currentVelocity = ((Vector2)transform.position - lastPosition) / Time.deltaTime;
-
         lastPosition = (Vector2)transform.position;
         Vector2 moveDirection = agent.velocity.normalized;
 
@@ -103,9 +106,6 @@ public class NPCController : MonoBehaviour
             Anim.SetBool("IsXBig", false);
             Anim.SetBool("IsYBig", true);
         }
-        
-        //Debug.Log("AnimX : " + Anim.GetFloat("XVeloValue"));
-        //Debug.Log("AnimY : " + Anim.GetFloat("YVeloValue"));
     }
 
     // 타겟을 조정하는 함수
@@ -117,11 +117,19 @@ public class NPCController : MonoBehaviour
     // 자가파괴 지점에 도착했을 시에 파괴하도록 하는 함수
     private void OnTriggerEnter2D(Collider2D other)
     {
+        bool checkInteractionStart = GetComponent<NPCInteraction>().InteractionStarted;
+        bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().interactionCompleted;
+
         if (other.gameObject.tag == "Finish")
         {
             Debug.Log("self-Destroy");
             RefreshTargetIndex(deployIndex);
             Destroy(transform.root.gameObject);
+        }
+
+        else if(other.gameObject.tag == "OutsideEntrance" && !checkInteractionStart)
+        {
+            SetTarget(seatTarget);
         }
     }
 

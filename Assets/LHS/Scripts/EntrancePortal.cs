@@ -41,6 +41,11 @@ public class EntrancePortal : MonoBehaviour
                 teleport(other);
             }
         }
+
+        else if(other.CompareTag("Police"))
+        {
+            // 경찰이 진입에 들어가면 다른 상태로 가는
+        }
     }
 
     // 이 스크립트에 적용된 오브젝트와 충돌하는 오브젝트의 위치간의 거리가 distance 보다 크다면 해당 충돌 오브젝트는 순간이동을 한다.
