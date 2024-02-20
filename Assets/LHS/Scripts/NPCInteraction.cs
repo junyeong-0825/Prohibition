@@ -76,6 +76,7 @@ public class NPCInteraction : MonoBehaviour
             if(playerMenu == wantedMenu)
             {
                 // 해당 메뉴에 맞는 재회를 얻는 메서드가 필요함
+                SuccesTrade(playerMenu);
 
                 // 상호작용 완료를 위한 말풍선 바꿈
                 OrderMenuSprite.SetActive(false);
@@ -139,6 +140,26 @@ public class NPCInteraction : MonoBehaviour
             NPCController controller = GetComponent<NPCController>();
 
             controller.SetTarget(controller.DestroyTarget);
+        }
+    }
+
+    private void SuccesTrade(Menu playerMenu)
+    {
+        Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerMenu.ToString());
+        PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == servingItem.Name);
+        //돈을 더해줌
+        DataManager.instance.nowPlayer.Playerinfo.Gold += servingItem.SellingPrice;
+        //아이템을 빼줌
+        if (existingItem != null)
+        {
+            if (existingItem.Quantity >= 2)
+            {
+                existingItem.Quantity -= 1;
+            }
+            else if (existingItem.Quantity <= 1)
+            {
+                DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+            }
         }
     }
 }
