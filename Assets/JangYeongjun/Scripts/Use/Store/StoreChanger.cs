@@ -86,7 +86,7 @@ public class StoreChanger : MonoBehaviour
                         RiseScale = item.RiseScale,
                         spritePath = "Sprites/" + item.Name,
                         EnhancementValue = 0
-                    };
+                    }; 
 
                     // 인벤토리에 새로운 아이템 추가
                     DataManager.instance.nowPlayer.inventory.Add(newInventoryItem);

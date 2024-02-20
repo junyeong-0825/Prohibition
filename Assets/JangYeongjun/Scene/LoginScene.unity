@@ -3393,7 +3393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1152920552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,7 +4943,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 970357047}
   progressText: {fileID: 600799682}
-  MenuButton: {fileID: 1152920551}
 --- !u!1 &1687288245
 GameObject:
   m_ObjectHideFlags: 0
@@ -6215,6 +6214,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d1c42ea34479ce64c8aab4816fd47a0d, type: 3}
   mainClips: {fileID: 8300000, guid: 3593a85245e1377418a82191897e12b0, type: 3}
   titleClips: {fileID: 8300000, guid: fff448cf8e3542e4b92eefd47b974dc5, type: 3}
+  loginClips: {fileID: 0}
   audioSource: {fileID: 2080777797}
 --- !u!1 &2091928142
 GameObject:
@@ -6234,7 +6234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2091928143
 MonoBehaviour:
   m_ObjectHideFlags: 0

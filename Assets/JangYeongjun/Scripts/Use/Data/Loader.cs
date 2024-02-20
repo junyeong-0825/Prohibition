@@ -11,7 +11,6 @@ public class Loader : MonoBehaviour
 {
     public Slider progressBar;
     public TextMeshProUGUI progressText;
-    [SerializeField] GameObject MenuButton;
 
     void OnEnable()
     {
@@ -21,7 +20,10 @@ public class Loader : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
-        AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("TitleScene");
+        int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneIndex);
+
         Debug.Log("Scene Started");
         asyncLoad.allowSceneActivation = false;
         Debug.Log("Scene Falsed");
@@ -38,7 +40,6 @@ public class Loader : MonoBehaviour
         
         
         yield return StartCoroutine(LoadDataAsync());
-        MenuButton.SetActive(true);
         Debug.Log("Data After");
         asyncLoad.allowSceneActivation = true;
     }

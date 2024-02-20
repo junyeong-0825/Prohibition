@@ -32,7 +32,6 @@ public class LoginManager:MonoBehaviour
     public GameObject LoadingPage;
     public GameObject LoginPage;
     public GameObject LoginLoading;
-    public GameObject SaveLoading;
     GoogleData GD;
 
     public static LoginManager loginInstance;

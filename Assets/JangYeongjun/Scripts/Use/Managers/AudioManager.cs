@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] nightClips; //밤의 오디오 클립
     [SerializeField] AudioClip mainClips; //낮의 오디오 클립
     [SerializeField] AudioClip titleClips;
+    [SerializeField] AudioClip loginClips;
     [SerializeField] public AudioSource audioSource;
     private Coroutine nightSoundCoroutine;
     int clipIndex = 0;
@@ -82,6 +83,12 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.clip = titleClips;
+        audioSource.Play();
+    }
+    public void PlayLoginSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = loginClips;
         audioSource.Play();
     }
 }
