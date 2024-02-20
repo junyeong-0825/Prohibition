@@ -14,9 +14,10 @@ public class NPCSpawner : MonoBehaviour
 
     // 오브젝트 스폰과 파괴 위치값
     [SerializeField] private Transform SpawnPositionPrefab;
-    [SerializeField] private List<GameObject> TargetPrefabList;
-    public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>();//
-    [SerializeField] private Transform selfDestroyPositionP;//
+    [SerializeField] private Transform EntranceTargetObject;
+    [SerializeField] private List<GameObject> TargetPrefabList; //
+    public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
+    [SerializeField] private Transform selfDestroyPositionP; //
 
     //[SerializeField] private GameObject TargetPrefab;
     private Coroutine spawnCoroutine;
