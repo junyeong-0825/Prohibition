@@ -59,7 +59,7 @@ public class PlayerInputController : CharaController
         if(currentNPCInteraction != null && currentNPCInteraction.InteractionStarted)
         {
             PlayerStatus playerHandleMenu = GetComponent<PlayerStatus>();
-            if(playerHandleMenu.isServed && playerHandleMenu.whatServed != Menu.None)
+            if(playerHandleMenu.whatServed != Menu.None)
             {
                 currentNPCInteraction.CompareMenu(playerHandleMenu.whatServed);
             }

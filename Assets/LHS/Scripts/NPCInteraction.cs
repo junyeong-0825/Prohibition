@@ -89,6 +89,7 @@ public class NPCInteraction : MonoBehaviour
                 NPCPanel.LowLevelGoldPenalty();
                 HandleInteractionFailed();
             }
+
         }
     }
 
@@ -146,20 +147,8 @@ public class NPCInteraction : MonoBehaviour
     private void SuccesTrade(Menu playerMenu)
     {
         Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerMenu.ToString());
-        PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == servingItem.Name);
         //돈을 더해줌
         DataManager.instance.nowPlayer.Playerinfo.Gold += servingItem.SellingPrice;
-        //아이템을 빼줌
-        if (existingItem != null)
-        {
-            if (existingItem.Quantity >= 2)
-            {
-                existingItem.Quantity -= 1;
-            }
-            else if (existingItem.Quantity <= 1)
-            {
-                DataManager.instance.nowPlayer.inventory.Remove(existingItem);
-            }
-        }
+        
     }
 }

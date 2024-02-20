@@ -4284,6 +4284,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: timeLeft
+      value: 
+      objectReference: {fileID: 1420232586}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
       propertyPath: SpawnPositionPrefab
       value: 
       objectReference: {fileID: 2013984806}
@@ -5544,6 +5548,15 @@ MonoBehaviour:
   isServed: 0
   isUndercover: 0
   whatServed: 0
+  servingItem:
+    Classification: 
+    Name: 
+    Quantity: 0
+    PurchasePrice: 0
+    SellingPrice: 0
+    RiseScale: 0
+    EnhancementValue: 0
+    spritePath: 
 --- !u!95 &404869583
 Animator:
   serializedVersion: 5

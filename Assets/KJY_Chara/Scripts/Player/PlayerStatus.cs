@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public enum Menu
 {
@@ -19,7 +15,6 @@ public enum Menu
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] SpriteRenderer imageSprite;
-    public bool isServed = false;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
     public Item servingItem;
@@ -27,28 +22,36 @@ public class PlayerStatus : MonoBehaviour
 
     public void IsServed(string menu)
     {
-        isServed = true;
-        bool success = Enum.TryParse<Menu>(menu, out result);
-        if (success)
+        if (whatServed != Menu.None)
         {
-            whatServed = result;
-        }
-        else
-        {
-            whatServed = Menu.None;
-        }
-        servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
+            PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
 
-        imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
+            if (existingItem.Quantity >= 2)
+            {
+                bool success = Enum.TryParse<Menu>(menu, out result);
+                if (success)
+                {
+                    whatServed = result;
+                    existingItem.Quantity--;
+                }
+            }
+            else if (existingItem.Quantity == 1)
+            {
+                DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+            }
+            UpdateSprite();
+        }
     }
 
     public void NotServed()
     {
-        isServed = false;
         whatServed = Menu.None;
         servingItem = null;
     }
-
+    void UpdateSprite()
+    {
+        imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
+    }
     public void OnUnderCovered(InputValue value)
     {
         if (value.isPressed == false)

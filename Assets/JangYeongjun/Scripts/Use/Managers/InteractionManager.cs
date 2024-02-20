@@ -45,17 +45,14 @@ public class InteractionManager : MonoBehaviour
         {
             if (storePanels.TryGetValue(objectName+"Panel", out GameObject panel))
             {
-                // 패널을 활성화합니다.
                 panel.SetActive(true);
             }
             else if (objectName == "Counter")
             {
-                //음식
                 playerStatus.IsServed("Food");
             }
             else if (objectName == "Booze")
             {
-                //술
                 alcoholPanel.SetActive(true);
             }
         }
