@@ -4,19 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public static class GameEvents
-{
-    public delegate void DayEndDelegate();
-    public static event DayEndDelegate OnDayEnd;
-
-    public static void NotifyDayEnd()
-    {
-        if (OnDayEnd != null)
-        {
-            OnDayEnd();
-        }
-    }
-}
 public class NPCSpawner : MonoBehaviour
 {
    
@@ -27,9 +14,10 @@ public class NPCSpawner : MonoBehaviour
 
     // 오브젝트 스폰과 파괴 위치값
     [SerializeField] private Transform SpawnPositionPrefab;
-    [SerializeField] private List<GameObject> TargetPrefabList;
-    public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>();
-    [SerializeField] private Transform selfDestroyPositionP;
+    [SerializeField] private Transform EntranceTargetObject;
+    [SerializeField] private List<GameObject> TargetPrefabList; //
+    public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
+    [SerializeField] private Transform selfDestroyPositionP; //
 
     //[SerializeField] private GameObject TargetPrefab;
     private Coroutine spawnCoroutine;
@@ -64,24 +52,6 @@ public class NPCSpawner : MonoBehaviour
     // 일반 NPC를 스폰하는 코루틴 메서드
     internal IEnumerator spawnNPC()
     {
-
-        //// 테스트용
-        //while (true)
-        //{
-        //    if (usedTargetIndex.Count > TargetPrefabList.Count)
-        //    {
-        //        yield break;
-        //    }
-        //    if (usedTargetIndex.Count < TargetPrefabList.Count)
-        //    {
-        //        yield return StartCoroutine(SpawnOnce(guestInterval, guestPrefab, SpawnPositionPrefab));
-        //    }
-        //    else
-        //    {
-        //        yield return null;
-        //    }
-        //}
-
         //실전용
         while (true)
         {
@@ -211,6 +181,25 @@ public class NPCSpawner : MonoBehaviour
     }
     
 }
+
+
+
+//// 테스트용
+//while (true)
+//{
+//    if (usedTargetIndex.Count > TargetPrefabList.Count)
+//    {
+//        yield break;
+//    }
+//    if (usedTargetIndex.Count < TargetPrefabList.Count)
+//    {
+//        yield return StartCoroutine(SpawnOnce(guestInterval, guestPrefab, SpawnPositionPrefab));
+//    }
+//    else
+//    {
+//        yield return null;
+//    }
+//}
 
 //private List<int> usedTargetIndex = new List<int>();
 //public List<int> UsedTargetIndex { get { return usedTargetIndex; } set { usedTargetIndex = value; } }

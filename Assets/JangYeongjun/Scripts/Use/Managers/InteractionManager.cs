@@ -23,6 +23,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] GameObject[] panels; 
     private int storeDistinguishValue;
     [SerializeField] PlayerStatus playerStatus;
+    [SerializeField] GameObject alcoholPanel;
     private void Start()
     {
         Dictionary<string, GameObject>[] storePanels = new Dictionary<string, GameObject>[panels.Length];
@@ -46,10 +47,15 @@ public class InteractionManager : MonoBehaviour
             {
                 panels[storeDistinguishValue - 1].gameObject.SetActive(true);
             }
-            else
+            else if(storeDistinguishValue == 50)
             {
-                playerStatus.IsServed(storeDistinguishValue - 50);
+                playerStatus.IsServed("Food");
             }
+            else if(storeDistinguishValue == 51)
+            {
+                alcoholPanel.SetActive(true);
+            }
+
         }
     }
 }

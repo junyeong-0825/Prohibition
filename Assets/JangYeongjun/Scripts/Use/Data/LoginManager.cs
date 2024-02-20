@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using TMPro;
 using System.Collections.Generic;
 using System;
+using static UnityEditor.Progress;
 
 
 
@@ -15,6 +16,8 @@ public class GoogleData
     public string msg;
     public int gold;
     public int debt;
+    public bool tutorial;
+    public int day;
     public InventoryWrapper inven;
     public ItemWrapper item;
 }
@@ -22,13 +25,14 @@ public class GoogleData
 
 public class LoginManager:MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbyHYEN4nFajcE5Ra9XT8zAhKqoZjQq2-GlgXOYq0waD-6a7w2AAMP9MWWuRSC3TNbN1sw/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbxzqo2jX2isY_d9Aif6GVpNRuEeL7BQLWxWFh13ljhxYE0MYnq8FeMVs0gKZuKnpy-1AA/exec";
     public TextMeshProUGUI ErrorText;
     public TMP_InputField IDInput, PassInput;
     string id, pass;
     public GameObject LoadingPage;
     public GameObject LoginPage;
     public GameObject LoginLoading;
+    public GameObject SaveLoading;
     GoogleData GD;
 
     public static LoginManager loginInstance;
@@ -54,7 +58,7 @@ public class LoginManager:MonoBehaviour
         else return true;
     }
 
-    void Login()
+    public void Login()
     {
         if (!SetIDPass())
         {
@@ -143,19 +147,52 @@ public class LoginManager:MonoBehaviour
 
     public IEnumerator Post(WWWForm form)
     {
-        using (UnityWebRequest www = UnityWebRequest.Post(URL, form)) // 반드시 using을 써야한다
+        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
         {
+            Debug.Log("Doing Request");
+            www.timeout = 10; // 30초 후에 타임아웃이 발생하도록 설정
+
             yield return www.SendWebRequest();
 
-            if (www.isDone) Response(www.downloadHandler.text);
-            else ErrorText.text = "웹의 응답이 없습니다.";
+            Debug.Log("DidRequest");
+
+            // 네트워크 오류 또는 프로토콜(HTPP) 오류 확인
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                if (www.error == "Request timeout") // 타임아웃 오류 메시지 확인 (이 부분은 실제로 www.error를 확인하는 추가 로직이 필요할 수 있음)
+                {
+                    LoginLoading.SetActive(false);
+                    ErrorText.text = "요청 시간이 초과되었습니다."; // 타임아웃 시 사용자에게 알림
+                }
+                else
+                {
+                    LoginLoading.SetActive(false);
+                    ErrorText.text = $"오류 발생: {www.error}"; // 다른 종류의 오류 메시지 처리
+                }
+            }
+            else if (www.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Response: " + www.downloadHandler.text);
+                Response(www.downloadHandler.text); // 정상적인 응답 처리
+            }
+            else
+            {
+                LoginLoading.SetActive(false);
+                ErrorText.text = "알 수 없는 오류 발생.";
+            }
         }
     }
 
 
     void Response(string json)
     {
-        if (string.IsNullOrEmpty(json)) return;
+        Debug.Log("Response");
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.Log("NullJoson");
+            LoginLoading.SetActive(false);
+            return;
+        }
         Debug.Log(json);
         GD = JsonUtility.FromJson<GoogleData>(json);
 
@@ -175,16 +212,25 @@ public class LoginManager:MonoBehaviour
             }
             else if (GD.order == "getValue")
             {
-                List<PlayerInventory> playerInventories = GD.inven.inventory;
-                List<Item> playerItems = GD.item.items;
-                DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
-                DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
-                DataManager.instance.nowPlayer.inventory = playerInventories;
-                DataManager.instance.nowPlayer.items = playerItems;
-
+                LoadData();
                 LoadingPage.SetActive(true);
                 LoginPage.SetActive(false);
             }
+            else if(GD.order == "setValue")
+            {
+                GameEvents.NotifySave();
+            }
         }
+    }
+    void LoadData()
+    {
+        List<PlayerInventory> playerInventories = GD.inven.inventory;
+        List<Item> playerItems = GD.item.items;
+        DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
+        DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
+        DataManager.instance.nowPlayer.Playerinfo.DidTutorial = GD.tutorial;
+        DataManager.instance.nowPlayer.inventory = playerInventories;
+        DataManager.instance.nowPlayer.items = playerItems;
+        DataManager.instance.nowPlayer.Playerinfo.Day = GD.day;
     }
 }
