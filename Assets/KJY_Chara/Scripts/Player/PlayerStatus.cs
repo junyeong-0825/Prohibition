@@ -38,18 +38,23 @@ public class PlayerStatus : MonoBehaviour
         whatServed = Menu.None;
     }
 
-    public bool OnUnderCovered(InputValue value)
+    public void OnUnderCovered(InputValue value)
     {
-        if (!isUndercover) 
+        if (value.isPressed == false)
+        {
+            return;
+        }
+
+        if (!isUndercover)
         {
             Debug.Log("위장상태");
-            return isUndercover = true;
+            isUndercover = true;
         }
 
         else
         {
             Debug.Log("위장해제");
-            return isUndercover = false;
+            isUndercover = false;
         }
     }
 }
