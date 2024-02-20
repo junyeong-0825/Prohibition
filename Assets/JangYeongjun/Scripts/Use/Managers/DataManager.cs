@@ -50,22 +50,23 @@ public class ItemWrapper
 [System.Serializable]
 public class PlayerData
 {
-    public int Gold = 100;
-    public int Debt = 50000;
-    public bool DidTutorial = false;
+    public int Gold;
+    public int Debt;
+    public bool DidTutorial;
     public int Day;
 }
 public class DataManager : MonoBehaviour
 {
-    public static DataManager instance;
-
+    internal string playerName;
     public Datas nowPlayer = new Datas();
 
-    string path;
+    //string path;
 
+    #region Singleton
+    public static DataManager instance;
     private void Awake()
     {
-        #region ΩÃ±€≈Ê
+        
         if (instance == null)
         {
             instance = this;
@@ -84,10 +85,13 @@ public class DataManager : MonoBehaviour
         }
         
         //LoadAllData();
-        #endregion
+        
 
-        path = Application.persistentDataPath;
+        //path = Application.persistentDataPath;
     }
+    #endregion
+
+    #region Save
     public void SetValue()
     {
         WWWForm form = new WWWForm();
@@ -128,6 +132,7 @@ public class DataManager : MonoBehaviour
 
         StartCoroutine(LoginManager.loginInstance.Post(form));
     }
+    #endregion
 
     /*
     public void SaveAllData()

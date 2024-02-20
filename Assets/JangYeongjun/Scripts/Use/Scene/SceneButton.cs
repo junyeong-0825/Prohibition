@@ -9,11 +9,11 @@ public class SceneButton : MonoBehaviour
 
     private void Start()
     {
-        button.onClick.AddListener(SceneChanger);
+        button.onClick.AddListener(SceneChang);
     }
 
-    public void SceneChanger()
+    public void SceneChang()
     {
-        SceneManager.sceneInstance.ChangeToNextScene();
+        SceneChanger.sceneInstance.ChangeToNextScene(0);
     }
 }

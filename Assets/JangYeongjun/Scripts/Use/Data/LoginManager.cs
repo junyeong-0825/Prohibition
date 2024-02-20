@@ -34,6 +34,7 @@ public class LoginManager:MonoBehaviour
     public GameObject LoginLoading;
     GoogleData GD;
 
+    #region Singleton
     public static LoginManager loginInstance;
 
     private void Awake()
@@ -47,6 +48,7 @@ public class LoginManager:MonoBehaviour
             Destroy(gameObject);
         }
     }
+#endregion
 
     bool SetIDPass()
     {
@@ -208,6 +210,7 @@ public class LoginManager:MonoBehaviour
             if (GD.order == "login")
             {
                 GetValue();
+                DataManager.instance.playerName = id;
             }
             else if (GD.order == "getValue")
             {
