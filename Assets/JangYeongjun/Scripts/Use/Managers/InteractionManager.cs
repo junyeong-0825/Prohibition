@@ -20,42 +20,45 @@ public class InteractionManager : MonoBehaviour
         }
     }
     #endregion
+    string objectName;
     [SerializeField] GameObject[] panels; 
-    private int storeDistinguishValue;
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] GameObject alcoholPanel;
+    private Dictionary<string, GameObject> storePanels = new Dictionary<string, GameObject>();
+
     private void Start()
     {
-        Dictionary<string, GameObject>[] storePanels = new Dictionary<string, GameObject>[panels.Length];
-        for(int i = 0; i < panels.Length; i++) 
+        foreach (var panel in panels)
         {
-            panels[i].gameObject.SetActive(false);
-            storePanels[i].Add(panels[i].name, panels[i]);
+            panel.gameObject.SetActive(false);
+            storePanels.Add(panel.name, panel);
         }
     }
-    public void SetValue(int value)
+    public void SetValue(string name)
     {
-        storeDistinguishValue = value;
+        objectName = name;
     }
 
 
     void OnInteraction()
     {
-        if (storeDistinguishValue < 100)
+        if (objectName != "None")
         {
-            if (storeDistinguishValue > 0 && storeDistinguishValue < 50)
+            if (storePanels.TryGetValue(objectName+"Panel", out GameObject panel))
             {
-                panels[storeDistinguishValue - 1].gameObject.SetActive(true);
+                // 패널을 활성화합니다.
+                panel.SetActive(true);
             }
-            else if(storeDistinguishValue == 50)
+            else if (objectName == "Counter")
             {
+                //음식
                 playerStatus.IsServed("Food");
             }
-            else if(storeDistinguishValue == 51)
+            else if (objectName == "Booze")
             {
+                //술
                 alcoholPanel.SetActive(true);
             }
-
         }
     }
 }

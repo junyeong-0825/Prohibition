@@ -1,23 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
-    [SerializeField] int PanelIndex;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-            InteractionManager.interactionInstance.SetValue(PanelIndex);
+            InteractionManager.interactionInstance.SetValue(gameObject.name);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            InteractionManager.interactionInstance.SetValue(100);
+            InteractionManager.interactionInstance.SetValue("None");
         }
     }
 }
