@@ -21,7 +21,8 @@ public class NPCInteraction : MonoBehaviour
     [SerializeField] private bool interactionStarted = false;
     public bool InteractionStarted { get { return interactionStarted; } }
     // 상호작용이 끝났다는 것을 알리는 bool 값
-    public bool interactionCompleted = false;
+    [SerializeField] private bool interactionCompleted = false;
+    public bool InteractionCompleted { get { return interactionCompleted; } }
     //public bool InteractionCompleted { get { return interactionCompleted; } }
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;

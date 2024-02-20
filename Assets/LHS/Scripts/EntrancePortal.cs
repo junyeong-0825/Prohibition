@@ -31,7 +31,7 @@ public class EntrancePortal : MonoBehaviour
         if(other.CompareTag("Guest"))
         {
             bool checkInteractionStart = other.GetComponent<NPCInteraction>().InteractionStarted;
-            bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().interactionCompleted;
+            bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().InteractionCompleted;
             if(!checkInteractionStart)
             {
                 teleport(other);
