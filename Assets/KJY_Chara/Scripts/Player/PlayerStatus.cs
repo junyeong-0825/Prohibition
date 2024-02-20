@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
@@ -44,5 +45,25 @@ public class PlayerStatus : MonoBehaviour
     {
         isServed = false;
         whatServed = Menu.None;
+    }
+
+    public void OnUnderCovered(InputValue value)
+    {
+        if (value.isPressed == false)
+        {
+            return;
+        }
+
+        if (!isUndercover)
+        {
+            Debug.Log("위장상태");
+            isUndercover = true;
+        }
+
+        else
+        {
+            Debug.Log("위장해제");
+            isUndercover = false;
+        }
     }
 }
