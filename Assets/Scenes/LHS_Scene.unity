@@ -6498,7 +6498,7 @@ GameObject:
   - component: {fileID: 447886510}
   - component: {fileID: 447886511}
   m_Layer: 5
-  m_Name: Hint Panel
+  m_Name: HintPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12528,6 +12528,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d1c42ea34479ce64c8aab4816fd47a0d, type: 3}
   mainClips: {fileID: 8300000, guid: 3593a85245e1377418a82191897e12b0, type: 3}
   titleClips: {fileID: 0}
+  loginClips: {fileID: 0}
   audioSource: {fileID: 883645703}
 --- !u!1 &883941064
 GameObject:
@@ -13112,7 +13113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 4
 --- !u!61 &892521402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13145,7 +13145,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.5, y: 1.7}
+  m_Offset: {x: 1.62, y: 1.07}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -13156,7 +13156,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 2.12, y: 1.45}
   m_EdgeRadius: 0
 --- !u!19719996 &892521403
 TilemapCollider2D:
@@ -15643,7 +15643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 993c27bc5d1427449a5e8d6c83f5ae6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e1f7f22edb943d64c86d5ef449af28b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19084,7 +19084,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3, y: -0.5}
+  m_Offset: {x: 3, y: -1.28}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19095,7 +19095,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.5}
+  m_Size: {x: 1.97, y: 0.7}
   m_EdgeRadius: 0
 --- !u!19719996 &1125427420
 TilemapCollider2D:
@@ -19145,7 +19145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 2
 --- !u!1 &1130031702
 GameObject:
   m_ObjectHideFlags: 0
@@ -23552,7 +23551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 3
 --- !u!61 &1382530818
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23585,7 +23583,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6, y: 0}
+  m_Offset: {x: -6.19, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -24031,7 +24029,7 @@ GameObject:
   - component: {fileID: 1404107194}
   - component: {fileID: 1404107196}
   m_Layer: 5
-  m_Name: Car Panel
+  m_Name: CarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26719,7 +26717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 63e635b928db6644e8c7722356786d85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ebea075c715da747bf54401083760c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27100,7 +27098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 5
 --- !u!61 &1586413270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31042,7 +31039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 50
 --- !u!19719996 &1804780128
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -33035,7 +33031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 096a81dba6e8f994685c3944eb42f4a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5c85378624ad6943a08c7fbf091d2eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33690,7 +33686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 1
 --- !u!61 &2021531475
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35366,7 +35361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0b41d37183514aa3346e25aabf7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelIndex: 51
 --- !u!61 &2119341187
 BoxCollider2D:
   m_ObjectHideFlags: 0

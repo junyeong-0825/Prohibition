@@ -24,6 +24,11 @@ public class SceneManager : MonoBehaviour
         }
     }
     #endregion
+
+    private void Start()
+    {
+        AudioManager.audioInstance.PlayTitleSound();
+    }
     public void ChangeToNextScene()
     {
         int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
@@ -33,6 +38,10 @@ public class SceneManager : MonoBehaviour
         if (nextSceneIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
+            if(nextSceneIndex == 1)
+            {
+                AudioManager.audioInstance.PlayLoginSound();
+            }
         }
         else
         {
