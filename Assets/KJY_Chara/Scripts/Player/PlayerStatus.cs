@@ -22,6 +22,7 @@ public class PlayerStatus : MonoBehaviour
     public bool isServed = false;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
+    public Item servingItem;
     private Menu result;
 
     public void IsServed(string menu)
@@ -36,7 +37,7 @@ public class PlayerStatus : MonoBehaviour
         {
             whatServed = Menu.None;
         }
-        Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
+        servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
 
         imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
     }
@@ -45,6 +46,7 @@ public class PlayerStatus : MonoBehaviour
     {
         isServed = false;
         whatServed = Menu.None;
+        servingItem = null;
     }
 
     public void OnUnderCovered(InputValue value)
@@ -56,13 +58,13 @@ public class PlayerStatus : MonoBehaviour
 
         if (!isUndercover)
         {
-            Debug.Log("À§Àå»óÅÂ");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             isUndercover = true;
         }
 
         else
         {
-            Debug.Log("À§ÀåÇØÁ¦");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             isUndercover = false;
         }
     }

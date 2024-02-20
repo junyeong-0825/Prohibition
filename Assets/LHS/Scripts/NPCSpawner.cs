@@ -14,6 +14,7 @@ public class NPCSpawner : MonoBehaviour
 
     // 오브젝트 스폰과 파괴 위치값
     [SerializeField] private Transform SpawnPositionPrefab;
+    // 식당 입구의 위치값을 가지는 변수값
     [SerializeField] private Transform EntranceTargetObject;
     [SerializeField] private List<GameObject> TargetPrefabList; //
     public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
@@ -100,9 +101,6 @@ public class NPCSpawner : MonoBehaviour
         // int 변수 안에는 빈자리 인덱스에 해당하는 변수를 출력해서 넣는다
         int randomIndex = GetRandomTargetIndex(); 
 
-        // NPC가 원하는 메뉴의 enum을 선언 한다.
-
-
         // 해당 자리인 게임 오브젝트를 변수 안에 집어 넣는다
         GameObject randomTarget = TargetPrefabList[randomIndex];
 
@@ -123,9 +121,12 @@ public class NPCSpawner : MonoBehaviour
         Menu NPCMenu = (Menu)(UnityEngine.Random.Range(1, Enum.GetNames(typeof(Menu)).Length));
         int MenuIndex = (int)NPCMenu;
 
+        // NPC가 원하는 메뉴의 enum을 선언 한다.
         Interaction.wantedMenu = NPCMenu;
 
         wantedMenuSprite.sprite = menuSprite[MenuIndex];
+
+        controller.seatTarget = EntranceTargetObject;
 
         // NPC의 타겟 정보 및 파괴 위치, 그리고 해당 자리의 인덱스를 넣는다.
         controller.SetTarget(randomTarget.transform);
