@@ -4288,6 +4288,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2013984806}
     - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: EntranceTargetObject
+      value: 
+      objectReference: {fileID: 895597118}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
       propertyPath: selfDestroyPositionP
       value: 
       objectReference: {fileID: 1542600392}
@@ -9311,8 +9315,8 @@ MonoBehaviour:
   mainCamera: {fileID: 309396333}
   dayChangeButton: {fileID: 2025679315}
   Player: {fileID: 404869573}
-  timer: {fileID: 0}
-  npcSpawner: {fileID: 0}
+  timer: {fileID: 1420232586}
+  npcSpawner: {fileID: 1308462219}
 --- !u!1 &608328128
 GameObject:
   m_ObjectHideFlags: 0
@@ -20856,6 +20860,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288208030}
   m_CullTransparentMesh: 1
+--- !u!114 &1308462219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+  m_PrefabInstance: {fileID: 272420191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e8b478e6fbd44a398a8387eceaf6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1315859195
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,9 +7,10 @@ public class NPCController : MonoBehaviour
 {
     // 목표 지정 타겟 변수
     public Transform target;
-    public Transform insideTarget;
-    public Transform outsideTarget;
+
     public Transform seatTarget;
+
+    public Transform nextTarget;
 
     public bool isFoodcourtInside = false;
 
