@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class EntrancePortal : MonoBehaviour
 {
+    // 상대편 포탈로 이동할 수 있게 하는 좌표값
     private Transform destination;
+
+    private Transform insideEntrance;
+    private Transform outsideEntrance;
 
     public bool IsInside;
     public float distance = 0.2f;
@@ -16,11 +20,13 @@ public class EntrancePortal : MonoBehaviour
         if (IsInside == false)
         {
             // OutsideEntrance 오브젝트가 내부 입구의 트랜스폼의 좌표값을 destination 변수에 선언한다.
+            // 동시에 이 스크립트가 적용된 포탈은 식당 외부 입구 오브젝트인 것을 알 수 있다.
             destination = GameObject.FindGameObjectWithTag("InsideEntrance").GetComponent<Transform>();
         }
         else
         {
             // InsideEntrance의 오브젝트가 외부 입구의 트랜스폼의 좌표값을 destination 변수에 선언한다.
+            // 동시에 이 스크립트가 적용된 포탈은 식당 내부 입구 오브젝트인 것을 알 수 있다.
             destination = GameObject.FindGameObjectWithTag("OutsideEntrance").GetComponent<Transform>();
         }
     }
@@ -32,9 +38,12 @@ public class EntrancePortal : MonoBehaviour
         {
             bool checkInteractionStart = other.GetComponent<NPCInteraction>().InteractionStarted;
             bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().InteractionCompleted;
-            if(!checkInteractionStart)
+            NPCController controller = other.GetComponent<NPCController>();
+
+            if (!checkInteractionStart)
             {
                 teleport(other);
+                controller.SetTarget(destination);
             }
             else if(checkInteractionCompleted)
             {

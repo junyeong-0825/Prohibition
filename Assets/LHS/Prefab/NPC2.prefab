@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 1676102426355101152}
   m_Layer: 0
   m_Name: MainSprite
-  m_TagString: Untagged
+  m_TagString: Guest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -550,6 +550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  seatTarget: {fileID: 0}
+  nextTarget: {fileID: 0}
+  isFoodcourtInside: 0
   DestroyTarget: {fileID: 0}
 --- !u!114 &1676102426355101152
 MonoBehaviour:

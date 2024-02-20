@@ -20,18 +20,19 @@ public class NPCSpawner : MonoBehaviour
     public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
     [SerializeField] private Transform selfDestroyPositionP; //
 
+
     //[SerializeField] private GameObject TargetPrefab;
     private Coroutine spawnCoroutine;
 
     // 스폰 생성 지연시간
     private float guestInterval = 1.5f;
     //private float policeInterval = 12f;
-    private Timer timeLeft;
+    [SerializeField] private Timer timeLeft;
 
     void Start()
     {
         SetSeatCheck();
-        timeLeft = GameObject.Find("UIManager").GetComponent<Timer>();
+        //timeLeft = GameObject.Find("UIManager").GetComponent<Timer>();
         //spawnCoroutine = StartCoroutine(spawnNPC());
         //StartCoroutine(spawnNPC(policeInterval, policePrefab, SpawnPositionPrefab));
     }
@@ -64,6 +65,7 @@ public class NPCSpawner : MonoBehaviour
             // 빈자리 수만큼 NPC가 스폰되었다면 스폰 상태를 체크하는 bool값 선언
             bool isCheck = AreAllValuesFalse(EmptySeatCheck);
             Debug.Log(isCheck);
+            Debug.Log(timeLeft);
 
             if(timeLeft.limitTimeSec <= 0f)
             {
@@ -126,7 +128,7 @@ public class NPCSpawner : MonoBehaviour
 
         wantedMenuSprite.sprite = menuSprite[MenuIndex];
 
-        controller.seatTarget = EntranceTargetObject;
+        //controller.seatTarget = EntranceTargetObject;
 
         // NPC의 타겟 정보 및 파괴 위치, 그리고 해당 자리의 인덱스를 넣는다.
         controller.SetTarget(randomTarget.transform);
