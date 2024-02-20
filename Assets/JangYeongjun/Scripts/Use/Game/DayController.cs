@@ -81,8 +81,6 @@ public class DayController : MonoBehaviour
             yield return new WaitUntil(() => IsSave);
             
             ResetDay();
-
-
         }
     }
     #endregion
