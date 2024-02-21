@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections;
 using TMPro;
@@ -77,3 +78,4 @@ public class Loader : MonoBehaviour
         progressText.text = (progress * 100).ToString("F0") + "%";
     }
 }
+*/

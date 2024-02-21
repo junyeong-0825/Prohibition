@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -113,7 +114,7 @@ public class LoginManager:MonoBehaviour
 
         StartCoroutine(Post(form));
     }
-    /*
+
     void SetValue()
     {
         WWWForm form = new WWWForm();
@@ -136,7 +137,7 @@ public class LoginManager:MonoBehaviour
         form.AddField("inven", invenValue);
         StartCoroutine(Post(form));
     }
-    */
+
 
     void GetValue()
     {
@@ -230,9 +231,9 @@ public class LoginManager:MonoBehaviour
         List<Item> playerItems = GD.item.items;
         DataManager.instance.nowPlayer.Playerinfo.Gold = GD.gold;
         DataManager.instance.nowPlayer.Playerinfo.Debt = GD.debt;
-        DataManager.instance.nowPlayer.Playerinfo.DidTutorial = GD.tutorial;
         DataManager.instance.nowPlayer.inventory = playerInventories;
         DataManager.instance.nowPlayer.items = playerItems;
         DataManager.instance.nowPlayer.Playerinfo.Day = GD.day;
     }
 }
+*/

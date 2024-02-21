@@ -5545,7 +5545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageSprite: {fileID: 1658501324}
-  isServed: 0
   isUndercover: 0
   whatServed: 0
   servingItem:
@@ -6593,7 +6592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   informationText: {fileID: 1116700767}
-  dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
+  hintDialoguesSO: {fileID: 11400000, guid: 6e05ad15226c4e54a8acbd5f375a60e7, type: 2}
 --- !u!1 &459667415
 GameObject:
   m_ObjectHideFlags: 0
@@ -20689,7 +20688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguesText: {fileID: 163223021}
   nameText: {fileID: 1819699333}
-  dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
+  mafiaDialoguesSO: {fileID: 11400000, guid: aaed83d2b52c3bd4d973894057d88162, type: 2}
 --- !u!1 &1288208030
 GameObject:
   m_ObjectHideFlags: 0
@@ -20932,7 +20931,6 @@ MonoBehaviour:
     Playerinfo:
       Gold: 100
       Debt: 50000
-      DidTutorial: 0
       Day: 0
     items: []
     inventory: []

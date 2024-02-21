@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ed19db573452a4fb72606803b5c5f7, type: 3}
+  m_Name: mafiaDialogues
+  m_EditorClassIdentifier: 
+  dialogues:
+  - dialogue: "\uADF8\uB798..."
+  - dialogue: "\uB3C8\uC744 \uBE4C\uB838\uB2E4\uACE0?"
+  - dialogue: "\uB3C8\uC740 \uBE68\uB9AC \uAC1A\uC744 \uC218\uB85D \uC88B\uC544."
+  - dialogue: "\uB3C8 \uBABB \uAC1A\uC73C\uBA74 \uC5B4\uB5BB\uAC8C \uB418\uB294\uC9C0
+      \uC54C\uC9C0?"
+  - dialogue: "\uBE68\uB9AC \uAC1A\uC544...."
+  - dialogue: "\uB3C8\uC740 \uCD5C\uB300 300\uB9CC \uACE8\uB4DC\uAE4C\uC9C0 \uBE4C\uB9B4
+      \uC218 \uC788\uC5B4"
+  - dialogue: "\uB3C8\uC744 \uBC8C\uB824\uBA74 \uB3C8\uC744 \uBE4C\uB824\uC57C\uC9C0"
+  - dialogue: "\uC591\uC870\uC7A5\uC744 \uC0B4\uB9AC\uACE0 \uC2F6\uC5B4? \uADF8\uB7FC
+      \uB3C8\uC744 \uAC1A\uC544!!"

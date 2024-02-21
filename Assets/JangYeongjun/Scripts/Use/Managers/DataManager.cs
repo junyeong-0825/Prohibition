@@ -50,17 +50,16 @@ public class ItemWrapper
 [System.Serializable]
 public class PlayerData
 {
-    public int Gold;
-    public int Debt;
-    public bool DidTutorial;
-    public int Day;
+    public int Gold = 100;
+    public int Debt = 50000;
+    public int Day = 1;
 }
 public class DataManager : MonoBehaviour
 {
     internal string playerName;
     public Datas nowPlayer = new Datas();
 
-    //string path;
+    string path;
 
     #region Singleton
     public static DataManager instance;
@@ -84,13 +83,12 @@ public class DataManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         
-        //LoadAllData();
-        
-
-        //path = Application.persistentDataPath;
+        LoadAllData();
+        path = Application.persistentDataPath;
     }
     #endregion
 
+    /*
     #region Save
     public void SetValue()
     {
@@ -133,44 +131,58 @@ public class DataManager : MonoBehaviour
         StartCoroutine(LoginManager.loginInstance.Post(form));
     }
     #endregion
+    */
 
-    /*
     public void SaveAllData()
     {
         SavePlayerData();
         SaveInventoryData();
+        SaveItemData();
     }
-    public void SavePlayerData()
+
+    #region SaveDatas
+    void SavePlayerData()
     {
         string playerData = JsonUtility.ToJson(nowPlayer.Playerinfo);
         File.WriteAllText(path + "/playerData.json", playerData);
     }
-    public void SaveInventoryData()
+    void SaveInventoryData()
     {
         string InventoryData = JsonUtility.ToJson(nowPlayer.inventory);
         File.WriteAllText(path + "/inventoryData.json", InventoryData);
     }
+    void SaveItemData()
+    {
+        string ItemData = JsonUtility.ToJson(nowPlayer.items);
+        File.WriteAllText(path + "/itemData.json", ItemData);
+    }
+    #endregion
 
     public void LoadAllData()
     {
         try
         {
-            
+
             #region ItemData Load
-            TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
-            if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
-            Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
-            nowPlayer.items = itemData.items;
-            Debug.Log("아이템 데이터 성공");
-            foreach (Item item in nowPlayer.items)
+            if (File.Exists(path + "/itemData.json"))
             {
-                item.sprite = Resources.Load<Sprite>("Sprites/" + item.Name);
+                string ItemData = File.ReadAllText(path + "/itemData.json");
+                nowPlayer.items = JsonUtility.FromJson<List<Item>>(ItemData);
             }
+            else
+            {
+                TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
+                if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
+                Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
+                nowPlayer.items = itemData.items;
+            }
+            Debug.Log("아이템 데이터 성공");
             #endregion
+
             #region PlayerData Load
             if (File.Exists(path + "/playerData.json"))
             {
-                string PlayerData = File.ReadAllText(path + "playerData.json");
+                string PlayerData = File.ReadAllText(path + "/playerData.json");
                 nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(PlayerData);
             }
             else
@@ -196,5 +208,4 @@ public class DataManager : MonoBehaviour
             Debug.LogError("데이터를 로드하는데 실패했습니다.: " + e.Message);
         }
     }
-    */
 }
