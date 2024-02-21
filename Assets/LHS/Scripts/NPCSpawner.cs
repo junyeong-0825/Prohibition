@@ -62,7 +62,7 @@ public class NPCSpawner : MonoBehaviour
                 yield break;
             }
 
-            if (!isCheck)
+            else if (!isCheck)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
                 Debug.Log(index);
@@ -70,7 +70,7 @@ public class NPCSpawner : MonoBehaviour
                 yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
             }
 
-            if(callCount < 3)
+            else if(callCount < 3)
             {
                 policeInterval = UnityEngine.Random.Range(20f, 40f);
                 Debug.Log("PoliceSpawn");
