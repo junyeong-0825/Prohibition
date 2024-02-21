@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ed19db573452a4fb72606803b5c5f7, type: 3}
+  m_Name: hintDialogues
+  m_EditorClassIdentifier: 
+  dialogues:
+  - dialogue: "\uC870\uAE08 \uB354 \uAC1C\uBC1C\uD574\uC57C \uB41C\uB2E4."
+  - dialogue: "\uADF8\uB9CC.... \uADF8\uB9CC..."
+  - dialogue: "\uC544\uB2C8\uC57C \uC544\uC9C1 \uC544\uB2C8\uC57C..."
+  - dialogue: "\uAC1C\uBC1C \uAC70\uC758 \uB2E4 \uB410\uC744\uC9C0\uB3C4?"
+  - dialogue: "\uAE08\uBC29 \uB098\uC624\uC9C0 \uC54A\uC744\uAE4C?"
+  - dialogue: "\uAE30\uB300\uD574\uB3C4 \uBCC4\uAC70 \uC5C6\uB2E4...."
+  - dialogue: "\uC544\uB9C8\uB3C4 \uBB34\uC5B8\uAC00 \uC0DD\uAE38 \uAC83 \uAC19\uB2E4."

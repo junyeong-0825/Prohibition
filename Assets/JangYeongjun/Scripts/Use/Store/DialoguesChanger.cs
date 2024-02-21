@@ -9,7 +9,7 @@ public class DialoguesChanger : MonoBehaviour
     int dialoguesCount;
     [SerializeField] TextMeshProUGUI dialoguesText;
     [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] DialoguesSO dialoguesSO;
+    [SerializeField] DialoguesSO mafiaDialoguesSO;
 
     private void OnEnable()
     {
@@ -19,15 +19,10 @@ public class DialoguesChanger : MonoBehaviour
     {
         while (true)
         {
-            dialoguesCount = Random.Range(0, dialoguesSO.dialogues.Length);
-            if (dialoguesSO.dialogues[dialoguesCount].value == 1)
-            {
-                dialoguesText.color = new Color(1, 1, 1, 1);
-                dialoguesText.text = dialoguesSO.dialogues[dialoguesCount].dialogue;
-                nameText.text = dialoguesSO.dialogues[dialoguesCount].character;
-                yield return new WaitForSecondsRealtime(2f);
-            }
-            yield return new WaitForSecondsRealtime(0.5f);
+            dialoguesCount = Random.Range(0, mafiaDialoguesSO.dialogues.Length);
+            dialoguesText.color = new Color(1, 1, 1, 1);
+            dialoguesText.text = mafiaDialoguesSO.dialogues[dialoguesCount].dialogue;
+            yield return new WaitForSecondsRealtime(2f);
         }
     }
 }

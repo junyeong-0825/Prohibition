@@ -1,0 +1,13 @@
+{ "inventory" : 
+[
+{
+    "Classification" : "Alcohol",
+    "Name" : "Beer", 
+    "Quantity" : 3, 
+    "PurchasePrice" : 20, 
+    "SellingPrice" : 35, 
+    "RiseScale" : 15,
+    "spritePath" : "Sprites/Beer"
+}
+]
+}

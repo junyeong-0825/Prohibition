@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public enum Menu
 {
@@ -19,36 +15,47 @@ public enum Menu
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] SpriteRenderer imageSprite;
-    public bool isServed = false;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
-    public Item servingItem;
     private Menu result;
 
     public void IsServed(string menu)
     {
-        isServed = true;
-        bool success = Enum.TryParse<Menu>(menu, out result);
-        if (success)
+        if (whatServed == Menu.None)
         {
-            whatServed = result;
+            PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
+            bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
+            if (existingItem.Quantity >= 2)
+            {
+                if (success)
+                {
+                    whatServed = result;
+                    existingItem.Quantity--;
+                }
+            }
+            else if (existingItem.Quantity == 1)
+            {
+                if (success)
+                {
+                    whatServed = result;
+                    DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+                }
+            }
+            else
+            {
+                whatServed = Menu.None;
+                existingItem = null;
+            }   
+            UpdateSprite(existingItem);
         }
-        else
-        {
-            whatServed = Menu.None;
-        }
-        servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == whatServed.ToString());
-
-        imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
+        
     }
 
-    public void NotServed()
+    void UpdateSprite(PlayerInventory existingItem)
     {
-        isServed = false;
-        whatServed = Menu.None;
-        servingItem = null;
+        if (existingItem != null) {imageSprite.sprite = Resources.Load<Sprite>(existingItem.spritePath);}
+        else { imageSprite.sprite = null; }
     }
-
     public void OnUnderCovered(InputValue value)
     {
         if (value.isPressed == false)
