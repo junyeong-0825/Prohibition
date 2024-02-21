@@ -143,17 +143,17 @@ public class DataManager : MonoBehaviour
     #region SaveDatas
     void SavePlayerData()
     {
-        string playerData = JsonUtility.ToJson(nowPlayer.Playerinfo);
+        string playerData = JsonUtility.ToJson(nowPlayer.Playerinfo, true);
         File.WriteAllText(path + "/playerData.json", playerData);
     }
     void SaveInventoryData()
     {
-        string InventoryData = JsonUtility.ToJson(nowPlayer.inventory);
+        string InventoryData = JsonUtility.ToJson(nowPlayer.inventory, true);
         File.WriteAllText(path + "/inventoryData.json", InventoryData);
     }
     void SaveItemData()
     {
-        string ItemData = JsonUtility.ToJson(nowPlayer.items);
+        string ItemData = JsonUtility.ToJson(nowPlayer.items, true);
         File.WriteAllText(path + "/itemData.json", ItemData);
     }
     #endregion
@@ -199,7 +199,10 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                nowPlayer.inventory = new List<PlayerInventory>();
+                TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/IventoryData");
+                if (inventoryFile == null) throw new Exception("인벤토리 데이터를 찾을 수 없습니다.");
+                Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
+                nowPlayer.inventory = inventoryData.inventory;
             }
             #endregion
         }

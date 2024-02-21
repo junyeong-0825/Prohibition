@@ -40,6 +40,10 @@ public class SceneChanger : MonoBehaviour
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(nextSceneIndex);
+            if (nextSceneIndex == 1)
+            {
+                playerButton.SetActive(true);
+            }
         }
         else
         {
