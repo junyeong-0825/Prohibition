@@ -61,13 +61,13 @@ public class PlayerStatus : MonoBehaviour
 
         if (!isUndercover)
         {
-            Debug.Log("�������");
+            Debug.Log("위상상태 돌입");
             isUndercover = true;
         }
 
         else
         {
-            Debug.Log("��������");
+            Debug.Log("위장상태 해제");
             isUndercover = false;
         }
     }
