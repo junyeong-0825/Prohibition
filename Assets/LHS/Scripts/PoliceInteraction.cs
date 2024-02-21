@@ -8,9 +8,6 @@ public class PoliceInteraction : MonoBehaviour
     // 경찰이 식당 내부에 들어왔을 때 나타나는 감정표현 스프라이트
     public GameObject SearchingSprite;
 
-    // 경찰이 가게 내부가 위장되지 않았을 때를 체크하는 bool 값
-    public bool IsCheck = true;
-
     // 경찰 프리팹이 가게 점검을 실]
     private bool CheckingComplete = false;
     private bool CheckingStarted = false;
@@ -30,13 +27,17 @@ public class PoliceInteraction : MonoBehaviour
                 CheckingTime -= Time.deltaTime;
                 CheckingRestaurant();
             }
+            else if(CheckingTime == 0f)
+            {
+                SearchingComplete();
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 식당 내부의 입구 쪽 콜라이더(추가예정)에 대해
-        if (other.CompareTag("Entrance") && !CheckingStarted && !CheckingComplete)
+        // 식당 내부의 특정 위치(이 위치는 경찰이 식당 내부를 점검하는 위치에 "SearchLocation" 태그가 달린 오브젝트를 배치)와 충돌 시에 발생하도록 함
+        if (other.CompareTag("SearchLocation") && !CheckingStarted && !CheckingComplete)
         {
             //Debug.Log("StartInteraction");
             SeachingStart();
@@ -47,6 +48,7 @@ public class PoliceInteraction : MonoBehaviour
     private void SeachingStart()
     {
         CheckingStarted = true;
+        SearchingSprite.SetActive(true);
     }
 
     // 서칭 상태를 종료하는 bool 값들 수정 및 타겟 조정
@@ -54,15 +56,19 @@ public class PoliceInteraction : MonoBehaviour
     {
         CheckingComplete = true;
         CheckingStarted = false;
-        SelfDestroyTargeting();
+        SearchingSprite.SetActive(false);
+        ExitToInsideEntrance();
     }
 
     private void CheckingRestaurant()
     {
         // 레스토랑이 위장 상태가 아니면 플레이어한테 패널티 부여 및 스테이지 종료
         PlayerStatus undercover = GameObject.Find("Player").GetComponent<PlayerStatus>();
+
+
         if(!undercover.isUndercover)
         {
+            // 중첩 패널티를 넣기 위한 패널티
             GetPenalty();
             SearchingComplete();
         }
@@ -70,18 +76,18 @@ public class PoliceInteraction : MonoBehaviour
 
     private void GetPenalty()
     {
+        // 게임 매니저 오브젝트에 있는 패널티 컴포넌트를 이용해 조건에 따른 
         Penalties PPenalty = GameObject.Find("GameManager").GetComponent<Penalties>();
         
     }
 
     // 자가 파괴 지정
-    private void SelfDestroyTargeting()
+    private void ExitToInsideEntrance()
     {
         if (CheckingComplete)
         {
             NPCController controller = GetComponent<NPCController>();
-
-            controller.SetTarget(controller.DestroyTarget);
+            controller.SetTarget(controller.nextTarget);
         }
     }
 }

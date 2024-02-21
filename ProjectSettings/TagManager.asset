@@ -8,6 +8,7 @@ TagManager:
   - Guest
   - OutsideEntrance
   - InsideEntrance
+  - SearchLocation
   layers:
   - Default
   - TransparentFX

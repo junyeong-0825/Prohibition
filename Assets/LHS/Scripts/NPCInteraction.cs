@@ -57,15 +57,21 @@ public class NPCInteraction : MonoBehaviour
     {
         if (other.CompareTag("EmptyChair") && !interactionStarted && !interactionCompleted)
         {
+            NPCController controller = GetComponent<NPCController>();
+            if(controller.seatTarget == other.transform)
+            {
+                StartInteraction();
+            }
             //Debug.Log("StartInteraction");
-            StartInteraction();
+            //StartInteraction();
         }
     }
 
+    // 상호작용의 시작 상태를 바꿔주는 메서드
     private void StartInteraction()
     {
         interactionStarted = true;
-        Debug.Log("Interactionstart");
+        //Debug.Log("Interactionstart");
     }
 
     // enum 비교용 메뉴 비교 메서드
@@ -79,10 +85,7 @@ public class NPCInteraction : MonoBehaviour
                 SuccesTrade(playerMenu);
 
                 // 상호작용 완료를 위한 말풍선 바꿈
-                OrderMenuSprite.SetActive(false);
-                interactionCompleted = true;
-                satisfiedSprite.SetActive(true);
-                SelfDestroyTargeting();
+                HandleInteractionSuccess();
             }
             else
             {
@@ -92,6 +95,56 @@ public class NPCInteraction : MonoBehaviour
 
         }
     }
+
+    // 메뉴 불일치 시의 불만족 메소드
+    private void HandleInteractionFailed()
+    {
+        OrderMenuSprite.SetActive(false);
+        interactionCompleted = true;
+        unsatisfiedSprite.SetActive(true);
+        InteractionCompleteTargeting();
+        //SelfDestroyTargeting();
+    }
+
+    // 메뉴 일치 시의 만족 메소드
+    private void HandleInteractionSuccess()
+    {
+        OrderMenuSprite.SetActive(false);
+        interactionCompleted = true;
+        satisfiedSprite.SetActive(true);
+        InteractionCompleteTargeting();
+        //SelfDestroyTargeting();
+    }
+
+    // 자가 파괴 지정
+    private void SelfDestroyTargeting()
+    {
+        if(interactionCompleted)
+        {
+            NPCController controller = GetComponent<NPCController>();
+
+            controller.SetTarget(controller.DestroyTarget);
+        }
+    }
+
+    // 상호작용이 완료된 후 내부 입구로 가기 위한 타겟팅을 시도한다(이때 nextTarget에 들어가 있는 좌표값은 내부 입구로 설정되어 있다.)
+    private void InteractionCompleteTargeting()
+    {
+        if(interactionCompleted)
+        {
+            NPCController controller = GetComponent<NPCController>();
+            controller.SetTarget(controller.nextTarget);
+        }
+    }
+
+    private void SuccesTrade(Menu playerMenu)
+    {
+        Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerMenu.ToString());
+        //돈을 더해줌
+        DataManager.instance.nowPlayer.Playerinfo.Gold += servingItem.SellingPrice;
+        
+    }
+
 
     // 테스트용 플레이어 메뉴 비교 메서드
     //public void DeliverMenu(string deliveredMenu)
@@ -114,40 +167,4 @@ public class NPCInteraction : MonoBehaviour
     //        }
     //    }
     //}
-
-    // 메뉴 불일치 시의 불만족 메소드
-    private void HandleInteractionFailed()
-    {
-        OrderMenuSprite.SetActive(false);
-        interactionCompleted = true;
-        unsatisfiedSprite.SetActive(true);
-        SelfDestroyTargeting();
-    }
-
-    // 메뉴 일치 시의 만족 메소드
-    private void HandleInteractionSuccess()
-    {
-        OrderMenuSprite.SetActive(false);
-        interactionCompleted = true;
-        satisfiedSprite.SetActive(true);
-        SelfDestroyTargeting();
-    }
-
-    // 자가 파괴 지정
-    private void SelfDestroyTargeting()
-    {
-        if(interactionCompleted)
-        {
-            NPCController controller = GetComponent<NPCController>();
-
-            controller.SetTarget(controller.DestroyTarget);
-        }
-    }
-
-    private void SuccesTrade(Menu playerMenu)
-    {
-        Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerMenu.ToString());
-        //돈을 더해줌
-        DataManager.instance.nowPlayer.Playerinfo.Gold += servingItem.SellingPrice;
-    }
 }

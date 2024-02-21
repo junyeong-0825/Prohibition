@@ -348,7 +348,7 @@ MonoBehaviour:
   OrderMenuSprite: {fileID: 6322262471996380777}
   satisfiedSprite: {fileID: 2231634723955443393}
   unsatisfiedSprite: {fileID: 8412374282982173891}
-  interactionTimeLimit: 100
+  interactionTimeLimit: 10
   wantedMenu: 0
   interactionStarted: 0
   interactionCompleted: 0

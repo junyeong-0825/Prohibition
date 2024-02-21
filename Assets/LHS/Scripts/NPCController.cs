@@ -8,11 +8,11 @@ public class NPCController : MonoBehaviour
     // 목표 지정 타겟 변수
     public Transform target;
 
+    // 좌석 정보가 담긴 타겟 변수(손님만 할당)
     public Transform seatTarget;
 
+    // 다음 타겟 정보를 저장하는 변수
     public Transform nextTarget;
-
-    public bool isFoodcourtInside = false;
 
     // 파괴 위치 지정 변수
     public Transform DestroyTarget;
@@ -118,26 +118,28 @@ public class NPCController : MonoBehaviour
     // 충돌 콜라이더와 충돌했을 때의 메서드
     private void OnTriggerEnter2D(Collider2D other)
     {
-        bool checkInteractionStart = GetComponent<NPCInteraction>().InteractionStarted;
-        bool checkInteractionCompleted = GetComponent<NPCInteraction>().InteractionCompleted;
-
-        if (other.gameObject.tag == "Finish")
+        if (other.gameObject.tag == "Finish" && gameObject.tag == "Guest")
         {
-            Debug.Log("self-Destroy");
+            //Debug.Log("self-Destroy");
             RefreshTargetIndex(deployIndex);
             Destroy(transform.root.gameObject);
         }
 
-        else if(other.gameObject.tag == "OutsideEntrance" && !checkInteractionStart)
+        else if(other.gameObject.tag == "Finish" && gameObject.tag == "Police")
         {
-            SetTarget(seatTarget);
+            Destroy(transform.root.gameObject);
         }
+
+        //else if(other.gameObject.tag == "OutsideEntrance" && !checkInteractionStart)
+        //{
+        //    SetTarget(seatTarget);
+        //}
     }
 
     // 딕셔너리를 조정하는 메서드지만 NPC 인스턴스가 실행하는 용도는 아닌거 같다
     private void RefreshTargetIndex(int index)
     {
         NPCSpawner SpawnManager = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>();
-        SpawnManager.EmptySeatCheck[index] = true;
+        SpawnManager.EmptySeatCheck[index] = false;
     }
 }
