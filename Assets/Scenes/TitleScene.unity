@@ -1036,7 +1036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fe3d7d261befd4a9809450fed37b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: {fileID: 1244878618}
   gold: {fileID: 1664455174}
   debt: {fileID: 477479382}
   days: {fileID: 1841207878}
@@ -2392,7 +2391,6 @@ MonoBehaviour:
     Playerinfo:
       Gold: 0
       Debt: 0
-      DidTutorial: 1
       Day: 0
     items: []
     inventory: []
@@ -4170,7 +4168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: User
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb423ad3c3c4c5c4d82c085c294e8cb1, type: 2}
   m_sharedMaterial: {fileID: 8362362902698576172, guid: cb423ad3c3c4c5c4d82c085c294e8cb1, type: 2}

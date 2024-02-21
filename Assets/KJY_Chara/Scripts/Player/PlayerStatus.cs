@@ -22,13 +22,12 @@ public class PlayerStatus : MonoBehaviour
 
     public void IsServed(string menu)
     {
-        if (whatServed != Menu.None)
+        PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
+        if (whatServed == Menu.None)
         {
-            PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
-
+            bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
             if (existingItem.Quantity >= 2)
             {
-                bool success = Enum.TryParse<Menu>(menu, out result);
                 if (success)
                 {
                     whatServed = result;
@@ -37,20 +36,30 @@ public class PlayerStatus : MonoBehaviour
             }
             else if (existingItem.Quantity == 1)
             {
-                DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+                if (success)
+                {
+                    whatServed = result;
+                    DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+                }
             }
-            UpdateSprite();
+            else
+            {
+                NotServed(existingItem);
+            }   
         }
+        else { NotServed(existingItem); }
+        UpdateSprite(existingItem);
     }
 
-    public void NotServed()
+    void NotServed(PlayerInventory existingItem)
     {
         whatServed = Menu.None;
-        servingItem = null;
+        existingItem = null;
     }
-    void UpdateSprite()
+    void UpdateSprite(PlayerInventory existingItem)
     {
-        imageSprite.sprite = Resources.Load<Sprite>(servingItem.spritePath);
+        if (existingItem != null) {imageSprite.sprite = Resources.Load<Sprite>(existingItem.spritePath);}
+        else { imageSprite.sprite = null; }
     }
     public void OnUnderCovered(InputValue value)
     {

@@ -14,6 +14,6 @@ public class SceneButton : MonoBehaviour
 
     public void SceneChang()
     {
-        SceneChanger.sceneInstance.ChangeToNextScene(0);
+        SceneChanger.sceneInstance.ChangeToNextScene();
     }
 }

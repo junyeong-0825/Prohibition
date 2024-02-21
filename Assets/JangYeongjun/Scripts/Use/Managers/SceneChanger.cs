@@ -31,7 +31,7 @@ public class SceneChanger : MonoBehaviour
     {
         AudioManager.audioInstance.PlayTitleSound();
     }
-    public void ChangeToNextScene(int kindOfLoad)
+    public void ChangeToNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
@@ -39,27 +39,17 @@ public class SceneChanger : MonoBehaviour
 
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            if (kindOfLoad == 0)
-            {
-                SceneLoad(nextSceneIndex);
-            }
-            else if (kindOfLoad == 1)
-            {
-                AsyncScnenLoad(nextSceneIndex);
-            }
+            SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
             Debug.Log("No Scene");
         }
     }
+    /*
     void SceneLoad(int nextSceneIndex)
     {
         SceneManager.LoadScene(nextSceneIndex);
-        if (nextSceneIndex == 1)
-        {
-            AudioManager.audioInstance.PlayLoginSound();
-        }
     }
 
     void AsyncScnenLoad(int nextSceneIndex)
@@ -70,4 +60,5 @@ public class SceneChanger : MonoBehaviour
             playerButton.SetActive(true);
         }
     }
+    */
 }
