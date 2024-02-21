@@ -18,7 +18,13 @@ public class PlayerStatus : MonoBehaviour
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
     private Menu result;
+    private GameObject UnderCoverUI;
 
+    private void Awake()
+    {
+        UnderCoverUI = GameObject.Find("Emoji");
+        UnderCoverUI.SetActive(false);
+    }
     public void IsServed(string menu)
     {
         if (whatServed == Menu.None)
@@ -65,13 +71,13 @@ public class PlayerStatus : MonoBehaviour
 
         if (!isUndercover)
         {
-            Debug.Log("위상상태 돌입");
+            UnderCoverUI.SetActive(true);
             isUndercover = true;
         }
 
         else
         {
-            Debug.Log("위장상태 해제");
+            UnderCoverUI.SetActive(false);
             isUndercover = false;
         }
     }
