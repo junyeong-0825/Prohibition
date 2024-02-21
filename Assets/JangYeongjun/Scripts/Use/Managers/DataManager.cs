@@ -199,7 +199,7 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/IventoryData");
+                TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
                 if (inventoryFile == null) throw new Exception("인벤토리 데이터를 찾을 수 없습니다.");
                 Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
                 nowPlayer.inventory = inventoryData.inventory;
