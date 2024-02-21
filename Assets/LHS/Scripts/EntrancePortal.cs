@@ -56,7 +56,22 @@ public class EntrancePortal : MonoBehaviour
 
         else if(other.CompareTag("Police"))
         {
-            // 경찰이 진입에 들어가면 다른 상태로 가는
+            // 경찰이 외부 입구에 들어가면 식당 내부 지정 위치로, 정찰이 끝나면 파괴를 위해 식당 외부로 이동한다
+            bool checkCheckingStart = other.GetComponent<PoliceInteraction>().CheckingStarted;
+            bool checkCheckingCompleted = other.GetComponent<PoliceInteraction>().CheckingComplete;
+            NPCController controller = other.GetComponent<NPCController>();
+
+            if(!checkCheckingStart && !IsInside)
+            {
+                controller.SetTarget(controller.nextTarget);
+                controller.nextTarget = destination;
+                teleport(other);
+            }
+            else if(checkCheckingCompleted && IsInside)
+            {
+                controller.SetTarget(controller.DestroyTarget);
+                teleport(other);
+            }
         }
     }
 
