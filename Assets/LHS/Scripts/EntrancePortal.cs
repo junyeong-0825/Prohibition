@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EntrancePortal : MonoBehaviour
 {
@@ -40,20 +41,37 @@ public class EntrancePortal : MonoBehaviour
             bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().InteractionCompleted;
             NPCController controller = other.GetComponent<NPCController>();
 
-            if (!checkInteractionStart)
+            if (!checkInteractionStart && !IsInside)
             {
+                controller.nextTarget = destination;
+                controller.SetTarget(controller.seatTarget);
                 teleport(other);
-                controller.SetTarget(destination);
             }
-            else if(checkInteractionCompleted)
+            else if(checkInteractionCompleted && IsInside)
             {
+                controller.SetTarget(controller.DestroyTarget);
                 teleport(other);
             }
         }
 
         else if(other.CompareTag("Police"))
         {
-            // 경찰이 진입에 들어가면 다른 상태로 가는
+            // 경찰이 외부 입구에 들어가면 식당 내부 지정 위치로, 정찰이 끝나면 파괴를 위해 식당 외부로 이동한다
+            bool checkCheckingStart = other.GetComponent<PoliceInteraction>().CheckingStarted;
+            bool checkCheckingCompleted = other.GetComponent<PoliceInteraction>().CheckingComplete;
+            NPCController controller = other.GetComponent<NPCController>();
+
+            if(!checkCheckingStart && !IsInside)
+            {
+                controller.SetTarget(controller.nextTarget);
+                controller.nextTarget = destination;
+                teleport(other);
+            }
+            else if(checkCheckingCompleted && IsInside)
+            {
+                controller.SetTarget(controller.DestroyTarget);
+                teleport(other);
+            }
         }
     }
 
@@ -62,8 +80,9 @@ public class EntrancePortal : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, collision.transform.position) > distance)
         {
-
-            collision.transform.position = new Vector2(destination.position.x, destination.position.y);
+            NavMeshAgent agent = collision.GetComponent<NavMeshAgent>();
+            agent.Warp(destination.position);
+            //collision.transform.position = new Vector2(destination.position.x, destination.position.y);
         }
     }
 }

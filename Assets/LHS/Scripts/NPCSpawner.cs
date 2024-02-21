@@ -16,6 +16,9 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Transform SpawnPositionPrefab;
     // 식당 입구의 위치값을 가지는 변수값
     [SerializeField] private Transform EntranceTargetObject;
+
+    [SerializeField] private Transform SearchLocationObject;
+
     [SerializeField] private List<GameObject> TargetPrefabList; //
     public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
     [SerializeField] private Transform selfDestroyPositionP; //
@@ -26,7 +29,7 @@ public class NPCSpawner : MonoBehaviour
 
     // 스폰 생성 지연시간
     private float guestInterval = 1.5f;
-    //private float policeInterval = 12f;
+    private float policeInterval;
     [SerializeField] private Timer timeLeft;
 
     void Start()
@@ -37,35 +40,19 @@ public class NPCSpawner : MonoBehaviour
         //StartCoroutine(spawnNPC(policeInterval, policePrefab, SpawnPositionPrefab));
     }
 
-
-    // 경찰을 스폰하는 메서드
-    // 조건 : 제한 시간 내에 스폰 횟수를 충족시켜야 함, 경찰은 한 스테이지 당 총 3번 스폰된다, 스폰 되면 다른 경찰을 스폰할 수 없다, 
-    //internal IEnumerator spawnPolice()
-    //{
-    //    if
-    //    while(true)
-    //    {
-
-    //    }
-
-    //    yield return null;
-    //}
-
     // 일반 NPC를 스폰하는 코루틴 메서드
     internal IEnumerator spawnNPC()
     {
+        int callCount = 0;
+
         //실전용
         while (true)
         {
-            //if (usedTargetIndex.Count > TargetPrefabList.Count)
-            //{
-            //    Debug.Log("Wait Spawn");
-            //    yield break;
-            //}
+
             // 빈자리 수만큼 NPC가 스폰되었다면 스폰 상태를 체크하는 bool값 선언
             bool isCheck = AreAllValuesFalse(EmptySeatCheck);
             Debug.Log(isCheck);
-            Debug.Log(timeLeft);
+            //Debug.Log(timeLeft);
 
             if(timeLeft.limitTimeSec <= 0f)
             {
@@ -75,12 +62,20 @@ public class NPCSpawner : MonoBehaviour
                 yield break;
             }
 
-            if (!isCheck)
+            else if (!isCheck)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
                 Debug.Log(index);
                 Debug.Log("SpawnStart!!!");
                 yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
+            }
+
+            else if(callCount < 3)
+            {
+                policeInterval = UnityEngine.Random.Range(20f, 40f);
+                Debug.Log("PoliceSpawn");
+                yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
+                callCount++;
             }
             else
             {
@@ -91,7 +86,7 @@ public class NPCSpawner : MonoBehaviour
 
     private IEnumerator SpawnOnce(float interval, GameObject NPC, Transform Position)
     {
-        Debug.Log("Coroutine Start");
+        //Debug.Log("Coroutine Start");
         yield return new WaitForSeconds(interval);
         SpawnPrefab(NPC, Position);
     }
@@ -99,7 +94,7 @@ public class NPCSpawner : MonoBehaviour
     // 프리팹 스폰 메서드(프리팹과 스폰위치를 매개변수로) - 기존 방법
     private void SpawnPrefab(GameObject NPC, Transform Position)
     {
-        Debug.Log("Drop Prefab");
+        //Debug.Log("Drop Prefab");
         // int 변수 안에는 빈자리 인덱스에 해당하는 변수를 출력해서 넣는다
         int randomIndex = GetRandomTargetIndex(); 
 
@@ -126,15 +121,19 @@ public class NPCSpawner : MonoBehaviour
         // NPC가 원하는 메뉴의 enum을 선언 한다.
         Interaction.wantedMenu = NPCMenu;
 
+        // 메뉴의 스프라이트 데이터를 집어 넣는다.
         wantedMenuSprite.sprite = menuSprite[MenuIndex];
 
-        //controller.seatTarget = EntranceTargetObject;
-
-        // NPC의 타겟 정보 및 파괴 위치, 그리고 해당 자리의 인덱스를 넣는다.
-        controller.SetTarget(randomTarget.transform);
+        // 스폰된 NPC의 타겟을 바깥 입구쪽으로 향하게 한다.
+        controller.target = EntranceTargetObject;
+        // 다음 행동에 필요한 빈좌석 좌표값을 넣는다.
+        controller.seatTarget = randomTarget.transform;
 
         // 자가 파괴 상태를 위해 위치 게임 오브젝트를 집어 넣는다.
         controller.DestroyTarget = selfDestroyPositionP;
+
+        // NPC의 이동할 타겟을 설정한다.
+        controller.SetTarget(controller.target);
 
         // 배정 받은 자리의 인덱스를 집어넣는다
         controller.DeployIndex = randomIndex;
@@ -142,6 +141,30 @@ public class NPCSpawner : MonoBehaviour
         // 딕셔너리의 인덱스와 같은 해당 키 인덱스의 값을 false로 바꾼다
         EmptySeatCheck[randomIndex] = true;
 
+    }
+
+    private void SpawnPrefabPolice(GameObject NPC, Transform Position)
+    {
+        GameObject newNpc = Instantiate(NPC, Position.position, Quaternion.identity);
+
+        NPCController controller = newNpc.transform.Find("MainSprite").GetComponent<NPCController>();
+
+        controller.target = EntranceTargetObject;
+
+        controller.nextTarget = SearchLocationObject;
+
+        controller.DestroyTarget = selfDestroyPositionP;
+
+        controller.SetTarget(controller.target);
+    }
+
+    //경찰을 스폰하는 메서드
+    //조건 : 제한 시간 내에 스폰 횟수를 충족시켜야 함, 경찰은 한 스테이지 당 총 3번 스폰된다, 스폰 되면 다른 경찰을 스폰할 수 없다,
+    private IEnumerator SpawnPolice(float interval, GameObject NPC, Transform Position)
+    {
+
+        yield return new WaitForSeconds(interval);
+        SpawnPrefabPolice(NPC, Position);
     }
 
     // 딕셔너리의 false를 찾아서 해당 인덱스를 반환하는 메서드(빈자리를 false, 자리 있음을 true로 판단하는 딕셔너리)
@@ -174,7 +197,7 @@ public class NPCSpawner : MonoBehaviour
 
     private void SetSeatCheck()
     {
-        Debug.Log("함수실행?");
+        //Debug.Log("함수실행?");
         int Count = 0;
         foreach(GameObject Seat in TargetPrefabList)
         {
@@ -190,6 +213,11 @@ public class NPCSpawner : MonoBehaviour
 //// 테스트용
 //while (true)
 //{
+//if (usedTargetIndex.Count > TargetPrefabList.Count)
+//{
+//    Debug.Log("Wait Spawn");
+//    yield break;
+//}
 //    if (usedTargetIndex.Count > TargetPrefabList.Count)
 //    {
 //        yield break;

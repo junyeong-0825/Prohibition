@@ -210,6 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  seatTarget: {fileID: 0}
+  nextTarget: {fileID: 0}
+  isFoodcourtInside: 0
   DestroyTarget: {fileID: 0}
 --- !u!114 &88765878760361368
 MonoBehaviour:
@@ -340,7 +343,7 @@ Transform:
   m_Children:
   - {fileID: 5448294879244118914}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6412318819386705278
 GameObject:

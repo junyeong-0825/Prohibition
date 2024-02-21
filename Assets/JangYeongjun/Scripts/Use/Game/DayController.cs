@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class DayController : MonoBehaviour
 {
     #region Fields
-    bool IsSave = false;
     bool IsDay = true;
     [SerializeField] Vector3 dayPosition, nightPosition, dayCameraPosition, nightCameraPosition;
     [SerializeField] Camera mainCamera;
@@ -26,13 +25,11 @@ public class DayController : MonoBehaviour
     #region Event
     private void OnEnable()
     {
-        GameEvents.OnSave += SaveEnded;
         GameEvents.OnDayEnd += HandleIsday;
         dayChangeButton.onClick.AddListener(IsDayButtonChange);
     }
     private void OnDisable()
     {
-        GameEvents.OnSave -= SaveEnded;
         GameEvents.OnDayEnd -= HandleIsday;
     }
     #region IsDay Change
@@ -46,11 +43,6 @@ public class DayController : MonoBehaviour
         IsDay = true;
     }
     #endregion
-
-    void SaveEnded()
-    {
-        IsSave = true;
-    }
     #endregion
 
     #region OneDay Coroutine
@@ -58,7 +50,10 @@ public class DayController : MonoBehaviour
     {
         while (true) // 무한 루프로 낮과 밤 사이클 반복
         {
-            Debug.Log("낮");
+            SaveData();
+
+            Debug.Log("Day");
+
             // 낮 장면 초기화
             DayTransform();
             DayAudio();
@@ -66,7 +61,10 @@ public class DayController : MonoBehaviour
 
             yield return new WaitUntil(() => !IsDay);
 
-            Debug.Log("밤");
+            SaveData();
+
+            Debug.Log("Night");
+
             // 밤 장면 초기화
             NightTransform();
             NightAudio();
@@ -74,13 +72,9 @@ public class DayController : MonoBehaviour
 
             yield return new WaitUntil(() => IsDay);
 
-            Debug.Log("로딩");
+            Debug.Log("Add days");
             AddDayCount();
-            SaveData();
             
-            yield return new WaitUntil(() => IsSave);
-            
-            ResetDay();
         }
     }
     #endregion
@@ -135,14 +129,7 @@ public class DayController : MonoBehaviour
     }
     void SaveData()
     {
-        LoginManager.loginInstance.LoginLoading.SetActive(true);
-        DataManager.instance.SetValue();
-    }
-
-    void ResetDay()
-    {
-        LoginManager.loginInstance.LoginLoading.SetActive(true);
-        IsSave = false;
+        DataManager.instance.SaveAllData();
     }
     #endregion
 

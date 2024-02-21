@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,7 +29,7 @@ public class SceneChanger : MonoBehaviour
     {
         AudioManager.audioInstance.PlayTitleSound();
     }
-    public void ChangeToNextScene(int kindOfLoad)
+    public void ChangeToNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
@@ -39,13 +37,10 @@ public class SceneChanger : MonoBehaviour
 
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            if (kindOfLoad == 0)
+            SceneManager.LoadScene(nextSceneIndex);
+            if (nextSceneIndex == 1)
             {
-                SceneLoad(nextSceneIndex);
-            }
-            else if (kindOfLoad == 1)
-            {
-                AsyncScnenLoad(nextSceneIndex);
+                playerButton.SetActive(true);
             }
         }
         else
@@ -53,13 +48,10 @@ public class SceneChanger : MonoBehaviour
             Debug.Log("No Scene");
         }
     }
+    /*
     void SceneLoad(int nextSceneIndex)
     {
         SceneManager.LoadScene(nextSceneIndex);
-        if (nextSceneIndex == 1)
-        {
-            AudioManager.audioInstance.PlayLoginSound();
-        }
     }
 
     void AsyncScnenLoad(int nextSceneIndex)
@@ -70,4 +62,5 @@ public class SceneChanger : MonoBehaviour
             playerButton.SetActive(true);
         }
     }
+    */
 }
