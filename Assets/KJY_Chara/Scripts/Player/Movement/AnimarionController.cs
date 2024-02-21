@@ -12,10 +12,10 @@ public class AnimarionController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ChangeParamitor(PlayerInputController.instance.inputX, PlayerInputController.instance.inputY);
+        ChangeParameter(PlayerInputController.instance.inputX, PlayerInputController.instance.inputY);
     }
 
-    public void ChangeParamitor(float inputx, float inputy)
+    public void ChangeParameter(float inputx, float inputy)
     {
         anim.SetFloat("InputX", inputx);
         anim.SetFloat("InputY", inputy);
