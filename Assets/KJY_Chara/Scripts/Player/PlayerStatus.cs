@@ -17,14 +17,13 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] SpriteRenderer imageSprite;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
-    public Item servingItem;
     private Menu result;
 
     public void IsServed(string menu)
     {
-        PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
         if (whatServed == Menu.None)
         {
+            PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
             bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
             if (existingItem.Quantity >= 2)
             {
@@ -44,18 +43,14 @@ public class PlayerStatus : MonoBehaviour
             }
             else
             {
-                NotServed(existingItem);
+                whatServed = Menu.None;
+                existingItem = null;
             }   
+            UpdateSprite(existingItem);
         }
-        else { NotServed(existingItem); }
-        UpdateSprite(existingItem);
+        
     }
 
-    void NotServed(PlayerInventory existingItem)
-    {
-        whatServed = Menu.None;
-        existingItem = null;
-    }
     void UpdateSprite(PlayerInventory existingItem)
     {
         if (existingItem != null) {imageSprite.sprite = Resources.Load<Sprite>(existingItem.spritePath);}
