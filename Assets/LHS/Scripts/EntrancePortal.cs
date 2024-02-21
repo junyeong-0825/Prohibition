@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EntrancePortal : MonoBehaviour
 {
@@ -40,13 +41,15 @@ public class EntrancePortal : MonoBehaviour
             bool checkInteractionCompleted = other.GetComponent<NPCInteraction>().InteractionCompleted;
             NPCController controller = other.GetComponent<NPCController>();
 
-            if (!checkInteractionStart)
+            if (!checkInteractionStart && !IsInside)
             {
+                controller.nextTarget = destination;
+                controller.SetTarget(controller.seatTarget);
                 teleport(other);
-                controller.SetTarget(destination);
             }
-            else if(checkInteractionCompleted)
+            else if(checkInteractionCompleted && IsInside)
             {
+                controller.SetTarget(controller.DestroyTarget);
                 teleport(other);
             }
         }
@@ -62,8 +65,9 @@ public class EntrancePortal : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, collision.transform.position) > distance)
         {
-
-            collision.transform.position = new Vector2(destination.position.x, destination.position.y);
+            NavMeshAgent agent = collision.GetComponent<NavMeshAgent>();
+            agent.Warp(destination.position);
+            //collision.transform.position = new Vector2(destination.position.x, destination.position.y);
         }
     }
 }
