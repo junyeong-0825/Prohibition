@@ -6895,15 +6895,6 @@ MonoBehaviour:
   imageSprite: {fileID: 1658501324}
   isUndercover: 0
   whatServed: 0
-  servingItem:
-    Classification: 
-    Name: 
-    Quantity: 0
-    PurchasePrice: 0
-    SellingPrice: 0
-    RiseScale: 0
-    EnhancementValue: 0
-    spritePath: 
 --- !u!95 &404869583
 Animator:
   serializedVersion: 5
@@ -16090,7 +16081,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

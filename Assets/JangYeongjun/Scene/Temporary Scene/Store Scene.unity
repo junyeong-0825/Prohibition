@@ -12449,7 +12449,6 @@ MonoBehaviour:
     Playerinfo:
       Gold: 100
       Debt: 50000
-      DidTutorial: 0
       Day: 0
     items: []
     inventory: []
@@ -21942,7 +21941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguesText: {fileID: 355040681}
   nameText: {fileID: 554062258}
-  dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
+  mafiaDialoguesSO: {fileID: 0}
 --- !u!1 &1816107958
 GameObject:
   m_ObjectHideFlags: 0
@@ -23188,7 +23187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguesText: {fileID: 1432775040}
   nameText: {fileID: 1885092925}
-  dialoguesSO: {fileID: 11400000, guid: 407092a8934d74743930bce9e660d180, type: 2}
+  mafiaDialoguesSO: {fileID: 0}
 --- !u!4 &1901758653
 Transform:
   m_ObjectHideFlags: 0
