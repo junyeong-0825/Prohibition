@@ -20,7 +20,6 @@ public class InteractionManager : MonoBehaviour
     }
     #endregion
     string objectName;
-    [SerializeField] GameObject MenuButton;
     [SerializeField] GameObject[] panels; 
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] GameObject alcoholPanel;
@@ -46,7 +45,6 @@ public class InteractionManager : MonoBehaviour
         {
             if (storePanels.TryGetValue(objectName+"Panel", out GameObject panel))
             {
-                MenuButton.SetActive(false);
                 panel.SetActive(true);
             }
             else if (objectName == "Counter")

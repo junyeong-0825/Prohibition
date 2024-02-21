@@ -22,7 +22,6 @@ public class SceneChanger : MonoBehaviour
         }
     }
     #endregion
-    [SerializeField] GameObject menuButton;
     [SerializeField] GameObject playerButton;
     internal AsyncOperation asyncLoad;
 
@@ -47,18 +46,6 @@ public class SceneChanger : MonoBehaviour
         else
         {
             Debug.Log("No Scene");
-        }
-    }
-
-    void MenuButtonActive()
-    {
-        if(menuButton.activeSelf) 
-        {
-
-        }
-        else
-        {
-
         }
     }
     /*

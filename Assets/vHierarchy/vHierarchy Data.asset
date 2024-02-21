@@ -38,6 +38,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1043963765-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-288178071-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-459667415-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-2091981896-0
         values:
         - colorIndex: 6
           iconNameOrGuid: Camera Icon
@@ -71,6 +72,8 @@ MonoBehaviour:
           iconNameOrGuid: 
         - colorIndex: 7
           iconNameOrGuid: PreMatCylinder
+        - colorIndex: 1
+          iconNameOrGuid: Canvas Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1431830543-0

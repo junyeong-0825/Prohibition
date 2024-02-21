@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+/*
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,4 +18,5 @@ public class InOutCameraMove : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         mainCamera.transform.position = inPosition;
     }
 }
+*/
 

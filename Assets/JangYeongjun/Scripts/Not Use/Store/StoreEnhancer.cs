@@ -1,6 +1,5 @@
+/*
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,3 +72,4 @@ public class StoreEnhancer : MonoBehaviour
         playerGoldText.text = String.Format("{0:N0}", DataManager.instance.nowPlayer.Playerinfo.Gold);
     }
 }
+*/

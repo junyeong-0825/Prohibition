@@ -149,6 +149,5 @@ public class NPCInteraction : MonoBehaviour
         Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerMenu.ToString());
         //돈을 더해줌
         DataManager.instance.nowPlayer.Playerinfo.Gold += servingItem.SellingPrice;
-        
     }
 }
