@@ -28,7 +28,7 @@ public class NPCSpawner : MonoBehaviour
 
     // 스폰 생성 지연시간
     private float guestInterval = 3.5f;
-    private float policeInterval = 0f;
+    private float policeInterval = 1f;
     [SerializeField] private Timer timeLeft;
 
     void Start()
@@ -75,6 +75,7 @@ public class NPCSpawner : MonoBehaviour
                 {
                     Debug.Log("PoliceSpawn");
                     yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
+                    policeInterval = UnityEngine.Random.Range(5f, 10f);
                     callCount++;
                     Debug.Log(callCount);
                 }
