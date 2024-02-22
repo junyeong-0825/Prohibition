@@ -14,12 +14,12 @@ public class BankInputValueSender : MonoBehaviour
         Int32.TryParse(bankInputField.text, out goldValue);
         if (goldValue > 0)
         {
-            Debug.Log($"{goldValue}¿Í {bankInputField.text}");
+            Debug.Log($"{goldValue}ì™€ {bankInputField.text}");
             BankManager.BankInstance.Repayment(goldValue);
         }
         else
         {
-            warningText.text = "ÀÔ·Â °ªÀÌ 1º¸´Ù ÀÛÀ¸¸é ¾ÈµË´Ï´Ù.";
+            warningText.text = "ì…ë ¥ ê°’ì´ 1ë³´ë‹¤ ì‘ìœ¼ë©´ ì•ˆë©ë‹ˆë‹¤.";
         }
     }
     public void InputLoan()
@@ -27,12 +27,13 @@ public class BankInputValueSender : MonoBehaviour
         Int32.TryParse(bankInputField.text, out goldValue);
         if (goldValue > 0)
         {
-            Debug.Log($"{goldValue}¿Í {bankInputField.text}");
+            Debug.Log($"{goldValue}ì™€ {bankInputField.text}");
             BankManager.BankInstance.Loan(goldValue);
         }
         else
         {
-            warningText.text = "ÀÔ·Â °ªÀÌ 1º¸´Ù ÀÛÀ¸¸é ¾ÈµË´Ï´Ù.";
+            warningText.text = "ì…ë ¥ ê°’ì´ 1ë³´ë‹¤ ì‘ìœ¼ë©´ ì•ˆë©ë‹ˆë‹¤.";
         }
     }
+
 }
