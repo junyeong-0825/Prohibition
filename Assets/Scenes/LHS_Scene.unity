@@ -12319,11 +12319,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayPosition: {x: 50, y: -3, z: 0}
-  nightPosition: {x: 107, y: -0.6, z: 0}
+  nightPosition: {x: 100, y: -2.27, z: 0}
   dayCameraPosition: {x: 50, y: 0, z: -10}
-  nightCameraPosition: {x: 0, y: 0, z: 0}
+  nightCameraPosition: {x: 100, y: 0, z: -10}
   mainCamera: {fileID: 309396333}
-  dayChangeButton: {fileID: 0}
+  dayChangeButton: {fileID: 1015570043}
   Player: {fileID: 404869573}
   timer: {fileID: 1420232586}
   npcSpawner: {fileID: 1308462219}
