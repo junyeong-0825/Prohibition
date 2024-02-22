@@ -20,7 +20,7 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Transform SearchLocationObject;
 
     [SerializeField] private List<GameObject> TargetPrefabList; //
-    public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
+    public Dictionary<int, bool> EmptySeatCheck = new();//
     [SerializeField] private Transform selfDestroyPositionP; //
 
 
@@ -28,8 +28,8 @@ public class NPCSpawner : MonoBehaviour
     private Coroutine spawnCoroutine;
 
     // 스폰 생성 지연시간
-    private float guestInterval = 1.5f;
-    private float policeInterval;
+    private float guestInterval = 3.5f;
+    private float policeInterval = 0f;
     [SerializeField] private Timer timeLeft;
 
     void Start()
@@ -50,8 +50,13 @@ public class NPCSpawner : MonoBehaviour
         {
 
             // 빈자리 수만큼 NPC가 스폰되었다면 스폰 상태를 체크하는 bool값 선언
-            bool isCheck = AreAllValuesFalse(EmptySeatCheck);
-            Debug.Log(isCheck);
+            bool isEmpty = AreAllValuesFalse(EmptySeatCheck);
+            //for(int i = 0; i<EmptySeatCheck.Count; i++)
+            //{
+            //    Debug.Log(EmptySeatCheck.ContainsKey(i));
+            //    Debug.Log(EmptySeatCheck.ContainsValue(false));
+            //}
+            Debug.Log(isEmpty);
             //Debug.Log(timeLeft);
 
             if(timeLeft.limitTimeSec <= 0f)
@@ -62,21 +67,26 @@ public class NPCSpawner : MonoBehaviour
                 yield break;
             }
 
-            else if (!isCheck)
+            if (!isEmpty)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
-                Debug.Log(index);
-                Debug.Log("SpawnStart!!!");
-                yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
+                Debug.Log("SpawnStart!!!!!!!");
+                int gacha = UnityEngine.Random.Range(0, 10);
+                if (gacha <= 2 && callCount < 3)
+                {
+                    Debug.Log("PoliceSpawn");
+                    yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
+                    callCount++;
+                    Debug.Log(callCount);
+                }
+                else
+                {
+                    Debug.Log("NPCSpawn");
+                    yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
+                }
             }
 
-            else if(callCount < 3)
-            {
-                policeInterval = UnityEngine.Random.Range(20f, 40f);
-                Debug.Log("PoliceSpawn");
-                yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
-                callCount++;
-            }
+            
             else
             {
                 yield return null;
@@ -126,6 +136,7 @@ public class NPCSpawner : MonoBehaviour
 
         // 스폰된 NPC의 타겟을 바깥 입구쪽으로 향하게 한다.
         controller.target = EntranceTargetObject;
+
         // 다음 행동에 필요한 빈좌석 좌표값을 넣는다.
         controller.seatTarget = randomTarget.transform;
 
@@ -184,14 +195,13 @@ public class NPCSpawner : MonoBehaviour
 
     private bool AreAllValuesFalse(Dictionary<int, bool> dict)
     {
-        foreach(var pair in dict)
+        foreach(var pair in dict.Values)
         {
-            if(!pair.Value)
+            if(!pair)
             {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -199,9 +209,12 @@ public class NPCSpawner : MonoBehaviour
     {
         //Debug.Log("함수실행?");
         int Count = 0;
+        
         foreach(GameObject Seat in TargetPrefabList)
         {
             EmptySeatCheck.Add(Count, false);
+            //Debug.Log(EmptySeatCheck.ContainsKey(Count));
+            //Debug.Log(EmptySeatCheck.ContainsValue(false));
             Count++;
         }
     }

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 88765878760361368}
   m_Layer: 0
   m_Name: MainSprite
-  m_TagString: Untagged
+  m_TagString: Police
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,6 @@ MonoBehaviour:
   target: {fileID: 0}
   seatTarget: {fileID: 0}
   nextTarget: {fileID: 0}
-  isFoodcourtInside: 0
   DestroyTarget: {fileID: 0}
 --- !u!114 &88765878760361368
 MonoBehaviour:
@@ -227,7 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SearchingSprite: {fileID: 6412318819386705278}
-  IsCheck: 1
   CheckingTime: 5
 --- !u!1 &3704129731997151547
 GameObject:

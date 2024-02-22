@@ -9,6 +9,7 @@ TagManager:
   - OutsideEntrance
   - InsideEntrance
   - SearchLocation
+  - Police
   layers:
   - Default
   - TransparentFX

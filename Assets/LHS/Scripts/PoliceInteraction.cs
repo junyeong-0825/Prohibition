@@ -16,17 +16,18 @@ public class PoliceInteraction : MonoBehaviour
 
     // 경찰이 가게 내부에 대기하는데에 걸리는 시간
     public float CheckingTime = 5f;
+    private float remainTime = 0f;
 
     // Update is called once per frame
     void Update()
     {
         if(checkingStarted && !checkingComplete)
         {
+            CheckingTime -= Time.deltaTime;
             // 입구에 들어왔다면 가게 내부를 점검하는 메서드 실행
             if(CheckingTime > 0f)
             {
                 // 시간 제한을 5초로 두고 0이 될때까지 메서드 실행
-                CheckingTime -= Time.deltaTime;
                 CheckingRestaurant();
             }
             else if(CheckingTime == 0f)
@@ -41,13 +42,16 @@ public class PoliceInteraction : MonoBehaviour
         // 식당 내부의 특정 위치(이 위치는 경찰이 식당 내부를 점검하는 위치에 "SearchLocation" 태그가 달린 오브젝트를 배치)와 충돌 시에 발생하도록 함
         if (other.CompareTag("SearchLocation") && !checkingStarted && !checkingComplete)
         {
-            //Debug.Log("StartInteraction");
-            SeachingStart();
+            NPCController controller = GetComponent<NPCController>();
+            if (controller.target == controller.transform)
+            {
+                SearchingStart();
+            }
         }
     }
 
     // 서칭 상태를 시작하는 bool 값 시작
-    private void SeachingStart()
+    private void SearchingStart()
     {
         checkingStarted = true;
         SearchingSprite.SetActive(true);
@@ -68,7 +72,7 @@ public class PoliceInteraction : MonoBehaviour
         PlayerStatus undercover = GameObject.Find("Player").GetComponent<PlayerStatus>();
 
 
-        if(!undercover.isUndercover)
+        if(!true) //!undercover.isUndercover
         {
             // 중첩 패널티를 넣기 위한 패널티
             GetPenalty();
