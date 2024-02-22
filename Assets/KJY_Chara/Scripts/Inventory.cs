@@ -67,8 +67,17 @@ public class Inventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy;
     }
 
+    public void ResetUI()
+    {
+        for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
+        {
+            uiSlots[i].Clear();
+        }
+    }
+
     public void UpdateUI()
     {
+
         for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
         {
             if (DataManager.instance.nowPlayer.inventory[i] != null)
