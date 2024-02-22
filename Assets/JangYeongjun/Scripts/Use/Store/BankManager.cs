@@ -10,7 +10,7 @@ public class BankManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI debtText;
     [SerializeField] TextMeshProUGUI warningText;
     [SerializeField] TextMeshProUGUI mafiaText;
-    #region ½Ì±ÛÅæ
+    #region ì‹±ê¸€í†¤
     public static BankManager BankInstance;
     private void Awake()
     {
@@ -43,9 +43,9 @@ public class BankManager : MonoBehaviour
         }
         else 
         {
-            warningText.text = String.Format("{0:N0}", goldValue - DataManager.instance.nowPlayer.Playerinfo.Gold) + "¸¸Å­ ¼ÒÁö±İÀÌ ºÎÁ·ÇÕ´Ï´Ù.";
+            warningText.text = String.Format("{0:N0}", goldValue - DataManager.instance.nowPlayer.Playerinfo.Gold) + "ë§Œí¼ ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.";
             mafiaText.color = new Color(1, 0, 0, 1);
-            mafiaText.text = "µ·ÀÌ ºÎÁ·ÇÏÀİ¾Æ!!!";
+            mafiaText.text = "ëˆì´ ë¶€ì¡±í•˜ì–ì•„!!!";
         }
     }
     public void Loan(int goldValue)
@@ -58,9 +58,9 @@ public class BankManager : MonoBehaviour
         }
         else 
         {
-            warningText.text = "ÇÑµµ 3,000,000 Gold¸¦ ³Ñ½À´Ï´Ù.";
+            warningText.text = "í•œë„ 3,000,000 Goldë¥¼ ë„˜ìŠµë‹ˆë‹¤.";
             mafiaText.color = new Color(1, 0, 0, 1);
-            mafiaText.text = "¾ó¸¶³ª ºô¸± »ı°¢ÀÎ °Å¾ß?!!";
+            mafiaText.text = "ì–¼ë§ˆë‚˜ ë¹Œë¦´ ìƒê°ì¸ ê±°ì•¼?!!";
         }
     }
     void TextFix()
