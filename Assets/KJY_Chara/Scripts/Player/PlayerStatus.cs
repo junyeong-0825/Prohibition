@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public enum Menu
 {
@@ -14,7 +15,7 @@ public enum Menu
 
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer imageSprite;
+    [SerializeField] internal Image imageSprite;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
     private Menu result;
@@ -23,6 +24,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (whatServed == Menu.None)
         {
+            
             PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
             bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
             if (existingItem.Quantity >= 2)
@@ -31,6 +33,7 @@ public class PlayerStatus : MonoBehaviour
                 {
                     whatServed = result;
                     existingItem.Quantity--;
+                    Inventory.Instance.UpdateUI();
                 }
             }
             else if (existingItem.Quantity == 1)
@@ -38,7 +41,9 @@ public class PlayerStatus : MonoBehaviour
                 if (success)
                 {
                     whatServed = result;
+                    existingItem.Quantity = 0;
                     DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+                    Inventory.Instance.UpdateUI();
                 }
             }
             else
@@ -53,8 +58,16 @@ public class PlayerStatus : MonoBehaviour
 
     void UpdateSprite(PlayerInventory existingItem)
     {
-        if (existingItem != null) {imageSprite.sprite = Resources.Load<Sprite>(existingItem.spritePath);}
-        else { imageSprite.sprite = null; }
+        if (existingItem != null) 
+        {
+            imageSprite.color = new Color(1, 1, 1, 1);
+            imageSprite.sprite = Resources.Load<Sprite>(existingItem.spritePath);
+        }
+        else 
+        {
+            imageSprite.color = new Color(1, 1, 1, 0);
+            imageSprite.sprite = null; 
+        }
     }
     public void OnUnderCovered(InputValue value)
     {

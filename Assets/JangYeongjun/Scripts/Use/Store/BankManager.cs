@@ -29,6 +29,10 @@ public class BankManager : MonoBehaviour
     {
         TextFix();
     }
+    private void OnEnable()
+    {
+        TextFix();
+    }
     public void Repayment(int goldValue)
     {
         if (goldValue <= DataManager.instance.nowPlayer.Playerinfo.Gold)

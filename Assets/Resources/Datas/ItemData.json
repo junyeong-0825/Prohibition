@@ -32,19 +32,9 @@
         },
         {
             "Classification":"Food",
-            "Name":"Ingredient",
-            "Quantity":0,
-            "PurchasePrice":15,
-            "SellingPrice":3,
-            "RiseScale":0,
-            "EnhancementValue":0,
-            "spritePath":"Sprites/Ingredient"
-        },
-        {
-            "Classification":"Food",
             "Name":"Food",
             "Quantity":0,
-            "PurchasePrice":0,
+            "PurchasePrice":10,
             "SellingPrice":10,
             "RiseScale":5,
             "EnhancementValue":0,
