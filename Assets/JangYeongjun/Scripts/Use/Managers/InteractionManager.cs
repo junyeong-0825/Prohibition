@@ -41,10 +41,13 @@ public class InteractionManager : MonoBehaviour
 
     void OnInteraction()
     {
+        
         if (objectName != "None")
         {
+            Debug.Log("Player Interaction");
             if (storePanels.TryGetValue(objectName+"Panel", out GameObject panel))
             {
+                Debug.Log("panel interaction");
                 panel.SetActive(true);
             }
             else if (objectName == "Counter")

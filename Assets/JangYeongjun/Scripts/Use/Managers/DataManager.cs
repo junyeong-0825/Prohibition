@@ -82,9 +82,9 @@ public class DataManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
-        
-        LoadAllData();
         path = Application.persistentDataPath;
+        LoadAllData();
+        SaveAllData();
     }
     #endregion
 
@@ -148,12 +148,14 @@ public class DataManager : MonoBehaviour
     }
     void SaveInventoryData()
     {
-        string InventoryData = JsonUtility.ToJson(nowPlayer.inventory, true);
+        InventoryWrapper invenWrapper = new InventoryWrapper { inventory = nowPlayer.inventory };
+        string InventoryData = JsonUtility.ToJson(invenWrapper, true);
         File.WriteAllText(path + "/inventoryData.json", InventoryData);
     }
     void SaveItemData()
     {
-        string ItemData = JsonUtility.ToJson(nowPlayer.items, true);
+        ItemWrapper itemWrapper = new ItemWrapper { items = nowPlayer.items };
+        string ItemData = JsonUtility.ToJson(itemWrapper, true);
         File.WriteAllText(path + "/itemData.json", ItemData);
     }
     #endregion
@@ -166,11 +168,14 @@ public class DataManager : MonoBehaviour
             #region ItemData Load
             if (File.Exists(path + "/itemData.json"))
             {
+                Debug.Log("Local Item Data ");
                 string ItemData = File.ReadAllText(path + "/itemData.json");
-                nowPlayer.items = JsonUtility.FromJson<List<Item>>(ItemData);
+                ItemWrapper itemWrapper = JsonUtility.FromJson<ItemWrapper>(ItemData);
+                nowPlayer.items = itemWrapper.items;
             }
             else
             {
+                Debug.Log("Base Item Data ");
                 TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
                 if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
                 Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
@@ -182,11 +187,13 @@ public class DataManager : MonoBehaviour
             #region PlayerData Load
             if (File.Exists(path + "/playerData.json"))
             {
+                Debug.Log("Local Player Data ");
                 string PlayerData = File.ReadAllText(path + "/playerData.json");
                 nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(PlayerData);
             }
             else
             {
+                Debug.Log("Base Player Data ");
                 nowPlayer.Playerinfo = new PlayerData();
             }
             #endregion
@@ -194,11 +201,14 @@ public class DataManager : MonoBehaviour
             #region InventoryData Load
             if (File.Exists(path + "/inventoryData.json"))
             {
+                Debug.Log("Local Inventory Data ");
                 string InventoryData = File.ReadAllText(path + "/inventoryData.json");
-                nowPlayer.inventory = JsonUtility.FromJson<List<PlayerInventory>>(InventoryData);
+                InventoryWrapper inventoryWrapper = JsonUtility.FromJson<InventoryWrapper>(InventoryData);
+                nowPlayer.inventory = inventoryWrapper.inventory;
             }
             else
             {
+                Debug.Log("Base Inventory Data ");
                 TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
                 if (inventoryFile == null) throw new Exception("인벤토리 데이터를 찾을 수 없습니다.");
                 Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);

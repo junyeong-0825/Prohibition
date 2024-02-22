@@ -15,6 +15,10 @@ public class StoreChanger : MonoBehaviour
         ChangePlayerGold();
     }
 
+    private void OnEnable()
+    {
+        ChangePlayerGold();
+    }
     void GenerateItemSlots()
     {
         if (contents == null || itemSlotPrefab == null)

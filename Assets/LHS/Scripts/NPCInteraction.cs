@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // 일반 손님의 상호작용 스크립트
@@ -27,14 +25,6 @@ public class NPCInteraction : MonoBehaviour
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
 
-    // 상호작용 실패에 따른 패널티를 호출하는 게임 오브젝트ㄴ
-    private Penalties NPCPanel;
-
-    private void Start()
-    {
-        NPCPanel = GameObject.Find("GameManager").GetComponent<Penalties>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -46,7 +36,7 @@ public class NPCInteraction : MonoBehaviour
             //Debug.Log(interactionTimer);
             if (interactionTimer >= interactionTimeLimit)
             {
-                NPCPanel.LowLevelTimePenalty();
+                GameEvents.NotifyTimeOverTrade();
                 HandleInteractionFailed();
             }
         }
@@ -81,18 +71,17 @@ public class NPCInteraction : MonoBehaviour
         {
             if(playerMenu == wantedMenu)
             {
-                // 해당 메뉴에 맞는 재회를 얻는 메서드가 필요함
-                SuccesTrade(playerMenu);
-
+                //상호작용 완료 시 데이터 바꿔줌
+                GameEvents.NotifySuccesTrade();
                 // 상호작용 완료를 위한 말풍선 바꿈
                 HandleInteractionSuccess();
             }
             else
             {
-                NPCPanel.LowLevelGoldPenalty();
+                //상호작용 완료 시 데이터 바꿔줌
+                GameEvents.NotifyFailTrade();
                 HandleInteractionFailed();
             }
-
         }
     }
 
@@ -135,14 +124,6 @@ public class NPCInteraction : MonoBehaviour
             NPCController controller = GetComponent<NPCController>();
             controller.SetTarget(controller.nextTarget);
         }
-    }
-
-    private void SuccesTrade(Menu playerMenu)
-    {
-        Item servingItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerMenu.ToString());
-        //돈을 더해줌
-        DataManager.instance.nowPlayer.Playerinfo.Gold += servingItem.SellingPrice;
-        
     }
 
 
