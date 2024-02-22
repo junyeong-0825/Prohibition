@@ -1,5 +1,7 @@
-﻿#region NameSpace
+#region NameSpace
+using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 #endregion
@@ -15,11 +17,14 @@ public class DayController : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] Timer timer;
     [SerializeField] NPCSpawner npcSpawner;
+    [SerializeField] PlayerStatus playerStatus;
+    [SerializeField] Button testButton;
     #endregion
 
     private void Start()
     {
         StartCoroutine("OneDay");
+        testButton.onClick.AddListener(TestIsDayChange);
     }
 
     #region Event
@@ -42,6 +47,14 @@ public class DayController : MonoBehaviour
     {
         IsDay = true;
     }
+    void TestIsDayChange()
+    {
+        if(IsDay)
+        {
+            IsDay=false;
+        }
+        else { IsDay=true;}
+    }
     #endregion
     #endregion
 
@@ -61,8 +74,8 @@ public class DayController : MonoBehaviour
 
             yield return new WaitUntil(() => !IsDay);
 
+            ResetPlayerStatus();
             SaveData();
-
             Debug.Log("Night");
 
             // 밤 장면 초기화
@@ -130,6 +143,42 @@ public class DayController : MonoBehaviour
     void SaveData()
     {
         DataManager.instance.SaveAllData();
+    }
+    #endregion
+
+    #region Reset PlayerStatus
+    
+    void ResetPlayerStatus()
+    {
+        if(playerStatus.whatServed != Menu.None)
+        {
+            PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == playerStatus.whatServed.ToString());
+            if (existingItem != null && existingItem.Quantity >= 1)
+            {
+                existingItem.Quantity++;
+                Inventory.Instance.UpdateUI();
+            }
+            else if (existingItem == null)
+            {
+                Item item = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerStatus.whatServed.ToString()); 
+                PlayerInventory newInventoryItem = new PlayerInventory
+                {
+                    Classification = item.Classification,
+                    Name = item.Name,
+                    Quantity = 1,
+                    PurchasePrice = item.PurchasePrice,
+                    SellingPrice = item.SellingPrice,
+                    RiseScale = item.RiseScale,
+                    spritePath = "Sprites/" + item.Name,
+                    EnhancementValue = 0
+                };
+                DataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
+                Inventory.Instance.UpdateUI();
+            }
+            playerStatus.whatServed = Menu.None;
+            playerStatus.imageSprite.color = new Color(1, 1, 1, 0);
+            playerStatus.imageSprite.sprite = null;
+        }
     }
     #endregion
 

@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 
 public class Inventory : MonoBehaviour
 {
-    //ÀÎº¥Åä¸® ½½·ÔÀÇ ±æÀÌ´Â TemporaryDataManager.instance.nowPlayer.inventory¿¡ ÀúÀåµÊ
+    //ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì˜ ê¸¸ì´ëŠ” TemporaryDataManager.instance.nowPlayer.inventoryì— ì €ì¥ë¨
     
     public List<ItemSlotUI> uiSlots;
 
@@ -67,11 +67,9 @@ public class Inventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy;
     }
 
-    
-
     public void UpdateUI()
     {
-        for(int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
+        for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
         {
             if (DataManager.instance.nowPlayer.inventory[i] != null)
             {
@@ -81,6 +79,10 @@ public class Inventory : MonoBehaviour
             {
                 uiSlots[i].Clear();
             }
+        }
+        if(DataManager.instance.nowPlayer.inventory.Count <= 0)
+        {
+            uiSlots[0].Clear();
         }
         haveGold = DataManager.instance.nowPlayer.Playerinfo.Gold;
         haveGoldText.text = haveGold.ToString();
