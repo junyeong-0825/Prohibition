@@ -16,6 +16,9 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Transform SpawnPositionPrefab;
     // 식당 입구의 위치값을 가지는 변수값
     [SerializeField] private Transform EntranceTargetObject;
+
+    [SerializeField] private Transform SearchLocationObject;
+
     [SerializeField] private List<GameObject> TargetPrefabList; //
     public Dictionary<int, bool> EmptySeatCheck = new Dictionary<int, bool>(); //
     [SerializeField] private Transform selfDestroyPositionP; //
@@ -26,7 +29,7 @@ public class NPCSpawner : MonoBehaviour
 
     // 스폰 생성 지연시간
     private float guestInterval = 1.5f;
-    //private float policeInterval = 12f;
+    private float policeInterval;
     [SerializeField] private Timer timeLeft;
 
     void Start()
@@ -40,6 +43,8 @@ public class NPCSpawner : MonoBehaviour
     // 일반 NPC를 스폰하는 코루틴 메서드
     internal IEnumerator spawnNPC()
     {
+        int callCount = 0;
+
         //실전용
         while (true)
         {
@@ -57,12 +62,20 @@ public class NPCSpawner : MonoBehaviour
                 yield break;
             }
 
-            if (!isCheck)
+            else if (!isCheck)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
                 Debug.Log(index);
                 Debug.Log("SpawnStart!!!");
                 yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
+            }
+
+            else if(callCount < 3)
+            {
+                policeInterval = UnityEngine.Random.Range(20f, 40f);
+                Debug.Log("PoliceSpawn");
+                yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
+                callCount++;
             }
             else
             {
@@ -130,15 +143,28 @@ public class NPCSpawner : MonoBehaviour
 
     }
 
+    private void SpawnPrefabPolice(GameObject NPC, Transform Position)
+    {
+        GameObject newNpc = Instantiate(NPC, Position.position, Quaternion.identity);
+
+        NPCController controller = newNpc.transform.Find("MainSprite").GetComponent<NPCController>();
+
+        controller.target = EntranceTargetObject;
+
+        controller.nextTarget = SearchLocationObject;
+
+        controller.DestroyTarget = selfDestroyPositionP;
+
+        controller.SetTarget(controller.target);
+    }
+
     //경찰을 스폰하는 메서드
     //조건 : 제한 시간 내에 스폰 횟수를 충족시켜야 함, 경찰은 한 스테이지 당 총 3번 스폰된다, 스폰 되면 다른 경찰을 스폰할 수 없다,
-    internal IEnumerator spawnPolice()
+    private IEnumerator SpawnPolice(float interval, GameObject NPC, Transform Position)
     {
-        
-        while (true)
-        {
-            yield return null;
-        }
+
+        yield return new WaitForSeconds(interval);
+        SpawnPrefabPolice(NPC, Position);
     }
 
     // 딕셔너리의 false를 찾아서 해당 인덱스를 반환하는 메서드(빈자리를 false, 자리 있음을 true로 판단하는 딕셔너리)

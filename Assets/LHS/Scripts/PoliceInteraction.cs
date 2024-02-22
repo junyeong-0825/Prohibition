@@ -9,8 +9,10 @@ public class PoliceInteraction : MonoBehaviour
     public GameObject SearchingSprite;
 
     // 경찰 프리팹이 가게 점검을 실]
-    private bool CheckingComplete = false;
-    private bool CheckingStarted = false;
+    private bool checkingComplete = false;
+    public bool CheckingComplete { get { return checkingComplete; } }
+    private bool checkingStarted = false;
+    public bool CheckingStarted { get { return checkingStarted; } }
 
     // 경찰이 가게 내부에 대기하는데에 걸리는 시간
     public float CheckingTime = 5f;
@@ -18,7 +20,7 @@ public class PoliceInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CheckingStarted && !CheckingComplete)
+        if(checkingStarted && !checkingComplete)
         {
             // 입구에 들어왔다면 가게 내부를 점검하는 메서드 실행
             if(CheckingTime > 0f)
@@ -37,7 +39,7 @@ public class PoliceInteraction : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 식당 내부의 특정 위치(이 위치는 경찰이 식당 내부를 점검하는 위치에 "SearchLocation" 태그가 달린 오브젝트를 배치)와 충돌 시에 발생하도록 함
-        if (other.CompareTag("SearchLocation") && !CheckingStarted && !CheckingComplete)
+        if (other.CompareTag("SearchLocation") && !checkingStarted && !checkingComplete)
         {
             //Debug.Log("StartInteraction");
             SeachingStart();
@@ -47,15 +49,15 @@ public class PoliceInteraction : MonoBehaviour
     // 서칭 상태를 시작하는 bool 값 시작
     private void SeachingStart()
     {
-        CheckingStarted = true;
+        checkingStarted = true;
         SearchingSprite.SetActive(true);
     }
 
     // 서칭 상태를 종료하는 bool 값들 수정 및 타겟 조정
     private void SearchingComplete()
     {
-        CheckingComplete = true;
-        CheckingStarted = false;
+        checkingComplete = true;
+        checkingStarted = false;
         SearchingSprite.SetActive(false);
         ExitToInsideEntrance();
     }
@@ -78,13 +80,14 @@ public class PoliceInteraction : MonoBehaviour
     {
         // 게임 매니저 오브젝트에 있는 패널티 컴포넌트를 이용해 조건에 따른 
         Penalties PPenalty = GameObject.Find("GameManager").GetComponent<Penalties>();
+        Debug.Log("Penalties");
         
     }
 
     // 자가 파괴 지정
     private void ExitToInsideEntrance()
     {
-        if (CheckingComplete)
+        if (checkingComplete)
         {
             NPCController controller = GetComponent<NPCController>();
             controller.SetTarget(controller.nextTarget);
