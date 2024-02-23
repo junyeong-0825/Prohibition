@@ -15,12 +15,12 @@ public class PlayerStatusItemPosition : MonoBehaviour
         if(inputX == 0 && inputY == 0)
         {
             statusItem.SetActive(true);
-            statusItem.transform.localPosition = new Vector3(-0.28f,transform.localPosition.y, 0);
+            statusItem.transform.localPosition = new Vector3(-0.28f,-0.2f, 0);
         }
         else if(inputX == 1)
         {
             statusItem.SetActive(true);
-            statusItem.transform.localPosition = new Vector3(0f, transform.localPosition.y, 0);
+            statusItem.transform.localPosition = new Vector3(0f, -0.2f, 0);
         }
         else if(inputX == -1)
         {
@@ -29,12 +29,12 @@ public class PlayerStatusItemPosition : MonoBehaviour
         else if(inputY > 0)
         {
             statusItem.SetActive(true);
-            statusItem.transform.localPosition = new Vector3(0.28f, transform.localPosition.y, 0);
+            statusItem.transform.localPosition = new Vector3(0.28f, -0.2f, 0);
         }
         else if (inputY < 0)
         {
             statusItem.SetActive(true);
-            statusItem.transform.localPosition = new Vector3(-0.28f, transform.localPosition.y, 0);
+            statusItem.transform.localPosition = new Vector3(-0.28f, -0.2f, 0);
         }
     }
 }
