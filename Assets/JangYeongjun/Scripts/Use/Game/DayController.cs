@@ -1,7 +1,6 @@
 #region NameSpace
-using System;
 using System.Collections;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 #endregion
@@ -11,17 +10,20 @@ public class DayController : MonoBehaviour
 {
     #region Fields
     bool IsDay = true;
+    bool IsGameEnd = false;
     [SerializeField] Vector3 dayPosition, nightPosition, dayCameraPosition, nightCameraPosition;
     [SerializeField] Camera mainCamera;
     [SerializeField] Button dayChangeButton;
+    [SerializeField] Button testButton;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject playerInfoPanel;
+    [SerializeField] TextMeshProUGUI daysText;
     [SerializeField] Timer timer;
     [SerializeField] NPCSpawner npcSpawner;
     [SerializeField] PlayerStatus playerStatus;
-    [SerializeField] Button testButton;
     #endregion
 
-    private void Start()
+    void Start()
     {
         StartCoroutine("OneDay");
         testButton.onClick.AddListener(TestIsDayChange);
@@ -61,33 +63,30 @@ public class DayController : MonoBehaviour
     #region OneDay Coroutine
     IEnumerator OneDay()
     {
-        while (true) // 무한 루프로 낮과 밤 사이클 반복
+        while (!IsGameEnd) // 무한 루프로 낮과 밤 사이클 반복
         {
+            #region Day
+            playerInfoPanel.SetActive(true);
             SaveData();
-
-            Debug.Log("Day");
-
-            // 낮 장면 초기화
             DayTransform();
             DayAudio();
             DayNPC();
+            #endregion
 
             yield return new WaitUntil(() => !IsDay);
 
+            #region Night
+            playerInfoPanel.SetActive(false);
             ResetPlayerStatus();
             SaveData();
-            Debug.Log("Night");
-
-            // 밤 장면 초기화
             NightTransform();
             NightAudio();
             NightNPC();
+            #endregion
 
             yield return new WaitUntil(() => IsDay);
 
-            Debug.Log("Add days");
             AddDayCount();
-            
         }
     }
     #endregion
@@ -139,6 +138,7 @@ public class DayController : MonoBehaviour
     void AddDayCount()
     {
         DataManager.instance.nowPlayer.Playerinfo.Day ++;
+        daysText.text = DataManager.instance.nowPlayer.Playerinfo.Day.ToString();
     }
     void SaveData()
     {
@@ -176,7 +176,6 @@ public class DayController : MonoBehaviour
                 Inventory.Instance.UpdateUI();
             }
             playerStatus.whatServed = Menu.None;
-            playerStatus.imageSprite.color = new Color(1, 1, 1, 0);
             playerStatus.imageSprite.sprite = null;
         }
     }

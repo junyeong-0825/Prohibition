@@ -15,7 +15,7 @@ public enum Menu
 
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] internal Image imageSprite;
+    [SerializeField] internal SpriteRenderer imageSprite;
     public bool isUndercover = false;
     public Menu whatServed = Menu.None;
     private Menu result;
@@ -32,31 +32,34 @@ public class PlayerStatus : MonoBehaviour
         {
             Inventory.Instance.ResetUI();
             PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
-            bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
-            if (existingItem.Quantity >= 2)
+            if (existingItem != null)
             {
-                if (success)
+                bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
+                if (existingItem.Quantity >= 2)
                 {
-                    whatServed = result;
-                    existingItem.Quantity--;
-                    Inventory.Instance.UpdateUI();
+                    if (success)
+                    {
+                        whatServed = result;
+                        existingItem.Quantity--;
+                        Inventory.Instance.UpdateUI();
+                    }
+                }
+                else if (existingItem.Quantity == 1)
+                {
+                    if (success)
+                    {
+                        whatServed = result;
+                        existingItem.Quantity = 0;
+                        DataManager.instance.nowPlayer.inventory.Remove(existingItem);
+                        Inventory.Instance.UpdateUI();
+                    }
+                }
+                else
+                {
+                    whatServed = Menu.None;
+                    existingItem = null;
                 }
             }
-            else if (existingItem.Quantity == 1)
-            {
-                if (success)
-                {
-                    whatServed = result;
-                    existingItem.Quantity = 0;
-                    DataManager.instance.nowPlayer.inventory.Remove(existingItem);
-                    Inventory.Instance.UpdateUI();
-                }
-            }
-            else
-            {
-                whatServed = Menu.None;
-                existingItem = null;
-            }   
             UpdateSprite(existingItem);
         }
         
@@ -66,12 +69,10 @@ public class PlayerStatus : MonoBehaviour
     {
         if (existingItem != null) 
         {
-            imageSprite.color = new Color(1, 1, 1, 1);
             imageSprite.sprite = Resources.Load<Sprite>(existingItem.spritePath);
         }
         else 
         {
-            imageSprite.color = new Color(1, 1, 1, 0);
             imageSprite.sprite = null; 
         }
     }

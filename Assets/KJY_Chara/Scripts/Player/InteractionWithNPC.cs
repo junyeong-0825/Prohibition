@@ -46,7 +46,6 @@ public class InteractionWithNPC : MonoBehaviour
     void ChangeStatus()
     {
         status.whatServed = Menu.None;
-        status.imageSprite.color = new Color(1,1,1,0);
         status.imageSprite.sprite = null;
     }
 
