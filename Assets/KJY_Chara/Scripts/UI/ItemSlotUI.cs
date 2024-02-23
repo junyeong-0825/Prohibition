@@ -8,7 +8,7 @@ using static UnityEditor.Progress;
 
 public class ItemSlotUI : MonoBehaviour
 {
-    //¾ÆÀÌÅÛ, ÀÎº¥Åä¸®, ºú¿¡ ´ëÇÑ µ¥ÀÌÅÍ
+    //ì•„ì´í…œ, ì¸ë²¤í† ë¦¬, ë¹šì— ëŒ€í•œ ë°ì´í„°
     private PlayerInventory curSlot;
     public Image icon;
     public TextMeshProUGUI quantityText;
@@ -18,7 +18,6 @@ public class ItemSlotUI : MonoBehaviour
     public void Set(PlayerInventory slot)
     {
         curSlot = slot;
-        icon.gameObject.SetActive(true);
         icon.sprite = Resources.Load<Sprite>(slot.spritePath);
         quantityText.text = slot.Quantity > 1 ? slot.Quantity.ToString() : string.Empty;
     }
@@ -26,7 +25,7 @@ public class ItemSlotUI : MonoBehaviour
     public void Clear()
     {
         curSlot = null;
-        icon.gameObject.SetActive(false);
+        icon.sprite = null;
         quantityText.text = string.Empty;
     }
 

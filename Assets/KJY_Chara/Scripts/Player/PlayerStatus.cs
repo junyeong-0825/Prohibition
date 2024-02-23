@@ -30,7 +30,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (whatServed == Menu.None)
         {
-            
+            Inventory.Instance.ResetUI();
             PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == menu);
             bool success = Enum.TryParse<Menu>(existingItem.Name, out result);
             if (existingItem.Quantity >= 2)

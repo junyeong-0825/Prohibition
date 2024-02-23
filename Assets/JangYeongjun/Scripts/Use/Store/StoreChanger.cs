@@ -23,7 +23,7 @@ public class StoreChanger : MonoBehaviour
     {
         if (contents == null || itemSlotPrefab == null)
         {
-            Debug.LogError("ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ®°¡ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("í•„ìš”í•œ ì»´í¬ë„ŒíŠ¸ê°€ í• ë‹¹ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -72,12 +72,12 @@ public class StoreChanger : MonoBehaviour
 
                 if (existingItem != null && existingItem.EnhancementValue < 1)
                 {
-                    // ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌÅÛÀÌ¸é ¼ö·®¸¸ Áõ°¡
+                    // ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´í…œì´ë©´ ìˆ˜ëŸ‰ë§Œ ì¦ê°€
                     existingItem.Quantity += 1;
                 }
                 else
                 {
-                    // ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é »õ·Î Ãß°¡
+                    // ì¸ë²¤í† ë¦¬ì— ì•„ì´í…œì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ì¶”ê°€
                     PlayerInventory newInventoryItem = new PlayerInventory
                     {
                         Classification = item.Classification,
@@ -90,7 +90,7 @@ public class StoreChanger : MonoBehaviour
                         EnhancementValue = 0
                     }; 
 
-                    // ÀÎº¥Åä¸®¿¡ »õ·Î¿î ¾ÆÀÌÅÛ Ãß°¡
+                    // ì¸ë²¤í† ë¦¬ì— ìƒˆë¡œìš´ ì•„ì´í…œ ì¶”ê°€
                     DataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
                 }
             }

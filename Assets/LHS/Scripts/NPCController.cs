@@ -44,10 +44,14 @@ public class NPCController : MonoBehaviour
 
     void Update()
     {
-        // 목표로 이동시키도록 하는 메서드
-        agent.SetDestination(target.position);
-        MoveDirection();
-        SetAnimation();
+        if (target != null)
+        {
+
+            // 목표로 이동시키도록 하는 메서드
+            agent.SetDestination(target.position);
+            MoveDirection();
+            SetAnimation();
+        }
     }
 
 
