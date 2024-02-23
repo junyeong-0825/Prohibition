@@ -9,14 +9,14 @@ public class PoliceInteraction : MonoBehaviour
     public GameObject SearchingSprite;
 
     // 경찰 프리팹이 가게 점검을 실]
-    private bool checkingComplete = false;
+    [SerializeField] private bool checkingComplete = false;
     public bool CheckingComplete { get { return checkingComplete; } }
-    private bool checkingStarted = false;
+    [SerializeField] private bool checkingStarted = false;
     public bool CheckingStarted { get { return checkingStarted; } }
 
     // 경찰이 가게 내부에 대기하는데에 걸리는 시간
     public float CheckingTime = 5f;
-    private float remainTime = 0f;
+    [SerializeField] private float remainTime = 0f;
 
     // Update is called once per frame
     void Update()
@@ -25,7 +25,6 @@ public class PoliceInteraction : MonoBehaviour
         {
             SearchingSprite.SetActive(true);
             remainTime += Time.deltaTime;
-            Debug.Log(remainTime);
             // 입구에 들어왔다면 가게 내부를 점검하는 메서드 실행
             if(remainTime < CheckingTime)
             {
@@ -33,7 +32,7 @@ public class PoliceInteraction : MonoBehaviour
                 // 시간 제한을 5초로 두고 0이 될때까지 메서드 실행
                 CheckingRestaurant();
             }
-            else if(remainTime > CheckingTime)
+            else if(remainTime >= CheckingTime)
             {
                 SearchingComplete();
             }
@@ -43,10 +42,13 @@ public class PoliceInteraction : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 식당 내부의 특정 위치(이 위치는 경찰이 식당 내부를 점검하는 위치에 "SearchLocation" 태그가 달린 오브젝트를 배치)와 충돌 시에 발생하도록 함
-        if (other.CompareTag("SearchLocation"))
+        if (other.CompareTag("SearchLocation") && !checkingStarted)
         {
             NPCController controller = GetComponent<NPCController>();
-            SearchingStart();
+            if (controller.target == other.transform)
+            {
+                SearchingStart();
+            }
         }
     }
 
@@ -94,6 +96,7 @@ public class PoliceInteraction : MonoBehaviour
         {
             NPCController controller = GetComponent<NPCController>();
             controller.SetTarget(controller.nextTarget);
+            controller.nextTarget = controller.DestroyTarget;
         }
     }
 }

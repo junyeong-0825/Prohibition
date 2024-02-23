@@ -61,7 +61,7 @@ public class EntrancePortal : MonoBehaviour
             bool checkCheckingCompleted = other.GetComponent<PoliceInteraction>().CheckingComplete;
             NPCController controller = other.GetComponent<NPCController>();
 
-            if(!checkCheckingStart && !IsInside)
+            if(!checkCheckingStart && !IsInside && !checkCheckingCompleted)
             {
                 controller.SetTarget(controller.nextTarget);
                 controller.nextTarget = destination;
@@ -69,7 +69,8 @@ public class EntrancePortal : MonoBehaviour
             }
             else if(checkCheckingCompleted && IsInside)
             {
-                controller.SetTarget(controller.DestroyTarget);
+                Debug.Log("Active");
+                controller.SetTarget(controller.nextTarget);
                 teleport(other);
             }
         }
