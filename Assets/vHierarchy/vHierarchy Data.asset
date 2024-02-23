@@ -40,6 +40,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-459667415-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-2091981896-0
         - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-890838527-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-578593258-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-1021547728-0
+        - globalObjectIdString: GlobalObjectId_V1-2-90d87bb465f7646c780791e3a59be38c-2053326095-0
         values:
         - colorIndex: 6
           iconNameOrGuid: Camera Icon
@@ -57,13 +60,13 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 0
           iconNameOrGuid: AudioClip Icon
-        - colorIndex: 0
+        - colorIndex: 3
           iconNameOrGuid: Favorite
         - colorIndex: 1
           iconNameOrGuid: Canvas Icon
         - colorIndex: 1
           iconNameOrGuid: Canvas Icon
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: Settings Icon
         - colorIndex: 3
           iconNameOrGuid: 
@@ -77,6 +80,12 @@ MonoBehaviour:
           iconNameOrGuid: Canvas Icon
         - colorIndex: 1
           iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 6
+          iconNameOrGuid: 
+        - colorIndex: 8
+          iconNameOrGuid: Settings Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-fde5f6b4e0fa9d746b76359e4761a97e-1431830543-0
