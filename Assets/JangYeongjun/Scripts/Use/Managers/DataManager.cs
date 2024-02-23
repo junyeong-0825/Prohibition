@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Datas
@@ -58,6 +59,7 @@ public class DataManager : MonoBehaviour
 {
     internal string playerName;
     public Datas nowPlayer = new Datas();
+    [SerializeField] Button deletButton;
 
     string path;
 
@@ -87,6 +89,11 @@ public class DataManager : MonoBehaviour
         SaveAllData();
     }
     #endregion
+
+    private void Start()
+    {
+        deletButton.onClick.AddListener(()=>DeleteAllData());
+    }
 
     /*
     #region Save
@@ -160,6 +167,7 @@ public class DataManager : MonoBehaviour
     }
     #endregion
 
+    #region LoadDatas
     public void LoadAllData()
     {
         try
@@ -177,11 +185,11 @@ public class DataManager : MonoBehaviour
             {
                 Debug.Log("Base Item Data ");
                 TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
-                if (itemFile == null) throw new Exception("¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                if (itemFile == null) throw new Exception("ì•„ì´í…œ ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
                 nowPlayer.items = itemData.items;
             }
-            Debug.Log("¾ÆÀÌÅÛ µ¥ÀÌÅÍ ¼º°ø");
+            Debug.Log("ì•„ì´í…œ ë°ì´í„° ì„±ê³µ");
             #endregion
 
             #region PlayerData Load
@@ -210,7 +218,7 @@ public class DataManager : MonoBehaviour
             {
                 Debug.Log("Base Inventory Data ");
                 TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
-                if (inventoryFile == null) throw new Exception("ÀÎº¥Åä¸® µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                if (inventoryFile == null) throw new Exception("ì¸ë²¤í† ë¦¬ ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
                 nowPlayer.inventory = inventoryData.inventory;
             }
@@ -218,7 +226,17 @@ public class DataManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError("µ¥ÀÌÅÍ¸¦ ·ÎµåÇÏ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù.: " + e.Message);
+            Debug.LogError("ë°ì´í„°ë¥¼ ë¡œë“œí•˜ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.: " + e.Message);
         }
     }
+    #endregion
+
+    #region DeleteDatas
+    void DeleteAllData()
+    {
+        File.Delete(path + "/playerData.json");
+        File.Delete(path + "/inventoryData.json");
+        File.Delete(path + "/itemData.json");
+    }
+    #endregion
 }
