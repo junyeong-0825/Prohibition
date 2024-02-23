@@ -20,7 +20,7 @@ public class PlayerStatus : MonoBehaviour
     public Menu whatServed = Menu.None;
     private Menu result;
     private GameObject UnderCoverUI;
-
+    [SerializeField] GameObject alcoholPanel;
     private void Awake()
     {
         UnderCoverUI = GameObject.Find("Emoji");
@@ -54,10 +54,10 @@ public class PlayerStatus : MonoBehaviour
                         Inventory.Instance.UpdateUI();
                     }
                 }
-                else
+
+                if(alcoholPanel.activeSelf)
                 {
-                    whatServed = Menu.None;
-                    existingItem = null;
+                    alcoholPanel.SetActive(false);
                 }
             }
             UpdateSprite(existingItem);

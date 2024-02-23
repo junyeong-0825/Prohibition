@@ -13,11 +13,8 @@ public class DayController : MonoBehaviour
     bool IsGameEnd = false;
     [SerializeField] Vector3 dayPosition, nightPosition, dayCameraPosition, nightCameraPosition;
     [SerializeField] Camera mainCamera;
-    [SerializeField] Button dayChangeButton;
-    [SerializeField] Button testButton;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject playerInfoPanel;
-    [SerializeField] TextMeshProUGUI daysText;
     [SerializeField] Timer timer;
     [SerializeField] NPCSpawner npcSpawner;
     [SerializeField] PlayerStatus playerStatus;
@@ -26,18 +23,18 @@ public class DayController : MonoBehaviour
     void Start()
     {
         StartCoroutine("OneDay");
-        testButton.onClick.AddListener(TestIsDayChange);
     }
 
     #region Event
     private void OnEnable()
     {
         GameEvents.OnDayEnd += HandleIsday;
-        dayChangeButton.onClick.AddListener(IsDayButtonChange);
+        GameEvents.OnDayStart += IsDayChange;
     }
     private void OnDisable()
     {
         GameEvents.OnDayEnd -= HandleIsday;
+        GameEvents.OnDayStart -= IsDayChange;
     }
     #region IsDay Change
     private void HandleIsday()
@@ -45,17 +42,9 @@ public class DayController : MonoBehaviour
         IsDay = false;
     }
 
-    void IsDayButtonChange()
+    void IsDayChange()
     {
         IsDay = true;
-    }
-    void TestIsDayChange()
-    {
-        if(IsDay)
-        {
-            IsDay=false;
-        }
-        else { IsDay=true;}
     }
     #endregion
     #endregion
@@ -124,7 +113,7 @@ public class DayController : MonoBehaviour
     #region Reset NPC
     void DayNPC()
     {
-        timer.limitTimeSec = 240f;
+        timer.limitTimeSec = 60f;
         StartCoroutine(npcSpawner.spawnNPC());
     }
     void NightNPC()
@@ -138,7 +127,6 @@ public class DayController : MonoBehaviour
     void AddDayCount()
     {
         DataManager.instance.nowPlayer.Playerinfo.Day ++;
-        daysText.text = DataManager.instance.nowPlayer.Playerinfo.Day.ToString();
     }
     void SaveData()
     {
