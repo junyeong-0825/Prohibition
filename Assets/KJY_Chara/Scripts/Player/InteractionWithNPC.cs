@@ -11,6 +11,7 @@ public class InteractionWithNPC : MonoBehaviour
         GameEvents.OnSuccessTrade += TradeSucceeded;
         GameEvents.OnFailTrade += TradeFailed;
         GameEvents.OnTimeOverTrade += TimeOver;
+        GameEvents.OnPolicePenalty += PolicePenalty;
     }
     private void OnDisable()
     {
@@ -47,5 +48,10 @@ public class InteractionWithNPC : MonoBehaviour
         status.whatServed = Menu.None;
         status.imageSprite.color = new Color(1,1,1,0);
         status.imageSprite.sprite = null;
+    }
+
+    void PolicePenalty()
+    {
+        penalties.HighLevelGoldPenalty();
     }
 }
