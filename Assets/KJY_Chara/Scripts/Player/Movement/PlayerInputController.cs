@@ -63,14 +63,10 @@ public class PlayerInputController : CharaController
             {
                 currentNPCInteraction.CompareMenu(playerHandleMenu.whatServed);
             }
-
-            // string deliverMenu = "test";
-            //currentNPCInteraction.DeliverMenu(deliverMenu);
-            //Debug.Log(currentNPCInteraction.orderMenu);
         }
     }
 
-    // 위의 메서드와 같은 용도의 비교용으로써 enum 값으로 비교하며, 실질적으로 패널티 부여나 아니면 재화 획득들 넣을 메소드이다.
+    // 위의 메서드와 같은 용도의 비교용으로써 enum 값으로 비교하며, 실질적으로 패널티 부여나 아니면 재화 획득들 넣을 메소드이다. => 폐기
     private void DeliverEnumMenu()
     {
         if (currentNPCInteraction != null && currentNPCInteraction.InteractionStarted)
