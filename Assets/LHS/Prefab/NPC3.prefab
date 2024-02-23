@@ -597,9 +597,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092a1977878e44c9f974396abde4a7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrderMenuSprite: {fileID: 0}
-  satisfiedSprite: {fileID: 0}
-  unsatisfiedSprite: {fileID: 0}
+  OrderMenuSprite: {fileID: 86549207450250541}
+  satisfiedSprite: {fileID: 4835149820033754975}
+  unsatisfiedSprite: {fileID: 9065459428126517936}
   interactionTimeLimit: 10
   wantedMenu: 0
   interactionStarted: 0
