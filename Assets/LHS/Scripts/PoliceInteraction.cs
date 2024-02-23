@@ -84,8 +84,7 @@ public class PoliceInteraction : MonoBehaviour
     private void GetPenalty()
     {
         // 게임 매니저 오브젝트에 있는 패널티 컴포넌트를 이용해 조건에 따른 
-        Penalties PPenalty = GameObject.Find("GameManager").GetComponent<Penalties>();
-        Debug.Log("Penalties");
+        GameEvents.NotifyPolicePenalty();
         
     }
 
