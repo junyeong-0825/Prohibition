@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class Penalties : MonoBehaviour
     public void HighLevelGoldPenalty()
     {
         //범칙금으로 돈 뜯어감
-        DataManager.instance.nowPlayer.Playerinfo.Gold = DataManager.instance.nowPlayer.Playerinfo.Gold - (DataManager.instance.nowPlayer.Playerinfo.Gold / 5);
+        DataManager.instance.nowPlayer.Playerinfo.Gold -= DataManager.instance.nowPlayer.Playerinfo.Gold / 5;
         Inventory.Instance.UpdateUI();
         Debug.Log("금주법으로 인한 벌금!");
     }

@@ -59,7 +59,6 @@ public class DataManager : MonoBehaviour
 {
     internal string playerName;
     public Datas nowPlayer = new Datas();
-    [SerializeField] Button deletButton;
 
     string path;
 
@@ -89,11 +88,6 @@ public class DataManager : MonoBehaviour
         SaveAllData();
     }
     #endregion
-
-    private void Start()
-    {
-        deletButton.onClick.AddListener(()=>DeleteAllData());
-    }
 
     /*
     #region Save
@@ -140,6 +134,7 @@ public class DataManager : MonoBehaviour
     #endregion
     */
 
+    #region SaveDatas
     public void SaveAllData()
     {
         SavePlayerData();
@@ -147,7 +142,6 @@ public class DataManager : MonoBehaviour
         SaveItemData();
     }
 
-    #region SaveDatas
     void SavePlayerData()
     {
         string playerData = JsonUtility.ToJson(nowPlayer.Playerinfo, true);
