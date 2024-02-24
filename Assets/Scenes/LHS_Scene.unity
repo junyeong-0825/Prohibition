@@ -5296,7 +5296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
       propertyPath: guestPrefab.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
       propertyPath: menuSprite.Array.data[0]
@@ -5330,6 +5330,10 @@ PrefabInstance:
       propertyPath: guestPrefab.Array.data[2]
       value: 
       objectReference: {fileID: 4769139621545986568, guid: fa54a6c507f8e461185b06dc6df2994c, type: 3}
+    - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
+      propertyPath: guestPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 6297553111117142958, guid: ab812994df58446f6a1d823579462c26, type: 3}
     - target: {fileID: 2938961362106058755, guid: d020d3eaf48ba42b780cd3cb9a6ca6f4, type: 3}
       propertyPath: TargetPrefabList.Array.size
       value: 16
