@@ -62,8 +62,9 @@ public class InteractionWithNPC : MonoBehaviour
 
     void TradeSucceeded()
     {
-        AddGold();
-        ChangeItemCount();
+        Item TradeItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == status.whatServed.ToString());
+        AddGold(TradeItem);
+        ResultItemGold(TradeItem);
         ChangeStatus();
     }
 
@@ -73,10 +74,9 @@ public class InteractionWithNPC : MonoBehaviour
         failPenaltyGold += 5;
         ChangeStatus();
     }
-    void AddGold()
+    void AddGold(Item item)
     {
-        Item TradeItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == status.whatServed.ToString());
-        DataManager.instance.nowPlayer.Playerinfo.Gold += TradeItem.SellingPrice;
+        DataManager.instance.nowPlayer.Playerinfo.Gold += item.SellingPrice;
         Inventory.Instance.UpdateUI();
     }
     void ChangeStatus()
@@ -131,12 +131,12 @@ public class InteractionWithNPC : MonoBehaviour
         failPenaltyText.text = "";
     }
 
-    void ChangeItemCount()
+    void ResultItemGold(Item item)
     {
-        if(status.whatServed == Menu.Beer) beerGold += 35;
-        else if(status.whatServed == Menu.Wine) wineGold += 60;
-        else if(status.whatServed == Menu.Whisky) whiskyGold += 100;
-        else if(status.whatServed == Menu.Food) foodGold += 10;
+        if(status.whatServed == Menu.Beer) beerGold += item.SellingPrice;
+        else if(status.whatServed == Menu.Wine) wineGold += item.SellingPrice;
+        else if(status.whatServed == Menu.Whisky) whiskyGold += item.SellingPrice;
+        else if(status.whatServed == Menu.Food) foodGold += item.SellingPrice;
     }
 
     void PolicePenalty()
