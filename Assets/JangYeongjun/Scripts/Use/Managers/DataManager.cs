@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using UnityEngine.UI;
 
 [System.Serializable]
 public class Datas
@@ -54,6 +53,7 @@ public class PlayerData
     public int Gold = 100;
     public int Debt = 50000;
     public int Day = 1;
+    public bool IsDay = true;
 }
 public class DataManager : MonoBehaviour
 {
@@ -226,7 +226,7 @@ public class DataManager : MonoBehaviour
     #endregion
 
     #region DeleteDatas
-    void DeleteAllData()
+    public void DeleteAllData()
     {
         File.Delete(path + "/playerData.json");
         File.Delete(path + "/inventoryData.json");

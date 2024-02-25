@@ -53,11 +53,11 @@ public class RecipeEnhancement : MonoBehaviour
     }
     void DoEnhancement(Item item)
     {
-        if (DataManager.instance.nowPlayer.Playerinfo.Gold >= item.SellingPrice * 15)
+        if (DataManager.instance.nowPlayer.Playerinfo.Gold >= item.SellingPrice * 10)
         {
             if (item.EnhancementValue < 3)
             {
-                DataManager.instance.nowPlayer.Playerinfo.Gold -= item.SellingPrice * 15;
+                DataManager.instance.nowPlayer.Playerinfo.Gold -= item.SellingPrice * 10;
                 item.SellingPrice += item.RiseScale;
                 item.EnhancementValue++;
                 enhancementButton.onClick.RemoveAllListeners();
@@ -80,7 +80,7 @@ public class RecipeEnhancement : MonoBehaviour
         itemImage.sprite = Resources.Load<Sprite>(item.spritePath);
         itemName.text = item.Name;
         itemEnhacementValue.text = $"{item.EnhancementValue}";
-        needMoney.text = "-" + String.Format("{0:N0}", item.SellingPrice * 15) + " Gold";
+        needMoney.text = "-" + String.Format("{0:N0}", item.SellingPrice * 10) + " Gold";
         itemCurruntPrice.text = String.Format("{0:N0}", item.SellingPrice) + " Gold";
         itemEnhancePrice.text = String.Format("{0:N0}", item.SellingPrice + item.RiseScale) + " Gold";
     }
