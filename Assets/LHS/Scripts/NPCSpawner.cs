@@ -197,7 +197,7 @@ public class NPCSpawner : MonoBehaviour
     private int RandomMenuSelect()
     {
         int SelectedMenu;
-        SelectedMenu = UnityEngine.Random.Range(0, 9);
+        SelectedMenu = UnityEngine.Random.Range(0, 10);
 
         if (SelectedMenu > 4) SelectedMenu = 1;
         else if (SelectedMenu > 1) SelectedMenu = 2;

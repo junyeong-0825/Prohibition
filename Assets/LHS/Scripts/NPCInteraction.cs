@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 // 일반 손님의 상호작용 스크립트
 public class NPCInteraction : MonoBehaviour
@@ -9,6 +10,8 @@ public class NPCInteraction : MonoBehaviour
     // 만족 및 불만족을 표시하는 스프라이트 이미지
     public GameObject satisfiedSprite;
     public GameObject unsatisfiedSprite;
+    public GameObject chooseSprite;
+    public GameObject ResultSpriteObject;
 
     // 상호작용 제한시간
     public float interactionTimeLimit = 50f;
@@ -54,6 +57,19 @@ public class NPCInteraction : MonoBehaviour
             }
             //Debug.Log("StartInteraction");
             //StartInteraction();
+        }
+
+        if (other.CompareTag("Player") && interactionStarted)
+        {
+            chooseSprite.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            chooseSprite.SetActive(false);
         }
     }
 
@@ -114,6 +130,13 @@ public class NPCInteraction : MonoBehaviour
 
             controller.SetTarget(controller.DestroyTarget);
         }
+    }
+
+    private IEnumerator ActivateForDuration(float duration, GameObject ResultAnimaiton)
+    {
+        ResultAnimaiton.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        ResultAnimaiton.SetActive(false);
     }
 
     // 상호작용이 완료된 후 내부 입구로 가기 위한 타겟팅을 시도한다(이때 nextTarget에 들어가 있는 좌표값은 내부 입구로 설정되어 있다.)
