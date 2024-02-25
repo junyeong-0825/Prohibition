@@ -50,14 +50,10 @@ public class NPCSpawner : MonoBehaviour
 
             // 빈자리 수만큼 NPC가 스폰되었다면 스폰 상태를 체크하는 bool값 선언
             bool isEmpty = AreAllValuesFalse(EmptySeatCheck);
-            //for(int i = 0; i<EmptySeatCheck.Count; i++)
-            //{
-            //    Debug.Log(EmptySeatCheck.ContainsKey(i));
-            //    Debug.Log(EmptySeatCheck.ContainsValue(false));
-            //}
+            // 초기 빈자리인지 확인하는 것
             Debug.Log(isEmpty);
-            //Debug.Log(timeLeft);
 
+            // 시간이 다 되면 마감시간 상태가 되어 NPC 퇴장이 다 되는지 확인 
             if(timeLeft.limitTimeSec <= 0f)
             {
                 Debug.Log("Close Time!!");
@@ -66,12 +62,13 @@ public class NPCSpawner : MonoBehaviour
                 yield break;
             }
 
+            // 빈자리가 있다면 스폰해주는데 조건에 따라서 코루틴들을 실행시키도록 함 
             if (!isEmpty)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
                 Debug.Log("SpawnStart!!!!!!!");
                 int gacha = UnityEngine.Random.Range(0, 10);
-                if (gacha <= 2 && callCount < 3)
+                if (gacha < 2 && callCount < 3)
                 {
                     Debug.Log("PoliceSpawn");
                     yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
@@ -83,6 +80,7 @@ public class NPCSpawner : MonoBehaviour
                 {
                     Debug.Log("NPCSpawn");
                     yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
+                    guestInterval = UnityEngine.Random.Range(1.5f, 3.5f);
                 }
             }
 
@@ -125,7 +123,8 @@ public class NPCSpawner : MonoBehaviour
         NPCInteraction Interaction = newNpc.transform.Find("MainSprite").GetComponent<NPCInteraction>();
 
         // 메뉴를 정하는 랜덤 값들을 int 변수에 삽입 -> 음식60%, 맥주20%, 와인 10%, 위스키 10%의 확률로 나올 메서드가 필요
-        Menu NPCMenu = (Menu)(UnityEngine.Random.Range(1, Enum.GetNames(typeof(Menu)).Length));
+        //Menu NPCMenu = (Menu)(UnityEngine.Random.Range(1, Enum.GetNames(typeof(Menu)).Length)); => 안쓴다
+        Menu NPCMenu = (Menu)RandomMenuSelect();
         int MenuIndex = (int)NPCMenu;
 
         // NPC가 원하는 메뉴의 enum을 선언 한다.
@@ -154,6 +153,7 @@ public class NPCSpawner : MonoBehaviour
 
     }
 
+    // 경찰 프리팹을 스폰하는 메서드
     private void SpawnPrefabPolice(GameObject NPC, Transform Position)
     {
         GameObject newNpc = Instantiate(NPC, Position.position, Quaternion.identity);
@@ -193,6 +193,21 @@ public class NPCSpawner : MonoBehaviour
         return randomIdx;
     }
 
+    // 메뉴를 확률로 정하게 해주는 메서드 (음식 50, 맥주 30, 와인과 위스키 각각 10 정도로 드랍해준다)
+    private int RandomMenuSelect()
+    {
+        int SelectedMenu;
+        SelectedMenu = UnityEngine.Random.Range(0, 9);
+
+        if (SelectedMenu > 4) SelectedMenu = 1;
+        else if (SelectedMenu > 1) SelectedMenu = 2;
+        else if (SelectedMenu > 0) SelectedMenu = 3;
+        else SelectedMenu = 4;
+
+        return SelectedMenu;
+    }
+
+    // 딕셔너리의 Value값들이 모두가 true이면 true를 반환하는 메서드, 빈자리를 뜻하는 false 값이 키 값인 각 자리의 상태를 표시하는 딕셔너리를 체크한다.
     private bool AreAllValuesFalse(Dictionary<int, bool> dict)
     {
         foreach(var pair in dict.Values)
@@ -205,6 +220,7 @@ public class NPCSpawner : MonoBehaviour
         return true;
     }
 
+    // 빈자리 오브젝트를 담은 리스트들을 검사하여 빈자리를 체크할 수 있는 딕셔너리를 만들어주는 메서드
     private void SetSeatCheck()
     {
         //Debug.Log("함수실행?");
