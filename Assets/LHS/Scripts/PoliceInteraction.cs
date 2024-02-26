@@ -7,6 +7,8 @@ public class PoliceInteraction : MonoBehaviour
 {
     // 경찰이 식당 내부에 들어왔을 때 나타나는 감정표현 스프라이트
     public GameObject SearchingSprite;
+    public GameObject SuccessSprite;
+    public GameObject FailSprite;
 
     // 경찰 프리팹이 가게 점검을 실]
     [SerializeField] private bool checkingComplete = false;
@@ -64,6 +66,7 @@ public class PoliceInteraction : MonoBehaviour
         checkingComplete = true;
         checkingStarted = false;
         SearchingSprite.SetActive(false);
+        FailSprite.SetActive(true);
         ExitToInsideEntrance();
     }
 
@@ -85,7 +88,7 @@ public class PoliceInteraction : MonoBehaviour
     {
         // 게임 매니저 오브젝트에 있는 패널티 컴포넌트를 이용해 조건에 따른 
         GameEvents.NotifyPolicePenalty();
-        
+        SuccessSprite.SetActive(true);
     }
 
     // 자가 파괴 지정

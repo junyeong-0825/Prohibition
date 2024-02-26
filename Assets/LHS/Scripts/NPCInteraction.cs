@@ -14,10 +14,10 @@ public class NPCInteraction : MonoBehaviour
     public GameObject chooseSprite;
     public GameObject SuccessSpriteObject;
     public GameObject FailSpriteObject;
-    public GameObject WaitingSpriteobject;
+    public GameObject SmokedSpriteobject;
 
     // 상호작용 제한시간
-    public float interactionTimeLimit = 50f;
+    public float interactionTimeLimit = 15f;
     // 주문메(위:테스트용, 아래: enum타입)
     public Menu wantedMenu; // 스폰매니저가 스폰 시에 랜덤으로 정해질 것, 타겟 위치랑 파괴 위치 뿌리는 것과 같은 이치
 
@@ -37,9 +37,7 @@ public class NPCInteraction : MonoBehaviour
     // 위장 상태에 돌입되면 더는 바뀔 수 없는지에 확인해주는 bool값
     private bool isChanged;
     // Update문 내에서 한번 실행만 하도록 하기 위한 플래그 bool값
-    private bool isflag;
-
-    private bool isReOrder;
+    private bool isflag = false;
 
     private void Start()
     {
@@ -54,10 +52,10 @@ public class NPCInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isUndercover = playerStatus.isUndercover;
         // 상호작용 시작되었고 상호작용 완료값이 false이면
         if (interactionStarted && !interactionCompleted)
         {
-            isUndercover = playerStatus.isUndercover;
             OrderMenuSprite.SetActive(true);
 
             if (isChanged && (int)wantedMenu > 1)
@@ -108,7 +106,7 @@ public class NPCInteraction : MonoBehaviour
     // 위장 단속을 피하기 위한 손님의 행동 패턴을 변화시킴
     private void DodgePoliceSearch()
     {
-        int randomIndex = Random.Range(0, 2);
+        int randomIndex = Random.Range(0, 3);
 
         switch(randomIndex)
         {
@@ -122,9 +120,9 @@ public class NPCInteraction : MonoBehaviour
                 ChangeBoozeToFood();
                 break;
 
-            //case 2:
-            //    WaitingOrderUntillSearchEnd();
-            //    break;
+            case 2:
+                TwistedOrder();
+                break;
         }
     }
 
@@ -201,35 +199,28 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    // 3. 7초 동안 위장 상태의 해지를 기다렸다가,
-    // 7초 안에 위장 상태가 해지된다면 원래대로 주문을 시작하지만,
-    // 위장을 해지 못한다면 바로 자리를 떠나도록 한다
-    private void WaitingOrderUntillSearchEnd()
+    // 3. 시간을 초기화하고 메뉴 이미지를 다른 이미지로 교체해서 음식이 무엇인지 알지 못하게 하기
+    private void TwistedOrder()
     {
         OrderMenuSprite.SetActive(false);
-        interactionStarted = false;
-        WaitingSpriteobject.SetActive(true);
+        SmokedSpriteobject.SetActive(true);
         if (!isflag)
         {
-            interactionStarted = false;
             interactionTimer = 0f;
             isflag = true;
         }
-        else
+        if (!interactionCompleted)
         {
             interactionTimer += Time.deltaTime;
-            if(!isUndercover && !isReOrder)
+            if(interactionTimer > interactionTimeLimit)
             {
-                interactionStarted = true;
+                GameEvents.NotifyTimeOverTrade();
+                SmokedSpriteobject.SetActive(false);
+                interactionCompleted = true;
+                unsatisfiedSprite.SetActive(true);
+                InteractionCompleteTargeting();
             }
         }
-     
-
-        //else if(interactionTimer > 7f)
-        //{
-        //    WaitingSpriteobject.SetActive(false);
-        //    SuddenInteractionComplete();
-        //}
     }
 
     // 상호작용이 시작되고 나서 일정 시간이 지나면 실패되도록 함
