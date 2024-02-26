@@ -295,13 +295,14 @@ public class DataManager : MonoBehaviour
         File.Delete(path + "/playerData.json");
         File.Delete(path + "/inventoryData.json");
         File.Delete(path + "/itemData.json");
+        File.Delete(path + "/missionData.json");
     }
     #endregion
 
     #region CheckDatas
     public bool CheckDatas()
     {
-        if (File.Exists(path + "/playerData.json") && File.Exists(path + "/itemData.json") && File.Exists(path + "/inventoryData.json")) { return true; }
+        if (File.Exists(path + "/playerData.json") && File.Exists(path + "/itemData.json") && File.Exists(path + "/inventoryData.json") && File.Exists(path + "/missionData.json")) { return true; }
         else { return false; }
     }
     #endregion
