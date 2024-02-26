@@ -6,7 +6,7 @@ public class NPCInteraction : MonoBehaviour
 {
     // 메뉴를 요구하는 스프라이트 이미지
     public GameObject OrderMenuSprite;
-    public SpriteRenderer DefaultMenuSprite;
+    public Sprite DefaultMenuSprite;
 
     // 만족 및 불만족을 표시하는 스프라이트 이미지
     public GameObject satisfiedSprite;
@@ -14,6 +14,7 @@ public class NPCInteraction : MonoBehaviour
     public GameObject chooseSprite;
     public GameObject SuccessSpriteObject;
     public GameObject FailSpriteObject;
+    public GameObject WaitingSpriteobject;
 
     // 상호작용 제한시간
     public float interactionTimeLimit = 50f;
@@ -30,18 +31,19 @@ public class NPCInteraction : MonoBehaviour
     // 위장상태 감지와 경찰 탐문 감지를 위한 변수 선언
     private PlayerStatus playerStatus;
     private bool isUndercover;
-    private PoliceInteraction policeStatus;
-    private bool isPoliceSearch;
 
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
     // 위장 상태에 돌입되면 더는 바뀔 수 없는지에 확인해주는 bool값
     private bool isChanged;
+    // Update문 내에서 한번 실행만 하도록 하기 위한 플래그 bool값
+    private bool isflag;
+
+    private bool isReOrder;
 
     private void Start()
     {
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatus>();
-        policeStatus = GameObject.FindGameObjectWithTag("Police").GetComponent<PoliceInteraction>();
         if (playerStatus == null)
         {
             Debug.LogError("PlayerStatus를 찾을 수 없습니다.");
@@ -52,28 +54,22 @@ public class NPCInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isUndercover = playerStatus.isUndercover;
-        isPoliceSearch = policeStatus.CheckingStarted;
-
         // 상호작용 시작되었고 상호작용 완료값이 false이면
         if (interactionStarted && !interactionCompleted)
         {
+            isUndercover = playerStatus.isUndercover;
             OrderMenuSprite.SetActive(true);
 
             if (isChanged && (int)wantedMenu > 1)
             {
-
+                DodgePoliceSearch();
             }
 
+            // 메뉴가 일반 음식일때는
             else
             {
                 interactionTimer += Time.deltaTime;
-                if (interactionTimer >= interactionTimeLimit)
-                {
-                    // 여기서 플레이어가 상호작용 키를 눌러서 CompareMenu 메서드를 실행시키지 않거나, 잘못된
-                    GameEvents.NotifyTimeOverTrade();
-                    HandleInteractionFailed();
-                }
+                TimeLimited();
             }
 
 
@@ -112,19 +108,23 @@ public class NPCInteraction : MonoBehaviour
     // 위장 단속을 피하기 위한 손님의 행동 패턴을 변화시킴
     private void DodgePoliceSearch()
     {
-        int randomIndex = Random.Range(0, 3);
+        int randomIndex = Random.Range(0, 2);
 
         switch(randomIndex)
         {
+            // 바로 자리를 뜨도록 하는 행동 패턴
             case 0:
                 SuddenInteractionComplete();
                 break;
+
+            // 술을 일반 음식으로 바꾸도록 하는 메서드
             case 1:
-
+                ChangeBoozeToFood();
                 break;
-            case 2:
 
-                break;
+            //case 2:
+            //    WaitingOrderUntillSearchEnd();
+            //    break;
         }
     }
 
@@ -137,7 +137,7 @@ public class NPCInteraction : MonoBehaviour
     // enum 비교용 메뉴 비교 메서드
     public void CompareMenu(Menu playerMenu)
     {
-        if(!interactionCompleted)
+        if(!interactionCompleted && interactionStarted)
         {
             if(playerMenu == wantedMenu)
             {
@@ -174,7 +174,7 @@ public class NPCInteraction : MonoBehaviour
     }
 
     // (위장상태 진입 및 술손님일 때)
-    // 바로 자리를 떠나는 메소드
+    // 1. 바로 자리를 떠나는 메소드
     private void SuddenInteractionComplete()
     {
         OrderMenuSprite.SetActive(false);
@@ -182,10 +182,64 @@ public class NPCInteraction : MonoBehaviour
         InteractionCompleteTargeting();
     }
 
-    // 술을 일반 메뉴로 바꿔주고 바로 시간을 초기화하는 메서드
+    // 2. 술을 일반 메뉴로 바꿔주고 바로 시간을 초기화하는 메서드
     private void ChangeBoozeToFood()
     {
-        wantedMenu = (Menu)1;
+        if (!isflag)
+        {
+            wantedMenu = (Menu)1;
+            DefaultMenuSprite = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>().menuSprite[1];
+            OrderMenuSprite.GetComponent<SpriteRenderer>().sprite = DefaultMenuSprite;
+            interactionTimer = 0f;
+            isflag = true;
+        }
+
+        if(!interactionCompleted)
+        {
+            interactionTimer += Time.deltaTime;
+            TimeLimited();
+        }
+    }
+
+    // 3. 7초 동안 위장 상태의 해지를 기다렸다가,
+    // 7초 안에 위장 상태가 해지된다면 원래대로 주문을 시작하지만,
+    // 위장을 해지 못한다면 바로 자리를 떠나도록 한다
+    private void WaitingOrderUntillSearchEnd()
+    {
+        OrderMenuSprite.SetActive(false);
+        interactionStarted = false;
+        WaitingSpriteobject.SetActive(true);
+        if (!isflag)
+        {
+            interactionStarted = false;
+            interactionTimer = 0f;
+            isflag = true;
+        }
+        else
+        {
+            interactionTimer += Time.deltaTime;
+            if(!isUndercover && !isReOrder)
+            {
+                interactionStarted = true;
+            }
+        }
+     
+
+        //else if(interactionTimer > 7f)
+        //{
+        //    WaitingSpriteobject.SetActive(false);
+        //    SuddenInteractionComplete();
+        //}
+    }
+
+    // 상호작용이 시작되고 나서 일정 시간이 지나면 실패되도록 함
+    private void TimeLimited()
+    {
+        if (interactionTimer >= interactionTimeLimit)
+        {
+            GameEvents.NotifyTimeOverTrade();
+            HandleInteractionFailed();
+        }
     }
 
     // 상호작용이 완료된 후 내부 입구로 가기 위한 타겟팅을 시도한다(이때 nextTarget에 들어가 있는 좌표값은 내부 입구로 설정되어 있다.)

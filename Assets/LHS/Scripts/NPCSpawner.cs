@@ -9,7 +9,7 @@ public class NPCSpawner : MonoBehaviour
    
     // 오브젝트를 넣을 프리팹과 스프라이트
     [SerializeField] private GameObject[] guestPrefab;
-    [SerializeField] private Sprite[] menuSprite;
+    public Sprite[] menuSprite;
     [SerializeField] private GameObject policePrefab;
 
     // 오브젝트 스폰과 파괴 위치값
