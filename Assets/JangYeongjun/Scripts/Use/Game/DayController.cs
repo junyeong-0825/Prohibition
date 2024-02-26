@@ -118,7 +118,7 @@ public class DayController : MonoBehaviour
     #region Reset NPC
     void DayNPC()
     {
-        timer.limitTimeSec = 60f;
+        timer.limitTimeSec = 240f;
         StartCoroutine(npcSpawner.spawnNPC());
     }
     void NightNPC()

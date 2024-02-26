@@ -78,6 +78,7 @@ public class AudioManager : MonoBehaviour
         StopPlayNightSound();
         audioSource.clip = mainClips;
         audioSource.volume = 0.1f;
+        audioSource.loop = true;
         audioSource.Play();
     }
 
@@ -86,6 +87,7 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = titleClips;
         audioSource.volume = 0.1f;
+        audioSource.loop = true;
         audioSource.Play();
     }
 
@@ -94,6 +96,7 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = gameOverClip;
         audioSource.volume = 0.1f;
+        audioSource.loop = false;
         audioSource.Play();
     }
 
@@ -102,6 +105,7 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = gameClearClip;
         audioSource.volume = 0.1f;
+        audioSource.loop = false;
         audioSource.Play();
     }
 }
