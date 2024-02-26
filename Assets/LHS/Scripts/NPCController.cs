@@ -131,6 +131,8 @@ public class NPCController : MonoBehaviour
 
         else if(other.gameObject.tag == "Finish" && gameObject.tag == "Police")
         {
+            NPCSpawner Spawner = GameObject.Find("NPCSpawner").GetComponent<NPCSpawner>();
+            Spawner.IsPoliceSpawned = false;
             Destroy(transform.root.gameObject);
         }
 
