@@ -4,9 +4,9 @@
             "Classification":"Alcohol",
             "Name":"Beer",
             "Quantity":0,
-            "PurchasePrice":20,
-            "SellingPrice":35,
-            "RiseScale":15,
+            "PurchasePrice":40,
+            "SellingPrice":70,
+            "RiseScale":20,
             "EnhancementValue":0,
             "spritePath":"Sprites/Beer"
         },
@@ -14,9 +14,9 @@
             "Classification":"Alcohol",
             "Name":"Wine",
             "Quantity":0,
-            "PurchasePrice":35,
-            "SellingPrice":60,
-            "RiseScale":20,
+            "PurchasePrice":70,
+            "SellingPrice":120,
+            "RiseScale":30,
             "EnhancementValue":0,
             "spritePath":"Sprites/Wine"
         },
@@ -24,9 +24,9 @@
             "Classification":"Alcohol",
             "Name":"Whisky",
             "Quantity":0,
-            "PurchasePrice":60,
-            "SellingPrice":100,
-            "RiseScale":30,
+            "PurchasePrice":120,
+            "SellingPrice":200,
+            "RiseScale":50,
             "EnhancementValue":0,
             "spritePath":"Sprites/Whisky"
         },
@@ -36,7 +36,7 @@
             "Quantity":0,
             "PurchasePrice":10,
             "SellingPrice":10,
-            "RiseScale":5,
+            "RiseScale":10,
             "EnhancementValue":0,
             "spritePath":"Sprites/Food"
         }

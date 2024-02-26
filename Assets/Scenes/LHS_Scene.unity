@@ -41679,6 +41679,7 @@ MonoBehaviour:
       IsDay: 1
     items: []
     inventory: []
+    missions: []
 --- !u!1 &1635224512
 GameObject:
   m_ObjectHideFlags: 0

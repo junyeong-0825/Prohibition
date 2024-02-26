@@ -6,6 +6,7 @@ public class MissionController : MonoBehaviour
 {
     [SerializeField] GameObject[] MissionButtons;
     int MissionCount;
+    bool GameEnd;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class MissionController : MonoBehaviour
     }
     IEnumerator ChangeMission()
     {
-        while()
+        
         if (DataManager.instance.nowPlayer.Playerinfo.Day % 7 == 1)
         {
             MissionButtons[MissionCount].SetActive(true);
