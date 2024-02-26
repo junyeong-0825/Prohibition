@@ -9,6 +9,7 @@ public class Datas
     public PlayerData Playerinfo;
     public List<Item> items;
     public List<PlayerInventory> inventory;
+    public List<MissionData> missions;
 }
 
 [System.Serializable]
@@ -46,7 +47,10 @@ public class ItemWrapper
 {
     public List<Item> items;
 }
-
+public class MissionWrapper
+{
+    public List<MissionData> missions;
+}
 [System.Serializable]
 public class PlayerData
 {
@@ -54,6 +58,13 @@ public class PlayerData
     public int Debt = 50000;
     public int Day = 1;
     public bool IsDay = true;
+}
+[System.Serializable]
+public class MissionData
+{
+    public string Name;
+    public string Description;
+    public bool DidMission;
 }
 public class DataManager : MonoBehaviour
 {
@@ -137,6 +148,7 @@ public class DataManager : MonoBehaviour
         SavePlayerData();
         SaveInventoryData();
         SaveItemData();
+        SaveMissionData();
     }
 
     void SavePlayerData()
@@ -156,6 +168,12 @@ public class DataManager : MonoBehaviour
         string ItemData = JsonUtility.ToJson(itemWrapper, true);
         File.WriteAllText(path + "/itemData.json", ItemData);
     }
+    void SaveMissionData()
+    {
+        MissionWrapper missionWrapper = new MissionWrapper { missions = nowPlayer.missions };
+        string missionData = JsonUtility.ToJson(missionWrapper, true);
+        File.WriteAllText(path + "/missionData.json", missionData);
+    }
     #endregion
 
     #region LoadDatas
@@ -170,16 +188,20 @@ public class DataManager : MonoBehaviour
                 Debug.Log("Local Item Data ");
                 Debug.Log("Local Inventory Data ");
                 Debug.Log("Local Player Data ");
+                Debug.Log("Local Mission Data");
 
                 string ItemData = File.ReadAllText(path + "/itemData.json");
                 string InventoryData = File.ReadAllText(path + "/inventoryData.json");
                 string PlayerData = File.ReadAllText(path + "/playerData.json");
+                string MissionData = File.ReadAllText(path + "/missionData.json");
 
                 ItemWrapper itemWrapper = JsonUtility.FromJson<ItemWrapper>(ItemData);
                 InventoryWrapper inventoryWrapper = JsonUtility.FromJson<InventoryWrapper>(InventoryData);
+                MissionWrapper missionWrapper = JsonUtility.FromJson<MissionWrapper>(MissionData);
 
                 nowPlayer.items = itemWrapper.items;
                 nowPlayer.inventory = inventoryWrapper.inventory;
+                nowPlayer.missions = missionWrapper.missions;
                 nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(PlayerData);
             }
             else 
@@ -188,19 +210,24 @@ public class DataManager : MonoBehaviour
 
                 Debug.Log("Base Item Data ");
                 Debug.Log("Base Inventory Data ");
+                Debug.Log("Base Mission Data");
                 Debug.Log("Base Player Data ");
 
                 TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
                 TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
+                TextAsset missionFile = Resources.Load<TextAsset>("Datas/MissionData");
 
                 if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
                 if (inventoryFile == null) throw new Exception("인벤토리 데이터를 찾을 수 없습니다.");
+                if (missionFile == null) throw new Exception("미션 데이터를 찾을 수 없습니다.");
 
                 Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
                 Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
+                Datas MissionData = JsonUtility.FromJson<Datas>(missionFile.text);
 
                 nowPlayer.items = itemData.items;
                 nowPlayer.inventory = inventoryData.inventory;
+                nowPlayer.missions = MissionData.missions;
                 nowPlayer.Playerinfo = new PlayerData();
             }
             /*

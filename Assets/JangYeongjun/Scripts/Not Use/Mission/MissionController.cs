@@ -5,6 +5,7 @@ using UnityEngine;
 public class MissionController : MonoBehaviour
 {
     [SerializeField] GameObject[] MissionButtons;
+    int MissionCount;
 
     private void Start()
     {
@@ -18,7 +19,18 @@ public class MissionController : MonoBehaviour
 
     private void OnDisable()
     {
+        
+    }
+    IEnumerator ChangeMission()
+    {
+        while()
+        if (DataManager.instance.nowPlayer.Playerinfo.Day % 7 == 1)
+        {
+            MissionButtons[MissionCount].SetActive(true);
+            MissionCount++;
 
+            yield return null;
+        }
     }
 
 }
