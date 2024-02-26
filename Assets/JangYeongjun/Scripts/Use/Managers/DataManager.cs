@@ -62,6 +62,7 @@ public class PlayerData
 [System.Serializable]
 public class MissionData
 {
+    public string Name;
     public string Description;
     public int Reward;
     public bool DidMission;
