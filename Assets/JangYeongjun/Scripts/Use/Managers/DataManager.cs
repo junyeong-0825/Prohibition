@@ -84,11 +84,8 @@ public class DataManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         path = Application.persistentDataPath;
-        LoadAllData();
-        SaveAllData();
     }
     #endregion
-
     /*
     #region Save
     public void SetValue()
@@ -166,8 +163,47 @@ public class DataManager : MonoBehaviour
     {
         try
         {
-
+            bool result = CheckDatas();
             #region ItemData Load
+            if(result)
+            {
+                Debug.Log("Local Item Data ");
+                Debug.Log("Local Inventory Data ");
+                Debug.Log("Local Player Data ");
+
+                string ItemData = File.ReadAllText(path + "/itemData.json");
+                string InventoryData = File.ReadAllText(path + "/inventoryData.json");
+                string PlayerData = File.ReadAllText(path + "/playerData.json");
+
+                ItemWrapper itemWrapper = JsonUtility.FromJson<ItemWrapper>(ItemData);
+                InventoryWrapper inventoryWrapper = JsonUtility.FromJson<InventoryWrapper>(InventoryData);
+
+                nowPlayer.items = itemWrapper.items;
+                nowPlayer.inventory = inventoryWrapper.inventory;
+                nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(PlayerData);
+            }
+            else 
+            {
+                DeleteAllData();
+
+                Debug.Log("Base Item Data ");
+                Debug.Log("Base Inventory Data ");
+                Debug.Log("Base Player Data ");
+
+                TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
+                TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
+
+                if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
+                if (inventoryFile == null) throw new Exception("인벤토리 데이터를 찾을 수 없습니다.");
+
+                Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
+                Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
+
+                nowPlayer.items = itemData.items;
+                nowPlayer.inventory = inventoryData.inventory;
+                nowPlayer.Playerinfo = new PlayerData();
+            }
+            /*
             if (File.Exists(path + "/itemData.json"))
             {
                 Debug.Log("Local Item Data ");
@@ -216,6 +252,7 @@ public class DataManager : MonoBehaviour
                 Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
                 nowPlayer.inventory = inventoryData.inventory;
             }
+            */
             #endregion
         }
         catch (Exception e)
@@ -233,4 +270,13 @@ public class DataManager : MonoBehaviour
         File.Delete(path + "/itemData.json");
     }
     #endregion
+
+    #region CheckDatas
+    public bool CheckDatas()
+    {
+        if (File.Exists(path + "/playerData.json") && File.Exists(path + "/itemData.json") && File.Exists(path + "/inventoryData.json")) { return true; }
+        else { return false; }
+    }
+    #endregion
+
 }

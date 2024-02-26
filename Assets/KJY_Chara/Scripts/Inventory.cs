@@ -44,6 +44,11 @@ public class Inventory : MonoBehaviour
         UpdateUI();
     }
 
+    private void OnEnable()
+    {
+        ResetUI();
+        UpdateUI();
+    }
     public void OnInventory(InputValue value)
     {
         Toggle();

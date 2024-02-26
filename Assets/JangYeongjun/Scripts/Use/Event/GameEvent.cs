@@ -2,6 +2,7 @@
 public static class GameEvents
 {
     public delegate void EventDelegate();
+    public static event EventDelegate GameClear;
     public static event EventDelegate GameOver;
     public static event EventDelegate OnDayEnd;
     public static event EventDelegate OnDayStart;
@@ -17,4 +18,5 @@ public static class GameEvents
     public static void NotifyTimeOverTrade() { if (OnTimeOverTrade != null) OnTimeOverTrade(); }
     public static void NotifyPolicePenalty() { if(OnPolicePenalty != null) OnPolicePenalty(); }
     public static void NotifyGameOver() { if (GameOver != null) GameOver(); }
+    public static void NotifyGameClear() { if (GameClear != null) GameClear(); }
 }

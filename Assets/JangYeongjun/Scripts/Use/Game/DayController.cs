@@ -78,17 +78,10 @@ public class DayController : MonoBehaviour
             #endregion
 
             yield return new WaitUntil(() => IsDay);
-
-            if (DataManager.instance.nowPlayer.Playerinfo.Day < 28)
-            {
-                AddDayCount();
-            }
-            else
-            {
-                IsGameEnd = true;
-            }
+            ClearCheck();
+            if (!IsGameEnd) { AddDayCount(); }
         }
-        GameEvents.NotifyGameOver();
+        Debug.Log("EndDaysLoop");
     }
     #endregion
 
@@ -138,7 +131,15 @@ public class DayController : MonoBehaviour
     #region Set Days
     void AddDayCount()
     {
-        DataManager.instance.nowPlayer.Playerinfo.Day ++;
+        if (DataManager.instance.nowPlayer.Playerinfo.Day < 28)
+        {
+            DataManager.instance.nowPlayer.Playerinfo.Day++;
+        }
+        else
+        {
+            GameEvents.NotifyGameOver();
+            IsGameEnd = true;
+        }
     }
     void SetIsDay()
     {
@@ -183,6 +184,19 @@ public class DayController : MonoBehaviour
             playerStatus.imageSprite.sprite = null;
         }
     }
+    #endregion
+
+    #region Clear Check
+
+    void ClearCheck()
+    {
+        if(DataManager.instance.nowPlayer.Playerinfo.Debt <= 0)
+        {
+            GameEvents.NotifyGameClear();
+            IsGameEnd = true;
+        }
+    }
+
     #endregion
 
     #endregion

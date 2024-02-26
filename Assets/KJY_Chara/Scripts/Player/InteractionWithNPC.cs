@@ -87,6 +87,7 @@ public class InteractionWithNPC : MonoBehaviour
     IEnumerator ResultGoldSetting()
     {
         PlayResultAudio();
+        resultAudioSource.volume = 0.1f;
         resultAudioSource.Play();
         startText.text = $"={startGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);

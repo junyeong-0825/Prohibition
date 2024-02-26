@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class TitleButtonSounds : MonoBehaviour
 {
-    public AudioClip[] clips; // ¿Àµğ¿À Å¬¸³ ¹è¿­
-    private AudioSource audioSource;
+    public AudioClip[] clips; // ì˜¤ë””ì˜¤ í´ë¦½ ë°°ì—´
+    [SerializeField] AudioSource audioSource;
 
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    // ·£´ı ¿Àµğ¿À Å¬¸³ Àç»ı
+    // ëœë¤ ì˜¤ë””ì˜¤ í´ë¦½ ì¬ìƒ
     public void PlaySound()
     {
         int clipIndex = Random.Range(0, clips.Length);
         audioSource.clip = clips[clipIndex];
+        audioSource.volume = 0.1f;
         audioSource.Play();
     }
 }

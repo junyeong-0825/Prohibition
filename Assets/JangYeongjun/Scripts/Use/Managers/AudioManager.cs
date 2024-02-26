@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] nightClips; //밤의 오디오 클립
     [SerializeField] AudioClip mainClips; //낮의 오디오 클립
     [SerializeField] AudioClip titleClips;
-    [SerializeField] AudioClip loginClips;
+    [SerializeField] AudioClip gameOverClip, gameClearClip;
     [SerializeField] public AudioSource audioSource;
     private Coroutine nightSoundCoroutine;
     int clipIndex = 0;
@@ -61,6 +61,7 @@ public class AudioManager : MonoBehaviour
         while (true)
         {
             audioSource.clip = nightClips[clipIndex];
+            audioSource.volume = 0.1f;
             audioSource.Play();
             yield return new WaitForSeconds(audioSource.clip.length);
 
@@ -76,6 +77,7 @@ public class AudioManager : MonoBehaviour
     {
         StopPlayNightSound();
         audioSource.clip = mainClips;
+        audioSource.volume = 0.1f;
         audioSource.Play();
     }
 
@@ -83,12 +85,23 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.clip = titleClips;
+        audioSource.volume = 0.1f;
         audioSource.Play();
     }
-    public void PlayLoginSound()
+
+    public void PlayGameOverSound()
     {
         audioSource.Stop();
-        audioSource.clip = loginClips;
+        audioSource.clip = gameOverClip;
+        audioSource.volume = 0.1f;
+        audioSource.Play();
+    }
+
+    public void PlayGameClearSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = gameClearClip;
+        audioSource.volume = 0.1f;
         audioSource.Play();
     }
 }
