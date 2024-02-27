@@ -182,16 +182,16 @@ public class MissionController : MonoBehaviour
     }
     void Mission3()
     {
-        if (foodCount < 10)
+        if (foodCount < 30)
         {
-            additionalDescription[3] = $"{foodCount} / 10";
+            additionalDescription[3] = $"{foodCount} / 30";
         }
         else
         {
             if (DataManager.instance.nowPlayer.missions[3].DidMission == false)
             {
                 AfterMission(3);
-                DataManager.instance.nowPlayer.Playerinfo.Gold += 1500;
+                DataManager.instance.nowPlayer.Playerinfo.Gold += 3500;
             }
         }
     }

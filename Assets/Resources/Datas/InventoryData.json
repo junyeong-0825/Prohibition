@@ -8,6 +8,17 @@
     "SellingPrice" : 35, 
     "RiseScale" : 15,
     "spritePath" : "Sprites/Beer"
+    
+},
+{
+    "Classification":"Food",
+    "Name":"Food",
+    "Quantity": 20,
+    "PurchasePrice":10,
+    "SellingPrice":10,
+    "RiseScale":10,
+    "EnhancementValue":0,
+    "spritePath":"Sprites/Food"
 }
 ]
 }
