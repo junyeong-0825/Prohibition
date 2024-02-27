@@ -254,7 +254,7 @@ public class NPCInteraction : MonoBehaviour
     // 플레이어의 위장 상태를 감지하는 코루틴 함수 (start() 이벤트 함수에서 실행)
     private IEnumerator PlayerUndercoverStatus()
     {
-        yield return new WaitUntil(() => isUndercover == true);
+        yield return new WaitUntil(() => isUndercover == true && interactionStarted);
         isChanged = true;
     }
 }
