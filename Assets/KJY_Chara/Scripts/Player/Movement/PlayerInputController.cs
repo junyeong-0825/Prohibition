@@ -48,7 +48,6 @@ public class PlayerInputController : CharaController
     {
         if (currentNPCInteraction != null && value.isPressed && currentNPCInteraction.InteractionStarted)
         {
-            Debug.Log("interaction is success");
             DeliverMenuToGuest();
         }
     }

@@ -22,19 +22,16 @@ public class SwitchingCCTV : MonoBehaviour
         {
             anim.SetBool("FirstOnCCTV", true);
             anim.SetBool("OffCCTV", false);
-            Debug.Log("CCTV 첫가동");
         }
         else
         {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("CCTV_On"))
             {
                 anim.SetBool("OffCCTV", true);
-                Debug.Log("CCTV 종료");
             }
             else
             {
                 anim.SetBool("OffCCTV", false);
-                Debug.Log("CCTV 재가동");
             }
         }
 
