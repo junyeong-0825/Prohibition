@@ -326,7 +326,7 @@ MonoBehaviour:
   SuccessSpriteObject: {fileID: 6431947981105889552}
   FailSpriteObject: {fileID: 8457640572813530870}
   SmokedSpriteobject: {fileID: 3277270621058609630}
-  interactionTimeLimit: 10
+  interactionTimeLimit: 15
   wantedMenu: 0
   interactionStarted: 0
   interactionCompleted: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dishPoint: {fileID: 0}
+  changeSprite: {fileID: 0}
 --- !u!114 &7849463522998311897
 MonoBehaviour:
   m_ObjectHideFlags: 0
