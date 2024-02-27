@@ -33,16 +33,7 @@ public class NPCFindTable : MonoBehaviour
         if (sensedUp.collider != null)
         {
             dishPoint = sensedUp.collider.gameObject;
-            if (dishPoint != null)
-                Debug.Log("음식을 놓을 장소의 정보를 가져옵니다.");
-
             changeSprite.CheckTablePoint();
-            if (changeSprite.spriteRenderer != null)
-                Debug.Log("랜더러의 위치를 가져옵니다.");
-            
-            Debug.Log(sensedUp.collider.gameObject);
-            Debug.Log(this.gameObject.name + "은 테이블의 아랫쪽에 있다");
-            Debug.DrawRay(transform.position, Vector2.up, new Color(1, 0, 0));
         }
         
     }
@@ -52,15 +43,7 @@ public class NPCFindTable : MonoBehaviour
         if (sensedDown.collider != null)
         {
             dishPoint = sensedDown.collider.gameObject;
-            if (dishPoint != null)
-                Debug.Log("음식을 놓을 장소의 정보를 가져옵니다.");
-
             changeSprite.CheckTablePoint();
-            if (changeSprite.spriteRenderer != null)
-                Debug.Log("랜더러의 위치를 가져옵니다.");
-
-            Debug.Log(this.gameObject.name + "은 테이블의 윗쪽에 있다");
-            Debug.DrawRay(transform.position, Vector2.down, new Color(1, 0, 0));
         }
         
     }
@@ -70,15 +53,7 @@ public class NPCFindTable : MonoBehaviour
         if (sensedLeft.collider != null)
         {
             dishPoint = sensedLeft.collider.gameObject;
-            if (dishPoint != null)
-                Debug.Log("음식을 놓을 장소의 정보를 가져옵니다.");
-
             changeSprite.CheckTablePoint();
-            if (changeSprite.spriteRenderer != null)
-                Debug.Log("랜더러의 위치를 가져옵니다.");
-
-            Debug.Log(this.gameObject.name + "은 테이블의 오른쪽에 있다");
-            Debug.DrawRay(transform.position, Vector2.left, new Color(1, 0, 0));
         }
         
     }
@@ -88,14 +63,7 @@ public class NPCFindTable : MonoBehaviour
         if (sensedRight.collider != null)
         {
             dishPoint = sensedRight.collider.gameObject;
-            if (dishPoint != null)
-                Debug.Log("음식을 놓을 장소의 정보를 가져옵니다.");
             changeSprite.CheckTablePoint();
-            if(changeSprite.spriteRenderer != null)
-                Debug.Log("랜더러의 위치를 가져옵니다.");
-
-            Debug.Log(this.gameObject.name + "은 테이블의 왼쪽에 있다");
-            Debug.DrawRay(transform.position, Vector2.right, new Color(1, 0, 0));
         }
         
     }
