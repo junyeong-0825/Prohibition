@@ -24,6 +24,13 @@ public class NPCInteraction : MonoBehaviour
     //public bool InteractionCompleted { get { return interactionCompleted; } }
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
+    
+    //김준영의 작업 추가분
+    public ChangeSprite changeSprite;
+    private void Awake()
+    {
+        changeSprite = GetComponent<ChangeSprite>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -67,6 +74,7 @@ public class NPCInteraction : MonoBehaviour
     // enum 비교용 메뉴 비교 메서드
     public void CompareMenu(Menu playerMenu)
     {
+        changeSprite.SettingFood();
         if(!interactionCompleted)
         {
             if(playerMenu == wantedMenu)

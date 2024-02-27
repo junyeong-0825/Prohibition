@@ -597,6 +597,8 @@ GameObject:
   - component: {fileID: 3670029955357006141}
   - component: {fileID: 1717960556744850744}
   - component: {fileID: 8268795649412261436}
+  - component: {fileID: 3588672526969879208}
+  - component: {fileID: 5012639406181631365}
   m_Layer: 0
   m_Name: MainSprite
   m_TagString: Guest
@@ -816,3 +818,30 @@ MonoBehaviour:
   wantedMenu: 0
   interactionStarted: 0
   interactionCompleted: 0
+--- !u!114 &3588672526969879208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813916599929134489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b18b946990827041a04ac204416bf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dishPoint: {fileID: 0}
+--- !u!114 &5012639406181631365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813916599929134489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15958651296f5348a19546cf5670573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  findTable: {fileID: 0}
+  spriteRenderer: {fileID: 0}
