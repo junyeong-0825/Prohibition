@@ -76,8 +76,6 @@ public class NPCInteraction : MonoBehaviour
                 interactionTimer += Time.deltaTime;
                 TimeLimited();
             }
-
-
         }
 
     }
@@ -168,7 +166,7 @@ public class NPCInteraction : MonoBehaviour
         SmokedSpriteobject.SetActive(false);
         interactionCompleted = true;
         unsatisfiedSprite.SetActive(true);
-        InteractionCompleteTargeting();
+        StartCoroutine(InteractionCompleteTargeting());
     }
 
     // 메뉴 일치 시의 만족 메소드
@@ -177,7 +175,7 @@ public class NPCInteraction : MonoBehaviour
         OrderMenuSprite.SetActive(false);
         interactionCompleted = true;
         satisfiedSprite.SetActive(true);
-        InteractionCompleteTargeting();
+        StartCoroutine(InteractionCompleteTargeting());
     }
 
     // (위장상태 진입 및 술손님일 때)
@@ -186,7 +184,7 @@ public class NPCInteraction : MonoBehaviour
     {
         OrderMenuSprite.SetActive(false);
         interactionCompleted = true;
-        InteractionCompleteTargeting();
+        StartCoroutine(InteractionCompleteTargeting());
     }
 
     // 2. 술을 일반 메뉴로 바꿔주고 바로 시간을 초기화하는 메서드
@@ -228,7 +226,7 @@ public class NPCInteraction : MonoBehaviour
                 SmokedSpriteobject.SetActive(false);
                 interactionCompleted = true;
                 unsatisfiedSprite.SetActive(true);
-                InteractionCompleteTargeting();
+                StartCoroutine(InteractionCompleteTargeting());
             }
         }
     }
@@ -244,10 +242,21 @@ public class NPCInteraction : MonoBehaviour
     }
 
     // 상호작용이 완료된 후 내부 입구로 가기 위한 타겟팅을 시도한다(이때 nextTarget에 들어가 있는 좌표값은 내부 입구로 설정되어 있다.)
-    private void InteractionCompleteTargeting()
+    //private void InteractionCompleteTargeting()
+    //{
+    //    if(interactionCompleted)
+    //    {
+    //        NPCController controller = GetComponent<NPCController>();
+    //        controller.SetTarget(controller.nextTarget);
+    //    }
+    //}
+
+    private IEnumerator InteractionCompleteTargeting()
     {
         if(interactionCompleted)
         {
+            yield return new WaitForSeconds(2f);
+            changeSprite.CleanTable();
             NPCController controller = GetComponent<NPCController>();
             controller.SetTarget(controller.nextTarget);
         }

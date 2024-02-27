@@ -69,7 +69,6 @@ public class EntrancePortal : MonoBehaviour
             }
             else if(checkCheckingCompleted && IsInside)
             {
-                Debug.Log("Active");
                 controller.SetTarget(controller.nextTarget);
                 teleport(other);
             }

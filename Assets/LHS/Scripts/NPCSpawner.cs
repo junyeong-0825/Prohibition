@@ -17,13 +17,9 @@ public class NPCSpawner : MonoBehaviour
 
     [SerializeField] private Transform SearchLocationObject;
 
-    [SerializeField] private List<GameObject> TargetPrefabList; //
-    public Dictionary<int, bool> EmptySeatCheck = new();//
-    [SerializeField] private Transform selfDestroyPositionP; //
-
-
-    //[SerializeField] private GameObject TargetPrefab;
-    private Coroutine spawnCoroutine;
+    [SerializeField] private List<GameObject> TargetPrefabList;
+    public Dictionary<int, bool> EmptySeatCheck = new();
+    [SerializeField] private Transform selfDestroyPositionP; 
 
     public bool IsPoliceSpawned = false;
 
@@ -35,9 +31,7 @@ public class NPCSpawner : MonoBehaviour
     void Start()
     {
         SetSeatCheck();
-        //timeLeft = GameObject.Find("UIManager").GetComponent<Timer>();
-        //spawnCoroutine = StartCoroutine(spawnNPC());
-        //StartCoroutine(spawnNPC(policeInterval, policePrefab, SpawnPositionPrefab));
+
     }
 
     // 일반 NPC를 스폰하는 코루틴 메서드
@@ -66,11 +60,9 @@ public class NPCSpawner : MonoBehaviour
             if (!isEmpty)
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
-                Debug.Log("SpawnStart!!!!!!!");
                 int gacha = UnityEngine.Random.Range(0, 10);
                 if (gacha < 2 && callCount < 3 && !IsPoliceSpawned)
                 {
-                    Debug.Log("PoliceSpawn");
                     yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
                     policeInterval = UnityEngine.Random.Range(5f, 10f);
                     callCount++;
@@ -78,7 +70,6 @@ public class NPCSpawner : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("NPCSpawn");
                     yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
                     guestInterval = UnityEngine.Random.Range(1.5f, 3.5f);
                 }
