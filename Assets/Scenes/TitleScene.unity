@@ -2449,7 +2449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4dc2f159b96c8dd46b2b9c54b951cb02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa033034d5fac1b49b8180cd741154fc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2897,6 +2897,7 @@ MonoBehaviour:
       IsDay: 1
     items: []
     inventory: []
+    missions: []
 --- !u!1 &836768031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3535,7 +3536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 85bf652a922e69e4db76d8d700f27fd5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9ca3a38faa293442b8a7662e9d6a096, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7250,7 +7251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 85bf652a922e69e4db76d8d700f27fd5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9ca3a38faa293442b8a7662e9d6a096, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
