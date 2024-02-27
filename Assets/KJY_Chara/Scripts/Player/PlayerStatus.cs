@@ -21,8 +21,11 @@ public class PlayerStatus : MonoBehaviour
     private Menu result;
     private GameObject UnderCoverUI;
     [SerializeField] GameObject alcoholPanel;
+
+    public static PlayerStatus instance;
     private void Awake()
     {
+        instance = this;
         UnderCoverUI = GameObject.Find("Emoji");
         UnderCoverUI.SetActive(false);
     }
