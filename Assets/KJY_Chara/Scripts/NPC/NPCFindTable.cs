@@ -70,7 +70,7 @@ public class NPCFindTable : MonoBehaviour
     }
     public void SensedLeft()
     {
-        RaycastHit2D sensedLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.8f, LayerMask.GetMask("Table"));
+        RaycastHit2D sensedLeft = Physics2D.Raycast(transform.position, Vector2.left, 1, LayerMask.GetMask("Table"));
         if (sensedLeft.collider != null)
         {
             if (dishPoint == null)
@@ -90,7 +90,7 @@ public class NPCFindTable : MonoBehaviour
     }
     public void SensedRight()
     {
-        RaycastHit2D sensedRight = Physics2D.Raycast(transform.position, Vector2.right, 0.8f, LayerMask.GetMask("Table"));
+        RaycastHit2D sensedRight = Physics2D.Raycast(transform.position, Vector2.right, 1, LayerMask.GetMask("Table"));
         if (sensedRight.collider != null)
         {
             if (dishPoint == null)
