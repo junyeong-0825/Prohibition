@@ -1,15 +1,13 @@
 #region NameSpace
 using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 #endregion
 
 
 public class DayController : MonoBehaviour
 {
     #region Fields
-    bool IsDay = true;
+    bool IsDay;
     bool IsGameEnd = false;
     [SerializeField] Vector3 dayPosition, nightPosition, dayCameraPosition, nightCameraPosition;
     [SerializeField] Camera mainCamera;
@@ -22,6 +20,7 @@ public class DayController : MonoBehaviour
 
     void Start()
     {
+        IsDay = DataManager.instance.nowPlayer.Playerinfo.IsDay;
         StartCoroutine("OneDay");
     }
 
@@ -52,19 +51,24 @@ public class DayController : MonoBehaviour
     #region OneDay Coroutine
     IEnumerator OneDay()
     {
-        while (!IsGameEnd) // 무한 루프로 낮과 밤 사이클 반복
+        while (!IsGameEnd) // IsGameEnd가 false인 동안 루프로 낮과 밤 사이클 반복
         {
-            #region Day
-            playerInfoPanel.SetActive(true);
-            SaveData();
-            DayTransform();
-            DayAudio();
-            DayNPC();
-            #endregion
+            if (IsDay)
+            {
+                #region Day
+                SetIsDay();
+                playerInfoPanel.SetActive(true);
+                SaveData();
+                DayTransform();
+                DayAudio();
+                DayNPC();
+                #endregion
+            }
 
             yield return new WaitUntil(() => !IsDay);
 
             #region Night
+            SetIsDay();
             playerInfoPanel.SetActive(false);
             ResetPlayerStatus();
             SaveData();
@@ -74,9 +78,10 @@ public class DayController : MonoBehaviour
             #endregion
 
             yield return new WaitUntil(() => IsDay);
-
-            AddDayCount();
+            ClearCheck();
+            if (!IsGameEnd) { AddDayCount(); }
         }
+        Debug.Log("EndDaysLoop");
     }
     #endregion
 
@@ -113,7 +118,7 @@ public class DayController : MonoBehaviour
     #region Reset NPC
     void DayNPC()
     {
-        timer.limitTimeSec = 60f;
+        timer.limitTimeSec = 240f;
         StartCoroutine(npcSpawner.spawnNPC());
     }
     void NightNPC()
@@ -123,10 +128,22 @@ public class DayController : MonoBehaviour
     }
     #endregion
 
-    #region After Day
+    #region Set Days
     void AddDayCount()
     {
-        DataManager.instance.nowPlayer.Playerinfo.Day ++;
+        if (DataManager.instance.nowPlayer.Playerinfo.Day < 28)
+        {
+            DataManager.instance.nowPlayer.Playerinfo.Day++;
+        }
+        else
+        {
+            GameEvents.NotifyGameOver();
+            IsGameEnd = true;
+        }
+    }
+    void SetIsDay()
+    {
+        DataManager.instance.nowPlayer.Playerinfo.IsDay = IsDay;
     }
     void SaveData()
     {
@@ -167,6 +184,19 @@ public class DayController : MonoBehaviour
             playerStatus.imageSprite.sprite = null;
         }
     }
+    #endregion
+
+    #region Clear Check
+
+    void ClearCheck()
+    {
+        if(DataManager.instance.nowPlayer.Playerinfo.Debt <= 0)
+        {
+            GameEvents.NotifyGameClear();
+            IsGameEnd = true;
+        }
+    }
+
     #endregion
 
     #endregion

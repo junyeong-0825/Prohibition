@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class MenuButtonSound : MonoBehaviour
 {
-    [SerializeField] AudioClip buttonAudio; // ¿Àµğ¿À Å¬¸³ ¹è¿­
+    [SerializeField] AudioClip buttonAudio; // ì˜¤ë””ì˜¤ í´ë¦½ ë°°ì—´
     [SerializeField] AudioSource audioSource;
 
-    // ·£´ı ¿Àµğ¿À Å¬¸³ Àç»ı
+    // ëœë¤ ì˜¤ë””ì˜¤ í´ë¦½ ì¬ìƒ
     public void PlaySound()
     {
         audioSource.clip = buttonAudio;
+        audioSource.volume = 0.1f;
         audioSource.Play();
     }
 }

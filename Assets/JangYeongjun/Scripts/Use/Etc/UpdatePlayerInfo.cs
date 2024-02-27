@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class UpdatePlayerInfo : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI goldSliderText;
+    [SerializeField] TextMeshProUGUI goldText;
+    [SerializeField] TextMeshProUGUI daysText;
 
     void Update()
     {
-        goldSliderText.text = $"{DataManager.instance.nowPlayer.Playerinfo.Gold} gold";
+        goldText.text = $"{DataManager.instance.nowPlayer.Playerinfo.Gold} gold";
+        daysText.text = $"{DataManager.instance.nowPlayer.Playerinfo.Day} Days";
     }
 }

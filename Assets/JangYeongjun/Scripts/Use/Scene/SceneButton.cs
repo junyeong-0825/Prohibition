@@ -14,6 +14,9 @@ public class SceneButton : MonoBehaviour
 
     public void SceneChang()
     {
+        DataManager.instance.DeleteAllData();
+        DataManager.instance.LoadAllData();
+        DataManager.instance.SaveAllData();
         SceneChanger.sceneInstance.ChangeToNextScene();
     }
 }

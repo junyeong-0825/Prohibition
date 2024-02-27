@@ -13,6 +13,7 @@ public class InteractionWithNPC : MonoBehaviour
     [SerializeField] GameObject resultPanel;
     [SerializeField] GameObject exitButton;
     [SerializeField] TextMeshProUGUI foodText, beerText, wineText, whiskyText, startText, endText, policePenaltyText, failPenaltyText;
+    [SerializeField] MissionController missionController;
     #region EventAdd
     private void OnEnable()
     {
@@ -47,6 +48,7 @@ public class InteractionWithNPC : MonoBehaviour
     void ResetPanel()
     {
         startGold = DataManager.instance.nowPlayer.Playerinfo.Gold;
+        missionController.RemoveMenuCount();
         resultPanel.SetActive(false);
         foodGold = 0;
         beerGold = 0;
@@ -62,8 +64,10 @@ public class InteractionWithNPC : MonoBehaviour
 
     void TradeSucceeded()
     {
-        AddGold();
-        ChangeItemCount();
+        Item TradeItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == status.whatServed.ToString());
+        missionController.AddMenuCount(TradeItem);
+        AddGold(TradeItem);
+        ResultItemGold(TradeItem);
         ChangeStatus();
     }
 
@@ -73,10 +77,9 @@ public class InteractionWithNPC : MonoBehaviour
         failPenaltyGold += 5;
         ChangeStatus();
     }
-    void AddGold()
+    void AddGold(Item item)
     {
-        Item TradeItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == status.whatServed.ToString());
-        DataManager.instance.nowPlayer.Playerinfo.Gold += TradeItem.SellingPrice;
+        DataManager.instance.nowPlayer.Playerinfo.Gold += item.SellingPrice;
         Inventory.Instance.UpdateUI();
     }
     void ChangeStatus()
@@ -87,6 +90,7 @@ public class InteractionWithNPC : MonoBehaviour
     IEnumerator ResultGoldSetting()
     {
         PlayResultAudio();
+        resultAudioSource.volume = 0.1f;
         resultAudioSource.Play();
         startText.text = $"={startGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
@@ -131,12 +135,12 @@ public class InteractionWithNPC : MonoBehaviour
         failPenaltyText.text = "";
     }
 
-    void ChangeItemCount()
+    void ResultItemGold(Item item)
     {
-        if(status.whatServed == Menu.Beer) beerGold += 35;
-        else if(status.whatServed == Menu.Wine) wineGold += 60;
-        else if(status.whatServed == Menu.Whisky) whiskyGold += 100;
-        else if(status.whatServed == Menu.Food) foodGold += 10;
+        if(status.whatServed == Menu.Beer) beerGold += item.SellingPrice;
+        else if(status.whatServed == Menu.Wine) wineGold += item.SellingPrice;
+        else if(status.whatServed == Menu.Whisky) whiskyGold += item.SellingPrice;
+        else if(status.whatServed == Menu.Food) foodGold += item.SellingPrice;
     }
 
     void PolicePenalty()

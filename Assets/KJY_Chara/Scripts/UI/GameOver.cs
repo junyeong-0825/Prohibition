@@ -1,25 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    public static GameOver instance;
-    public GameObject gameOverCanvas;
-    private void Awake()
+    public GameObject gameOverPanel;
+    public GameObject gameClearPanel;
+    [SerializeField] GameObject[] canvases;
+
+    private void OnEnable()
     {
-        instance = this;
+        GameEvents.GameOver += OnGameOverUI;
+        GameEvents.GameClear += OnGameClearUI;
     }
-    private void Start()
+    private void OnDisable()
     {
-        OffGameOverUI();
+        GameEvents.GameOver -= OnGameOverUI;
+        GameEvents.GameClear -= OnGameClearUI;
     }
-    public void OnGameOverUI()
+
+    void OnGameOverUI()
     {
-        gameOverCanvas.SetActive(true);
+        AudioManager.audioInstance.PlayGameOverSound();
+        GameOverSetting();
+        gameOverPanel.SetActive(true);
     }
-    public void OffGameOverUI()
+    void OnGameClearUI()
     {
-        gameOverCanvas.SetActive(false);
+        AudioManager.audioInstance.PlayGameClearSound();
+        GameOverSetting();
+        gameClearPanel.SetActive(true);
+    }
+    void GameOverSetting()
+    {
+        foreach (var canvas in canvases) { canvas.SetActive(false); }
+        DataManager.instance.DeleteAllData();
+    }
+
+    public void GoTitle()
+    {
+        foreach (var canvas in canvases) { canvas.SetActive(true); }
+        SceneManager.LoadScene("TitleScene");
     }
 }

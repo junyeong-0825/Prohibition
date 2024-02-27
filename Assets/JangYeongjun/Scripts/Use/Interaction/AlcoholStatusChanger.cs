@@ -8,7 +8,6 @@ public class AlcoholStatusChanger : MonoBehaviour
 
     private void Start()
     {
-
         foreach (var button in buttons) { button.onClick.AddListener(() => { playerStatus.IsServed(button.name);});}
     }
 }
