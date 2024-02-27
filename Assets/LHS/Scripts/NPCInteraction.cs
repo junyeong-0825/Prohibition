@@ -165,6 +165,7 @@ public class NPCInteraction : MonoBehaviour
     private void HandleInteractionFailed()
     {
         OrderMenuSprite.SetActive(false);
+        SmokedSpriteobject.SetActive(false);
         interactionCompleted = true;
         unsatisfiedSprite.SetActive(true);
         InteractionCompleteTargeting();
@@ -216,6 +217,7 @@ public class NPCInteraction : MonoBehaviour
         {
             interactionTimer = 0f;
             isflag = true;
+            isChanged = false;
         }
         if (!interactionCompleted)
         {
