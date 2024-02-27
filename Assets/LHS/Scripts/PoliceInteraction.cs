@@ -30,7 +30,6 @@ public class PoliceInteraction : MonoBehaviour
             // 입구에 들어왔다면 가게 내부를 점검하는 메서드 실행
             if(remainTime < CheckingTime)
             {
-                Debug.Log("SearchStart");
                 // 시간 제한을 5초로 두고 0이 될때까지 메서드 실행
                 CheckingRestaurant();
             }
