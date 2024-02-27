@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour
@@ -8,7 +9,7 @@ public class NPCSpawner : MonoBehaviour
    
     // 오브젝트를 넣을 프리팹과 스프라이트
     [SerializeField] private GameObject[] guestPrefab;
-    [SerializeField] private Sprite[] menuSprite;
+    public Sprite[] menuSprite;
     [SerializeField] private GameObject policePrefab;
 
     // 오브젝트 스폰과 파괴 위치값
@@ -25,6 +26,8 @@ public class NPCSpawner : MonoBehaviour
 
     //[SerializeField] private GameObject TargetPrefab;
     private Coroutine spawnCoroutine;
+
+    public bool IsPoliceSpawned = false;
 
     // 스폰 생성 지연시간
     private float guestInterval = 3.5f;
@@ -56,7 +59,6 @@ public class NPCSpawner : MonoBehaviour
             // 시간이 다 되면 마감시간 상태가 되어 NPC 퇴장이 다 되는지 확인 
             if(timeLeft.limitTimeSec <= 0f)
             {
-                Debug.Log("Close Time!!");
                 yield return new WaitUntil(() => timeLeft.CheckNPC.Length == 0);
                 GameEvents.NotifyDayEnd();
                 yield break;
@@ -68,13 +70,13 @@ public class NPCSpawner : MonoBehaviour
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
                 Debug.Log("SpawnStart!!!!!!!");
                 int gacha = UnityEngine.Random.Range(0, 10);
-                if (gacha < 2 && callCount < 3)
+                if (gacha < 2 && callCount < 3 && !IsPoliceSpawned)
                 {
                     Debug.Log("PoliceSpawn");
                     yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
                     policeInterval = UnityEngine.Random.Range(5f, 10f);
                     callCount++;
-                    Debug.Log(callCount);
+                    IsPoliceSpawned = true;
                 }
                 else
                 {
@@ -94,7 +96,6 @@ public class NPCSpawner : MonoBehaviour
 
     private IEnumerator SpawnOnce(float interval, GameObject NPC, Transform Position)
     {
-        //Debug.Log("Coroutine Start");
         yield return new WaitForSeconds(interval);
         SpawnPrefab(NPC, Position);
     }
@@ -111,10 +112,6 @@ public class NPCSpawner : MonoBehaviour
 
         // 스폰하고자 하는 프리팹을 게임 상으로 소환시킨다.
         GameObject newNpc = Instantiate(NPC, Position.position, Quaternion.identity);
-        Transform mainObject = newNpc.transform.Find("MainSprite");
-
-        // 메뉴 스프라이트 변경
-        SpriteRenderer wantedMenuSprite = mainObject.transform.Find("MenuSprite").GetComponent<SpriteRenderer>();
 
         // NPC 내에 엤는 NPCController를 찾아서 넣는다
         NPCController controller = newNpc.transform.Find("MainSprite").GetComponent<NPCController>();
@@ -122,16 +119,7 @@ public class NPCSpawner : MonoBehaviour
         // NPC 메뉴를 정하기 위해서 
         NPCInteraction Interaction = newNpc.transform.Find("MainSprite").GetComponent<NPCInteraction>();
 
-        // 메뉴를 정하는 랜덤 값들을 int 변수에 삽입 -> 음식60%, 맥주20%, 와인 10%, 위스키 10%의 확률로 나올 메서드가 필요
-        //Menu NPCMenu = (Menu)(UnityEngine.Random.Range(1, Enum.GetNames(typeof(Menu)).Length)); => 안쓴다
-        Menu NPCMenu = (Menu)RandomMenuSelect();
-        int MenuIndex = (int)NPCMenu;
-
-        // NPC가 원하는 메뉴의 enum을 선언 한다.
-        Interaction.wantedMenu = NPCMenu;
-
-        // 메뉴의 스프라이트 데이터를 집어 넣는다.
-        wantedMenuSprite.sprite = menuSprite[MenuIndex];
+        SetGuestMenu(newNpc, Interaction);
 
         // 스폰된 NPC의 타겟을 바깥 입구쪽으로 향하게 한다.
         controller.target = EntranceTargetObject;
@@ -151,6 +139,24 @@ public class NPCSpawner : MonoBehaviour
         // 딕셔너리의 인덱스와 같은 해당 키 인덱스의 값을 false로 바꾼다
         EmptySeatCheck[randomIndex] = true;
 
+    }
+
+    private void SetGuestMenu(GameObject npcPrefab, NPCInteraction prefabInteraction)
+    {
+        // 메뉴 이미지를 받아오기에 필요한 오브젝트들
+        Transform mainObject = npcPrefab.transform.Find("MainSprite");
+        SpriteRenderer wantedMenuSprite = mainObject.transform.Find("MenuSprite").GetComponent<SpriteRenderer>();
+
+        // 메뉴를 정하는 랜덤 값들을 int 변수에 삽입 -> 음식60%, 맥주20%, 와인 10%, 위스키 10%의 확률로 나올 메서드가 필요
+        Menu NPCMenu = (Menu)RandomMenuSelect();
+        int MenuIndex = (int)NPCMenu;
+
+        // NPC가 원하는 메뉴의 enum을 선언 한다.
+        prefabInteraction.wantedMenu = NPCMenu;
+
+        // 메뉴의 스프라이트 데이터를 집어 넣는다.
+        wantedMenuSprite.sprite = menuSprite[MenuIndex];
+        
     }
 
     // 경찰 프리팹을 스폰하는 메서드
