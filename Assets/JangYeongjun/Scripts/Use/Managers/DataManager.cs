@@ -63,8 +63,9 @@ public class PlayerData
 public class MissionData
 {
     public string Name;
+    public string Script;
     public string Description;
-    public int Reward;
+    public string Reward;
     public bool DidMission;
 }
 public class DataManager : MonoBehaviour
@@ -155,25 +156,29 @@ public class DataManager : MonoBehaviour
     void SavePlayerData()
     {
         string playerData = JsonUtility.ToJson(nowPlayer.Playerinfo, true);
-        File.WriteAllText(path + "/playerData.json", playerData);
+        string encryptedPlayerData = EncryptionUtility.EncryptString(playerData);
+        File.WriteAllText(path + "/playerData.json", encryptedPlayerData);
     }
     void SaveInventoryData()
     {
         InventoryWrapper invenWrapper = new InventoryWrapper { inventory = nowPlayer.inventory };
         string InventoryData = JsonUtility.ToJson(invenWrapper, true);
-        File.WriteAllText(path + "/inventoryData.json", InventoryData);
+        string encryptedInventoryData = EncryptionUtility.EncryptString(InventoryData);
+        File.WriteAllText(path + "/inventoryData.json", encryptedInventoryData);
     }
     void SaveItemData()
     {
         ItemWrapper itemWrapper = new ItemWrapper { items = nowPlayer.items };
         string ItemData = JsonUtility.ToJson(itemWrapper, true);
-        File.WriteAllText(path + "/itemData.json", ItemData);
+        string encryptedItemData = EncryptionUtility.EncryptString(ItemData);
+        File.WriteAllText(path + "/itemData.json", encryptedItemData);
     }
     void SaveMissionData()
     {
         MissionWrapper missionWrapper = new MissionWrapper { missions = nowPlayer.missions };
         string missionData = JsonUtility.ToJson(missionWrapper, true);
-        File.WriteAllText(path + "/missionData.json", missionData);
+        string encryptedMissionData = EncryptionUtility.EncryptString(missionData);
+        File.WriteAllText(path + "/missionData.json", encryptedMissionData);
     }
     #endregion
 
@@ -196,14 +201,19 @@ public class DataManager : MonoBehaviour
                 string PlayerData = File.ReadAllText(path + "/playerData.json");
                 string MissionData = File.ReadAllText(path + "/missionData.json");
 
-                ItemWrapper itemWrapper = JsonUtility.FromJson<ItemWrapper>(ItemData);
-                InventoryWrapper inventoryWrapper = JsonUtility.FromJson<InventoryWrapper>(InventoryData);
-                MissionWrapper missionWrapper = JsonUtility.FromJson<MissionWrapper>(MissionData);
+                string decryptedItemData = EncryptionUtility.DecryptString(ItemData);
+                string decryptedInventoryData = EncryptionUtility.DecryptString(InventoryData);
+                string decryptedPlayerData = EncryptionUtility.DecryptString(PlayerData);
+                string decryptedMissionData = EncryptionUtility.DecryptString(MissionData);
+
+                ItemWrapper itemWrapper = JsonUtility.FromJson<ItemWrapper>(decryptedItemData);
+                InventoryWrapper inventoryWrapper = JsonUtility.FromJson<InventoryWrapper>(decryptedInventoryData);
+                MissionWrapper missionWrapper = JsonUtility.FromJson<MissionWrapper>(decryptedMissionData);
 
                 nowPlayer.items = itemWrapper.items;
                 nowPlayer.inventory = inventoryWrapper.inventory;
                 nowPlayer.missions = missionWrapper.missions;
-                nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(PlayerData);
+                nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(decryptedPlayerData);
             }
             else 
             {

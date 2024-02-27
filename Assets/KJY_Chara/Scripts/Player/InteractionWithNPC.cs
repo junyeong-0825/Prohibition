@@ -13,6 +13,7 @@ public class InteractionWithNPC : MonoBehaviour
     [SerializeField] GameObject resultPanel;
     [SerializeField] GameObject exitButton;
     [SerializeField] TextMeshProUGUI foodText, beerText, wineText, whiskyText, startText, endText, policePenaltyText, failPenaltyText;
+    [SerializeField] MissionController missionController;
     #region EventAdd
     private void OnEnable()
     {
@@ -47,6 +48,7 @@ public class InteractionWithNPC : MonoBehaviour
     void ResetPanel()
     {
         startGold = DataManager.instance.nowPlayer.Playerinfo.Gold;
+        missionController.RemoveMenuCount();
         resultPanel.SetActive(false);
         foodGold = 0;
         beerGold = 0;
@@ -63,6 +65,7 @@ public class InteractionWithNPC : MonoBehaviour
     void TradeSucceeded()
     {
         Item TradeItem = DataManager.instance.nowPlayer.items.Find(item => item.Name == status.whatServed.ToString());
+        missionController.AddMenuCount(TradeItem);
         AddGold(TradeItem);
         ResultItemGold(TradeItem);
         ChangeStatus();

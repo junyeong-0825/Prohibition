@@ -74,10 +74,14 @@ public class Inventory : MonoBehaviour
 
     public void ResetUI()
     {
-        for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
+        if (DataManager.instance.nowPlayer.inventory != null)
         {
-            uiSlots[i].Clear();
+            for (int i = 0; i < DataManager.instance.nowPlayer.inventory.Count; i++)
+            {
+                uiSlots[i].Clear();
+            }
         }
+        else { uiSlots[0].Clear(); }
     }
 
     public void UpdateUI()
