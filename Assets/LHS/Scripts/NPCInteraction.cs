@@ -39,12 +39,12 @@ public class NPCInteraction : MonoBehaviour
     // Update문 내에서 한번 실행만 하도록 하기 위한 플래그 bool값
     private bool isflag = false;
 
-    ////김준영의 작업 추가분
-    //public ChangeSprite changeSprite;
-    //private void Awake()
-    //{
-    //    changeSprite = GetComponent<ChangeSprite>();
-    //}
+    //김준영의 작업 추가분
+    public ChangeSprite changeSprite;
+    private void Awake()
+    {
+        changeSprite = GetComponent<ChangeSprite>();
+    }
 
     private void Start()
     {
@@ -142,7 +142,7 @@ public class NPCInteraction : MonoBehaviour
     // enum 비교용 메뉴 비교 메서드
     public void CompareMenu(Menu playerMenu)
     {
-        //changeSprite.SettingFood();
+        changeSprite.SettingFood();
         if (!interactionCompleted && interactionStarted)
         {
             if(playerMenu == wantedMenu)
