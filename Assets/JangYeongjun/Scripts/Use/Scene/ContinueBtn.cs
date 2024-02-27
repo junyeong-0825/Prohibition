@@ -10,8 +10,8 @@ public class ContinueBtn : MonoBehaviour
     private void Start()
     {
         bool result = DataManager.instance.CheckDatas();
-        if (!result) { Debug.Log("Title Data Fasle"); button.interactable = false; }
-        else { Debug.Log("Title Data True"); button.interactable = true; }
+        if (!result) { button.interactable = false; }
+        else { button.interactable = true; }
         button.onClick.AddListener(SceneChang);
     }
 

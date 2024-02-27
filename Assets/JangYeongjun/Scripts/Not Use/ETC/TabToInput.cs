@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,7 +9,7 @@ public class TabToInput : MonoBehaviour
 {
     public TMP_InputField IDInput, PassInput;
     int InputSelect;
-    #region InputField¸¦ TabÀ¸·Î ÀÌµ¿ÇÏ´Â ·ÎÁ÷
+    #region InputFieldë¥¼ Tabìœ¼ë¡œ ì´ë™í•˜ëŠ” ë¡œì§
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -27,3 +28,4 @@ public class TabToInput : MonoBehaviour
     public void PasswordSelected() => InputSelect = 1;
     #endregion
 }
+*/

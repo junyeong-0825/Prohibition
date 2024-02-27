@@ -1,10 +1,11 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MafiaSoundsControll : MonoBehaviour
 {
-    public AudioClip[] clips; // ¿Àµğ¿À Å¬¸³ ¹è¿­
+    public AudioClip[] clips; // ì˜¤ë””ì˜¤ í´ë¦½ ë°°ì—´
     private AudioSource audioSource;
     int clipIndex = 0;
 
@@ -14,7 +15,7 @@ public class MafiaSoundsControll : MonoBehaviour
         StartCoroutine(PlaySound());
     }
 
-    // Æ¯Á¤ ¿Àµğ¿À Å¬¸³ Àç»ı
+    // íŠ¹ì • ì˜¤ë””ì˜¤ í´ë¦½ ì¬ìƒ
     IEnumerator PlaySound()
     {
         while (true)
@@ -31,3 +32,4 @@ public class MafiaSoundsControll : MonoBehaviour
         }
     }
 }
+*/

@@ -23,7 +23,6 @@ public class StoreChanger : MonoBehaviour
     {
         if (contents == null || itemSlotPrefab == null)
         {
-            Debug.LogError("필요한 컴포넌트가 할당되지 않았습니다.");
             return;
         }
 

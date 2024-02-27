@@ -13,6 +13,7 @@ public class DayController : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject playerInfoPanel;
+    [SerializeField] GameObject tutorialPanel;
     [SerializeField] Timer timer;
     [SerializeField] NPCSpawner npcSpawner;
     [SerializeField] PlayerStatus playerStatus;
@@ -53,6 +54,7 @@ public class DayController : MonoBehaviour
     {
         while (!IsGameEnd) // IsGameEnd가 false인 동안 루프로 낮과 밤 사이클 반복
         {
+            Tutorial();
             if (IsDay)
             {
                 #region Day
@@ -81,11 +83,23 @@ public class DayController : MonoBehaviour
             ClearCheck();
             if (!IsGameEnd) { AddDayCount(); }
         }
-        Debug.Log("EndDaysLoop");
     }
     #endregion
 
     #region Reset Voids
+    #region Tutorial Panel
+    void Tutorial()
+    {
+        if(!DataManager.instance.nowPlayer.Playerinfo.IsTutorialed)
+        {
+            tutorialPanel.SetActive(true);
+        }
+        else
+        {
+            tutorialPanel.SetActive(false) ;
+        }
+    }
+    #endregion
 
     #region Reset Transform
     void DayTransform()

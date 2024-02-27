@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -74,8 +75,8 @@ public class MaybeNPC : MonoBehaviour
         return select;
     }
     #endregion
-    #region ÀÌµ¿ÇÏ´Â ·ÎÁ÷
-    // Ãß°¡: °¢ ¿ÀºêÁ§Æ®ÀÇ ÀÌµ¿ »óÅÂ¸¦ ÃßÀûÇÏ´Â ±¸Á¶Ã¼
+    #region ì´ë™í•˜ëŠ” ë¡œì§
+    // ì¶”ê°€: ê° ì˜¤ë¸Œì íŠ¸ì˜ ì´ë™ ìƒíƒœë¥¼ ì¶”ì í•˜ëŠ” êµ¬ì¡°ì²´
     private struct MoveState
     {
         public bool isMoving;
@@ -97,7 +98,7 @@ public class MaybeNPC : MonoBehaviour
 
                 if (obj.transform.position == state.targetPosition)
                 {
-                    // ¸ñÇ¥¿¡ µµ´ŞÇßÀ» ¶§ÀÇ ·ÎÁ÷
+                    // ëª©í‘œì— ë„ë‹¬í–ˆì„ ë•Œì˜ ë¡œì§
                     state.isMoving = false;
                     moveStates[obj] = state;
                 }
@@ -105,15 +106,15 @@ public class MaybeNPC : MonoBehaviour
         }
     }
 
-    // EnterDecision, CheckCustomerCount µîÀÇ ¸Ş¼Òµå¿¡¼­´Â ÀÌµ¿ »óÅÂ ¼³Á¤
+    // EnterDecision, CheckCustomerCount ë“±ì˜ ë©”ì†Œë“œì—ì„œëŠ” ì´ë™ ìƒíƒœ ì„¤ì •
     IEnumerator EnterDecision(GameObject select)
     {
-        // ÀÌµ¿ »óÅÂ ¼³Á¤
+        // ì´ë™ ìƒíƒœ ì„¤ì •
         moveStates[select] = new MoveState
         {
             isMoving = true,
             targetPosition = movingPoint[0].position,
-            moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+            moveSpeed = 5.0f // ì´ë™ ì†ë„
         };
 
         System.Random rand = new System.Random();
@@ -129,7 +130,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = endPoint.position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
             select.SetActive(false);
         }
@@ -141,7 +142,7 @@ public class MaybeNPC : MonoBehaviour
         {
             isMoving = true,
             targetPosition = movingPoint[1].position,
-            moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+            moveSpeed = 5.0f // ì´ë™ ì†ë„
         };
 
         if (customerCount < 8)
@@ -155,7 +156,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = endPoint.position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
             select.SetActive(false);
         }
@@ -166,7 +167,7 @@ public class MaybeNPC : MonoBehaviour
         {
             isMoving = true,
             targetPosition = movingPoint[2].position,
-            moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+            moveSpeed = 5.0f // ì´ë™ ì†ë„
         };
         int secondDecision = Random.Range(0, 3);
         if (secondDecision == 0)
@@ -203,7 +204,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[3].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
             upperLeftFirstTable = true;
         }
@@ -213,7 +214,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[4].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
         }
         yield return null;
@@ -240,7 +241,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[5].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
             upperRightFirstTable = true;
         }
@@ -250,7 +251,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[6].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
         }
         yield return null;
@@ -274,7 +275,7 @@ public class MaybeNPC : MonoBehaviour
         {
             isMoving = true,
             targetPosition = movingPoint[7].position,
-            moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+            moveSpeed = 5.0f // ì´ë™ ì†ë„
         };
         yield return StartCoroutine(SecondJunction(select));
     }
@@ -312,7 +313,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[8].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
             DownLeftFirstTable = true;
         }
@@ -322,7 +323,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[9].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
         }
         yield return null;
@@ -349,7 +350,7 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[10].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
             DownRightFirstTable = true;
         }
@@ -359,10 +360,11 @@ public class MaybeNPC : MonoBehaviour
             {
                 isMoving = true,
                 targetPosition = movingPoint[11].position,
-                moveSpeed = 5.0f // ÀÌµ¿ ¼Óµµ
+                moveSpeed = 5.0f // ì´ë™ ì†ë„
             };
         }
         yield return null;
     }
     #endregion
 }
+*/

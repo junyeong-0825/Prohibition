@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ChangeButtonTextColor : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,21 +11,21 @@ public class ChangeButtonTextColor : MonoBehaviour, IPointerDownHandler, IPointe
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        buttonText.color = pressedColor; // ¹öÆ°À» ´©¸£¸é »ö»ó º¯°æ
+        buttonText.color = pressedColor; // ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ìƒ‰ìƒ ë³€ê²½
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        buttonText.color = originalColor; // ¹öÆ°¿¡¼­ ¼ÕÀ» ¶¼¸é ¿ø·¡ »ö»óÀ¸·Î º¹¿ø
+        buttonText.color = originalColor; // ë²„íŠ¼ì—ì„œ ì†ì„ ë–¼ë©´ ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³µì›
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        buttonText.color = EnterColor; // ¹öÆ°¿¡ ¿Ã¶ó°¡¸é »ö»ó º¯°æ
+        buttonText.color = EnterColor; // ë²„íŠ¼ì— ì˜¬ë¼ê°€ë©´ ìƒ‰ìƒ ë³€ê²½
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        buttonText.color = originalColor; // ¹öÆ°¿¡¼­ ³ª°¡¸é »ö»ó º¯°æ
+        buttonText.color = originalColor; // ë²„íŠ¼ì—ì„œ ë‚˜ê°€ë©´ ìƒ‰ìƒ ë³€ê²½
     }
 }

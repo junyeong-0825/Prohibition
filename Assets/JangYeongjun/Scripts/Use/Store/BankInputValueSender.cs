@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +12,6 @@ public class BankInputValueSender : MonoBehaviour
         Int32.TryParse(bankInputField.text, out goldValue);
         if (goldValue > 0)
         {
-            Debug.Log($"{goldValue}와 {bankInputField.text}");
             BankManager.BankInstance.Repayment(goldValue);
         }
         else
@@ -27,7 +24,6 @@ public class BankInputValueSender : MonoBehaviour
         Int32.TryParse(bankInputField.text, out goldValue);
         if (goldValue > 0)
         {
-            Debug.Log($"{goldValue}와 {bankInputField.text}");
             BankManager.BankInstance.Loan(goldValue);
         }
         else

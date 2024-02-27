@@ -58,6 +58,7 @@ public class PlayerData
     public int Debt = 50000;
     public int Day = 1;
     public bool IsDay = true;
+    public bool IsTutorialed = false;
 }
 [System.Serializable]
 public class MissionData
@@ -99,50 +100,6 @@ public class DataManager : MonoBehaviour
         path = Application.persistentDataPath;
     }
     #endregion
-    /*
-    #region Save
-    public void SetValue()
-    {
-        WWWForm form = new WWWForm();
-
-        string goldValue = nowPlayer.Playerinfo.Gold.ToString();
-        if (goldValue == null) goldValue = "";
-        Debug.Log(goldValue);
-
-        string debtValue = nowPlayer.Playerinfo.Debt.ToString();
-        if (debtValue == null) debtValue = "";
-        Debug.Log(debtValue);
-
-        string tutorialValue = nowPlayer.Playerinfo.DidTutorial.ToString();
-        if (tutorialValue == null) tutorialValue = "";
-        Debug.Log(tutorialValue);
-
-        string dayValue = nowPlayer.Playerinfo.Day.ToString();
-        if (dayValue == null) dayValue = "";
-        Debug.Log(dayValue);
-
-        InventoryWrapper invenWrapper = new InventoryWrapper { inventory = nowPlayer.inventory };
-        string invenValue = JsonUtility.ToJson(invenWrapper);
-        if (invenValue == null) invenValue = "";
-
-        ItemWrapper itemWrapper = new ItemWrapper { items = nowPlayer.items};
-        string itemValue = JsonUtility.ToJson(itemWrapper);
-        if (itemValue == null) itemValue = "";
-
-        Debug.Log(invenValue);
-
-        form.AddField("order", "setValue");
-        form.AddField("gold", goldValue);
-        form.AddField("debt", debtValue);
-        form.AddField("tutorial", tutorialValue);
-        form.AddField("inven", invenValue);
-        form.AddField("item", itemValue);
-        form.AddField("day", dayValue);
-
-        StartCoroutine(LoginManager.loginInstance.Post(form));
-    }
-    #endregion
-    */
 
     #region SaveDatas
     public void SaveAllData()
@@ -191,11 +148,6 @@ public class DataManager : MonoBehaviour
             #region ItemData Load
             if(result)
             {
-                Debug.Log("Local Item Data ");
-                Debug.Log("Local Inventory Data ");
-                Debug.Log("Local Player Data ");
-                Debug.Log("Local Mission Data");
-
                 string ItemData = File.ReadAllText(path + "/itemData.json");
                 string InventoryData = File.ReadAllText(path + "/inventoryData.json");
                 string PlayerData = File.ReadAllText(path + "/playerData.json");
@@ -219,11 +171,6 @@ public class DataManager : MonoBehaviour
             {
                 DeleteAllData();
 
-                Debug.Log("Base Item Data ");
-                Debug.Log("Base Inventory Data ");
-                Debug.Log("Base Mission Data");
-                Debug.Log("Base Player Data ");
-
                 TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
                 TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
                 TextAsset missionFile = Resources.Load<TextAsset>("Datas/MissionData");
@@ -241,56 +188,6 @@ public class DataManager : MonoBehaviour
                 nowPlayer.missions = MissionData.missions;
                 nowPlayer.Playerinfo = new PlayerData();
             }
-            /*
-            if (File.Exists(path + "/itemData.json"))
-            {
-                Debug.Log("Local Item Data ");
-                string ItemData = File.ReadAllText(path + "/itemData.json");
-                ItemWrapper itemWrapper = JsonUtility.FromJson<ItemWrapper>(ItemData);
-                nowPlayer.items = itemWrapper.items;
-            }
-            else
-            {
-                Debug.Log("Base Item Data ");
-                TextAsset itemFile = Resources.Load<TextAsset>("Datas/ItemData");
-                if (itemFile == null) throw new Exception("아이템 데이터를 찾을 수 없습니다.");
-                Datas itemData = JsonUtility.FromJson<Datas>(itemFile.text);
-                nowPlayer.items = itemData.items;
-            }
-            Debug.Log("아이템 데이터 성공");
-            #endregion
-
-            #region PlayerData Load
-            if (File.Exists(path + "/playerData.json"))
-            {
-                Debug.Log("Local Player Data ");
-                string PlayerData = File.ReadAllText(path + "/playerData.json");
-                nowPlayer.Playerinfo = JsonUtility.FromJson<PlayerData>(PlayerData);
-            }
-            else
-            {
-                Debug.Log("Base Player Data ");
-                nowPlayer.Playerinfo = new PlayerData();
-            }
-            #endregion
-            
-            #region InventoryData Load
-            if (File.Exists(path + "/inventoryData.json"))
-            {
-                Debug.Log("Local Inventory Data ");
-                string InventoryData = File.ReadAllText(path + "/inventoryData.json");
-                InventoryWrapper inventoryWrapper = JsonUtility.FromJson<InventoryWrapper>(InventoryData);
-                nowPlayer.inventory = inventoryWrapper.inventory;
-            }
-            else
-            {
-                Debug.Log("Base Inventory Data ");
-                TextAsset inventoryFile = Resources.Load<TextAsset>("Datas/InventoryData");
-                if (inventoryFile == null) throw new Exception("인벤토리 데이터를 찾을 수 없습니다.");
-                Datas inventoryData = JsonUtility.FromJson<Datas>(inventoryFile.text);
-                nowPlayer.inventory = inventoryData.inventory;
-            }
-            */
             #endregion
         }
         catch (Exception e)

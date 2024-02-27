@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    #region ½Ì±ÛÅæ
+    #region ì‹±ê¸€í†¤
     public static SceneChanger sceneInstance;
     private void Awake()
     {
@@ -48,19 +48,4 @@ public class SceneChanger : MonoBehaviour
             Debug.Log("No Scene");
         }
     }
-    /*
-    void SceneLoad(int nextSceneIndex)
-    {
-        SceneManager.LoadScene(nextSceneIndex);
-    }
-
-    void AsyncScnenLoad(int nextSceneIndex)
-    {
-        asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex);
-        if (nextSceneIndex == 2)
-        {
-            playerButton.SetActive(true);
-        }
-    }
-    */
 }

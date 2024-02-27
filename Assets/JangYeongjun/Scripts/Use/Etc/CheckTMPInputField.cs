@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Text.RegularExpressions;
 
 public class CheckTMPInputField : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class CheckTMPInputField : MonoBehaviour
     {
         if (tmpInputField != null)
         {
-            tmpInputField.text = ""; // TMP_InputFieldÀÇ ÅØ½ºÆ®¸¦ Áö¿ó´Ï´Ù.
+            tmpInputField.text = ""; // TMP_InputFieldì˜ í…ìŠ¤íŠ¸ë¥¼ ì§€ì›ë‹ˆë‹¤.
         }
     }
 }
