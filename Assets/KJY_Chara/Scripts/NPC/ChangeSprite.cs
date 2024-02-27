@@ -36,9 +36,16 @@ public class ChangeSprite : MonoBehaviour
                 Debug.Log("위스키를 두었다");
                 break;
         }
+
     }
     public void CheckTablePoint()
     {
         spriteRenderer = findTable.dishPoint.GetComponent<SpriteRenderer>();
+    }
+
+    public void CleanTable()
+    {
+        spriteRenderer.sprite = null;
+        Debug.Log("책상을 치웠다");
     }
 }
