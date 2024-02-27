@@ -80,7 +80,10 @@ public class PoliceInteraction : MonoBehaviour
         {
             // 중첩 패널티를 넣기 위한 패널티
             GetPenalty();
-            SearchingComplete();
+            SearchingSprite.SetActive(false);
+            checkingComplete = true;
+            checkingStarted = false;
+            ExitToInsideEntrance();
         }
     }
 
