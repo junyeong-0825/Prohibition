@@ -35,6 +35,14 @@ public class PlayerStatus : MonoBehaviour
     {
         FoodCountUpdate();
     }
+    private void OnEnable()
+    {
+        GameEvents.OnDayStart += FoodCountUpdate;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnDayStart -= FoodCountUpdate;
+    }
     void FoodCountUpdate()
     {
         PlayerInventory foodInven = DataManager.instance.nowPlayer.inventory.Find(item => item.Name == "Food");
