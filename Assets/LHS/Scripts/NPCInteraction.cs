@@ -29,8 +29,11 @@ public class NPCInteraction : MonoBehaviour
     public bool InteractionCompleted { get { return interactionCompleted; } }
 
     // 위장상태 감지와 경찰 탐문 감지를 위한 변수 선언
-    private PlayerStatus playerStatus;
-    private bool isUndercover;
+    //private PlayerStatus playerStatus;
+    //private bool isUndercover;
+
+    private SearchTrigger searchTrigger;
+    private bool isSearching;
 
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
@@ -48,18 +51,27 @@ public class NPCInteraction : MonoBehaviour
 
     private void Start()
     {
-        playerStatus = GameObject.Find("Player").GetComponent<PlayerStatus>();
-        if (playerStatus == null)
+        //playerStatus = GameObject.Find("Player").GetComponent<PlayerStatus>();
+        //if (playerStatus == null)
+        //{
+        //    Debug.LogError("PlayerStatus를 찾을 수 없습니다.");
+        //}
+        //StartCoroutine(PlayerUndercoverStatus());
+
+        searchTrigger = GameObject.Find("SearchLocation").GetComponent<SearchTrigger>();
+        if (searchTrigger == null)
         {
-            Debug.LogError("PlayerStatus를 찾을 수 없습니다.");
+            Debug.LogError("SearchLocation을 찾을 수 없습니다.");
         }
-        StartCoroutine(PlayerUndercoverStatus());
+        StartCoroutine(PoliceSearchStartStatus());
     }
 
     // Update is called once per frame
     void Update()
     {
-        isUndercover = playerStatus.isUndercover;
+        //isUndercover = playerStatus.isUndercover;
+
+        isSearching = searchTrigger.IsSearchBegin;
         // 상호작용 시작되었고 상호작용 완료값이 false이면
         if (interactionStarted && !interactionCompleted)
         {
@@ -111,7 +123,9 @@ public class NPCInteraction : MonoBehaviour
     // 위장 단속을 피하기 위한 손님의 행동 패턴을 변화시킴
     private void DodgePoliceSearch()
     {
+        //Debug.Log("검문 회피 시작");
         int randomIndex = Random.Range(0, 3);
+        //Debug.Log(randomIndex);
 
         switch(randomIndex)
         {
@@ -262,10 +276,17 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    // 플레이어의 위장 상태를 감지하는 코루틴 함수 (start() 이벤트 함수에서 실행)
-    private IEnumerator PlayerUndercoverStatus()
+    // 플레이어의 위장 상태를 감지하는 코루틴 함수 (start() 이벤트 함수에서 실행) => 폐기
+    //private IEnumerator PlayerUndercoverStatus()
+    //{
+    //    yield return new WaitUntil(() => isUndercover == true && interactionStarted);
+    //    isChanged = true;
+    //}
+
+    // 경찰의 검문 상태를 실시간으로 감지하는 코루틴 함수
+    private IEnumerator PoliceSearchStartStatus()
     {
-        yield return new WaitUntil(() => isUndercover == true && interactionStarted);
+        yield return new WaitUntil(() => isSearching == true && interactionStarted);
         isChanged = true;
     }
 }
