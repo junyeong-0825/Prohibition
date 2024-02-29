@@ -338,7 +338,7 @@ MonoBehaviour:
   FailSprite: {fileID: 169772381837237075}
   checkingComplete: 0
   checkingStarted: 0
-  CheckingTime: 5
+  CheckingTime: 3
   remainTime: 0
 --- !u!1 &3704129731997151547
 GameObject:
