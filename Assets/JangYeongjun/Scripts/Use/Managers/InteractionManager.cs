@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class InteractionManager : MonoBehaviour
@@ -20,10 +21,23 @@ public class InteractionManager : MonoBehaviour
     }
     #endregion
     string objectName;
-    [SerializeField] GameObject[] panels; 
+    [SerializeField] GameObject[] panels;
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] GameObject alcoholPanel;
     private Dictionary<string, GameObject> storePanels = new Dictionary<string, GameObject>();
+    public InputAction eKeyAction; // Input Action을 Inspector에서 설정할 수 있도록 함
+
+    private void OnEnable()
+    {
+        eKeyAction.Enable();
+        eKeyAction.performed += Interaction; // E 키가 눌렸을 때 실행할 함수를 연결
+    }
+
+    private void OnDisable()
+    {
+        eKeyAction.Disable();
+        eKeyAction.performed -= Interaction; // 연결 해제
+    }
 
     private void Start()
     {
@@ -39,12 +53,12 @@ public class InteractionManager : MonoBehaviour
     }
 
 
-    void OnInteraction()
+    void Interaction(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("interact");
         if (objectName != "None")
         {
-            if (storePanels.TryGetValue(objectName+"Panel", out GameObject panel))
+            if (storePanels.TryGetValue(objectName + "Panel", out GameObject panel))
             {
                 panel.SetActive(true);
             }

@@ -46,9 +46,6 @@ public class NPCSpawner : MonoBehaviour
             // 빈자리 수만큼 NPC가 스폰되었다면 스폰 상태를 체크하는 bool값 선언
             bool isEmpty = AreAllValuesFalse(EmptySeatCheck);
 
-            // 초기 빈자리인지 확인하는 것
-            //Debug.Log(isEmpty);
-
             // 시간이 다 되면 마감시간 상태가 되어 NPC 퇴장이 다 되는지 확인 
             if(timeLeft.limitTimeSec <= 0f)
             {

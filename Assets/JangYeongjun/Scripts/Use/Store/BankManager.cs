@@ -53,7 +53,7 @@ public class BankManager : MonoBehaviour
     }
     public void Loan(int goldValue)
     {
-        if (DataManager.instance.nowPlayer.Playerinfo.Debt + goldValue <= 300000)
+        if (DataManager.instance.nowPlayer.Playerinfo.Debt + goldValue <= 50000)
         {
             DataManager.instance.nowPlayer.Playerinfo.Debt += goldValue;
             DataManager.instance.nowPlayer.Playerinfo.Gold += goldValue;
@@ -61,7 +61,7 @@ public class BankManager : MonoBehaviour
         }
         else 
         {
-            warningText.text = "한도 300,000 Gold를 넘습니다.";
+            warningText.text = "한도 50,000 Gold를 넘습니다.";
             mafiaText.color = new Color(1, 0, 0, 1);
             mafiaText.text = "얼마나 빌릴 생각인 거야?!!";
         }

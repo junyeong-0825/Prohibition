@@ -6,6 +6,8 @@ using UnityEngine;
 public class InteractionWithNPC : MonoBehaviour
 {
     int foodGold, beerGold, wineGold, whiskyGold, startGold, endGold, policePenaltyGold, failPenaltyGold;
+    int foodCount, beerCount, wineCount, whiskyCount, policePenaltyCount, failPenaltyCount;
+    int foodPrice, beerPrice, winePrice, whiskyPrice;
     [SerializeField] Penalties penalties;
     [SerializeField] PlayerStatus status;
     [SerializeField] AudioSource resultAudioSource;
@@ -56,6 +58,12 @@ public class InteractionWithNPC : MonoBehaviour
         whiskyGold = 0;
         policePenaltyGold = 0;
         failPenaltyGold = 0;
+        foodCount = 0;
+        beerCount = 0;
+        wineCount=0; 
+        whiskyCount = 0; 
+        policePenaltyCount = 0; 
+        failPenaltyCount = 0;
     }
     void TimeOver()
     {
@@ -75,6 +83,7 @@ public class InteractionWithNPC : MonoBehaviour
     {
         penalties.LowLevelGoldPenalty();
         failPenaltyGold += 5;
+        failPenaltyCount++;
         ChangeStatus();
     }
     void AddGold(Item item)
@@ -89,31 +98,32 @@ public class InteractionWithNPC : MonoBehaviour
     }
     IEnumerator ResultGoldSetting()
     {
+        ItemPriceSetting();
         PlayResultAudio();
         resultAudioSource.volume = 0.1f;
         resultAudioSource.Play();
-        startText.text = $"={startGold} Gold";
+        startText.text = $"= {startGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        beerText.text = $"+{beerGold} Gold";
+        beerText.text = $"{beerCount} x {beerPrice} Gold = {beerGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        wineText.text = $"+{wineGold} Gold";
+        wineText.text = $"{wineCount} x {winePrice} Gold = {wineGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        whiskyText.text = $"+{whiskyGold} Gold";
+        whiskyText.text = $"{whiskyCount} x {whiskyPrice} Gold = {whiskyGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        foodText.text = $"+{foodGold} Gold";
+        foodText.text = $"{foodCount} x {foodPrice} Gold = {foodGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        failPenaltyText.text = $"+{failPenaltyGold} Gold";
+        failPenaltyText.text = $"{failPenaltyCount} x 5 Gold = {failPenaltyGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        policePenaltyText.text = $"-{policePenaltyGold} Gold";
+        policePenaltyText.text = $"{policePenaltyCount} Count , = {policePenaltyGold} Gold";
         yield return new WaitForSecondsRealtime(resultAudioSource.clip.length);
         resultAudioSource.Play();
-        endText.text = $"={endGold} Gold";
+        endText.text = $"= {endGold} Gold";
         exitButton.SetActive(true);
     }
     void PlayResultAudio()
@@ -134,13 +144,25 @@ public class InteractionWithNPC : MonoBehaviour
         policePenaltyText.text = "";
         failPenaltyText.text = "";
     }
+    void ItemPriceSetting()
+    {
+        Item fooditem = DataManager.instance.nowPlayer.items.Find(item => item.Name == "Food");
+        Item beeritem = DataManager.instance.nowPlayer.items.Find(item => item.Name == "Beer");
+        Item wineitem = DataManager.instance.nowPlayer.items.Find(item => item.Name == "Wine");
+        Item whiskyitem = DataManager.instance.nowPlayer.items.Find(item => item.Name == "Whisky");
+        foodPrice = fooditem.SellingPrice;
+        beerPrice = beeritem.SellingPrice;
+        winePrice = wineitem.SellingPrice;
+        whiskyPrice = whiskyitem.SellingPrice;
+        
 
+    }
     void ResultItemGold(Item item)
     {
-        if(status.whatServed == Menu.Beer) beerGold += item.SellingPrice;
-        else if(status.whatServed == Menu.Wine) wineGold += item.SellingPrice;
-        else if(status.whatServed == Menu.Whisky) whiskyGold += item.SellingPrice;
-        else if(status.whatServed == Menu.Food) foodGold += item.SellingPrice;
+        if (status.whatServed == Menu.Beer) { beerGold += item.SellingPrice; beerCount++; }
+        else if (status.whatServed == Menu.Wine) { wineGold += item.SellingPrice; wineCount++; }
+        else if (status.whatServed == Menu.Whisky) { whiskyGold += item.SellingPrice; whiskyCount++; }
+        else if (status.whatServed == Menu.Food) { foodGold += item.SellingPrice; foodCount++; }
     }
 
     void PolicePenalty()
@@ -148,5 +170,6 @@ public class InteractionWithNPC : MonoBehaviour
         int beforeGold = DataManager.instance.nowPlayer.Playerinfo.Gold;
         penalties.HighLevelGoldPenalty();
         policePenaltyGold += beforeGold - (DataManager.instance.nowPlayer.Playerinfo.Gold);
+        policePenaltyCount++;
     }
 }

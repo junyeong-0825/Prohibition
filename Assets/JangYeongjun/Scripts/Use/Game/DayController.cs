@@ -1,6 +1,7 @@
 #region NameSpace
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 #endregion
 
 
@@ -12,8 +13,9 @@ public class DayController : MonoBehaviour
     [SerializeField] Vector3 dayPosition, nightPosition, dayCameraPosition, nightCameraPosition;
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject Player;
-    [SerializeField] GameObject playerInfoPanel;
-    [SerializeField] GameObject tutorialPanel;
+    [SerializeField] GameObject playerInfoPanel,tutorialPanel;
+    [SerializeField] GameObject endStore;
+    [SerializeField] Button endBusinessButton;
     [SerializeField] Timer timer;
     [SerializeField] NPCSpawner npcSpawner;
     [SerializeField] PlayerStatus playerStatus;
@@ -22,6 +24,7 @@ public class DayController : MonoBehaviour
     void Start()
     {
         IsDay = DataManager.instance.nowPlayer.Playerinfo.IsDay;
+        endBusinessButton.onClick.AddListener(()=>{timer.limitTimeSec = 0f; });
         StartCoroutine("OneDay");
     }
 
@@ -60,6 +63,7 @@ public class DayController : MonoBehaviour
                 #region Day
                 SetIsDay();
                 playerInfoPanel.SetActive(true);
+                endStore.SetActive(true);
                 SaveData();
                 DayTransform();
                 DayAudio();
@@ -72,6 +76,7 @@ public class DayController : MonoBehaviour
             #region Night
             SetIsDay();
             playerInfoPanel.SetActive(false);
+            endStore.SetActive(false);
             ResetPlayerStatus();
             SaveData();
             NightTransform();
@@ -169,34 +174,7 @@ public class DayController : MonoBehaviour
     
     void ResetPlayerStatus()
     {
-        if(playerStatus.whatServed != Menu.None)
-        {
-            PlayerInventory existingItem = DataManager.instance.nowPlayer.inventory.Find(invItem => invItem.Name == playerStatus.whatServed.ToString());
-            if (existingItem != null && existingItem.Quantity >= 1)
-            {
-                existingItem.Quantity++;
-                Inventory.Instance.UpdateUI();
-            }
-            else if (existingItem == null)
-            {
-                Item item = DataManager.instance.nowPlayer.items.Find(item => item.Name == playerStatus.whatServed.ToString()); 
-                PlayerInventory newInventoryItem = new PlayerInventory
-                {
-                    Classification = item.Classification,
-                    Name = item.Name,
-                    Quantity = 1,
-                    PurchasePrice = item.PurchasePrice,
-                    SellingPrice = item.SellingPrice,
-                    RiseScale = item.RiseScale,
-                    spritePath = "Sprites/" + item.Name,
-                    EnhancementValue = 0
-                };
-                DataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
-                Inventory.Instance.UpdateUI();
-            }
-            playerStatus.whatServed = Menu.None;
-            playerStatus.imageSprite.sprite = null;
-        }
+        playerStatus.ResetStatus();
     }
     #endregion
 
