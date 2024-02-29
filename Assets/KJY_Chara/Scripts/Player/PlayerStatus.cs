@@ -71,6 +71,7 @@ public class PlayerStatus : MonoBehaviour
                     ChangeWhatServed(success, result);
                 }
                 AlcoholPanelFalse();
+                GameEvents.NotifyInventoryChanged();
             }
 
             if(menu == "Food") FoodCountUpdate();
@@ -152,6 +153,7 @@ public class PlayerStatus : MonoBehaviour
                 DataManager.instance.nowPlayer.inventory.Add(newInventoryItem);
                 Inventory.Instance.UpdateUI();
             }
+            GameEvents.NotifyInventoryChanged();
             whatServed = Menu.None;
             imageSprite.sprite = null;
         }

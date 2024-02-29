@@ -55,7 +55,6 @@ public class InteractionManager : MonoBehaviour
 
     void Interaction(InputAction.CallbackContext context)
     {
-        Debug.Log("interact");
         if (objectName != "None")
         {
             if (storePanels.TryGetValue(objectName + "Panel", out GameObject panel))
