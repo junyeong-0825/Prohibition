@@ -9,7 +9,7 @@ public class MissionController : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameText, scriptText, descriptionText, rewardText;
     [SerializeField] Button[] missionButtons;
     string[] additionalDescription;
-    int lastCheckedDay = 0; // 마지막으로 확인한 날짜 저장
+    int lastCheckedDay = 0;
     int foodCount, whiskyCount;
     int weeks;
 
@@ -33,8 +33,16 @@ public class MissionController : MonoBehaviour
             missionButtons[i].onClick.AddListener(() => ChangeMission(index));
         }
     }
+    private void OnEnable()
+    {
+        GameEvents.OnDayStart += DayUpdate;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnDayEnd -= DayUpdate;
+    }
 
-    private void Update()
+    private void DayUpdate()
     {
         CheckMissions();
         int currentDay = DataManager.instance.nowPlayer.Playerinfo.Day;
