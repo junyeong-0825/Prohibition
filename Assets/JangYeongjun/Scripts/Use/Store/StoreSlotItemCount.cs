@@ -15,6 +15,7 @@ public class StoreSlotItemCount : MonoBehaviour
     }
     private void OnEnable()
     {
+        FindInvenItem();
         GameEvents.OnInventoryChanged += FindInvenItem;
     }
     private void OnDisable()
