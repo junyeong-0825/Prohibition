@@ -17,7 +17,7 @@ public class PoliceInteraction : MonoBehaviour
     public bool CheckingStarted { get { return checkingStarted; } }
 
     // 경찰이 가게 내부에 대기하는데에 걸리는 시간
-    public float CheckingTime = 5f;
+    public float CheckingTime = 3f;
     [SerializeField] private float remainTime = 0f;
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class PoliceInteraction : MonoBehaviour
             // 입구에 들어왔다면 가게 내부를 점검하는 메서드 실행
             if(remainTime < CheckingTime)
             {
-                // 시간 제한을 5초로 두고 0이 될때까지 메서드 실행
+                // 시간 제한을 3초로 두고 0이 될때까지 메서드 실행
                 CheckingRestaurant();
             }
             else if(remainTime >= CheckingTime)
