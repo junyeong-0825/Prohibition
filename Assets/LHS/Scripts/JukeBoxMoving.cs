@@ -23,7 +23,6 @@ public class JukeBoxMoving : MonoBehaviour
         initialPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(playerStatus != null)
@@ -31,15 +30,13 @@ public class JukeBoxMoving : MonoBehaviour
             isUndercover = playerStatus.isUndercover;
             if(isUndercover && !isMoving)
             {
-                targetPosition = (Vector2)initialPosition + Vector2.left * moveDistance;
+                targetPosition = initialPosition + Vector2.left * moveDistance;
                 isMoving = true;
-                //StartCoroutine(MoveLeft());
             }
             else if(!isUndercover && !isMoving)
             {
                 targetPosition = initialPosition;
                 isMoving = true;
-                //StartCoroutine(MoveRight());
             }
             if(isMoving)
             {

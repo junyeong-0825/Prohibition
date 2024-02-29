@@ -135,11 +135,6 @@ public class NPCController : MonoBehaviour
             Spawner.IsPoliceSpawned = false;
             Destroy(transform.root.gameObject);
         }
-
-        //else if(other.gameObject.tag == "OutsideEntrance" && !checkInteractionStart)
-        //{
-        //    SetTarget(seatTarget);
-        //}
     }
 
     // 딕셔너리를 조정하는 메서드지만 NPC 인스턴스가 실행하는 용도는 아닌거 같다
