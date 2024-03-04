@@ -6,6 +6,7 @@ public class MissionController : MonoBehaviour
 {
     [SerializeField] GameObject MissionOverText;
     [SerializeField] GameObject[] MissionButtons;
+    [SerializeField] GameObject[] MissionCheckers;
     [SerializeField] TextMeshProUGUI nameText, scriptText, descriptionText, rewardText;
     [SerializeField] Button[] missionButtons;
     string[] additionalDescription;

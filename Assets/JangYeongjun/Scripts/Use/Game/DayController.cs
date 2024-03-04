@@ -159,6 +159,14 @@ public class DayController : MonoBehaviour
             GameEvents.NotifyGameOver();
             IsGameEnd = true;
         }
+        WeekMission();
+    }
+    void WeekMission()
+    {
+        if(DataManager.instance.nowPlayer.Playerinfo.Day % 7 == 1)
+        {
+            GameEvents.NotifyWeekChanged();
+        }
     }
     void SetIsDay()
     {
