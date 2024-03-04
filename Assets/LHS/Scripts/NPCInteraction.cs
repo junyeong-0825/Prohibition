@@ -38,7 +38,7 @@ public class NPCInteraction : MonoBehaviour
     // 상호작용 시간 초기값
     private float interactionTimer = 0f;
     // 위장 상태에 돌입되면 더는 바뀔 수 없는지에 확인해주는 bool값
-    private bool isChanged;
+    private bool isChanged = false;
     // Update문 내에서 한번 실행만 하도록 하기 위한 플래그 bool값
     private bool isflag = false;
 
@@ -131,16 +131,20 @@ public class NPCInteraction : MonoBehaviour
         {
             // 바로 자리를 뜨도록 하는 행동 패턴
             case 0:
+                Debug.Log(randomIndex);
                 SuddenInteractionComplete();
                 break;
 
             // 술을 일반 음식으로 바꾸도록 하는 메서드
             case 1:
+                Debug.Log(randomIndex);
                 ChangeBoozeToFood();
                 break;
 
             case 2:
-                TwistedOrder();
+                Debug.Log(randomIndex);
+                StartCoroutine(JustWaitCoroutine());
+                //TwistedOrder();
                 break;
         }
     }
@@ -192,7 +196,8 @@ public class NPCInteraction : MonoBehaviour
         StartCoroutine(InteractionCompleteTargeting());
     }
 
-    // (위장상태 진입 및 술손님일 때)
+    #region booze NPC reaction
+    // (경찰이 검문상태 진입 시 술 손님이 행하는 행동들)
     // 1. 바로 자리를 떠나는 메소드
     private void SuddenInteractionComplete()
     {
@@ -220,30 +225,24 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    // 3. 시간을 초기화하고 메뉴 이미지를 다른 이미지로 교체해서 음식이 무엇인지 알지 못하게 하기
-    private void TwistedOrder()
+    // 3. 시간을 초기화하고 메뉴 이미지를 가려서 무슨 음식인지는 모르고 5초가 지난 후 다시 주문하도록 하는 코루틴
+    private IEnumerator JustWaitCoroutine()
     {
-        OrderMenuSprite.SetActive(false);
-        SmokedSpriteobject.SetActive(true);
         if (!isflag)
         {
-            interactionTimer = 0f;
             isflag = true;
-            isChanged = false;
+            OrderMenuSprite.SetActive(false);
+            SmokedSpriteobject.SetActive(true);
+            interactionStarted = false;
         }
-        if (!interactionCompleted)
-        {
-            interactionTimer += Time.deltaTime;
-            if(interactionTimer > interactionTimeLimit)
-            {
-                GameEvents.NotifyTimeOverTrade();
-                SmokedSpriteobject.SetActive(false);
-                interactionCompleted = true;
-                unsatisfiedSprite.SetActive(true);
-                StartCoroutine(InteractionCompleteTargeting());
-            }
-        }
+        yield return new WaitForSeconds(5f);
+        isChanged = false;
+        interactionTimer = 0f;
+        SmokedSpriteobject.SetActive(false);
+        OrderMenuSprite.SetActive(true);
+        interactionStarted = true;
     }
+    #endregion
 
     // 상호작용이 시작되고 나서 일정 시간이 지나면 실패되도록 함
     private void TimeLimited()
@@ -256,15 +255,6 @@ public class NPCInteraction : MonoBehaviour
     }
 
     // 상호작용이 완료된 후 내부 입구로 가기 위한 타겟팅을 시도한다(이때 nextTarget에 들어가 있는 좌표값은 내부 입구로 설정되어 있다.)
-    //private void InteractionCompleteTargeting()
-    //{
-    //    if(interactionCompleted)
-    //    {
-    //        NPCController controller = GetComponent<NPCController>();
-    //        controller.SetTarget(controller.nextTarget);
-    //    }
-    //}
-
     private IEnumerator InteractionCompleteTargeting()
     {
         if(interactionCompleted)
@@ -275,13 +265,6 @@ public class NPCInteraction : MonoBehaviour
             controller.SetTarget(controller.nextTarget);
         }
     }
-
-    // 플레이어의 위장 상태를 감지하는 코루틴 함수 (start() 이벤트 함수에서 실행) => 폐기
-    //private IEnumerator PlayerUndercoverStatus()
-    //{
-    //    yield return new WaitUntil(() => isUndercover == true && interactionStarted);
-    //    isChanged = true;
-    //}
 
     // 경찰의 검문 상태를 실시간으로 감지하는 코루틴 함수
     private IEnumerator PoliceSearchStartStatus()

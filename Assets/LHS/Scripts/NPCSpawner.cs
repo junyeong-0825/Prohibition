@@ -23,9 +23,13 @@ public class NPCSpawner : MonoBehaviour
 
     public bool IsPoliceSpawned = false;
 
-    // 스폰 생성 지연시간
+    // 스폰 생성 지연시간 및 NPC 수량 변수 선언
     private float guestInterval = 3.5f;
+    private int guestCount;
     private float policeInterval = 1f;
+    private int policeCount;
+    private List<int> equipedMenu = new List<int>();
+
     [SerializeField] private Timer timeLeft;
 
     void Start()
@@ -37,7 +41,12 @@ public class NPCSpawner : MonoBehaviour
     // 일반 NPC를 스폰하는 코루틴 메서드
     internal IEnumerator spawnNPC()
     {
-        int callCount = 0;
+        // 손님의 갯수 초기화
+        int callPoliceCount = 0;
+        int callGuestCount = 0;
+
+        SetDayWaves();
+        CheckInventory();
 
         //실전용
         while (true)
@@ -59,17 +68,16 @@ public class NPCSpawner : MonoBehaviour
             {
                 int index = UnityEngine.Random.Range(0, guestPrefab.Length);
                 int gacha = UnityEngine.Random.Range(0, 10);
-                if (gacha < 2 && callCount < 3 && !IsPoliceSpawned)
+                if (gacha < 2 && callPoliceCount <= policeCount && !IsPoliceSpawned)
                 {
                     yield return SpawnPolice(policeInterval, policePrefab, SpawnPositionPrefab);
-                    policeInterval = UnityEngine.Random.Range(5f, 10f);
-                    callCount++;
+                    callPoliceCount++;
                     IsPoliceSpawned = true;
                 }
-                else
+                else if( callGuestCount <= guestCount)
                 {
                     yield return SpawnOnce(guestInterval, guestPrefab[index], SpawnPositionPrefab);
-                    guestInterval = UnityEngine.Random.Range(1.5f, 3.5f);
+                    callGuestCount++;
                 }
             }
 
@@ -192,12 +200,65 @@ public class NPCSpawner : MonoBehaviour
         int SelectedMenu;
         SelectedMenu = UnityEngine.Random.Range(0, 10);
 
+        int index;
+        index = UnityEngine.Random.Range(0, equipedMenu.Count);
+
         if (SelectedMenu > 4) SelectedMenu = 1;
         else if (SelectedMenu > 1) SelectedMenu = 2;
         else if (SelectedMenu > 0) SelectedMenu = 3;
         else SelectedMenu = 4;
 
-        return SelectedMenu;
+
+        return equipedMenu[index];
+    }
+
+    private void CheckInventory()
+    {
+        if (equipedMenu.Count > 0) equipedMenu.Clear();
+        PlayerInventory foodInven = DataManager.instance.nowPlayer.inventory.Find(inven => inven.Name == "Food");
+        PlayerInventory beerInven = DataManager.instance.nowPlayer.inventory.Find(inven => inven.Name == "Beer");
+        PlayerInventory wineInven = DataManager.instance.nowPlayer.inventory.Find(inven => inven.Name == "Wine");
+        PlayerInventory whiskyInven = DataManager.instance.nowPlayer.inventory.Find(inven => inven.Name == "Whisky");
+        if (foodInven != null) equipedMenu.Add(1);
+        if (beerInven != null) equipedMenu.Add(2);
+        if (wineInven != null) equipedMenu.Add(3);
+        if (whiskyInven != null) equipedMenu.Add(4);
+        else equipedMenu.Add(1);
+    }
+
+    // 플레이 시작 후 몇 날인지를 파악하여, 손님 수와 경찰 수를 조절하는 메서드
+    private void SetDayWaves()
+    {
+        int Today = DataManager.instance.nowPlayer.Playerinfo.Day;
+
+        if(Today >= 0 && Today < 10)
+        {
+            guestInterval = 9f;
+            guestCount = 30;
+            policeInterval = 3f;
+            policeCount = 1;
+        }
+        else if(Today >=10 && Today < 19)
+        {
+            guestInterval = 7f;
+            guestCount = 50;
+            policeInterval = 2.5f;
+            policeCount = 2;
+        }
+        else if(Today >= 19 && Today < 29)
+        {
+            guestInterval = 5f;
+            guestCount = 70;
+            policeInterval = 2f;
+            policeCount = 3;
+        }
+        else
+        {
+            guestInterval = 4f;
+            guestCount = 90;
+            policeInterval = 1.5f;
+            policeCount = 7;
+        }
     }
 
     // 딕셔너리의 Value값들이 모두가 true이면 true를 반환하는 메서드, 빈자리를 뜻하는 false 값이 키 값인 각 자리의 상태를 표시하는 딕셔너리를 체크한다.
