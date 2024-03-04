@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 경찰이 정찰 지점에 도착했을 때에 
+// 경찰이 정찰 지점에 도착했을 때 검문 상태를 알리는 스크립트
 public class SearchTrigger : MonoBehaviour
 {
     private bool isSearchBegin;
