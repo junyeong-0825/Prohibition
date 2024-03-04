@@ -6,7 +6,6 @@ public class MissionController : MonoBehaviour
 {
     [SerializeField] GameObject MissionOverText;
     [SerializeField] GameObject[] MissionButtons;
-    [SerializeField] GameObject[] MissionCheckers;
     [SerializeField] TextMeshProUGUI nameText, scriptText, descriptionText, rewardText;
     [SerializeField] Button[] missionButtons;
     string[] additionalDescription;
@@ -34,16 +33,7 @@ public class MissionController : MonoBehaviour
             missionButtons[i].onClick.AddListener(() => ChangeMission(index));
         }
     }
-    private void OnEnable()
-    {
-        GameEvents.OnDayStart += DayUpdate;
-    }
-    private void OnDisable()
-    {
-        GameEvents.OnDayEnd -= DayUpdate;
-    }
-
-    private void DayUpdate()
+    private void Update()
     {
         CheckMissions();
         int currentDay = DataManager.instance.nowPlayer.Playerinfo.Day;
