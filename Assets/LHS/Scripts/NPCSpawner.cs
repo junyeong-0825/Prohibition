@@ -294,6 +294,10 @@ public class NPCSpawner : MonoBehaviour
 
 
 //// 테스트용
+///
+//private List<int> usedTargetIndex = new List<int>();
+//public List<int> UsedTargetIndex { get { return usedTargetIndex; } set { usedTargetIndex = value; } }
+
 //while (true)
 //{
 //if (usedTargetIndex.Count > TargetPrefabList.Count)
@@ -314,9 +318,6 @@ public class NPCSpawner : MonoBehaviour
 //        yield return null;
 //    }
 //}
-
-//private List<int> usedTargetIndex = new List<int>();
-//public List<int> UsedTargetIndex { get { return usedTargetIndex; } set { usedTargetIndex = value; } }
 
 //do
 //{
